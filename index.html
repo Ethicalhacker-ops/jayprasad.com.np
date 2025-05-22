@@ -1,69 +1,1131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Consultant Portal</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Jay Prasad | IT Consultant & Web Developer</title>
+    <meta name="description" content="Professional portfolio of Jay Prasad featuring 600+ technology solutions and services">
+    
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Jay Prasad | IT Consultant & Web Developer">
+    <meta property="og:description" content="600+ technology features and professional services">
+    <meta property="og:image" content="https://jayprasad.com.np/images/social-preview.jpg">
+    <meta property="og:url" content="https://jayprasad.com.np">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #ffffff;
+            --bg-dark: #111827;
+            --card-bg: #f9fafb;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --text-color: #f3f4f6;
+            --text-light: #9ca3af;
+            --bg-color: #111827;
+            --bg-dark: #030712;
+            --card-bg: #1f2937;
+            --border-color: #374151;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.75rem; }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background-color: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.sticky {
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--bg-dark);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.75rem 1rem;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(255,255,255,0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .typing-container {
+            min-height: 60px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .typed-element {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn.primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn.secondary {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn.secondary:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .stats-container {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+        }
+        
+        .section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        /* Features Section */
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        #featureSearch {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        #categoryFilter {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        
+        .feature-media {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .feature-media img, .feature-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-media img, 
+        .feature-card:hover .feature-media video {
+            transform: scale(1.05);
+        }
+        
+        .feature-card h3 {
+            padding: 1rem 1rem 0.5rem;
+        }
+        
+        .feature-card p {
+            padding: 0 1rem 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            margin: 0 1rem 1rem;
+        }
+        
+        .pagination {
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section ul li a {
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        #newsletterForm {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        #newsletterForm input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        #newsletterForm input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        #newsletterForm button {
+            padding: 0 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #newsletterForm button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: white;
+        }
+        
+        /* Feature Page Styles */
+        .feature-page {
+            padding: 8rem 0 4rem;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+        
+        .breadcrumb a {
+            color: var(--text-light);
+        }
+        
+        .breadcrumb span {
+            color: var(--primary-color);
+        }
+        
+        .feature-content {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        
+        .feature-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .feature-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+        }
+        
+        .feature-media-container {
+            margin-bottom: 2rem;
+        }
+        
+        .feature-media-container img, 
+        .feature-media-container video {
+            width: 100%;
+            border-radius: 0.5rem;
+        }
+        
+        .feature-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-details h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-details ul {
+            list-style-position: inside;
+        }
+        
+        .feature-details li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-use-cases {
+            margin: 3rem 0;
+        }
+        
+        .feature-related {
+            margin-top: 3rem;
+        }
+        
+        .related-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-dark);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu-btn.open {
+                color: var(--primary-color);
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                background-color: transparent;
+                padding: 0.5rem 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .feature-details {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .typed-element {
+                font-size: 1.25rem;
+            }
+            
+            .search-filter {
+                flex-direction: column;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop id="techVideo">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar sticky">
         <div class="container">
-            <h1>IT Consultant Portal</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/services.html">Services</a></li>
-                    <li><a href="/login">Login</a></li>
-                </ul>
-            </nav>
+            <a href="/" class="logo">jayprasad</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <div class="dropdown">
+                    <a href="/about">About <span class="arrow-down">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="/about#bio">Bio</a>
+                        <a href="/about#team">Team</a>
+                        <a href="/about#timeline">Timeline</a>
+                    </div>
+                </div>
+                <a href="/skills">Skills</a>
+                <a href="/portfolio">Portfolio</a>
+                <div class="dropdown">
+                    <a href="/services">Services <span class="arrow-down">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="/services#web">Web Development</a>
+                        <a href="/services#cloud">Cloud Solutions</a>
+                        <a href="/services#consulting">IT Consulting</a>
+                    </div>
+                </div>
+                <a href="/blog">Blog</a>
+                <a href="/resume">Resume</a>
+                <a href="/contact">Contact</a>
+                <button id="themeToggle" class="theme-toggle">🌓</button>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
         </div>
-    </header>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Jay Prasad</h1>
+            <div class="typing-container">
+                <span id="typed-roles" class="typed-element"></span>
+            </div>
+            <p class="hero-description">Delivering <span id="typed-features" class="typed-element"></span> solutions since 2010</p>
+            <div class="hero-buttons">
+                <a href="/contact" class="btn primary">Get in Touch</a>
+                <a href="/feature/1" class="btn secondary">Explore Features</a>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="counter" data-target="600">0</span>+
+                    <span class="stat-label">Features</span>
+                </div>
+                <div class="stat-item">
+                    <span class="counter" data-target="15">0</span>+
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="counter" data-target="200">0</span>+
+                    <span class="stat-label">Clients</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
     <main>
-        <section class="hero">
+        <!-- About Section -->
+        <section id="about" class="section">
             <div class="container">
-                <div class="hero-content">
-                    <h2>Professional IT Consulting Services</h2>
-                    <p>Cloud solutions, security, and infrastructure management</p>
-                    <a href="/signup" class="cta-button">Get Started</a>
-                </div>
-                <div class="hero-image">
-                    <img src="hero.png" alt="IT Consulting">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p id="typed-bio"></p>
+                        <div class="timeline">
+                            <!-- Timeline items would be added here -->
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://via.placeholder.com/500x600" alt="Jay Prasad" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="features">
+        <!-- Skills Section -->
+        <section id="skills" class="section">
             <div class="container">
-                <div class="feature-card">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Cloud Solutions</h3>
-                    <p>Modern cloud infrastructure and migration</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Security</h3>
-                    <p>Comprehensive security assessments</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Infrastructure</h3>
-                    <p>Reliable and scalable infrastructure</p>
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>98%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 98%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>React</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Node.js</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>AWS</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- Features Preview -->
+        <section id="features-preview" class="section">
+            <div class="container">
+                <h2>Explore My 600+ Features</h2>
+                <div class="search-filter">
+                    <input type="text" id="featureSearch" placeholder="Search features...">
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="web">Web Development</option>
+                        <option value="cloud">Cloud Computing</option>
+                        <option value="ai">AI/ML</option>
+                        <option value="security">Cybersecurity</option>
+                    </select>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card" data-category="web">
+                        <a href="/feature/1">
+                            <div class="feature-media">
+                                <img src="https://via.placeholder.com/400x200" alt="Responsive Design" loading="lazy">
+                            </div>
+                            <h3>Responsive Web Design</h3>
+                            <p>Creating websites that adapt seamlessly to all device sizes and screen resolutions.</p>
+                            <span class="feature-tag">Web Development</span>
+                        </a>
+                    </div>
+                    <div class="feature-card" data-category="web">
+                        <a href="/feature/2">
+                            <div class="feature-media">
+                                <img src="https://via.placeholder.com/400x200" alt="Progressive Web Apps" loading="lazy">
+                            </div>
+                            <h3>Progressive Web Apps</h3>
+                            <p>Building app-like web experiences with offline capabilities and push notifications.</p>
+                            <span class="feature-tag">Web Development</span>
+                        </a>
+                    </div>
+                    <div class="feature-card" data-category="cloud">
+                        <a href="/feature/3">
+                            <div class="feature-media">
+                                <img src="https://via.placeholder.com/400x200" alt="AWS Architecture" loading="lazy">
+                            </div>
+                            <h3>AWS Cloud Architecture</h3>
+                            <p>Designing scalable and cost-effective cloud solutions on Amazon Web Services.</p>
+                            <span class="feature-tag">Cloud Computing</span>
+                        </a>
+                    </div>
+                    <div class="feature-card" data-category="ai">
+                        <a href="/feature/4">
+                            <div class="feature-media">
+                                <img src="https://via.placeholder.com/400x200" alt="Machine Learning" loading="lazy">
+                            </div>
+                            <h3>Machine Learning Models</h3>
+                            <p>Developing predictive models for business intelligence and automation.</p>
+                            <span class="feature-tag">AI/ML</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <a href="/features" class="btn">View All Features</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other sections would be added here -->
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 Jay Prasad Majhi. All rights reserved.</p>
-            <p>Contact: support@jayprasad.com.np</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Jay Prasad</h3>
+                    <p>IT Consultant & Web Developer</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/resume">Resume</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><span>GitHub</span></a>
+                        <a href="#"><span>LinkedIn</span></a>
+                        <a href="#"><span>Twitter</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Jay Prasad. All rights reserved.</p>
+                <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize typing animations
+            new Typed('#typed-roles', {
+                strings: [
+                    "IT Consultant",
+                    "Web Developer",
+                    "Cloud Architect",
+                    "Cybersecurity Specialist",
+                    "Full Stack Engineer",
+                    "DevOps Engineer"
+                ],
+                typeSpeed: 60,
+                backSpeed: 30,
+                loop: true
+            });
+            
+            new Typed('#typed-features', {
+                strings: [
+                    "cutting-edge technology",
+                    "scalable web",
+                    "secure cloud",
+                    "high-performance",
+                    "responsive",
+                    "AI-powered"
+                ],
+                typeSpeed: 50,
+                backSpeed: 25,
+                loop: true
+            });
+            
+            new Typed('#typed-bio', {
+                strings: [
+                    "I'm Jay Prasad, a technology professional with over 15 years of experience helping businesses transform through innovative digital solutions. My expertise spans web development, cloud architecture, and IT consulting.^2000\n\nWith a passion for solving complex technical challenges, I've delivered 600+ feature implementations for clients across various industries, from startups to enterprises."
+                ],
+                typeSpeed: 10,
+                showCursor: false,
+                startDelay: 1000
+            });
+            
+            // Initialize counters
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCounter, 1, counter, target, count, increment);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+            
+            function updateCounter(counter, target, count, increment) {
+                const newCount = Math.ceil(count + increment);
+                if (newCount < target) {
+                    counter.innerText = newCount;
+                    setTimeout(updateCounter, 1, counter, target, newCount, increment);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+            
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            // Check for saved theme preference or use system preference
+            const currentTheme = localStorage.getItem('theme') || 
+                                (prefersDarkScheme.matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            themeToggle.addEventListener('click', function() {
+                let theme = document.documentElement.getAttribute('data-theme');
+                const newTheme = theme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+            
+            // Mobile menu functionality
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                menuBtn.classList.toggle('open');
+            });
+            
+            // Initialize feature search and filter
+            const featureSearch = document.getElementById('featureSearch');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            function filterFeatures() {
+                const searchTerm = featureSearch.value.toLowerCase();
+                const selectedCategory = categoryFilter.value;
+                
+                featureCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    const category = card.getAttribute('data-category');
+                    
+                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                    const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+                    
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            featureSearch.addEventListener('input', filterFeatures);
+            categoryFilter.addEventListener('change', filterFeatures);
+            
+            // Sticky navbar on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('sticky');
+                } else {
+                    navbar.classList.remove('sticky');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
