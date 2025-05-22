@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jay Prasad | Senior Technology Consultant & Full Stack Architect</title>
+    <title>Jay Prasad | Senior IT Consultant & Cybersecurity Expert</title>
     <meta name="description" content="Professional portfolio of Jay Prasad showcasing 600+ technology implementations across web development, cloud architecture, and cybersecurity solutions.">
     
     <!-- OpenGraph Meta Tags -->
-    <meta property="og:title" content="Jay Prasad | Technology Consultant">
+    <meta property="og:title" content="Jay Prasad | IT Security Consultant">
     <meta property="og:description" content="600+ technology implementations across multiple domains with 15+ years of experience">
     <meta property="og:image" content="https://jayprasad.com.np/assets/social-preview-tech.jpg">
     <meta property="og:url" content="https://jayprasad.com.np">
@@ -28,6 +28,9 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     
     <style>
         /* ===== Base Styles ===== */
@@ -239,8 +242,8 @@
             color: transparent;
         }
 
-        /* ===== Background Animation ===== */
-        .tech-background {
+        /* ===== Video Background ===== */
+        .video-background {
             position: fixed;
             top: 0;
             left: 0;
@@ -248,15 +251,13 @@
             height: 100%;
             z-index: -2;
             overflow: hidden;
-            opacity: 0.15;
         }
 
-        .tech-background canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
         }
 
         /* ===== Header & Navigation ===== */
@@ -1397,10 +1398,172 @@
             transform: translateY(-5px);
         }
 
+        /* ===== Vertical Social Media Icons ===== */
+        .vertical-social {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .vertical-social a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--text);
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .vertical-social a:hover {
+            transform: translateY(-5px);
+            color: white;
+        }
+
+        .vertical-social a:nth-child(1):hover { background-color: #1877f2; } /* Facebook */
+        .vertical-social a:nth-child(2):hover { background-color: #1da1f2; } /* Twitter */
+        .vertical-social a:nth-child(3):hover { background-color: #0077b5; } /* LinkedIn */
+        .vertical-social a:nth-child(4):hover { background-color: #e4405f; } /* Instagram */
+        .vertical-social a:nth-child(5):hover { background-color: #25d366; } /* WhatsApp */
+
+        /* ===== Popup Modal ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-light);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .modal-image {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== Quick Links Tooltip ===== */
+        .quick-links {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .quick-link-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition);
+        }
+
+        .quick-link-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .quick-links-menu {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--bg-light);
+            border-radius: 1rem;
+            padding: 1rem;
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .quick-links-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(calc(-100% - 1rem), translateY(-50%);
+        }
+
+        .quick-link-item {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .quick-link-item:hover {
+            background-color: var(--bg);
+        }
+
         /* ===== Responsive Styles ===== */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 1.5rem;
+            }
+            
+            .vertical-social, .quick-links {
+                display: none;
             }
         }
 
@@ -1529,6 +1692,18 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
+        @keyframes colorChange {
+            0% { color: var(--primary); }
+            25% { color: var(--accent); }
+            50% { color: var(--secondary); }
+            75% { color: var(--success); }
+            100% { color: var(--primary); }
+        }
+
+        .color-changing {
+            animation: colorChange 5s infinite;
+        }
+
         /* ===== Utility Classes ===== */
         .text-center {
             text-align: center;
@@ -1560,9 +1735,11 @@
     </style>
 </head>
 <body>
-    <!-- Technology Background Animation -->
-    <div class="tech-background">
-        <canvas id="techCanvas"></canvas>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-31201-large.mp4" type="video/mp4">
+        </video>
     </div>
 
     <!-- Header -->
@@ -1606,6 +1783,39 @@
             </button>
         </div>
     </header>
+
+    <!-- Vertical Social Media Icons -->
+    <div class="vertical-social">
+        <a href="https://facebook.com/jayprasad" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/jayprasadtech" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/in/jayprasad" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://instagram.com/jayprasad" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/9779841234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+        <div class="quick-link-btn" id="quickLinkBtn">
+            <i class="fas fa-bolt"></i>
+        </div>
+        <div class="quick-links-menu" id="quickLinksMenu">
+            <div class="quick-link-item">
+                <i class="fas fa-download"></i> Download Resume
+            </div>
+            <div class="quick-link-item">
+                <i class="fas fa-book"></i> View Certifications
+            </div>
+            <div class="quick-link-item">
+                <i class="fas fa-project-diagram"></i> Recent Projects
+            </div>
+            <div class="quick-link-item">
+                <i class="fas fa-envelope"></i> Contact Support
+            </div>
+            <div class="quick-link-item">
+                <i class="fas fa-info-circle"></i> Company Info
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -1659,7 +1869,7 @@
             
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Senior Technology Consultant</h3>
+                    <h3>Senior IT Security Consultant</h3>
                     <p>
                         I specialize in architecting and implementing cutting-edge technology solutions for businesses of all sizes. 
                         With expertise spanning full-stack development, cloud infrastructure, and security protocols, I help companies 
@@ -1672,16 +1882,13 @@
                     </p>
                     
                     <div class="about-skills">
-                        <h4>Core Expertise:</h4>
+                        <h4>Certifications:</h4>
                         <div class="skills-list">
-                            <span class="skill-tag">Web Architecture</span>
-                            <span class="skill-tag">Cloud Computing</span>
-                            <span class="skill-tag">DevOps</span>
-                            <span class="skill-tag">Cybersecurity</span>
-                            <span class="skill-tag">API Design</span>
-                            <span class="skill-tag">Database Optimization</span>
-                            <span class="skill-tag">Machine Learning</span>
-                            <span class="skill-tag">Technical Leadership</span>
+                            <span class="skill-tag">Certified Information Security Manager (ITU)</span>
+                            <span class="skill-tag">Google Analytics Certified</span>
+                            <span class="skill-tag">Future of Ethical Hacking (AI Certs)</span>
+                            <span class="skill-tag">AWS Certified Solutions Architect</span>
+                            <span class="skill-tag">Certified Ethical Hacker (CEH)</span>
                         </div>
                     </div>
                     
@@ -1690,7 +1897,7 @@
                         
                         <div class="timeline-item">
                             <div class="timeline-date">2018 - Present</div>
-                            <h5 class="timeline-title">Senior Technology Consultant</h5>
+                            <h5 class="timeline-title">Senior IT Security Consultant</h5>
                             <div class="timeline-company">Prasad Tech Solutions</div>
                             <p>
                                 Providing strategic technology consulting to clients worldwide, with a focus on digital transformation 
@@ -1700,17 +1907,17 @@
                         
                         <div class="timeline-item">
                             <div class="timeline-date">2014 - 2018</div>
-                            <h5 class="timeline-title">Lead Developer</h5>
+                            <h5 class="timeline-title">Lead Security Developer</h5>
                             <div class="timeline-company">Nexus Innovations</div>
                             <p>
-                                Led a team of 12 developers building enterprise SaaS solutions with React, Node.js, and AWS infrastructure.
+                                Led a team of 12 developers building secure enterprise SaaS solutions with React, Node.js, and AWS infrastructure.
                             </p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="about-image floating">
-                    <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Jay Prasad - Technology Consultant">
+                    <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Jay Prasad - IT Security Consultant">
                 </div>
             </div>
         </div>
@@ -1882,4 +2089,887 @@
                     
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name
+                            <span class="skill-name">Python</span>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">PHP</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Java</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-database"></i> Database
+                    </h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">MongoDB</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">MySQL</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">PostgreSQL</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Redis</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-shield-alt"></i> Security
+                    </h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Penetration Testing</span>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">OWASP Top 10</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Cryptography</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Network Security</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">
+                Featured <span class="text-gradient">Projects</span>
+            </h2>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="cloud">Cloud</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="E-commerce Platform" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">E-commerce Platform</h3>
+                        <div class="portfolio-category">Web Development</div>
+                        <div class="portfolio-links">
+                            <a href="#" class="btn btn-primary">View Project</a>
+                            <a href="#" class="btn btn-secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="cloud">
+                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Cloud Migration" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Enterprise Cloud Migration</h3>
+                        <div class="portfolio-category">Cloud Architecture</div>
+                        <div class="portfolio-links">
+                            <a href="#" class="btn btn-primary">View Project</a>
+                            <a href="#" class="btn btn-secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="security">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Security Audit" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Banking Security Audit</h3>
+                        <div class="portfolio-category">Cybersecurity</div>
+                        <div class="portfolio-links">
+                            <a href="#" class="btn btn-primary">View Project</a>
+                            <a href="#" class="btn btn-secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="ai">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="AI Chatbot" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">AI Customer Support Chatbot</h3>
+                        <div class="portfolio-category">Artificial Intelligence</div>
+                        <div class="portfolio-links">
+                            <a href="#" class="btn btn-primary">View Project</a>
+                            <a href="#" class="btn btn-secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="CMS Platform" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Custom CMS Platform</h3>
+                        <div class="portfolio-category">Web Development</div>
+                        <div class="portfolio-links">
+                            <a href="#" class="btn btn-primary">View Project</a>
+                            <a href="#" class="btn btn-secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="cloud">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Serverless App" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Serverless Application</h3>
+                        <div class="portfolio-category">Cloud Architecture</div>
+                        <div class="portfolio-links">
+                            <a href="#" class="btn btn-primary">View Project</a>
+                            <a href="#" class="btn btn-secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">
+                Featured <span class="text-gradient">Modules</span>
+            </h2>
+            
+            <div class="features-header">
+                <div class="features-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search features...">
+                </div>
+                <div class="features-sort">
+                    <select class="sort-select">
+                        <option>Sort by</option>
+                        <option>Most Recent</option>
+                        <option>Most Popular</option>
+                        <option>A-Z</option>
+                    </select>
+                    <button class="btn btn-primary">View All</button>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-media">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Feature 1">
+                        <span class="feature-badge">New</span>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Secure Authentication System</h3>
+                        <p class="feature-description">
+                            Implemented multi-factor authentication with biometric verification for enhanced security.
+                        </p>
+                        <div class="feature-meta">
+                            <span class="feature-category">Security</span>
+                            <a href="#" class="feature-link">
+                                Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-media">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Feature 2">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Cloud Cost Optimizer</h3>
+                        <p class="feature-description">
+                            Automated tool that reduces AWS costs by 40% through intelligent resource allocation.
+                        </p>
+                        <div class="feature-meta">
+                            <span class="feature-category">Cloud</span>
+                            <a href="#" class="feature-link">
+                                Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-media">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Feature 3">
+                        <span class="feature-badge">Popular</span>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Penetration Testing Framework</h3>
+                        <p class="feature-description">
+                            Custom framework for automated security testing of web applications and APIs.
+                        </p>
+                        <div class="feature-meta">
+                            <span class="feature-category">Security</span>
+                            <a href="#" class="feature-link">
+                                Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-media">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="Feature 4">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">AI Content Moderator</h3>
+                        <p class="feature-description">
+                            Machine learning model that automatically detects and filters inappropriate content.
+                        </p>
+                        <div class="feature-meta">
+                            <span class="feature-category">AI/ML</span>
+                            <a href="#" class="feature-link">
+                                Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-media">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Feature 5">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Responsive Design System</h3>
+                        <p class="feature-description">
+                            Component library that ensures consistent UX across all device sizes.
+                        </p>
+                        <div class="feature-meta">
+                            <span class="feature-category">Web</span>
+                            <a href="#" class="feature-link">
+                                Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-media">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Feature 6">
+                        <span class="feature-badge">Updated</span>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">CI/CD Pipeline</h3>
+                        <p class="feature-description">
+                            Automated deployment pipeline with testing, security scanning, and rollback capabilities.
+                        </p>
+                        <div class="feature-meta">
+                            <span class="feature-category">DevOps</span>
+                            <a href="#" class="feature-link">
+                                Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-pagination">
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link">4</a>
+                <a href="#" class="page-link">5</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">
+                Client <span class="text-gradient">Testimonials</span>
+            </h2>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial-track">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>
+                                    Jay transformed our security infrastructure and implemented robust protocols that 
+                                    withstood multiple penetration tests. His expertise in cybersecurity is unmatched, 
+                                    and he delivered the project ahead of schedule.
+                                </p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
+                                </div>
+                                <div class="author-info">
+                                    <h4>John Smith</h4>
+                                    <div class="author-role">CTO, SecureTech Inc.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>
+                                    The cloud architecture Jay designed reduced our operational costs by 35% while 
+                                    improving performance. His ability to explain complex technical concepts in 
+                                    business terms made the entire process smooth.
+                                </p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <div class="author-role">Director of IT, CloudScale</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>
+                                    We engaged Jay for a complete security audit of our fintech platform. Not only 
+                                    did he identify critical vulnerabilities, but he also helped us implement 
+                                    solutions that made our platform compliant with industry regulations.
+                                </p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael Chen">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Michael Chen</h4>
+                                    <div class="author-role">CEO, Finova Financial</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-nav">
+                    <button id="testimonialPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="testimonialNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="section-title">
+                Latest <span class="text-gradient">Articles</span>
+            </h2>
+            
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog 1">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Security</span>
+                            <span>June 15, 2023</span>
+                        </div>
+                        <h3 class="blog-title">Emerging Threats in Web Security for 2023</h3>
+                        <p class="blog-excerpt">
+                            An in-depth analysis of the latest cybersecurity threats targeting web applications and how to protect against them.
+                        </p>
+                        <a href="#" class="blog-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Blog 2">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Cloud</span>
+                            <span>May 28, 2023</span>
+                        </div>
+                        <h3 class="blog-title">Optimizing AWS Costs Without Sacrificing Performance</h3>
+                        <p class="blog-excerpt">
+                            Practical strategies for reducing your cloud bill while maintaining or even improving application performance.
+                        </p>
+                        <a href="#" class="blog-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog 3">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">AI</span>
+                            <span>April 10, 2023</span>
+                        </div>
+                        <h3 class="blog-title">Ethical AI: Implementing Responsible Machine Learning</h3>
+                        <p class="blog-excerpt">
+                            How to develop AI systems that are fair, transparent, and accountable while delivering business value.
+                        </p>
+                        <a href="#" class="blog-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Get In <span class="text-gradient">Touch</span>
+            </h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="contact-title">Email</h3>
+                        <p class="contact-detail">contact@jayprasad.com.np</p>
+                        <p class="contact-detail">support@the.jayprasad.com.np</p>
+                        <p class="contact-detail">ict@the.jayprasad.com.np</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="contact-title">Phone</h3>
+                        <p class="contact-detail">+977 9841234567</p>
+                        <p class="contact-detail">+1 (555) 123-4567</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="contact-title">Location</h3>
+                        <p class="contact-detail">Kathmandu, Nepal</p>
+                        <p class="contact-detail">Remote Services Worldwide</p>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Jay Prasad</h3>
+                    <p>
+                        Senior IT Consultant & Cybersecurity Expert with 15+ years of experience delivering 
+                        innovative technology solutions for businesses worldwide.
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#services">Services</a>
+                        <a href="#portfolio">Portfolio</a>
+                        <a href="#blog">Blog</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="#services">Web Development</a>
+                        <a href="#services">Cloud Architecture</a>
+                        <a href="#services">Cybersecurity</a>
+                        <a href="#services">AI Solutions</a>
+                        <a href="#services">DevOps</a>
+                        <a href="#services">Technical Consulting</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>
+                        Subscribe to my newsletter for the latest tech insights, security tips, and project updates.
+                    </p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Jay Prasad. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Popup Modal -->
+    <div class="modal-overlay" id="companyModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Company Information & Policies</h2>
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Company Policies" class="modal-image">
+            <p>
+                <strong>Prasad Tech Solutions</strong> is committed to delivering exceptional IT consulting services with 
+                integrity and professionalism. Our policies ensure transparency, security, and client satisfaction.
+            </p>
+            <p>
+                <strong>Email Contacts:</strong><br>
+                General Inquiries: contact@jayprasad.com.np<br>
+                Technical Support: support@the.jayprasad.com.np<br>
+                IT Services: it@jayprasad.com.np<br>
+                Administration: admin@jayprasad.com.np<br>
+                ICT Department: ict@the.jayprasad.com.np
+            </p>
+            <p>
+                <strong>Certifications:</strong> Certified Information Security Manager (ITU), Google Analytics Certified, 
+                Future of Ethical Hacking (AI Certs), AWS Certified Solutions Architect, Certified Ethical Hacker (CEH).
+            </p>
+            <p>
+                All content and materials on this website are protected by copyright laws. Unauthorized use or reproduction 
+                is strictly prohibited without prior written consent.
+            </p>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" id="acceptPolicy">
+                    I Understand and Accept
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Typed.js Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            var typed = new Typed('#typed-roles', {
+                strings: [
+                    'IT Security Consultant',
+                    'Cloud Architect',
+                    'Full Stack Developer',
+                    'Cybersecurity Expert',
+                    'AI Solutions Specialist'
+                ],
+                typeSpeed: 60,
+                backSpeed: 30,
+                loop: true
+            });
+
+            // Counter Animation
+            function animateCounter(elementId, target, duration = 2000) {
+                const element = document.getElementById(elementId);
+                const start = 0;
+                const increment = target / (duration / 16);
+                let current = start;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    element.textContent = Math.floor(current) + "+";
+                }, 16);
+            }
+
+            // Intersection Observer for counters
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter('featureCounter', 600);
+                        animateCounter('clientCounter', 200);
+                        animateCounter('projectCounter', 500);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(document.querySelector('.hero-stats'));
+
+            // Animate skill bars on scroll
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 100);
+                        skillObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillBars.forEach(bar => {
+                skillObserver.observe(bar);
+            });
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.setAttribute(
+                    'data-theme',
+                    document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+                );
+                themeToggle.innerHTML = document.documentElement.getAttribute('data-theme') === 'dark' ? 
+                    '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+            });
+
+            // Testimonial slider
+            const testimonialTrack = document.querySelector('.testimonial-track');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const testimonialPrev = document.getElementById('testimonialPrev');
+            const testimonialNext = document.getElementById('testimonialNext');
+            let currentSlide = 0;
+            const cardWidth = testimonialCards[0].clientWidth;
+            const totalSlides = testimonialCards.length;
+
+            testimonialNext.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                testimonialTrack.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+            });
+
+            testimonialPrev.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                testimonialTrack.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+            });
+
+            // Portfolio filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter items
+                    const filter = button.getAttribute('data-filter');
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Quick links toggle
+            const quickLinkBtn = document.getElementById('quickLinkBtn');
+            const quickLinksMenu = document.getElementById('quickLinksMenu');
+
+            quickLinkBtn.addEventListener('click', () => {
+                quickLinksMenu.classList.toggle('active');
+            });
+
+            // Close quick links when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!quickLinkBtn.contains(e.target) && !quickLinksMenu.contains(e.target)) {
+                    quickLinksMenu.classList.remove('active');
+                }
+            });
+
+            // Show company modal on page load
+            setTimeout(() => {
+                if (!localStorage.getItem('policyAccepted')) {
+                    document.getElementById('companyModal').classList.add('active');
+                }
+            }, 2000);
+
+            // Close modal and accept policy
+            document.getElementById('modalClose').addEventListener('click', () => {
+                document.getElementById('companyModal').classList.remove('active');
+            });
+
+            document.getElementById('acceptPolicy').addEventListener('click', () => {
+                localStorage.setItem('policyAccepted', 'true');
+                document.getElementById('companyModal').classList.remove('active');
+            });
+
+            // Close modal when clicking outside
+            document.getElementById('companyModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('companyModal')) {
+                    document.getElementById('companyModal').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
