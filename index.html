@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jay Prasad | Senior IT Consultant & Cybersecurity Expert</title>
+    <title>Jay Prasad Majhi | Senior IT Consultant & Cybersecurity Expert</title>
     <meta name="description" content="Professional portfolio of Jay Prasad showcasing 600+ technology implementations across web development, cloud architecture, and cybersecurity solutions.">
     
     <!-- OpenGraph Meta Tags -->
@@ -31,6 +31,10 @@
     
     <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <!-- Calendly link widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     
     <style>
         /* ===== Base Styles ===== */
@@ -1542,7 +1546,7 @@
         .quick-links-menu.active {
             opacity: 1;
             visibility: visible;
-            transform: translate(calc(-100% - 1rem), translateY(-50%);
+            transform: translate(calc(-100% - 1rem), -50%;
         }
 
         .quick-link-item {
@@ -1732,6 +1736,42 @@
         .py-3 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
         .py-4 { padding-top: 2rem; padding-bottom: 2rem; }
         .py-5 { padding-top: 3rem; padding-bottom: 3rem; }
+
+        /* ===== Current Date Display ===== */
+        .current-date {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background-color: var(--bg-light);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-md);
+            z-index: 100;
+        }
+
+        /* ===== Calendly Button ===== */
+        .calendly-btn {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-xl);
+            z-index: 100;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .calendly-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
     </style>
 </head>
 <body>
@@ -1741,6 +1781,14 @@
             <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-31201-large.mp4" type="video/mp4">
         </video>
     </div>
+
+    <!-- Current Date Display -->
+    <div class="current-date" id="currentDate"></div>
+
+    <!-- Calendly Meeting Button -->
+    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ictconsultant'});return false;" class="calendly-btn">
+        <i class="fas fa-calendar-alt"></i> Schedule Meeting
+    </a>
 
     <!-- Header -->
     <header id="header">
@@ -1799,20 +1847,44 @@
             <i class="fas fa-bolt"></i>
         </div>
         <div class="quick-links-menu" id="quickLinksMenu">
-            <div class="quick-link-item">
+            <div class="quick-link-item" onclick="window.location.href='#home'">
+                <i class="fas fa-home"></i> Home
+            </div>
+            <div class="quick-link-item" onclick="window.location.href='#about'">
+                <i class="fas fa-user"></i> About
+            </div>
+            <div class="quick-link-item" onclick="window.location.href='#services'">
+                <i class="fas fa-cogs"></i> Services
+            </div>
+            <div class="quick-link-item" onclick="window.location.href='#portfolio'">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </div>
+            <div class="quick-link-item" onclick="window.location.href='#blog'">
+                <i class="fas fa-newspaper"></i> Blog
+            </div>
+            <div class="quick-link-item" onclick="window.location.href='#contact'">
+                <i class="fas fa-envelope"></i> Contact
+            </div>
+            <div class="quick-link-item" onclick="window.open('https://drive.google.com/file/d/1example/view?usp=sharing', '_blank')">
                 <i class="fas fa-download"></i> Download Resume
             </div>
-            <div class="quick-link-item">
-                <i class="fas fa-book"></i> View Certifications
+            <div class="quick-link-item" onclick="window.open('https://www.linkedin.com/in/jayprasad/details/certifications/', '_blank')">
+                <i class="fas fa-certificate"></i> View Certifications
             </div>
-            <div class="quick-link-item">
+            <div class="quick-link-item" onclick="window.location.href='#portfolio'">
                 <i class="fas fa-project-diagram"></i> Recent Projects
             </div>
-            <div class="quick-link-item">
-                <i class="fas fa-envelope"></i> Contact Support
+            <div class="quick-link-item" onclick="window.location.href='mailto:support@the.jayprasad.com.np'">
+                <i class="fas fa-headset"></i> Contact Support
             </div>
-            <div class="quick-link-item">
+            <div class="quick-link-item" onclick="document.getElementById('companyModal').classList.add('active')">
                 <i class="fas fa-info-circle"></i> Company Info
+            </div>
+            <div class="quick-link-item" onclick="window.open('privacy-policy.html', '_blank')">
+                <i class="fas fa-shield-alt"></i> Privacy Policy
+            </div>
+            <div class="quick-link-item" onclick="window.open('terms-of-service.html', '_blank')">
+                <i class="fas fa-file-contract"></i> Terms of Service
             </div>
         </div>
     </div>
@@ -1822,7 +1894,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Hi, I'm <span class="text-gradient">Jay Prasad</span>
+                    Hi, I'm <span class="text-gradient">Jay Prasad Majhi</span>
                 </h1>
                 
                 <div class="typing-container">
@@ -1839,6 +1911,9 @@
                     </a>
                     <a href="#features" class="btn btn-secondary">
                         <i class="fas fa-list"></i> View Features
+                    </a>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ictconsultant'});return false;" class="btn btn-accent">
+                        <i class="fas fa-calendar-alt"></i> Book Meeting
                     </a>
                 </div>
                 
@@ -2340,7 +2415,7 @@
                         </p>
                         <div class="feature-meta">
                             <span class="feature-category">Security</span>
-                            <a href="#" class="feature-link">
+                            <a href="#" class="feature-link" onclick="showFeatureModal('Secure Authentication System', 'Implemented a comprehensive authentication system with multi-factor authentication (MFA), biometric verification (fingerprint and facial recognition), and adaptive authentication based on user behavior patterns. The system integrates with OAuth 2.0 and OpenID Connect protocols, providing secure single sign-on (SSO) across multiple applications. Features include brute force protection, account lockout mechanisms, and real-time threat detection using machine learning algorithms to identify suspicious login attempts.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')">
                                 Details <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -2358,7 +2433,7 @@
                         </p>
                         <div class="feature-meta">
                             <span class="feature-category">Cloud</span>
-                            <a href="#" class="feature-link">
+                            <a href="#" class="feature-link" onclick="showFeatureModal('Cloud Cost Optimizer', 'Developed an intelligent cloud cost optimization system that analyzes usage patterns and automatically rightsizes EC2 instances, schedules non-production resources, and recommends reserved instance purchases. The system uses machine learning to predict future usage and optimize resource allocation accordingly. Features include cost anomaly detection, budget alerts, and detailed cost breakdowns by department/project. Implementation resulted in average 40% reduction in cloud spending across multiple clients while maintaining performance SLAs.', 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80')">
                                 Details <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -2377,7 +2452,7 @@
                         </p>
                         <div class="feature-meta">
                             <span class="feature-category">Security</span>
-                            <a href="#" class="feature-link">
+                            <a href="#" class="feature-link" onclick="showFeatureModal('Penetration Testing Framework', 'Created an automated penetration testing framework that combines commercial tools with custom scripts to perform comprehensive security assessments. The framework includes modules for vulnerability scanning, API security testing, business logic testing, and social engineering simulations. It generates detailed reports with risk ratings and remediation recommendations. The system integrates with CI/CD pipelines to enable shift-left security testing and can be customized for specific compliance requirements (PCI DSS, HIPAA, GDPR).', 'https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')">
                                 Details <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -2395,7 +2470,7 @@
                         </p>
                         <div class="feature-meta">
                             <span class="feature-category">AI/ML</span>
-                            <a href="#" class="feature-link">
+                            <a href="#" class="feature-link" onclick="showFeatureModal('AI Content Moderator', 'Developed a content moderation system using computer vision and natural language processing to automatically detect and filter inappropriate content (images, videos, and text). The system combines multiple machine learning models including CNN for image classification, NLP for text analysis, and audio processing for speech recognition. Features include customizable sensitivity thresholds, human-in-the-loop review workflows, and real-time processing capabilities. The solution reduced manual moderation workload by 75% while improving detection accuracy compared to previous rule-based systems.', 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80')">
                                 Details <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -2413,7 +2488,7 @@
                         </p>
                         <div class="feature-meta">
                             <span class="feature-category">Web</span>
-                            <a href="#" class="feature-link">
+                            <a href="#" class="feature-link" onclick="showFeatureModal('Responsive Design System', 'Created a comprehensive design system with reusable UI components built using React and Storybook. The system includes responsive layouts, accessibility features, and dark/light mode support. Components are themable and customizable while maintaining design consistency. The design system reduced development time by 30% and improved UX consistency across multiple products. Features include automated visual regression testing, design token management, and documentation with usage guidelines.', 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80')">
                                 Details <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -2432,7 +2507,7 @@
                         </p>
                         <div class="feature-meta">
                             <span class="feature-category">DevOps</span>
-                            <a href="#" class="feature-link">
+                            <a href="#" class="feature-link" onclick="showFeatureModal('CI/CD Pipeline', 'Implemented a robust CI/CD pipeline using GitHub Actions, Docker, and Kubernetes. The pipeline includes automated testing (unit, integration, E2E), security scanning (SAST/DAST), performance testing, and canary deployments. Features include automatic rollback on failure, environment-specific configurations, and deployment approval workflows. The solution reduced deployment time from hours to minutes while improving reliability with zero-downtime deployments and comprehensive monitoring integration.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')">
                                 Details <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -2552,7 +2627,7 @@
                         <p class="blog-excerpt">
                             An in-depth analysis of the latest cybersecurity threats targeting web applications and how to protect against them.
                         </p>
-                        <a href="#" class="blog-link">
+                        <a href="#" class="blog-link" onclick="showBlogModal('Emerging Threats in Web Security for 2023', 'June 15, 2023', 'Security', 'The cybersecurity landscape continues to evolve rapidly, with attackers developing increasingly sophisticated techniques. In this article, we examine the most significant emerging threats for 2023 and provide actionable recommendations for defense.<br><br><strong>1. API Security Vulnerabilities</strong><br>With the proliferation of API-first architectures, attackers are increasingly targeting APIs as they often contain business logic vulnerabilities and are poorly protected compared to traditional web interfaces. Common issues include broken object level authorization, excessive data exposure, and lack of rate limiting.<br><br><strong>2. Supply Chain Attacks</strong><br>The SolarWinds attack demonstrated how vulnerable software supply chains can be. Attackers are now targeting open source repositories, CI/CD pipelines, and third-party vendors to compromise multiple organizations through a single attack vector.<br><br><strong>3. AI-Powered Attacks</strong><br>Cybercriminals are leveraging machine learning to automate attacks, generate convincing phishing content, and bypass traditional security measures. Deepfake technology is being used for sophisticated social engineering attacks.<br><br><strong>4. Cloud Misconfigurations</strong><br>As more organizations migrate to the cloud, misconfigured storage buckets, overly permissive IAM policies, and exposed management interfaces continue to be major sources of data breaches.<br><br><strong>Defense Strategies:</strong><br>- Implement comprehensive API security testing<br>- Adopt zero trust architecture principles<br>- Monitor software supply chains<br>- Use behavioral analytics to detect anomalies<br>- Conduct regular cloud security audits', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')">
                             Read More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -2571,7 +2646,7 @@
                         <p class="blog-excerpt">
                             Practical strategies for reducing your cloud bill while maintaining or even improving application performance.
                         </p>
-                        <a href="#" class="blog-link">
+                        <a href="#" class="blog-link" onclick="showBlogModal('Optimizing AWS Costs Without Sacrificing Performance', 'May 28, 2023', 'Cloud', 'Cloud costs can quickly spiral out of control if not properly managed. This article presents proven strategies to optimize your AWS spending while maintaining or even improving performance.<br><br><strong>1. Right-Sizing Resources</strong><br>Most workloads are over-provisioned. Use AWS Compute Optimizer and CloudWatch metrics to identify underutilized instances. Rightsizing EC2 instances can typically reduce costs by 20-30%.<br><br><strong>2. Reserved Instances and Savings Plans</strong><br>For predictable workloads, Reserved Instances can provide savings of up to 75% compared to On-Demand pricing. Savings Plans offer similar discounts with more flexibility.<br><br><strong>3. Spot Instances for Flexible Workloads</strong><br>Use Spot Instances for fault-tolerant, flexible workloads like CI/CD pipelines, batch processing, and dev/test environments to save up to 90% compared to On-Demand.<br><br><strong>4. Auto Scaling</strong><br>Implement horizontal scaling to automatically adjust capacity based on demand. Combine with predictive scaling for workloads with predictable patterns.<br><br><strong>5. Storage Optimization</strong><br>- Move infrequently accessed data to S3 Infrequent Access or Glacier<br>- Implement lifecycle policies to automatically transition data<br>- Delete unused EBS volumes and snapshots<br>- Consider EBS volume types based on workload requirements<br><br><strong>6. Cost Allocation Tags</strong><br>Implement a comprehensive tagging strategy to track costs by department, project, environment, etc. This enables chargeback and showback models.', 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80')">
                             Read More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -2590,7 +2665,7 @@
                         <p class="blog-excerpt">
                             How to develop AI systems that are fair, transparent, and accountable while delivering business value.
                         </p>
-                        <a href="#" class="blog-link">
+                        <a href="#" class="blog-link" onclick="showBlogModal('Ethical AI: Implementing Responsible Machine Learning', 'April 10, 2023', 'AI', 'As AI systems become more prevalent, ensuring they are developed and deployed ethically is crucial. This article explores practical approaches to implementing responsible AI.<br><br><strong>1. Bias Detection and Mitigation</strong><br>AI systems can amplify existing biases in training data. Techniques to address this include:<br>- Diverse dataset collection<br>- Bias audits using tools like IBM\'s AI Fairness 360<br>- Adversarial debiasing techniques<br>- Continuous monitoring in production<br><br><strong>2. Explainability and Interpretability</strong><br>Complex models like deep neural networks can be "black boxes." Improve transparency with:<br>- SHAP (SHapley Additive exPlanations) values<br>- LIME (Local Interpretable Model-agnostic Explanations)<br>- Decision trees as surrogate models<br>- Natural language explanations<br><br><strong>3. Privacy Protection</strong><br>Implement privacy-preserving techniques:<br>- Differential privacy<br>- Federated learning<br>- Homomorphic encryption<br>- Data anonymization and pseudonymization<br><br><strong>4. Robustness and Security</strong><br>Protect against adversarial attacks and ensure reliability:<br>- Adversarial training<br>- Input validation and sanitization<br>- Model monitoring for drift<br>- Fail-safe mechanisms<br><br><strong>5. Governance Framework</strong><br>Establish organizational processes for responsible AI:<br>- Ethics review boards<br>- Documentation standards (model cards, datasheets)<br>- Impact assessments<br>- Clear accountability structures<br><br>By implementing these practices, organizations can build AI systems that are not only effective but also trustworthy and aligned with societal values.', 'https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')">
                             Read More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -2617,9 +2692,15 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <h3 class="contact-title">Email</h3>
-                        <p class="contact-detail">contact@jayprasad.com.np</p>
-                        <p class="contact-detail">support@the.jayprasad.com.np</p>
-                        <p class="contact-detail">ict@the.jayprasad.com.np</p>
+                        <p class="contact-detail">
+                            <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a>
+                        </p>
+                        <p class="contact-detail">
+                            <a href="mailto:support@the.jayprasad.com.np">support@the.jayprasad.com.np</a>
+                        </p>
+                        <p class="contact-detail">
+                            <a href="mailto:ict@the.jayprasad.com.np">ict@the.jayprasad.com.np</a>
+                        </p>
                     </div>
                     
                     <div class="contact-card">
@@ -2627,8 +2708,12 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <h3 class="contact-title">Phone</h3>
-                        <p class="contact-detail">+977 9841234567</p>
-                        <p class="contact-detail">+1 (555) 123-4567</p>
+                        <p class="contact-detail">
+                            <a href="tel:+9779841234567">+977 9841234567</a>
+                        </p>
+                        <p class="contact-detail">
+                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                        </p>
                     </div>
                     
                     <div class="contact-card">
@@ -2640,34 +2725,34 @@
                         <p class="contact-detail">Remote Services Worldwide</p>
                         
                         <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://facebook.com/jayprasad" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/jayprasadtech" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="https://linkedin.com/in/jayprasad" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/jayprasad" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-                    <form>
+                    <form action="https://formspree.io/f/xanooyvg" method="POST">
                         <div class="form-group">
                             <label for="name" class="form-label">Your Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" name="name" class="form-control" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="message" class="form-label">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary form-submit">
@@ -2730,7 +2815,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; Jay Prasad Majhi. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>&copy; <span id="currentYear"></span> Jay Prasad Majhi. All Rights Reserved. | <a href="privacy-policy.html" target="_blank">Privacy Policy</a> | <a href="terms-of-service.html" target="_blank">Terms of Service</a></p>
             </div>
         </div>
     </footer>
@@ -2740,7 +2825,45 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <!-- Popup Modal -->
+    <!-- Feature Modal -->
+    <div class="modal-overlay" id="featureModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('featureModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title" id="featureModalTitle"></h2>
+            <img src="" alt="" class="modal-image" id="featureModalImage">
+            <p id="featureModalDescription"></p>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="closeModal('featureModal')">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div class="modal-overlay" id="blogModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('blogModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="blog-meta">
+                <span class="blog-category" id="blogModalCategory"></span>
+                <span id="blogModalDate"></span>
+            </div>
+            <h2 class="modal-title" id="blogModalTitle"></h2>
+            <img src="" alt="" class="modal-image" id="blogModalImage">
+            <div id="blogModalContent"></div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="closeModal('blogModal')">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Modal -->
     <div class="modal-overlay" id="companyModal">
         <div class="modal-content">
             <button class="modal-close" id="modalClose">
@@ -2754,11 +2877,11 @@
             </p>
             <p>
                 <strong>Email Contacts:</strong><br>
-                General Inquiries: contact@jayprasad.com.np<br>
-                Technical Support: support@the.jayprasad.com.np<br>
-                IT Services: it@jayprasad.com.np<br>
-                Administration: admin@jayprasad.com.np<br>
-                ICT Department: ict@the.jayprasad.com.np
+                General Inquiries: <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a><br>
+                Technical Support: <a href="mailto:support@the.jayprasad.com.np">support@the.jayprasad.com.np</a><br>
+                IT Services: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a><br>
+                Administration: <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a><br>
+                ICT Department: <a href="mailto:ict@the.jayprasad.com.np">ict@the.jayprasad.com.np</a>
             </p>
             <p>
                 <strong>Certifications:</strong> Certified Information Security Manager (ITU), Google Analytics Certified, 
@@ -2969,7 +3092,44 @@
                     document.getElementById('companyModal').classList.remove('active');
                 }
             });
+
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Update current date display
+            function updateCurrentDate() {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+            }
+            updateCurrentDate();
+            setInterval(updateCurrentDate, 60000); // Update every minute
         });
+
+        // Feature modal functions
+        function showFeatureModal(title, description, imageUrl) {
+            document.getElementById('featureModalTitle').textContent = title;
+            document.getElementById('featureModalDescription').textContent = description;
+            document.getElementById('featureModalImage').src = imageUrl;
+            document.getElementById('featureModalImage').alt = title;
+            document.getElementById('featureModal').classList.add('active');
+        }
+
+        // Blog modal functions
+        function showBlogModal(title, date, category, content, imageUrl) {
+            document.getElementById('blogModalTitle').textContent = title;
+            document.getElementById('blogModalDate').textContent = date;
+            document.getElementById('blogModalCategory').textContent = category;
+            document.getElementById('blogModalContent').innerHTML = content;
+            document.getElementById('blogModalImage').src = imageUrl;
+            document.getElementById('blogModalImage').alt = title;
+            document.getElementById('blogModal').classList.add('active');
+        }
+
+        // Generic modal close function
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
     </script>
 </body>
 </html>
