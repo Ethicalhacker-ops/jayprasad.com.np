@@ -1,160 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Temporarily Closed</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            color: white;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: #121212; /* Fallback solid color */
-        }
-        
-        #video-container {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
-            background: #121212 url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80') no-repeat center center;
-            background-size: cover;
-        }
-        
-        #video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        
-        #video-background.visible {
-            opacity: 1;
-        }
-        
-        .content {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 800px;
-            margin: 20px;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #ff4444;
-        }
-        
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .contact-info {
-            margin-top: 30px;
-            text-align: left;
-            display: inline-block;
-        }
-        
-        .contact-item {
-            margin-bottom: 15px;
-        }
-        
-        a {
-            color: #4da6ff;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        .video-error {
-            display: none;
-            color: #ff9999;
-            font-style: italic;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Closed</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    video#bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .content {
+      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ff4444;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    .contact-info strong {
+      color: #4da6ff;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    a {
+      color: #4da6ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div id="video-container">
-        <video id="video-background" autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-31285-large.mp4" type="video/mp4">
-            <!-- Additional video formats for better browser support -->
-            <source src="your-video.webm" type="video/webm">
-            <source src="your-video.ogg" type="video/ogg">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-    
-    <div class="content">
-        <h1>Website Temporarily Closed</h1>
-        <p>We regret to inform you that this website is currently unavailable due to system errors, server problems, and other technical difficulties.</p>
-        <p>The website has been offline since February 2024 while we work to resolve these issues.</p>
-        <p>Our team is working diligently to restore services as soon as possible. We apologize for any inconvenience this may cause.</p>
-        
-        <div class="contact-info">
-            <h2>You can still reach us through the following channels:</h2>
-            <div class="contact-item">
-                <strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a>
-            </div>
-            <div class="contact-item">
-                <strong>For inquiries:</strong> <a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a>
-            </div>
-            <div class="contact-item">
-                <strong>For technical support:</strong> <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a>
-            </div>
-        </div>
-        
-        <p style="margin-top: 30px;">Thank you for your patience and understanding.</p>
-        
-        <p class="video-error" id="video-error-message">Note: Background video is not supported on your browser. Showing fallback image instead.</p>
-    </div>
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
 
-    <script>
-        // Check if video can play, and handle accordingly
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('video-background');
-            const videoError = document.getElementById('video-error-message');
-            
-            // Check if video can play
-            const canPlay = video.canPlayType('video/mp4');
-            
-            if (canPlay === 'probably' || canPlay === 'maybe') {
-                // Video should work, make it visible once it starts playing
-                video.oncanplay = function() {
-                    video.classList.add('visible');
-                };
-                
-                // Handle case where video doesn't load
-                video.onerror = function() {
-                    videoError.style.display = 'block';
-                };
-                
-                // Attempt to play the video (some browsers require this)
-                video.play().catch(error => {
-                    videoError.style.display = 'block';
-                });
-            } else {
-                // Video format not supported
-                videoError.style.display = 'block';
-            }
-        });
-    </script>
+  <div class="overlay">
+    <div class="content">
+      <h1>Website Closed</h1>
+      <p>This website has been officially closed as of <strong>February 25, 2024</strong> due to unexpected system errors, critical server failures, and other technology-related issues.</p>
+      <p>We sincerely apologize for the inconvenience caused. Our technical team has made every effort to resolve the problem but the system stability could not be restored.</p>
+      <p>You can still reach us through the following channels:</p>
+
+      <div class="contact-info">
+        <p><strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
+        <p><strong>For inquiries:</strong> <a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
+        <p><strong>For technical support:</strong> <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a></p>
+      </div>
+
+      <div class="footer">
+        <p>Copyright ©️ Jay Prasad Majhi. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
