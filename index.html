@@ -1,98 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Temporarily Closed</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            color: white;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        
-        #video-background {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
-        }
-        
-        .content {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 800px;
-            margin: 20px;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #ff4444;
-        }
-        
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .contact-info {
-            margin-top: 30px;
-            text-align: left;
-            display: inline-block;
-        }
-        
-        .contact-item {
-            margin-bottom: 15px;
-        }
-        
-        a {
-            color: #4da6ff;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Website Closed</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .content {
+      position: relative;
+      padding: 60px 30px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #ff5e57;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .contact {
+      margin-top: 30px;
+    }
+
+    .contact p {
+      margin-bottom: 8px;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    a {
+      color: #00acee;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <video autoplay muted loop id="video-background">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-31285-large.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
-    
-    <div class="content">
-        <h1>Website Temporarily Closed</h1>
-        <p>We regret to inform you that this website is currently unavailable due to system errors, server problems, and other technical difficulties.</p>
-        <p>The website has been offline since February 2024 while we work to resolve these issues.</p>
-        <p>Our team is working diligently to restore services as soon as possible. We apologize for any inconvenience this may cause.</p>
-        
-        <div class="contact-info">
-            <h2>You can still reach us through the following channels:</h2>
-            <div class="contact-item">
-                <strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a>
-            </div>
-            <div class="contact-item">
-                <strong>For inquiries:</strong> <a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a>
-            </div>
-            <div class="contact-item">
-                <strong>For technical support:</strong> <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a>
-            </div>
-        </div>
-        
-        <p style="margin-top: 30px;">Thank you for your patience and understanding.</p>
+
+  <video autoplay muted loop id="bgVideo">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Website Closed</h1>
+    <p>This website was officially closed in February 2024 due to critical system errors and persistent server problems. Despite continuous technical efforts, the infrastructure could not support the website's stability and performance.</p>
+
+    <p>Major contributing issues include:</p>
+    <ul style="text-align: left; margin: 20px auto; max-width: 600px;">
+      <li>Frequent DEU (Data Exchange Unit) system crashes</li>
+      <li>Overloaded web servers with no scalable solution</li>
+      <li>Irrecoverable database failures and backend corruption</li>
+      <li>Network interruptions causing service outages</li>
+      <li>Incompatibility with new web protocols and failed updates</li>
+    </ul>
+
+    <p>We sincerely apologize for any inconvenience caused and appreciate your support over the years.</p>
+
+    <div class="contact">
+      <p><strong>You can still reach us through the following channels:</strong></p>
+      <p>Email: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
+      <p>For inquiries: <a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
+      <p>For technical support: <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a></p>
     </div>
+
+    <div class="footer">
+      &copy; Jay Prasad Majhi. All rights reserved.
+    </div>
+  </div>
+
 </body>
 </html>
