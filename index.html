@@ -1,150 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Website Closed - JayPrasad.com.np</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: white;
-      overflow: hidden;
-      height: 100vh;
-    }
-    
-    #video-bg {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: -100;
-      object-fit: cover;
-    }
-    
-    .dark-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.75);
-      z-index: -99;
-    }
-    
-    .closure-notice {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 800px;
-      text-align: center;
-      padding: 40px;
-      background-color: rgba(20, 20, 30, 0.9);
-      border-radius: 10px;
-      border: 1px solid #ff4444;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-    }
-    
-    h1 {
-      color: #ff5e5e;
-      font-size: 2.8rem;
-      margin-bottom: 25px;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-    
-    .main-message {
-      font-size: 1.3rem;
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
-    
-    .highlight {
-      color: #ff5e5e;
-      font-weight: bold;
-      background-color: rgba(255, 0, 0, 0.1);
-      padding: 2px 5px;
-      border-radius: 3px;
-    }
-    
-    .contact-info {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .signature {
-      margin-top: 30px;
-      font-style: italic;
-      color: #aaa;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .main-message {
-        font-size: 1.1rem;
-      }
-      
-      .closure-notice {
-        padding: 25px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Temporarily Closed</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        
+        .content {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ff4444;
+        }
+        
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            text-align: left;
+            display: inline-block;
+        }
+        
+        .contact-item {
+            margin-bottom: 15px;
+        }
+        
+        a {
+            color: #4da6ff;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <!-- Hacker Background Video -->
-  <video autoplay muted loop id="video-bg">
-    <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-  <div class="dark-overlay"></div>
-
-  <!-- Closure Notice Content -->
-  <div class="closure-notice">
-    <h1>WEBSITE CLOSED</h1>
+    <video autoplay muted loop id="video-background">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-31285-large.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
     
-    <div class="main-message">
-      <p>We regret to inform you that <span class="highlight">jayprasad.com.np</span> has been permanently closed as of <span class="highlight">February 25, 2024</span> due to unresolved technical infrastructure issues.</p>
-      <p>After extensive efforts to maintain service stability, we've made the difficult decision to shut down the platform.</p>
-      <p>We sincerely apologize for any inconvenience this may cause to our visitors and users.</p>
+    <div class="content">
+        <h1>Website Temporarily Closed</h1>
+        <p>We regret to inform you that this website is currently unavailable due to system errors, server problems, and other technical difficulties.</p>
+        <p>The website has been offline since February 2024 while we work to resolve these issues.</p>
+        <p>Our team is working diligently to restore services as soon as possible. We apologize for any inconvenience this may cause.</p>
+        
+        <div class="contact-info">
+            <h2>You can still reach us through the following channels:</h2>
+            <div class="contact-item">
+                <strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a>
+            </div>
+            <div class="contact-item">
+                <strong>For inquiries:</strong> <a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a>
+            </div>
+            <div class="contact-item">
+                <strong>For technical support:</strong> <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a>
+            </div>
+        </div>
+        
+        <p style="margin-top: 30px;">Thank you for your patience and understanding.</p>
     </div>
-    
-    <div class="contact-info">
-      For any important inquiries, please contact:<br>
-      <span class="highlight">it@jayprasad.com.np</span>
-    </div>
-    
-    <div class="signature">
-      Jay Prasad Majhi<br>
-      Founder, jayprasad.com.np
-    </div>
-  </div>
-
-  <script>
-    // Force video playback on mobile devices
-    document.addEventListener('DOMContentLoaded', function() {
-      const video = document.getElementById('video-bg');
-      const playVideo = () => {
-        video.play().catch(error => {
-          // If autoplay fails, mute and try again (required for some mobile browsers)
-          video.muted = true;
-          video.play();
-        });
-      };
-      
-      // Try to play immediately
-      playVideo();
-      
-      // Try again when user interacts with page (some browsers require this)
-      document.body.addEventListener('click', playVideo);
-    });
-  </script>
 </body>
-  </html>
+</html>
