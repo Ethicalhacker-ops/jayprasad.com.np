@@ -2,60 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Website Closed - jayprasad.com.np</title>
+  <title>Website Closed - JayPrasad.com.np</title>
   <style>
-    /* Loading Screen Styles */
-    #loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #0a192f;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      color: #64ffda;
-      font-family: 'Courier New', monospace;
-    }
-    
-    #loading-bar {
-      width: 80%;
-      max-width: 400px;
-      height: 20px;
-      background-color: #112240;
-      border-radius: 10px;
-      margin: 20px 0;
-      overflow: hidden;
-    }
-    
-    #loading-progress {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #64ffda, #0a192f);
-      border-radius: 10px;
-      transition: width 0.1s;
-    }
-    
-    #loading-percentage {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-    
-    /* Main Content Styles */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      color: #f0f0f0;
-      line-height: 1.7;
-      overflow-x: hidden;
-      display: none; /* Hidden until loading completes */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      overflow: hidden;
+      height: 100vh;
     }
     
-    #main-video-background {
+    #video-bg {
       position: fixed;
       right: 0;
       bottom: 0;
@@ -64,421 +22,129 @@
       width: auto;
       height: auto;
       z-index: -100;
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+      object-fit: cover;
     }
     
-    .video-overlay {
+    .dark-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.75);
       z-index: -99;
     }
     
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background-color: rgba(20, 20, 30, 0.85);
-      padding: 30px 40px;
+    .closure-notice {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 800px;
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(20, 20, 30, 0.9);
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid #ff4444;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
     }
     
     h1 {
       color: #ff5e5e;
-      text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .main-message {
+      font-size: 1.3rem;
+      line-height: 1.7;
       margin-bottom: 30px;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      position: relative;
-      padding-bottom: 15px;
-    }
-    
-    h1:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(90deg, #ff5e5e, #8a2be2);
-      border-radius: 3px;
-    }
-    
-    h2 {
-      color: #4dabf7;
-      margin-top: 30px;
-      font-size: 1.8rem;
-      border-left: 4px solid #4dabf7;
-      padding-left: 15px;
-    }
-    
-    p {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
     }
     
     .highlight {
-      background: rgba(255, 255, 255, 0.1);
+      color: #ff5e5e;
+      font-weight: bold;
+      background-color: rgba(255, 0, 0, 0.1);
       padding: 2px 5px;
       border-radius: 3px;
     }
     
-    a {
-      color: #4dabf7;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    a:hover {
-      color: #ff5e5e;
-      text-decoration: underline;
-    }
-    
-    .footer {
-      margin-top: 50px;
-      font-size: 14px;
-      color: #aaa;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    .contact-info {
+      margin-top: 40px;
       padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .signature {
-      font-family: 'Brush Script MT', cursive;
-      font-size: 1.5rem;
-      color: #4dabf7;
       margin-top: 30px;
-    }
-    
-    .tech-icon {
-      display: inline-block;
-      margin: 0 5px;
-      font-size: 1.2rem;
-    }
-    
-    /* Quick Links Section */
-    .quick-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin: 40px 0;
-    }
-    
-    .quick-link {
-      background: rgba(77, 171, 247, 0.2);
-      border: 1px solid #4dabf7;
-      border-radius: 8px;
-      padding: 15px 25px;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      min-width: 150px;
-    }
-    
-    .quick-link:hover {
-      background: rgba(77, 171, 247, 0.4);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(77, 171, 247, 0.3);
-    }
-    
-    .quick-link i {
-      display: block;
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-    
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 1000;
-      overflow: auto;
-    }
-    
-    .modal-content {
-      background-color: rgba(20, 20, 30, 0.95);
-      margin: 5% auto;
-      padding: 30px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 800px;
-      position: relative;
-      border: 1px solid #4dabf7;
-    }
-    
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-      color: #ff5e5e;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-    .modal-video {
-      width: 100%;
-      height: 450px;
-      margin: 20px 0;
+      font-style: italic;
+      color: #aaa;
     }
     
     @media (max-width: 768px) {
-      .container {
-        margin: 20px;
-        padding: 20px;
-      }
-      
       h1 {
         font-size: 2rem;
       }
       
-      .quick-links {
-        flex-direction: column;
+      .main-message {
+        font-size: 1.1rem;
       }
       
-      .modal-content {
-        width: 95%;
-        margin: 10% auto;
-      }
-      
-      .modal-video {
-        height: 250px;
+      .closure-notice {
+        padding: 25px;
       }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div id="loading-screen">
-    <h2>Loading jayprasad.com.np</h2>
-    <div id="loading-percentage">0%</div>
-    <div id="loading-bar">
-      <div id="loading-progress"></div>
-    </div>
-    <p>Initializing systems...</p>
-  </div>
-
-  <!-- Main Content (hidden until loading completes) -->
-  <video autoplay muted loop id="main-video-background">
-    <source src="https://assets.mixkit.co/videos/preview/mixkit-students-learning-in-a-computer-lab-20655-large.mp4" type="video/mp4">
+  <!-- Hacker Background Video -->
+  <video autoplay muted loop id="video-bg">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
-  <div class="video-overlay"></div>
+  <div class="dark-overlay"></div>
 
-  <div class="container">
-    <h1>Notice of Website Closure <span class="tech-icon">🔌</span> jayprasad.com.np</h1>
-    <p>We regret to inform our valued visitors and users that the website <strong class="highlight">jayprasad.com.np</strong> has been officially closed as of <strong class="highlight">February 25, 2024</strong>, due to persistent issues related to the DEU (Data Exchange Unit) system and ongoing server problems. This decision was not made lightly, and it follows repeated attempts to maintain the platform's performance and reliability over the past several months.</p>
-
-    <!-- Quick Links Section -->
-    <div class="quick-links">
-      <div class="quick-link" onclick="openModal('about')">
-        <i class="fas fa-info-circle"></i>
-        <span>About Us</span>
-      </div>
-      <div class="quick-link" onclick="openModal('courses')">
-        <i class="fas fa-laptop-code"></i>
-        <span>Our Courses</span>
-      </div>
-      <div class="quick-link" onclick="openModal('contact')">
-        <i class="fas fa-envelope"></i>
-        <span>Contact</span>
-      </div>
-      <div class="quick-link" onclick="openModal('future')">
-        <i class="fas fa-rocket"></i>
-        <span>Future Plans</span>
-      </div>
+  <!-- Closure Notice Content -->
+  <div class="closure-notice">
+    <h1>WEBSITE CLOSED</h1>
+    
+    <div class="main-message">
+      <p>We regret to inform you that <span class="highlight">jayprasad.com.np</span> has been permanently closed as of <span class="highlight">February 25, 2024</span> due to unresolved technical infrastructure issues.</p>
+      <p>After extensive efforts to maintain service stability, we've made the difficult decision to shut down the platform.</p>
+      <p>We sincerely apologize for any inconvenience this may cause to our visitors and users.</p>
     </div>
-
-    <h2><span class="tech-icon">🖥️</span> Background</h2>
-    <p>Jayprasad.com.np was launched with the intent to provide educational resources, IT support services, and general information to the public. Since its inception, the site has served as a valuable tool for communication, learning, and support. Our mission was to make digital services accessible and reliable, especially for students, professionals, and technology enthusiasts in Nepal and beyond.</p>
-
-    <p>However, like all digital platforms, the website relied heavily on technical infrastructure to function properly. This included the DEU system for secure data transfers and the hosting server for ensuring 24/7 accessibility. Unfortunately, we began encountering critical issues in both of these areas in early 2024.</p>
-
-    <h2><span class="tech-icon">⚠️</span> What Went Wrong?</h2>
-    <p>Over time, we experienced growing instability in the DEU system, which is responsible for real-time data synchronization and communication between various site modules. The DEU system plays a crucial role in allowing different components of the website to function together smoothly—such as user login systems, file uploads, search functionalities, and feedback forms. As the system began to show signs of failure, we encountered broken links, delayed responses, data loss, and even incorrect display of information.</p>
-
-    <p>Simultaneously, our server began to suffer from overloading and unexpected downtime. Hosting errors, including 503 Service Unavailable and 500 Internal Server Errors, became increasingly common. Our team made several attempts to upgrade the server capacity, optimize the database, and resolve bugs, but due to the deep-rooted infrastructure dependencies, the issues could not be resolved without completely overhauling the entire platform.</p>
-
-    <p>We consulted multiple IT professionals, conducted backend audits, and even temporarily disabled certain non-essential features to reduce the strain. However, the problems persisted and began affecting user experience in significant ways. Visitors reported being unable to access pages, download files, or receive support through contact forms.</p>
-
-    <h2><span class="tech-icon">📉</span> Impact and Decision</h2>
-    <p>As an ethical and responsible platform, our top priority was always to ensure a secure and reliable browsing experience. With the technical stability no longer guaranteed and the risk of data breach or service interruption increasing, we concluded that it would be in the best interest of users to take the website offline permanently.</p>
-
-    <p>This decision also aligns with our goal of maintaining transparency and professionalism in everything we do. Instead of letting the site remain online with broken features and frequent outages, we have decided to officially close it and issue this public notice to ensure there is no confusion among users.</p>
-
-    <h2><span class="tech-icon">🔮</span> What Happens Next?</h2>
-    <p>As of now, <strong class="highlight">jayprasad.com.np</strong> will no longer be accessible for its original purposes. Visitors will be greeted with a closure notice stating the official date of shutdown and our contact information.</p>
-
-    <p>We understand that this may cause inconvenience to some users who relied on the website's services. For that, we sincerely apologize. If you were expecting ongoing services, updates, or support, you may still contact us through our email at:</p>
-
-    <p><strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a> <span class="tech-icon">✉️</span></p>
-
-    <p>Our team will continue to respond to important queries and provide clarification as needed, even though the website itself is no longer active.</p>
-
-    <h2><span class="tech-icon">🚀</span> Future Plans</h2>
-    <p>Although jayprasad.com.np has been closed, this does not mark the end of our journey. We are exploring alternative platforms and solutions for delivering services in a more stable and scalable environment. A complete rebuild of the system using newer frameworks, improved DEU integration, and robust hosting is being considered.</p>
-
-    <p>If we return in the future, we aim to launch a platform that is faster, more secure, and even more useful to the community. Until then, we remain grateful for your support and engagement over the years.</p>
-
-    <h2><span class="tech-icon">❤️</span> Final Words</h2>
-    <p>Closing a website is never easy—especially one that carried the hopes of making a digital impact. We thank everyone who visited, supported, and contributed to jayprasad.com.np. Whether you browsed our pages for information, sent us messages, or simply followed our updates, your presence mattered.</p>
-
-    <p>Please stay connected with us through our email if you have any unresolved concerns, and keep an eye out for possible announcements in the future.</p>
-
-    <p class="signature">Thank you.<br>
-    Jay Prasad Majhi<br>
-    Founder – jayprasad.com.np</p>
-
-    <div class="footer">
-      <span class="tech-icon">🔒</span> &copy; 2024 Jay Prasad Majhi. All rights reserved. <span class="tech-icon">🔒</span>
+    
+    <div class="contact-info">
+      For any important inquiries, please contact:<br>
+      <span class="highlight">it@jayprasad.com.np</span>
     </div>
-  </div>
-
-  <!-- Modal Windows -->
-  <div id="aboutModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('about')">&times;</span>
-      <h2>About JayPrasad.com.np</h2>
-      <video class="modal-video" autoplay muted loop>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
-      </video>
-      <p>Jayprasad.com.np was founded in [YEAR] with the vision of creating a comprehensive IT education platform for Nepali students and professionals. Our platform offered:</p>
-      <ul>
-        <li>Online coding courses</li>
-        <li>Cybersecurity tutorials</li>
-        <li>Networking guides</li>
-        <li>IT certification preparation</li>
-        <li>Technical support services</li>
-      </ul>
-      <p>At our peak, we served over [NUMBER] monthly visitors with free and premium educational content.</p>
-    </div>
-  </div>
-
-  <div id="coursesModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('courses')">&times;</span>
-      <h2>Our Course Offerings</h2>
-      <video class="modal-video" autoplay muted loop>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-coding-on-a-laptop-5383-large.mp4" type="video/mp4">
-      </video>
-      <p>While our platform is currently offline, we previously offered these popular courses:</p>
-      <div class="quick-links">
-        <div class="quick-link">
-          <i class="fas fa-shield-alt"></i>
-          <span>Ethical Hacking</span>
-        </div>
-        <div class="quick-link">
-          <i class="fab fa-python"></i>
-          <span>Python Programming</span>
-        </div>
-        <div class="quick-link">
-          <i class="fas fa-network-wired"></i>
-          <span>CCNA Networking</span>
-        </div>
-        <div class="quick-link">
-          <i class="fas fa-database"></i>
-          <span>Database Management</span>
-        </div>
-      </div>
-      <p>We hope to relaunch these courses in the future on a more stable platform.</p>
-    </div>
-  </div>
-
-  <div id="contactModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('contact')">&times;</span>
-      <h2>Contact Information</h2>
-      <video class="modal-video" autoplay muted loop>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-office-worker-sending-an-email-4294-large.mp4" type="video/mp4">
-      </video>
-      <p>You can still reach us through the following channels:</p>
-      <p><strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
-      <p><strong>For educational inquiries:</strong> <a href="mailto:cyber@jayprasad.com.np">cyber@jayprasad.com.np</a></p>
-      <p><strong>For technical support:</strong> <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a></p>
-      <p>We typically respond within 2-3 business days.</p>
-    </div>
-  </div>
-
-  <div id="futureModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('future')">&times;</span>
-      <h2>Future Development Plans</h2>
-      <video class="modal-video" autoplay muted loop>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-developer-working-on-code-while-sitting-on-a-chair-5199-large.mp4" type="video/mp4">
-      </video>
-      <p>We're currently working on rebuilding our platform with:</p>
-      <ul>
-        <li>Modern cloud infrastructure</li>
-        <li>Improved course delivery system</li>
-        <li>Mobile app development</li>
-        <li>Enhanced security features</li>
-        <li>Interactive learning tools</li>
-      </ul>
-      <p>If you'd like to be notified when we relaunch, please email us at <a href="mailto: inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a> with the subject "Notify Me".</p>
+    
+    <div class="signature">
+      Jay Prasad Majhi<br>
+      Founder, jayprasad.com.np
     </div>
   </div>
 
   <script>
-    // Loading Screen Animation
-    let progress = 0;
-    const loadingInterval = setInterval(() => {
-      progress += 1;
-      document.getElementById('loading-progress').style.width = progress + '%';
-      document.getElementById('loading-percentage').textContent = progress + '%';
-      
-      if (progress >= 100) {
-        clearInterval(loadingInterval);
-        setTimeout(() => {
-          document.getElementById('loading-screen').style.opacity = '0';
-          setTimeout(() => {
-            document.getElementById('loading-screen').style.display = 'none';
-            document.body.style.display = 'block';
-          }, 500);
-        }, 500);
-      }
-    }, 30);
-
-    // Modal Functions
-    function openModal(modalType) {
-      document.getElementById(modalType + 'Modal').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal(modalType) {
-      document.getElementById(modalType + 'Modal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-    
-    // Close modal when clicking outside content
-    window.onclick = function(event) {
-      if (event.target.className === 'modal') {
-        event.target.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-    }
-    
-    // Ensure videos play on mobile devices
+    // Force video playback on mobile devices
     document.addEventListener('DOMContentLoaded', function() {
-      const videos = document.querySelectorAll('video');
-      videos.forEach(video => {
-        video.play().catch(e => {
-          console.log("Video autoplay prevented:", e);
+      const video = document.getElementById('video-bg');
+      const playVideo = () => {
+        video.play().catch(error => {
+          // If autoplay fails, mute and try again (required for some mobile browsers)
+          video.muted = true;
+          video.play();
         });
-      });
+      };
+      
+      // Try to play immediately
+      playVideo();
+      
+      // Try again when user interacts with page (some browsers require this)
+      document.body.addEventListener('click', playVideo);
     });
   </script>
 </body>
-</html>
+  </html>
