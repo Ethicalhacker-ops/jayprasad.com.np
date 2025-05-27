@@ -2,8 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Website Closed</title>
+  <title>Website Closed - JayPrasad.com.np</title>
   <style>
+    /* Loading Screen Styles */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #0a192f;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: #64ffda;
+      font-family: 'Courier New', monospace;
+    }
+    
+    #loading-bar {
+      width: 80%;
+      max-width: 400px;
+      height: 20px;
+      background-color: #112240;
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    #loading-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #64ffda, #0a192f);
+      border-radius: 10px;
+      transition: width 0.1s;
+    }
+    
+    #loading-percentage {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    
+    /* Main Content Styles */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -11,9 +52,10 @@
       color: #f0f0f0;
       line-height: 1.7;
       overflow-x: hidden;
+      display: none; /* Hidden until loading completes */
     }
     
-    #video-background {
+    #main-video-background {
       position: fixed;
       right: 0;
       bottom: 0;
@@ -120,6 +162,78 @@
       font-size: 1.2rem;
     }
     
+    /* Quick Links Section */
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 40px 0;
+    }
+    
+    .quick-link {
+      background: rgba(77, 171, 247, 0.2);
+      border: 1px solid #4dabf7;
+      border-radius: 8px;
+      padding: 15px 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      min-width: 150px;
+    }
+    
+    .quick-link:hover {
+      background: rgba(77, 171, 247, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(77, 171, 247, 0.3);
+    }
+    
+    .quick-link i {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
+      overflow: auto;
+    }
+    
+    .modal-content {
+      background-color: rgba(20, 20, 30, 0.95);
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 800px;
+      position: relative;
+      border: 1px solid #4dabf7;
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #ff5e5e;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .modal-video {
+      width: 100%;
+      height: 450px;
+      margin: 20px 0;
+    }
+    
     @media (max-width: 768px) {
       .container {
         margin: 20px;
@@ -129,12 +243,37 @@
       h1 {
         font-size: 2rem;
       }
+      
+      .quick-links {
+        flex-direction: column;
+      }
+      
+      .modal-content {
+        width: 95%;
+        margin: 10% auto;
+      }
+      
+      .modal-video {
+        height: 250px;
+      }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <video autoplay muted loop id="video-background">
-    <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-clouds-of-smoke-17755-large.mp4" type="video/mp4">
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <h2>Loading jayprasad.com.np</h2>
+    <div id="loading-percentage">0%</div>
+    <div id="loading-bar">
+      <div id="loading-progress"></div>
+    </div>
+    <p>Initializing systems...</p>
+  </div>
+
+  <!-- Main Content (hidden until loading completes) -->
+  <video autoplay muted loop id="main-video-background">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-students-learning-in-a-computer-lab-20655-large.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
   <div class="video-overlay"></div>
@@ -142,6 +281,26 @@
   <div class="container">
     <h1>Notice of Website Closure <span class="tech-icon">🔌</span> jayprasad.com.np</h1>
     <p>We regret to inform our valued visitors and users that the website <strong class="highlight">jayprasad.com.np</strong> has been officially closed as of <strong class="highlight">February 25, 2024</strong>, due to persistent issues related to the DEU (Data Exchange Unit) system and ongoing server problems. This decision was not made lightly, and it follows repeated attempts to maintain the platform's performance and reliability over the past several months.</p>
+
+    <!-- Quick Links Section -->
+    <div class="quick-links">
+      <div class="quick-link" onclick="openModal('about')">
+        <i class="fas fa-info-circle"></i>
+        <span>About Us</span>
+      </div>
+      <div class="quick-link" onclick="openModal('courses')">
+        <i class="fas fa-laptop-code"></i>
+        <span>Our Courses</span>
+      </div>
+      <div class="quick-link" onclick="openModal('contact')">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </div>
+      <div class="quick-link" onclick="openModal('future')">
+        <i class="fas fa-rocket"></i>
+        <span>Future Plans</span>
+      </div>
+    </div>
 
     <h2><span class="tech-icon">🖥️</span> Background</h2>
     <p>Jayprasad.com.np was launched with the intent to provide educational resources, IT support services, and general information to the public. Since its inception, the site has served as a valuable tool for communication, learning, and support. Our mission was to make digital services accessible and reliable, especially for students, professionals, and technology enthusiasts in Nepal and beyond.</p>
@@ -188,13 +347,136 @@
     </div>
   </div>
 
+  <!-- Modal Windows -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('about')">&times;</span>
+      <h2>About JayPrasad.com.np</h2>
+      <video class="modal-video" autoplay muted loop>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
+      </video>
+      <p>Jayprasad.com.np was founded in [YEAR] with the vision of creating a comprehensive IT education platform for Nepali students and professionals. Our platform offered:</p>
+      <ul>
+        <li>Online coding courses</li>
+        <li>Cybersecurity tutorials</li>
+        <li>Networking guides</li>
+        <li>IT certification preparation</li>
+        <li>Technical support services</li>
+      </ul>
+      <p>At our peak, we served over [NUMBER] monthly visitors with free and premium educational content.</p>
+    </div>
+  </div>
+
+  <div id="coursesModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('courses')">&times;</span>
+      <h2>Our Course Offerings</h2>
+      <video class="modal-video" autoplay muted loop>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-coding-on-a-laptop-5383-large.mp4" type="video/mp4">
+      </video>
+      <p>While our platform is currently offline, we previously offered these popular courses:</p>
+      <div class="quick-links">
+        <div class="quick-link">
+          <i class="fas fa-shield-alt"></i>
+          <span>Ethical Hacking</span>
+        </div>
+        <div class="quick-link">
+          <i class="fab fa-python"></i>
+          <span>Python Programming</span>
+        </div>
+        <div class="quick-link">
+          <i class="fas fa-network-wired"></i>
+          <span>CCNA Networking</span>
+        </div>
+        <div class="quick-link">
+          <i class="fas fa-database"></i>
+          <span>Database Management</span>
+        </div>
+      </div>
+      <p>We hope to relaunch these courses in the future on a more stable platform.</p>
+    </div>
+  </div>
+
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('contact')">&times;</span>
+      <h2>Contact Information</h2>
+      <video class="modal-video" autoplay muted loop>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-office-worker-sending-an-email-4294-large.mp4" type="video/mp4">
+      </video>
+      <p>You can still reach us through the following channels:</p>
+      <p><strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
+      <p><strong>For educational inquiries:</strong> <a href="mailto:edu@jayprasad.com.np">edu@jayprasad.com.np</a></p>
+      <p><strong>For technical support:</strong> <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a></p>
+      <p>We typically respond within 2-3 business days.</p>
+    </div>
+  </div>
+
+  <div id="futureModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('future')">&times;</span>
+      <h2>Future Development Plans</h2>
+      <video class="modal-video" autoplay muted loop>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-developer-working-on-code-while-sitting-on-a-chair-5199-large.mp4" type="video/mp4">
+      </video>
+      <p>We're currently working on rebuilding our platform with:</p>
+      <ul>
+        <li>Modern cloud infrastructure</li>
+        <li>Improved course delivery system</li>
+        <li>Mobile app development</li>
+        <li>Enhanced security features</li>
+        <li>Interactive learning tools</li>
+      </ul>
+      <p>If you'd like to be notified when we relaunch, please email us at <a href="mailto:updates@jayprasad.com.np">updates@jayprasad.com.np</a> with the subject "Notify Me".</p>
+    </div>
+  </div>
+
   <script>
-    // Ensure video plays on mobile devices
+    // Loading Screen Animation
+    let progress = 0;
+    const loadingInterval = setInterval(() => {
+      progress += 1;
+      document.getElementById('loading-progress').style.width = progress + '%';
+      document.getElementById('loading-percentage').textContent = progress + '%';
+      
+      if (progress >= 100) {
+        clearInterval(loadingInterval);
+        setTimeout(() => {
+          document.getElementById('loading-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.body.style.display = 'block';
+          }, 500);
+        }, 500);
+      }
+    }, 30);
+
+    // Modal Functions
+    function openModal(modalType) {
+      document.getElementById(modalType + 'Modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(modalType) {
+      document.getElementById(modalType + 'Modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal when clicking outside content
+    window.onclick = function(event) {
+      if (event.target.className === 'modal') {
+        event.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    }
+    
+    // Ensure videos play on mobile devices
     document.addEventListener('DOMContentLoaded', function() {
-      const video = document.getElementById('video-background');
-      video.play().catch(e => {
-        // Autoplay was prevented, show play button or handle accordingly
-        console.log("Video autoplay prevented:", e);
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        video.play().catch(e => {
+          console.log("Video autoplay prevented:", e);
+        });
       });
     });
   </script>
