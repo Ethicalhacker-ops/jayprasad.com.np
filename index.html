@@ -5,45 +5,198 @@
   <title>Website Closed</title>
   <style>
     body {
-      background-color: #f8f9fa;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 100px;
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #f0f0f0;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
+    
+    #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    }
+    
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -99;
+    }
+    
     .container {
-      border: 2px solid #dc3545;
-      display: inline-block;
-      padding: 30px 50px;
-      background-color: #fff3f3;
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: rgba(20, 20, 30, 0.85);
+      padding: 30px 40px;
       border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.1);
     }
+    
     h1 {
-      color: #dc3545;
+      color: #ff5e5e;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      position: relative;
+      padding-bottom: 15px;
     }
+    
+    h1:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff5e5e, #8a2be2);
+      border-radius: 3px;
+    }
+    
+    h2 {
+      color: #4dabf7;
+      margin-top: 30px;
+      font-size: 1.8rem;
+      border-left: 4px solid #4dabf7;
+      padding-left: 15px;
+    }
+    
     p {
-      font-size: 18px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
     }
+    
+    .highlight {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    
+    a {
+      color: #4dabf7;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    a:hover {
+      color: #ff5e5e;
+      text-decoration: underline;
+    }
+    
     .footer {
       margin-top: 50px;
       font-size: 14px;
-      color: #777;
+      color: #aaa;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
     }
-    .footer a {
-      color: #555;
-      text-decoration: none;
+    
+    .signature {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 1.5rem;
+      color: #4dabf7;
+      margin-top: 30px;
+    }
+    
+    .tech-icon {
+      display: inline-block;
+      margin: 0 5px;
+      font-size: 1.2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
+  <video autoplay muted loop id="video-background">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-clouds-of-smoke-17755-large.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="video-overlay"></div>
+
   <div class="container">
-    <h1>Website Closed</h1>
-    <p>This website has been officially closed on <strong>2024/02/25</strong>.</p>
+    <h1>Notice of Website Closure <span class="tech-icon">🔌</span> jayprasad.com.np</h1>
+    <p>We regret to inform our valued visitors and users that the website <strong class="highlight">jayprasad.com.np</strong> has been officially closed as of <strong class="highlight">February 25, 2024</strong>, due to persistent issues related to the DEU (Data Exchange Unit) system and ongoing server problems. This decision was not made lightly, and it follows repeated attempts to maintain the platform's performance and reliability over the past several months.</p>
+
+    <h2><span class="tech-icon">🖥️</span> Background</h2>
+    <p>Jayprasad.com.np was launched with the intent to provide educational resources, IT support services, and general information to the public. Since its inception, the site has served as a valuable tool for communication, learning, and support. Our mission was to make digital services accessible and reliable, especially for students, professionals, and technology enthusiasts in Nepal and beyond.</p>
+
+    <p>However, like all digital platforms, the website relied heavily on technical infrastructure to function properly. This included the DEU system for secure data transfers and the hosting server for ensuring 24/7 accessibility. Unfortunately, we began encountering critical issues in both of these areas in early 2024.</p>
+
+    <h2><span class="tech-icon">⚠️</span> What Went Wrong?</h2>
+    <p>Over time, we experienced growing instability in the DEU system, which is responsible for real-time data synchronization and communication between various site modules. The DEU system plays a crucial role in allowing different components of the website to function together smoothly—such as user login systems, file uploads, search functionalities, and feedback forms. As the system began to show signs of failure, we encountered broken links, delayed responses, data loss, and even incorrect display of information.</p>
+
+    <p>Simultaneously, our server began to suffer from overloading and unexpected downtime. Hosting errors, including 503 Service Unavailable and 500 Internal Server Errors, became increasingly common. Our team made several attempts to upgrade the server capacity, optimize the database, and resolve bugs, but due to the deep-rooted infrastructure dependencies, the issues could not be resolved without completely overhauling the entire platform.</p>
+
+    <p>We consulted multiple IT professionals, conducted backend audits, and even temporarily disabled certain non-essential features to reduce the strain. However, the problems persisted and began affecting user experience in significant ways. Visitors reported being unable to access pages, download files, or receive support through contact forms.</p>
+
+    <h2><span class="tech-icon">📉</span> Impact and Decision</h2>
+    <p>As an ethical and responsible platform, our top priority was always to ensure a secure and reliable browsing experience. With the technical stability no longer guaranteed and the risk of data breach or service interruption increasing, we concluded that it would be in the best interest of users to take the website offline permanently.</p>
+
+    <p>This decision also aligns with our goal of maintaining transparency and professionalism in everything we do. Instead of letting the site remain online with broken features and frequent outages, we have decided to officially close it and issue this public notice to ensure there is no confusion among users.</p>
+
+    <h2><span class="tech-icon">🔮</span> What Happens Next?</h2>
+    <p>As of now, <strong class="highlight">jayprasad.com.np</strong> will no longer be accessible for its original purposes. Visitors will be greeted with a closure notice stating the official date of shutdown and our contact information.</p>
+
+    <p>We understand that this may cause inconvenience to some users who relied on the website's services. For that, we sincerely apologize. If you were expecting ongoing services, updates, or support, you may still contact us through our email at:</p>
+
+    <p><strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a> <span class="tech-icon">✉️</span></p>
+
+    <p>Our team will continue to respond to important queries and provide clarification as needed, even though the website itself is no longer active.</p>
+
+    <h2><span class="tech-icon">🚀</span> Future Plans</h2>
+    <p>Although jayprasad.com.np has been closed, this does not mark the end of our journey. We are exploring alternative platforms and solutions for delivering services in a more stable and scalable environment. A complete rebuild of the system using newer frameworks, improved DEU integration, and robust hosting is being considered.</p>
+
+    <p>If we return in the future, we aim to launch a platform that is faster, more secure, and even more useful to the community. Until then, we remain grateful for your support and engagement over the years.</p>
+
+    <h2><span class="tech-icon">❤️</span> Final Words</h2>
+    <p>Closing a website is never easy—especially one that carried the hopes of making a digital impact. We thank everyone who visited, supported, and contributed to jayprasad.com.np. Whether you browsed our pages for information, sent us messages, or simply followed our updates, your presence mattered.</p>
+
+    <p>Please stay connected with us through our email if you have any unresolved concerns, and keep an eye out for possible announcements in the future.</p>
+
+    <p class="signature">Thank you.<br>
+    Jay Prasad Majhi<br>
+    Founder – jayprasad.com.np</p>
+
+    <div class="footer">
+      <span class="tech-icon">🔒</span> &copy; 2024 Jay Prasad Majhi. All rights reserved. <span class="tech-icon">🔒</span>
+    </div>
   </div>
 
-  <div class="footer">
-    <p>&copy; Jay Prasad Majhi. All rights reserved.</p>
-    <p>Contact: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
-  </div>
+  <script>
+    // Ensure video plays on mobile devices
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('video-background');
+      video.play().catch(e => {
+        // Autoplay was prevented, show play button or handle accordingly
+        console.log("Video autoplay prevented:", e);
+      });
+    });
+  </script>
 </body>
 </html>
