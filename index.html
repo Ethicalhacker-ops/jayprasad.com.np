@@ -24,6 +24,8 @@
       bottom: 0;
       min-width: 100%;
       min-height: 100%;
+      width: auto;
+      height: auto;
       object-fit: cover;
       z-index: -1;
     }
@@ -84,8 +86,12 @@
   </style>
 </head>
 <body>
+  <!-- Video Background (with 2 sources for better compatibility) -->
   <video id="bg-video" autoplay loop muted playsinline>
+    <!-- Primary Video (Mixkit) -->
     <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
+    <!-- Fallback Video (Pexels) -->
+    <source src="https://videos.pexels.com/videos/black-and-white-video-of-a-hacker-typing-on-a-laptop-856353" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
@@ -107,5 +113,19 @@
       </div>
     </div>
   </div>
+
+  <!-- JavaScript to ensure video plays (fallback for strict browsers) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('bg-video');
+      
+      // Ensure video plays even if autoplay is blocked
+      video.play().catch(error => {
+        console.log("Autoplay blocked, attempting fallback...");
+        video.muted = true; // Ensure muted (required in most browsers)
+        video.play();
+      });
+    });
+  </script>
 </body>
 </html>
