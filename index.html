@@ -1,341 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Website Closed Notice</title>
-<style>
-  /* Variables */
-  :root {
-    --primary: #00f0ff;
-    --secondary: #ff2d75;
-    --dark: #0a192f;
-    --light: #ccd6f6;
-  }
-
-  /* Base Styles */
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Courier New', monospace;
-    color: var(--light);
-    background: #000;
-    overflow: hidden;
-  }
-
-  /* Glow animation for text */
-  @keyframes glow {
-    0%, 100% { text-shadow: 0 0 5px var(--primary); }
-    50% { text-shadow: 0 0 20px var(--primary); }
-  }
-
-  /* Starfield background */
-  .starfield {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0; left: 0;
-    background: radial-gradient(ellipse at center, #111 0%, #000 70%);
-    overflow: hidden;
-    z-index: -3;
-  }
-  .starfield::before, .starfield::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 200%; height: 200%;
-    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle fill="white" r="1" cx="10" cy="10"/><circle fill="white" r="0.5" cx="50" cy="50"/><circle fill="white" r="0.8" cx="80" cy="80"/></svg>') repeat;
-    background-size: 50px 50px;
-    animation: starMove 60s linear infinite;
-    opacity: 0.2;
-  }
-  .starfield::after {
-    animation-duration: 120s;
-    opacity: 0.1;
-  }
-  @keyframes starMove {
-    0% { transform: translate(0,0);}
-    100% { transform: translate(-50px,50px);}
-  }
-
-  /* Horizontal running arrows */
-  .running-arrows {
-    position: fixed;
-    bottom: 10%;
-    width: 100%;
-    height: 30px;
-    overflow: hidden;
-    white-space: nowrap;
-    z-index: -2;
-    opacity: 0.3;
-  }
-  .running-arrows span {
-    font-size: 24px;
-    display: inline-block;
-    padding: 0 15px;
-    animation: colorChange 8s infinite linear;
-  }
-  .running-arrows span:nth-child(odd) {
-    animation-delay: 0s;
-  }
-  .running-arrows span:nth-child(even) {
-    animation-delay: 4s;
-  }
-
-  /* Animate scroll from right to left */
-  @keyframes scrollLeft {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  .running-arrows span {
-    animation-name: colorChange;
-  }
-  .running-arrows {
-    animation: scrollLeft 30s linear infinite;
-  }
-
-  /* Color changing keyframe */
-  @keyframes colorChange {
-    0% { color: var(--primary); }
-    25% { color: var(--secondary); }
-    50% { color: #00ff88; }
-    75% { color: #ffcc00; }
-    100% { color: var(--primary); }
-  }
-
-  /* Floating arrows - your existing floating arrows */
-  .arrow-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    opacity: 0.15;
-  }
-  .arrow {
-    position: absolute;
-    font-size: 24px;
-    animation: float 15s linear infinite, colorChange 8s infinite;
-    opacity: 0.7;
-  }
-  @keyframes float {
-    0% {
-      transform: translateY(0) translateX(0) rotate(0deg);
-    }
-    100% {
-      transform: translateY(-100vh) translateX(100px) rotate(360deg);
-    }
-  }
-
-  /* Cyber Notice Container */
-  .cyber-notice {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-    background: rgba(10, 25, 47, 0.9);
-    border: 1px solid var(--primary);
-    border-radius: 5px;
-    padding: 30px;
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-    backdrop-filter: blur(5px);
-    z-index: 10;
-  }
-
-  /* Terminal style */
-  .terminal {
-    font-family: monospace;
-    background: #001f3f;
-    padding: 15px;
-    border-radius: 3px;
-    color: var(--primary);
-    margin: 15px 0;
-    white-space: pre-wrap;
-  }
-
-  /* Blinking cursor */
-  .blink {
-    animation: blinkCursor 1s step-start infinite;
-  }
-  @keyframes blinkCursor {
-    0%, 50% { opacity: 1; }
-    50.01%, 100% { opacity: 0; }
-  }
-
-  /* Contact grid */
-  .contact-grid {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-  }
-  .contact-card {
-    background: rgba(0,0,0,0.2);
-    padding: 10px;
-    border-radius: 3px;
-    width: 30%;
-    text-align: center;
-  }
-
-  /* Buttons */
-  .cyber-links {
-    text-align: center;
-    margin: 20px 0;
-  }
-  .cyber-btn {
-    display: inline-block;
-    margin: 0 10px;
-    padding: 8px 16px;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    border-radius: 3px;
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  .cyber-btn:hover {
-    background-color: var(--primary);
-    color: #000;
-  }
-
-  /* Headers glow */
-  .cyber-header h1, .cyber-header h2 {
-    animation: glow 2s infinite;
-  }
-
-  /* List styling */
-  ul {
-    padding-left: 20px;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Temporarily Closed</title>
+    <style>
+        /* Cyber Theme */
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff2d75;
+            --dark: #0a192f;
+            --light: #ccd6f6;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: var(--light);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Animated Border with Arrows */
+        .border-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(10, 25, 47, 0.9);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+        }
+        
+        .border-arrow {
+            position: absolute;
+            color: var(--primary);
+            font-size: 16px;
+            animation: arrowFlow 8s linear infinite;
+            opacity: 0.8;
+        }
+        
+        @keyframes arrowFlow {
+            0% { opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+        
+        /* Content Styles */
+        .notice-content {
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--primary);
+        }
+        
+        h2 {
+            color: var(--secondary);
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        
+        .alert-box {
+            background: rgba(255, 45, 117, 0.2);
+            border-left: 3px solid var(--secondary);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .reopen-timer {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 25px 0;
+            color: var(--primary);
+        }
+        
+        .terminal {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .contact {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary);
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+            
+            .border-container, .notice-content {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Starfield Universe Background -->
-  <div class="starfield"></div>
-
-  <!-- Running arrows at bottom -->
-  <div class="running-arrows" aria-hidden="true">
-    <!-- Repeat arrows enough times for seamless scroll -->
-    <span>➜</span><span>➤</span><span>➔</span><span>➞</span><span>➝</span><span>➟</span><span>➡</span>
-    <span>➜</span><span>➤</span><span>➔</span><span>➞</span><span>➝</span><span>➟</span><span>➡</span>
-    <span>➜</span><span>➤</span><span>➔</span><span>➞</span><span>➝</span><span>➟</span><span>➡</span>
-  </div>
-
-  <!-- Floating arrows background -->
-  <div class="arrow-bg" id="arrowContainer"></div>
-
-  <!-- Cyber Notice -->
-  <div class="cyber-notice">
-    <div class="cyber-header">
-      <h1>System Notice</h1>
-      <h2>Website Temporarily Offline</h2>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">JAY PRASAD SYSTEMS</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+        <div class="loading-text">Initializing system components...</div>
+    </div>
+    <div class="border-container" id="borderContainer">
+        <!-- Animated border arrows will be inserted here by JavaScript -->
+        <div class="notice-content">
+            <h1>SYSTEM NOTICE</h1>
+            <h2>Website Temporarily Closed</h2>
+            
+            <div class="alert-box">
+                <strong>Effective Immediately:</strong> This website is currently undergoing major reconstruction.
+            </div>
+            
+            <p>Our digital infrastructure is being completely rebuilt with next-generation technologies. This temporary closure is necessary to implement revolutionary improvements that will transform your experience.</p>
+            
+            <div class="terminal">
+                <span style="color: var(--primary)">system@admin:~$</span> status --maintenance<br>
+                > Maintenance mode: <span style="color: var(--secondary)">ACTIVE</span><br>
+                > Scheduled reopening: <span style="color: var(--primary)">November 6, 2028 at 12:00 AM</span><br>
+                > Current phase: <span style="color: var(--primary)">Architectural Overhaul</span><br>
+                > <span class="blink">_</span>
+            </div>
+            
+            <div class="reopen-timer" id="countdown">
+                Reopening in: <span id="timer"></span>
+            </div>
+            
+            <h3 style="color: var(--primary); text-align: center;">Upcoming Features:</h3>
+            <ul>
+                <li>Quantum-resistant encryption protocols</li>
+                <li>Neural network-powered interface</li>
+                <li>Holographic display compatibility</li>
+                <li>Direct neural integration (beta)</li>
+                <li>Real-time multilingual thought translation</li>
+            </ul>
+            
+            <div class="contact">
+                <p>For urgent inquiries: <a href="mailto:emergency@jayprasad.com.np">emergency@jayprasad.com.np</a></p>
+            </div>
+        </div>
     </div>
 
-    <div class="cyber-content">
-      <div class="cyber-alert">
-        <strong>Effective Date:</strong> February 25, 2024
-      </div>
-
-      <p>Our platform is currently undergoing critical system upgrades to enhance security, performance, and user experience. This temporary closure is necessary to implement substantial improvements that will benefit all users.</p>
-
-      <div class="terminal">
-        <span style="color: var(--primary)">system@admin:~$</span> status --maintenance<br />
-        &gt; Maintenance mode: <span style="color: var(--secondary)">ACTIVE</span><br />
-        &gt; Estimated completion: <span style="color: var(--primary)">April 15, 2024</span><br />
-        &gt; Progress: <span style="color: var(--primary)">██████▒▒▒▒</span> 60%<br />
-        &gt; <span class="blink">_</span>
-      </div>
-
-      <h3 style="color: var(--primary)">Upgrade Highlights:</h3>
-      <ul>
-        <li>Next-gen security infrastructure with military-grade encryption</li>
-        <li>10x faster server response times</li>
-        <li>Completely redesigned user interface</li>
-        <li>Enhanced mobile experience</li>
-        <li>New developer APIs</li>
-      </ul>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-card">
-        <h3>Technical Support</h3>
-        <p><a href="mailto:it@jayprasad.com.np" style="color: var(--light)">it@jayprasad.com.np</a></p>
-      </div>
-      <div class="contact-card">
-        <h3>General Inquiries</h3>
-        <p><a href="mailto:info@jayprasad.com.np" style="color: var(--light)">info@jayprasad.com.np</a></p>
-      </div>
-      <div class="contact-card">
-        <h3>Emergency Contact</h3>
-        <p><a href="mailto:support@jayprasad.com.np" style="color: var(--light)">support@jayprasad.com.np</a></p>
-      </div>
-    </div>
-
-    <div class="cyber-links">
-      <a href="#" class="cyber-btn" onclick="showPolicy()">Privacy Policy</a>
-      <a href="#" class="cyber-btn" onclick="showTerms()">Terms & Conditions</a>
-      <a href="#" class="cyber-btn" onclick="showUpdates()">Update Schedule</a>
-    </div>
-
-    <div class="cyber-footer">
-      <p>© 2024 Jay Prasad Majhi IT Systems. All rights reserved.</p>
-    </div>
-  </div>
-
-  <script>
-    // Create floating arrows randomly positioned and animated
-    function createArrows() {
-      const container = document.getElementById('arrowContainer');
-      const arrows = ['➜', '➤', '➔', '➞', '➝', '➟', '➡'];
-
-      for (let i = 0; i < 50; i++) {
-        const arrow = document.createElement('div');
-        arrow.className = 'arrow';
-        arrow.textContent = arrows[Math.floor(Math.random() * arrows.length)];
-
-        arrow.style.left = Math.random() * 100 + 'vw';
-        arrow.style.top = Math.random() * 100 + 'vh';
-
-        // Random animation duration and delay for float
-        const duration = 10 + Math.random() * 20;
-        arrow.style.animationDuration = duration + 's';
-        arrow.style.animationDelay = Math.random() * 10 + 's';
-
-        container.appendChild(arrow);
-      }
-    }
-
-    // Modal info popups
-    document.addEventListener('DOMContentLoaded', function () {
-      createArrows();
-
-      window.showPolicy = function () {
-        alert(
-          "PRIVACY POLICY:\n\nWe prioritize your data security. During this upgrade, all existing user data remains encrypted with AES-256 standards. Our new platform will feature enhanced privacy controls and transparent data practices."
-        );
-      };
-
-      window.showTerms = function () {
-        alert(
-          "TERMS & CONDITIONS:\n\nBy accessing our services after relaunch, you agree to our updated terms. Key changes include improved service level agreements and clearer user rights regarding data management."
-        );
-      };
-
-      window.showUpdates = function () {
-        alert(
-          "UPDATE SCHEDULE:\n\nCurrent Phase: Security Implementation (60%)\nNext Phase: Performance Optimization\nEstimated Completion: April 15, 2024\n\nFollow @jayprasadIT for real-time updates."
-        );
-      };
-    });
-  </script>
+    <script>
+        // Create animated border arrows
+        function createBorderArrows() {
+            const container = document.getElementById('borderContainer');
+            const arrows = ['➜', '➤', '➔', '➞', '➝', '➟', '➡'];
+            
+            // Top border arrows (left to right)
+            for (let i = 0; i < 40; i++) {
+                const arrow = document.createElement('div');
+                arrow.className = 'border-arrow';
+                arrow.textContent = arrows[Math.floor(Math.random() * arrows.length)];
+                arrow.style.top = '0';
+                arrow.style.left = (i * 2.5) + '%';
+                arrow.style.animationDelay = (i * 0.2) + 's';
+                container.appendChild(arrow);
+            }
+            
+            // Right border arrows (top to bottom)
+            for (let i = 0; i < 20; i++) {
+                const arrow = document.createElement('div');
+                arrow.className = 'border-arrow';
+                arrow.textContent = arrows[Math.floor(Math.random() * arrows.length)];
+                arrow.style.right = '0';
+                arrow.style.top = (i * 5) + '%';
+                arrow.style.animationDelay = (i * 0.3 + 8) + 's';
+                container.appendChild(arrow);
+            }
+            
+            // Bottom border arrows (right to left)
+            for (let i = 0; i < 40; i++) {
+                const arrow = document.createElement('div');
+                arrow.className = 'border-arrow';
+                arrow.textContent = arrows[Math.floor(Math.random() * arrows.length)];
+                arrow.style.bottom = '0';
+                arrow.style.right = (i * 2.5) + '%';
+                arrow.style.animationDelay = (i * 0.2 + 16) + 's';
+                container.appendChild(arrow);
+            }
+            
+            // Left border arrows (bottom to top)
+            for (let i = 0; i < 20; i++) {
+                const arrow = document.createElement('div');
+                arrow.className = 'border-arrow';
+                arrow.textContent = arrows[Math.floor(Math.random() * arrows.length)];
+                arrow.style.left = '0';
+                arrow.style.bottom = (i * 5) + '%';
+                arrow.style.animationDelay = (i * 0.3 + 24) + 's';
+                container.appendChild(arrow);
+            }
+        }
+        
+        // Countdown timer
+        function updateCountdown() {
+            const reopenDate = new Date('November 6, 2028 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = reopenDate - now;
+            
+            const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+            const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('timer').innerHTML = 
+                `${years}y ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createBorderArrows();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
 </body>
 </html>
