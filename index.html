@@ -5,6 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Temporarily Closed</title>
     <style>
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+        }
+        
+        .loading-logo {
+            color: #00f0ff;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00f0ff;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .loading-bar-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(0, 240, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .loading-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00f0ff, #ff2d75);
+            animation: loading 3s ease-in-out forwards;
+        }
+        
+        .loading-text {
+            color: #ccd6f6;
+            font-family: 'Courier New', monospace;
+            margin-top: 20px;
+        }
+        
+        @keyframes loading {
+            0% { width: 0%; }
+            20% { width: 25%; }
+            40% { width: 50%; }
+            60% { width: 75%; }
+            80% { width: 90%; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #00f0ff; }
+            50% { text-shadow: 0 0 20px #00f0ff, 0 0 30px #00f0ff; }
+            100% { text-shadow: 0 0 5px #00f0ff; }
+        }
+
         /* Cyber Theme */
         :root {
             --primary: #00f0ff;
@@ -24,6 +85,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        
+        /* Main Content (initially hidden) */
+        .main-content {
+            display: none;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            transition: opacity 1s ease-in;
         }
         
         /* Animated Border with Arrows */
@@ -128,53 +198,66 @@
             .border-container, .notice-content {
                 padding: 20px;
             }
+            
+            .loading-logo {
+                font-size: 1.8rem;
+            }
+            
+            .loading-bar-container {
+                width: 200px;
+            }
         }
-        <!-- Loading Screen -->
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">JAY PRASAD SYSTEMS</div>
+        <div class="loading-logo">JAY PRASAD MAJHI</div>
         <div class="loading-bar-container">
             <div class="loading-bar"></div>
         </div>
         <div class="loading-text">Initializing system components...</div>
     </div>
-    </style>
-</head>
-<body>
-    <div class="border-container" id="borderContainer">
-        <!-- Animated border arrows will be inserted here by JavaScript -->
-        <div class="notice-content">
-            <h1>SYSTEM NOTICE</h1>
-            <h2>Website Temporarily Closed</h2>
-            
-            <div class="alert-box">
-                <strong>Effective Immediately:</strong> This website is currently undergoing major reconstruction.
-            </div>
-            
-            <p>Our digital infrastructure is being completely rebuilt with next-generation technologies. This temporary closure is necessary to implement revolutionary improvements that will transform your experience.</p>
-            
-            <div class="terminal">
-                <span style="color: var(--primary)">system@admin:~$</span> status --maintenance<br>
-                > Maintenance mode: <span style="color: var(--secondary)">ACTIVE</span><br>
-                > Scheduled reopening: <span style="color: var(--primary)">November 6, 2028 at 12:00 AM</span><br>
-                > Current phase: <span style="color: var(--primary)">Architectural Overhaul</span><br>
-                > <span class="blink">_</span>
-            </div>
-            
-            <div class="reopen-timer" id="countdown">
-                Reopening in: <span id="timer"></span>
-            </div>
-            
-            <h3 style="color: var(--primary); text-align: center;">Upcoming Features:</h3>
-            <ul>
-                <li>Quantum-resistant encryption protocols</li>
-                <li>Neural network-powered interface</li>
-                <li>Holographic display compatibility</li>
-                <li>Direct neural integration (beta)</li>
-                <li>Real-time multilingual thought translation</li>
-            </ul>
-            
-            <div class="contact">
-                <p>For urgent inquiries: <a href="mailto:emergency@jayprasad.com.np">emergency@jayprasad.com.np</a></p>
+
+    <!-- Main Content (initially hidden) -->
+    <div class="main-content" id="mainContent">
+        <div class="border-container" id="borderContainer">
+            <!-- Animated border arrows will be inserted here by JavaScript -->
+            <div class="notice-content">
+                <h1>SYSTEM NOTICE</h1>
+                <h2>Website Temporarily Closed</h2>
+                
+                <div class="alert-box">
+                    <strong>Effective Immediately:</strong> This website is currently undergoing major reconstruction.
+                </div>
+                
+                <p>Our digital infrastructure is being completely rebuilt with next-generation technologies. This temporary closure is necessary to implement revolutionary improvements that will transform your experience.</p>
+                
+                <div class="terminal">
+                    <span style="color: var(--primary)">system@admin:~$</span> status --maintenance<br>
+                    > Maintenance mode: <span style="color: var(--secondary)">ACTIVE</span><br>
+                    > Scheduled reopening: <span style="color: var(--primary)">November 6, 2028 at 12:00 AM</span><br>
+                    > Current phase: <span style="color: var(--primary)">Architectural Overhaul</span><br>
+                    > <span class="blink">_</span>
+                </div>
+                
+                <div class="reopen-timer" id="countdown">
+                    Reopening in: <span id="timer"></span>
+                </div>
+                
+                <h3 style="color: var(--primary); text-align: center;">Upcoming Features:</h3>
+                <ul>
+                    <li>Quantum-resistant encryption protocols</li>
+                    <li>Neural network-powered interface</li>
+                    <li>Holographic display compatibility</li>
+                    <li>Direct neural integration (beta)</li>
+                    <li>Real-time multilingual thought translation</li>
+                </ul>
+                
+                <div class="contact">
+                    <p>For tech support: <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a></p>
+                    <p>For urgent inquiries: <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -248,9 +331,27 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            createBorderArrows();
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            // Show loading screen first
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.getElementById('mainContent');
+            
+            // After 3 seconds, hide loading screen and show main content
+            setTimeout(function() {
+                loadingScreen.style.opacity = '0';
+                
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                    mainContent.style.display = 'flex';
+                    
+                    setTimeout(function() {
+                        mainContent.style.opacity = '1';
+                        // Initialize main content
+                        createBorderArrows();
+                        updateCountdown();
+                        setInterval(updateCountdown, 1000);
+                    }, 50);
+                }, 1000);
+            }, 3000);
         });
     </script>
 </body>
