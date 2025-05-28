@@ -186,19 +186,38 @@
             border-bottom: 1px dashed var(--primary);
         }
         
-        .email-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .email-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
-        .email-item {
+        .email-card {
             background: rgba(0, 240, 255, 0.1);
-            padding: 8px 15px;
-            border-radius: 4px;
-            border-left: 2px solid var(--primary);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .email-card:hover {
+            background: rgba(0, 240, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
+        }
+        
+        .email-title {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .email-address {
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.95em;
         }
         
         @media (max-width: 600px) {
@@ -222,10 +241,8 @@
                 width: 200px;
             }
             
-            .email-list {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
+            .email-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -276,22 +293,55 @@
                 </ul>
                 
                 <div class="contact">
-                    <h3 style="color: var(--primary);">Contact Points:</h3>
-                    <div class="email-list">
-                        <div class="email-item">
-                            <strong>IT Support:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">CONTACT MATRIX</h3>
+                    <div class="email-grid">
+                        <div class="email-card">
+                            <div class="email-title">TECHNICAL SUPPORT</div>
+                            <div class="email-address">
+                                <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a>
+                            </div>
                         </div>
-                        <div class="email-item">
-                            <strong>General Contact:</strong> <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a>
+                        <div class="email-card">
+                            <div class="email-title">GENERAL INQUIRIES</div>
+                            <div class="email-address">
+                                <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a>
+                            </div>
                         </div>
-                        <div class="email-item">
-                            <strong>Cyber Security:</strong> <a href="mailto:cyber@jayprasad.com.np">cyber@jayprasad.com.np</a>
+                        <div class="email-card">
+                            <div class="email-title">CYBER SECURITY</div>
+                            <div class="email-address">
+                                <a href="mailto:cyber@jayprasad.com.np">cyber@jayprasad.com.np</a>
+                            </div>
                         </div>
-                        <div class="email-item">
-                            <strong>Administration:</strong> <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a>
+                        <div class="email-card">
+                            <div class="email-title">ADMINISTRATION</div>
+                            <div class="email-address">
+                                <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a>
+                            </div>
                         </div>
-                        <div class="email-item">
-                            <strong>Support:</strong> <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a>
+                        <div class="email-card">
+                            <div class="email-title">SUPPORT TEAM</div>
+                            <div class="email-address">
+                                <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a>
+                            </div>
+                        </div>
+                        <div class="email-card">
+                            <div class="email-title">URGENT MATTERS</div>
+                            <div class="email-address">
+                                <a href="mailto:urgent@jayprasad.com.np">urgent@jayprasad.com.np</a>
+                            </div>
+                        </div>
+                        <div class="email-card">
+                            <div class="email-title">DEVELOPMENT TEAM</div>
+                            <div class="email-address">
+                                <a href="mailto:dev@jayprasad.com.np">dev@jayprasad.com.np</a>
+                            </div>
+                        </div>
+                        <div class="email-card">
+                            <div class="email-title">NETWORK OPERATIONS</div>
+                            <div class="email-address">
+                                <a href="mailto:netops@jayprasad.com.np">netops@jayprasad.com.np</a>
+                            </div>
                         </div>
                     </div>
                 </div>
