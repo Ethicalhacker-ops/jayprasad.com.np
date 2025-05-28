@@ -5,23 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Closed</title>
     <style>
+        /* Modern Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+        
+        .loader {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .circular-loader {
+            animation: rotate 2s linear infinite;
+            height: 100%;
+            transform-origin: center center;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .loader-path {
+            stroke-dasharray: 150, 200;
+            stroke-dashoffset: 0;
+            animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+            stroke-linecap: round;
+            stroke-width: 6;
+        }
+        
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes dash {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -35;
+            }
+            100% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -124;
+            }
+        }
+        
+        @keyframes color {
+            0%, 100% { stroke: #4dabf7; }
+            40% { stroke: #ff6b6b; }
+            80% { stroke: #4dabf7; }
+        }
+        
+        #loading-text {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        #progress-percent {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        /* Main Content Styles */
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             height: 100vh;
             overflow: hidden;
-            background-color: black; /* Fallback if video fails */
         }
         
-        #video-bg {
+        #video-background {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: -1;
         }
         
@@ -30,75 +112,135 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 40px;
+            border-radius: 15px;
             max-width: 800px;
             width: 90%;
             text-align: center;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #4dabf7;
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        a {
+            color: #4dabf7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            color: #ff6b6b;
+            text-decoration: underline;
+        }
+        
+        .contact-info {
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .contact-info p {
+            margin: 15px 0;
+        }
+        
+        .footer {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <!-- VIDEO ELEMENT WITH ALTERNATE SOURCES -->
-    <video id="video-bg" autoplay loop muted playsinline>
-        <!-- Source 1: Direct MP4 link -->
-        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-        
-        <!-- Source 2: Backup from different CDN -->
-        <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="video/mp4">
-        
-        <!-- Fallback message -->
-        <p>Your browser doesn't support HTML5 video. Here's a <a href="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4">link to the video</a> instead.</p>
+    <!-- IT-Themed Video Background -->
+    <video id="video-background" autoplay loop muted playsinline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-programmer-typing-on-laptop-34521-large.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-it-team-working-on-computers-28807-large.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
     </video>
 
+    <!-- Attractive Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <svg class="circular-loader" viewBox="25 25 50 50">
+                <circle class="loader-path" cx="50" cy="50" r="20" fill="none" />
+            </svg>
+        </div>
+        <div id="loading-text">System Initializing</div>
+        <div id="progress-percent">0%</div>
+    </div>
+
+    <!-- Main Content -->
     <div class="content">
-        <h1 style="color: #ff6b6b;">Website Closed</h1>
-        <p>This website has been officially closed as of <strong>February 25, 2024</strong>.</p>
-        <p><strong>Contact:</strong> <a href="mailto:it@jayprasad.com.np" style="color: #4dabf7;">it@jayprasad.com.np</a></p>
-        <p>Copyright © Jay Prasad Majhi</p>
+        <h1>Website Closed</h1>
+        <p>This website has been officially closed as of <strong>February 25, 2024</strong> due to system maintenance and upgrades.</p>
         
-        <!-- Video status indicator -->
-        <p id="video-status" style="font-size: 12px; color: #ccc; margin-top: 20px;"></p>
+        <div class="contact-info">
+            <p><strong>Technical Support:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
+            <p><strong>General Inquiries:</strong> <a href="mailto:info@jayprasad.com.np">info@jayprasad.com.np</a></p>
+            <p><strong>Emergency Contact:</strong> <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a></p>
+        </div>
+        
+        <div class="footer">
+            <p>Copyright © 2024 Jay Prasad Majhi. All rights reserved.</p>
+        </div>
     </div>
 
     <script>
-        // STRONG VIDEO PLAYBACK GUARANTEE
-        window.onload = function() {
-            const video = document.getElementById('video-bg');
-            const statusEl = document.getElementById('video-status');
+        // Enhanced Loading Animation with Video Check
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const progressPercent = document.getElementById('progress-percent');
+            const video = document.getElementById('video-background');
             
-            // Try to play video
+            let progress = 0;
+            const totalSteps = 100;
+            const stepTime = 30; // ms per percentage point
+            
+            // Try to play video immediately
             const playPromise = video.play();
             
             if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    statusEl.textContent = "Video is playing successfully";
-                })
-                .catch(error => {
-                    statusEl.textContent = "Video blocked: " + error.message;
+                playPromise.catch(error => {
                     video.muted = true;
-                    video.play()
-                        .then(() => statusEl.textContent = "Video playing (muted)")
-                        .catch(e => statusEl.textContent = "Failed to play video: " + e.message);
+                    video.play();
                 });
             }
             
-            // Make video cover entire screen
+            // Animated loading progress
+            const interval = setInterval(() => {
+                progress += 1;
+                progressPercent.textContent = progress + '%';
+                
+                // Dynamic loading message
+                const loadingText = document.getElementById('loading-text');
+                if (progress < 30) loadingText.textContent = "Loading System Modules...";
+                else if (progress < 70) loadingText.textContent = "Initializing Components...";
+                else loadingText.textContent = "Finalizing Setup...";
+                
+                if (progress >= totalSteps) {
+                    clearInterval(interval);
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 800);
+                }
+            }, stepTime);
+            
+            // Ensure video covers entire screen
             video.style.width = '100%';
             video.style.height = '100%';
             video.style.objectFit = 'cover';
-            
-            // Final check after 3 seconds
-            setTimeout(() => {
-                if (video.paused) {
-                    statusEl.textContent += " | Trying last resort...";
-                    video.src = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
-                    video.load();
-                    video.play();
-                }
-            }, 3000);
-        };
+        });
     </script>
 </body>
 </html>
