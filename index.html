@@ -1,131 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Website Closed</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #ffffff;
-      overflow: hidden;
-    }
-
-    video#bg-video {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.7);
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .content {
-      max-width: 800px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #ff4444;
-    }
-
-    p {
-      font-size: 1.2em;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .contact-info {
-      text-align: left;
-      margin-top: 30px;
-    }
-
-    .contact-info strong {
-      color: #4da6ff;
-    }
-
-    .footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      opacity: 0.8;
-    }
-
-    a {
-      color: #4da6ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Closed</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            background-color: black; /* Fallback if video fails */
+        }
+        
+        #video-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <!-- Video Background (with 2 sources for better compatibility) -->
-  <video id="bg-video" autoplay loop muted playsinline>
-    <!-- Primary Video (Mixkit) -->
-    <source src="https://assets.mixkit.co/videos/preview/mixkit-hacker-working-in-the-dark-31605-large.mp4" type="video/mp4">
-    <!-- Fallback Video (Pexels) -->
-    <source src="https://videos.pexels.com/videos/black-and-white-video-of-a-hacker-typing-on-a-laptop-856353" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
+    <!-- VIDEO ELEMENT WITH ALTERNATE SOURCES -->
+    <video id="video-bg" autoplay loop muted playsinline>
+        <!-- Source 1: Direct MP4 link -->
+        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+        
+        <!-- Source 2: Backup from different CDN -->
+        <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="video/mp4">
+        
+        <!-- Fallback message -->
+        <p>Your browser doesn't support HTML5 video. Here's a <a href="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4">link to the video</a> instead.</p>
+    </video>
 
-  <div class="overlay">
     <div class="content">
-      <h1>Website Closed</h1>
-      <p>This website has been officially closed as of <strong>February 25, 2024</strong> due to unexpected system errors, critical server failures, and other technology-related issues.</p>
-      <p>We sincerely apologize for the inconvenience caused. Our technical team has made every effort to resolve the problem but the system stability could not be restored.</p>
-      <p>You can still reach us through the following channels:</p>
-
-      <div class="contact-info">
-        <p><strong>Email:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
-        <p><strong>For inquiries:</strong> <a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
-        <p><strong>For technical support:</strong> <a href="mailto:tech@jayprasad.com.np">tech@jayprasad.com.np</a></p>
-      </div>
-
-      <div class="footer">
-        <p>Copyright ©️ Jay Prasad Majhi. All rights reserved.</p>
-      </div>
+        <h1 style="color: #ff6b6b;">Website Closed</h1>
+        <p>This website has been officially closed as of <strong>February 25, 2024</strong>.</p>
+        <p><strong>Contact:</strong> <a href="mailto:it@jayprasad.com.np" style="color: #4dabf7;">it@jayprasad.com.np</a></p>
+        <p>Copyright © Jay Prasad Majhi</p>
+        
+        <!-- Video status indicator -->
+        <p id="video-status" style="font-size: 12px; color: #ccc; margin-top: 20px;"></p>
     </div>
-  </div>
 
-  <!-- JavaScript to ensure video plays (fallback for strict browsers) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const video = document.getElementById('bg-video');
-      
-      // Ensure video plays even if autoplay is blocked
-      video.play().catch(error => {
-        console.log("Autoplay blocked, attempting fallback...");
-        video.muted = true; // Ensure muted (required in most browsers)
-        video.play();
-      });
-    });
-  </script>
+    <script>
+        // STRONG VIDEO PLAYBACK GUARANTEE
+        window.onload = function() {
+            const video = document.getElementById('video-bg');
+            const statusEl = document.getElementById('video-status');
+            
+            // Try to play video
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    statusEl.textContent = "Video is playing successfully";
+                })
+                .catch(error => {
+                    statusEl.textContent = "Video blocked: " + error.message;
+                    video.muted = true;
+                    video.play()
+                        .then(() => statusEl.textContent = "Video playing (muted)")
+                        .catch(e => statusEl.textContent = "Failed to play video: " + e.message);
+                });
+            }
+            
+            // Make video cover entire screen
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.objectFit = 'cover';
+            
+            // Final check after 3 seconds
+            setTimeout(() => {
+                if (video.paused) {
+                    statusEl.textContent += " | Trying last resort...";
+                    video.src = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
+                    video.load();
+                    video.play();
+                }
+            }, 3000);
+        };
+    </script>
 </body>
 </html>
