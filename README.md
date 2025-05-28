@@ -8,7 +8,7 @@ A modern cloud-based IT consultant portal built with Cloudflare Workers.
 - File upload and management
 - Project management
 - Responsive dashboard
-- Dark/light theme toggle
+- White/light theme toggle
 
 ## Setup
 1. Clone this repository
