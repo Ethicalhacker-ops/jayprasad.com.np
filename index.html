@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jay Prasad Majhi IT Universe Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        :root {
+            --space-blue: #0a192f;
+            --neon-blue: #00d1ff;
+            --cyber-purple: #7928ca;
+            --matrix-green: #00ff41;
+            --star-yellow: #ffcc00;
+            --error-red: #ff3860;
+            --dark-matter: #020c1b;
+            --neutrino-white: rgba(255, 255, 255, 0.9);
+            --event-horizon: rgba(0, 209, 255, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--neutrino-white);
+            background: var(--dark-matter);
+            overflow: hidden;
+            height: 100vh;
+            perspective: 1000px;
+        }
+        
+        /* ===== COSMIC BACKGROUND ===== */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        #universeCanvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+        
+        .video-background {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            mix-blend-mode: screen;
+        }
+        
+        /* ===== AUTH CONTAINER ===== */
+        .auth-container {
+            display: flex;
+            width: 90%;
+            max-width: 1400px;
+            min-height: 80vh;
+            margin: 5vh auto;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 209, 255, 0.2);
+            border: 1px solid var(--event-horizon);
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateX(1deg) rotateY(1deg); }
+            50% { transform: translateY(-20px) rotateX(-1deg) rotateY(1deg); }
+        }
+        
+        /* ===== LEFT PANEL (FORM) ===== */
+        .auth-card {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--event-horizon) 0%, transparent 70%);
+            animation: pulse 15s infinite linear;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .auth-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+        }
+        
+        .auth-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--neon-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .auth-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* ===== FORM ELEMENTS ===== */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: var(--neon-blue);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.1);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .toggle-password:hover {
+            color: var(--neon-blue);
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: rgba(0, 209, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password:hover {
+            color: var(--neon-blue);
+            text-decoration: underline;
+        }
+        
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-blue), var(--cyber-purple));
+            color: white;
+            box-shadow: 0 4px 25px rgba(0, 209, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(0, 209, 255, 0.5);
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cyber-purple), var(--neon-blue));
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+        
+        /* ===== DIVIDER ===== */
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+        }
+        
+        .auth-divider span {
+            padding: 0 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* ===== SOCIAL LOGIN ===== */
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .btn-google,
+        .btn-facebook {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-google {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-google:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .btn-facebook {
+            background: rgba(59, 89, 152, 0.2);
+            color: white;
+            border: 1px solid rgba(59, 89, 152, 0.3);
+        }
+        
+        .btn-facebook:hover {
+            background: rgba(59, 89, 152, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== FOOTER ===== */
+        .auth-footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .auth-footer a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .auth-footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* ===== RIGHT PANEL (FEATURES) ===== */
+        .auth-welcome {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.7), rgba(41, 40, 202, 0.3));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-welcome::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0,209,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            z-index: -1;
+        }
+        
+        .auth-welcome h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+            position: relative;
+        }
+        
+        .auth-welcome h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--neon-blue);
+            border-radius: 3px;
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        
+        .features-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            background: rgba(0, 209, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .features-list i {
+            position: absolute;
+            left: 6px;
+            color: var(--neon-blue);
+            font-size: 0.8rem;
+        }
+        
+        /* ===== ERROR MESSAGE ===== */
+        .error-message {
+            color: var(--error-red);
+            background: rgba(255, 56, 96, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--error-red);
+            display: none;
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        
+        /* ===== LOADING ANIMATION ===== */
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 5px solid rgba(0, 209, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--neon-blue);
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .auth-container {
+                width: 95%;
+            }
+            
+            .auth-card,
+            .auth-welcome {
+                padding: 40px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .auth-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .auth-welcome {
+                display: none;
+            }
+            
+            .auth-card {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .auth-card {
+                padding: 30px 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            width: 95%;
+            min-height: auto;
+            animation: none;
+            transform: none;
+            box-shadow: 0 0 30px rgba(0, 209, 255, 0.3);
+            backdrop-filter: blur(8px);
+            background: rgba(10, 25, 47, 0.9);
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            max-width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+            
+            .auth-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .auth-header p {
+                font-size: 1rem;
+            }
+            
+            .form-group input {
+                padding: 14px 16px;
+            }
+            
+            .btn {
+                padding: 14px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== COSMIC BACKGROUND ===== -->
+    <div class="cosmic-background">
+        <canvas id="universeCanvas"></canvas>
+    </div>
+    
+    <!-- ===== TECH/UNIVERSE VIDEO BACKGROUND ===== -->
+    <video autoplay muted loop id="bgVideo" class="video-background">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-2889-large.mp4" type="video/mp4">
+        <!-- Fallback image -->
+        <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="IT Universe Background">
+    </video>
+    
+    <!-- ===== LOADING SPINNER ===== -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <div class="loading-text">ACCESSING PORTAL...</div>
+    </div>
+    
+    <!-- ===== MAIN AUTH CONTAINER ===== -->
+    <div class="auth-container">
+        <!-- ===== LEFT PANEL (LOGIN FORM) ===== -->
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="https://via.placeholder.com/100x100?text=JP+IT" alt="Jay Prasad Majhi IT Portal" class="auth-logo">
+                <h2>QUANTUM LOGIN</h2>
+                <p>Authenticate to access the IT universe portal</p>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-user-astronaut"></i> USER IDENTIFIER</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your quantum email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key"></i> ENCRYPTION KEY</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="Enter your security key" required>
+                        <span class="toggle-password" id="togglePassword"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <a href="forgot-password.html" class="forgot-password">Lost your encryption key?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> INITIATE QUANTUM CONNECTION
+                </button>
+                
+                <div class="auth-divider">
+                    <span>OR HYPERSPACE JUMP</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="btn btn-google">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                    <button type="button" class="btn btn-facebook">
+                        <i class="fab fa-facebook-f"></i> Continue with Facebook
+                    </button>
+                </div>
+            </form>
+            
+            <div class="auth-footer">
+                <p>New to the quantum network? <a href="register.html">Create wormhole access</a></p>
+            </div>
+            
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+        
+        <!-- ===== RIGHT PANEL (FEATURES) ===== -->
+        <div class="auth-welcome">
+            <h2>IT UNIVERSE PORTAL</h2>
+            <ul class="features-list">
+                <li><i class="fas fa-atom"></i> Quantum Computing Resources</li>
+                <li><i class="fas fa-satellite-dish"></i> Interstellar Network Access</li>
+                <li><i class="fas fa-robot"></i> AI Neural Networks</li>
+                <li><i class="fas fa-shield-alt"></i> Galactic Cybersecurity</li>
+                <li><i class="fas fa-database"></i> Cosmic Big Data Analytics</li>
+                <li><i class="fas fa-vr-cardboard"></i> Virtual Reality Simulators</li>
+                <li><i class="fas fa-rocket"></i> Tech Launchpad</li>
+                <li><i class="fas fa-infinity"></i> Infinite Learning Modules</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // ===== UNIVERSE CANVAS ANIMATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('universeCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Star class
+            class Star {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2;
+                    this.speed = Math.random() * 0.2;
+                    this.opacity = Math.random();
+                    this.color = `rgba(255, 255, 255, ${this.opacity})`;
+                }
+                
+                update() {
+                    this.y += this.speed;
+                    if (this.y > canvas.height) {
+                        this.y = 0;
+                        this.x = Math.random() * canvas.width;
+                    }
+                    
+                    // Twinkle effect
+                    if (Math.random() > 0.95) {
+                        this.opacity = Math.random();
+                        this.color = `rgba(255, 255, 255, ${this.opacity})`;
+                    }
+                }
+                
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            // Create stars
+            const stars = [];
+            for (let i = 0; i < 200; i++) {
+                stars.push(new Star());
+            }
+            
+            // Shooting stars
+            class ShootingStar {
+                constructor() {
+                    this.reset();
+                }
+                
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = 0;
+                    this.size = Math.random() * 2 + 1;
+                    this.speed = Math.random() * 10 + 10;
+                    this.angle = Math.random() * Math.PI / 4 + Math.PI / 8;
+                    this.trailLength = Math.random() * 50 + 50;
+                    this.life = this.trailLength;
+                    this.color = `rgba(${Math.floor(Math.random() * 156 + 100)}, ${Math.floor(Math.random() * 156 + 100)}, 255, 1)`;
+                }
+                
+                update() {
+                    this.x += Math.cos(this.angle) * this.speed;
+                    this.y += Math.sin(this.angle) * this.speed;
+                    this.life--;
+                    
+                    if (this.life <= 0 || this.x > canvas.width || this.y > canvas.height) {
+                        this.reset();
+                    }
+                }
+                
+                draw() {
+                    ctx.strokeStyle = this.color;
+                    ctx.lineWidth = this.size;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(
+                        this.x - Math.cos(this.angle) * this.trailLength * (this.life / this.trailLength),
+                        this.y - Math.sin(this.angle) * this.trailLength * (this.life / this.trailLength)
+                    );
+                    ctx.stroke();
+                }
+            }
+            
+            const shootingStars = [];
+            for (let i = 0; i < 3; i++) {
+                shootingStars.push(new ShootingStar());
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.fillStyle = 'rgba(10, 25, 47, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                stars.forEach(star => {
+                    star.update();
+                    star.draw();
+                });
+                
+                shootingStars.forEach(star => {
+                    star.update();
+                    star.draw();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+            
+            // ===== VIDEO BACKGROUND FALLBACK =====
+            const video = document.getElementById('bgVideo');
+            video.addEventListener('error', function() {
+                console.log("Video failed to load, using fallback image");
+                document.querySelector('.video-background').innerHTML = 
+                    '<img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="IT Universe Background" style="width:100%;height:100%;object-fit:cover">';
+            });
+            
+            // ===== PASSWORD TOGGLE =====
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            // ===== LOGIN FORM HANDLING =====
+            const loginForm = document.getElementById('loginForm');
+            const errorElement = document.getElementById('errorMessage');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Basic validation
+                if (!email || !password) {
+                    showError('Please fill in all quantum fields');
+                    return;
+                }
+                
+                try {
+                    // Show loading spinner
+                    loadingSpinner.style.display = 'flex';
+                    
+                    // Simulate API call (replace with actual fetch)
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    // For demo purposes - always succeed
+                    // In real implementation, replace with:
+                    /*
+                    const response = await fetch('https://your-api-endpoint/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (!response.ok) {
+                        throw new Error(data.message || 'Quantum authentication failed');
+                    }
+                    
+                    // Store token
+                    localStorage.setItem('quantumToken', data.token);
+                    */
+                    
+                    // Redirect to dashboard (demo)
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 500);
+                    
+                } catch (err) {
+                    showError(err.message || 'Quantum connection failed. Try again.');
+                } finally {
+                    loadingSpinner.style.display = 'none';
+                }
+            });
+            
+            function showError(message) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                
+                // Hide error after 5 seconds
+                setTimeout(() => {
+                    errorElement.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
