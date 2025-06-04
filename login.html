@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jay Prasad IT Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #4e73df;
+            --primary-dark: #2e59d9;
+            --secondary-color: #858796;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+            --light-color: #f8f9fc;
+            --dark-color: #5a5c69;
+            --google-red: #DB4437;
+            --facebook-blue: #4267B2;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+            height: 100vh;
+            background: #0f0c29; /* Fallback */
+        }
+
+        /* IT Universe Background */
+        .universe-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                        0 0 20px rgba(255, 255, 255, 0.6),
+                        0 0 30px rgba(255, 255, 255, 0.4);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Binary Rain Effect */
+        .binary-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            overflow: hidden;
+        }
+
+        .binary-digit {
+            position: absolute;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 16px;
+            animation: rain linear infinite;
+        }
+
+        @keyframes rain {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Floating Tech Elements */
+        .floating-tech {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+            animation: float-tech 15s infinite ease-in-out;
+            font-size: 3rem;
+            color: rgba(78, 115, 223, 0.5);
+        }
+
+        @keyframes float-tech {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10px, -10px) rotate(5deg);
+            }
+            50% {
+                transform: translate(-5px, 5px) rotate(-5deg);
+            }
+            75% {
+                transform: translate(5px, -5px) rotate(3deg);
+            }
+        }
+
+        /* Auth Container */
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Auth Card */
+        .auth-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 2.5rem;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .auth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Auth Header */
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .auth-header h2 {
+            font-size: 1.75rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+
+        .form-group label i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d3e2;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: all var(--transition-speed);
+            background-color: rgba(248, 249, 252, 0.7);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.2);
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: right;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .forgot-password:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-block {
+            display: flex;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+        }
+
+        .btn-primary i {
+            margin-right: 0.5rem;
+        }
+
+        .btn-google {
+            background-color: var(--google-red);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .btn-google:hover {
+            background-color: #c1351b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(219, 68, 55, 0.3);
+        }
+
+        .btn-facebook {
+            background-color: var(--facebook-blue);
+            color: white;
+        }
+
+        .btn-facebook:hover {
+            background-color: #365899;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 103, 178, 0.3);
+        }
+
+        /* Divider */
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #e3e6f0;
+        }
+
+        .auth-divider span {
+            padding: 0 1rem;
+        }
+
+        /* Social Login */
+        .social-login {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-login .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .social-login .btn i {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Auth Footer */
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .auth-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed);
+        }
+
+        .auth-footer a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Error Message */
+        .error-message {
+            display: none;
+            padding: 0.75rem 1rem;
+            background-color: rgba(231, 74, 59, 0.1);
+            color: var(--danger-color);
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--danger-color);
+        }
+
+        /* Welcome Section */
+        .auth-welcome {
+            display: none;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 992px) {
+            .auth-container {
+                justify-content: space-around;
+            }
+            
+            .auth-welcome {
+                display: block;
+                max-width: 500px;
+                padding: 2rem;
+                color: white;
+                z-index: 1;
+                margin-left: 2rem;
+            }
+            
+            .auth-welcome h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+                background: linear-gradient(90deg, #4e73df, #36b9cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            .features-list {
+                list-style: none;
+                margin-top: 2rem;
+            }
+            
+            .features-list li {
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
+                display: flex;
+                align-items: center;
+            }
+            
+            .features-list li i {
+                margin-right: 1rem;
+                color: var(--success-color);
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Password Toggle */
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            cursor: pointer;
+            color: var(--secondary-color);
+            transition: color var(--transition-speed);
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+
+        .language-selector select {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid #d1d3e2;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 0.8rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 5rem;
+            z-index: 100;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Security Tips */
+        .security-tips {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(248, 249, 252, 0.7);
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--info-color);
+        }
+
+        .security-tips h4 {
+            font-size: 0.9rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .security-tips h4 i {
+            margin-right: 0.5rem;
+            color: var(--info-color);
+        }
+
+        .security-tips p {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Custom Checkbox */
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+
+        /* Terms and Conditions */
+        .terms {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .terms a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .auth-card {
+                padding: 1.5rem;
+            }
+            
+            .auth-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .auth-container {
+                padding: 1rem;
+            }
+            
+            .auth-card {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- IT Universe Background -->
+    <div class="universe-background" id="universeBackground"></div>
+    
+    <!-- Binary Rain Effect -->
+    <div class="binary-rain" id="binaryRain"></div>
+    
+    <!-- Floating Tech Elements -->
+    <div class="floating-tech" style="top: 20%; left: 10%; animation-delay: 0s;">
+        <i class="fab fa-html5"></i>
+    </div>
+    <div class="floating-tech" style="top: 30%; right: 15%; animation-delay: 2s;">
+        <i class="fab fa-js"></i>
+    </div>
+    <div class="floating-tech" style="bottom: 25%; left: 20%; animation-delay: 4s;">
+        <i class="fab fa-python"></i>
+    </div>
+    <div class="floating-tech" style="bottom: 15%; right: 10%; animation-delay: 6s;">
+        <i class="fab fa-node-js"></i>
+    </div>
+    
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="np">नेपाली</option>
+            <option value="hi">हिन्दी</option>
+        </select>
+    </div>
+    
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="auth-container">
+        <div class="auth-card fade-in">
+            <div class="auth-header">
+                <img src="https://via.placeholder.com/80" alt="Jay Prasad IT Portal" class="auth-logo">
+                <h2>Welcome to Jay Prasad IT Portal</h2>
+                <p>Login to access your IT courses and resources</p>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                    <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="loginButton">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                    <div class="spinner" id="loginSpinner"></div>
+                </button>
+                
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="btn btn-google" id="googleLogin">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                    <button type="button" class="btn btn-facebook" id="facebookLogin">
+                        <i class="fab fa-facebook-f"></i> Continue with Facebook
+                    </button>
+                </div>
+                
+                <div class="security-tips">
+                    <h4><i class="fas fa-shield-alt"></i> Security Tips</h4>
+                    <p>Never share your password. Always log out on shared devices.</p>
+                </div>
+                
+                <div class="terms">
+                    By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                </div>
+            </form>
+            
+            <div class="auth-footer">
+                <p>New to Jay Prasad IT Portal? <a href="register.html">Create an account</a></p>
+            </div>
+            
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+        
+        <div class="auth-welcome">
+            <h2>Advance Your IT Career</h2>
+            <ul class="features-list">
+                <li><i class="fas fa-check"></i> 500+ IT courses and certifications</li>
+                <li><i class="fas fa-check"></i> Hands-on coding environments</li>
+                <li><i class="fas fa-check"></i> AI-powered learning recommendations</li>
+                <li><i class="fas fa-check"></i> Cloud lab access</li>
+                <li><i class="fas fa-check"></i> Career path guidance</li>
+                <li><i class="fas fa-check"></i> 24/7 mentor support</li>
+            </ul>
+            
+            <div style="margin-top: 3rem;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Contact Support</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> tech@jayprasad.com.np</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> admin@jayprasad.com.np</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> support@jayprasad.com.np</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create universe background particles
+        function createParticles() {
+            const universe = document.getElementById('universeBackground');
+            const particleCount = 100;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 1px and 3px
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 10s and 20s
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                universe.appendChild(particle);
+            }
+        }
+        
+        // Create binary rain effect
+        function createBinaryRain() {
+            const binaryRain = document.getElementById('binaryRain');
+            const columns = Math.floor(window.innerWidth / 20); // One digit every 20px
+            
+            for (let i = 0; i < columns; i++) {
+                const digit = document.createElement('div');
+                digit.classList.add('binary-digit');
+                digit.textContent = Math.random() > 0.5 ? '1' : '0';
+                
+                // Random position
+                digit.style.left = `${i * 20}px`;
+                digit.style.top = `${Math.random() * -100}px`;
+                
+                // Random animation duration between 5s and 15s
+                const duration = Math.random() * 10 + 5;
+                digit.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                digit.style.animationDelay = `${Math.random() * 5}s`;
+                
+                binaryRain.appendChild(digit);
+            }
+        }
+        
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            const icon = this.querySelector('i');
+            
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+        
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // Show loading spinner
+            const loginButton = document.getElementById('loginButton');
+            const spinner = document.getElementById('loginSpinner');
+            loginButton.disabled = true;
+            spinner.style.display = 'inline-block';
+            
+            // Hide error message if previously shown
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.style.display = 'none';
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // For demo purposes, accept any non-empty password
+                if (password.length > 0) {
+                    // Store user data in localStorage
+                    const user = {
+                        email: email,
+                        name: email.split('@')[0],
+                        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(email.split('@')[0])}&background=4e73df&color=fff`
+                    };
+                    
+                    localStorage.setItem('user', JSON.stringify(user));
+                    
+                    if (rememberMe) {
+                        localStorage.setItem('rememberedEmail', email);
+                    }
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                } else {
+                    throw new Error('Please enter your password');
+                }
+            } catch (err) {
+                errorMessage.textContent = err.message || 'Login failed. Please try again.';
+                errorMessage.style.display = 'block';
+            } finally {
+                loginButton.disabled = false;
+                spinner.style.display = 'none';
+            }
+        });
+        
+        // Social login handlers
+        document.getElementById('googleLogin').addEventListener('click', function() {
+            document.getElementById('errorMessage').textContent = 'Google login would be implemented in a real app';
+            document.getElementById('errorMessage').style.display = 'block';
+        });
+        
+        document.getElementById('facebookLogin').addEventListener('click', function() {
+            document.getElementById('errorMessage').textContent = 'Facebook login would be implemented in a real app';
+            document.getElementById('errorMessage').style.display = 'block';
+        });
+        
+        // Check for remembered email
+        window.addEventListener('DOMContentLoaded', function() {
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            if (rememberedEmail) {
+                document.getElementById('email').value = rememberedEmail;
+                document.getElementById('rememberMe').checked = true;
+            }
+            
+            // Create background effects
+            createParticles();
+            createBinaryRain();
+        });
+    </script>
+</body>
+</html>
