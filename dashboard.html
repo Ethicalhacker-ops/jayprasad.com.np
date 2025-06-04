@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Kjau Prasad Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo-icon.png" alt="Logo" class="sidebar-logo">
+                <h3>Kjau Prasad Portal</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="my-files.html">
+                            <i class="fas fa-folder"></i> My Files
+                        </a>
+                    </li>
+                    <li>
+                        <a href="courses.html">
+                            <i class="fas fa-video"></i> Courses
+                        </a>
+                    </li>
+                    <li>
+                        <a href="progress.html">
+                            <i class="fas fa-chart-line"></i> Progress
+                        </a>
+                    </li>
+                    <li>
+                        <a href="account.html">
+                            <i class="fas fa-user-cog"></i> Account Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="sidebarLogout" class="btn btn-text">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-menu">
+                    <div class="user-greeting">
+                        Welcome, <span id="userName">User</span>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="images/default-avatar.jpg" alt="User Avatar">
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="content-wrapper">
+                <h1 class="page-title">Dashboard</h1>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Courses Enrolled</h3>
+                            <p id="coursesEnrolled">5</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-success">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Completed</h3>
+                            <p id="coursesCompleted">2</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>In Progress</h3>
+                            <p id="coursesInProgress">3</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-info">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Achievements</h3>
+                            <p id="achievementsCount">4</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="recentActivity">
+                        <!-- Activities will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="actions-grid">
+                        <a href="create-folder.html" class="action-card">
+                            <i class="fas fa-folder-plus"></i>
+                            <span>Create New Folder</span>
+                        </a>
+                        <a href="browse-courses.html" class="action-card">
+                            <i class="fas fa-search"></i>
+                            <span>Browse Courses</span>
+                        </a>
+                        <a href="upload-file.html" class="action-card">
+                            <i class="fas fa-upload"></i>
+                            <span>Upload File</span>
+                        </a>
+                        <a href="account.html" class="action-card">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Account Settings</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Load user data
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                document.getElementById('userName').textContent = user.name;
+            }
+            
+            // Add logout event
+            document.getElementById('sidebarLogout').addEventListener('click', function() {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = 'index.html';
+            });
+            
+            // Load dashboard data
+            loadDashboardData();
+        });
+        
+        async function loadDashboardData() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://localhost:5000/api/v1/dashboard', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Update stats
+                    document.getElementById('coursesEnrolled').textContent = data.coursesEnrolled || 0;
+                    document.getElementById('coursesCompleted').textContent = data.coursesCompleted || 0;
+                    document.getElementById('coursesInProgress').textContent = data.coursesInProgress || 0;
+                    document.getElementById('achievementsCount').textContent = data.achievements || 0;
+                    
+                    // Update recent activity
+                    const activityList = document.getElementById('recentActivity');
+                    if (data.recentActivity && data.recentActivity.length > 0) {
+                        activityList.innerHTML = data.recentActivity.map(activity => `
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-${activity.icon || 'check'}"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>${activity.description}</p>
+                                    <small>${new Date(activity.timestamp).toLocaleString()}</small>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        activityList.innerHTML = '<p>No recent activity</p>';
+                    }
+                }
+            } catch (err) {
+                console.error('Error loading dashboard data:', err);
+            }
+        }
+    </script>
+</body>
+</html>
