@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Jay Prasad IT Portal</title>
+    <title>IT Learning Portal - Jay Prasad</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css">
     <style>
@@ -275,6 +275,7 @@
             overflow: hidden;
             cursor: pointer;
             border: 2px solid var(--primary-color);
+            position: relative;
         }
 
         .user-avatar img {
@@ -358,239 +359,506 @@
             color: var(--dark-color);
         }
 
-        /* Activity Section */
-        .activity-section {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 0.35rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .activity-section h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark-color);
-            font-weight: 600;
-            border-bottom: 1px solid #e3e6f0;
-            padding-bottom: 0.5rem;
-        }
-
-        .activity-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .activity-item {
-            display: flex;
-            padding: 1rem 0;
-            border-bottom: 1px solid #f8f9fc;
-        }
-
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #f8f9fc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            color: var(--primary-color);
-            font-size: 1rem;
-        }
-
-        .activity-content {
-            flex: 1;
-        }
-
-        .activity-content p {
-            margin-bottom: 0.25rem;
-            color: var(--dark-color);
-        }
-
-        .activity-content small {
-            color: var(--secondary-color);
-            font-size: 0.8rem;
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 0.35rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-            padding: 1.5rem;
-        }
-
-        .quick-actions h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark-color);
-            font-weight: 600;
-            border-bottom: 1px solid #e3e6f0;
-            padding-bottom: 0.5rem;
-        }
-
-        .actions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .action-card {
-            background-color: rgba(248, 249, 252, 0.9);
-            border-radius: 0.35rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: all 0.3s;
-            color: var(--dark-color);
-            border: 1px solid rgba(78, 115, 223, 0.2);
-        }
-
-        .action-card:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(78, 115, 223, 0.2);
-        }
-
-        .action-card i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .action-card span {
-            font-weight: 600;
-        }
-
-        /* Charts Section */
-        .charts-section {
+        /* Learning Dashboard Styles */
+        .learning-dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .chart-card {
+        .learning-card {
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 0.35rem;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
             padding: 1.5rem;
         }
 
-        .chart-card h3 {
-            font-size: 1.1rem;
+        .learning-card h3 {
+            font-size: 1.25rem;
             margin-bottom: 1rem;
             color: var(--dark-color);
             font-weight: 600;
+            display: flex;
+            align-items: center;
         }
 
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
+        .learning-card h3 i {
+            margin-right: 10px;
+            color: var(--primary-color);
         }
 
-        /* Recent Files */
-        .recent-files {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 0.35rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .recent-files h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark-color);
-            font-weight: 600;
-            border-bottom: 1px solid #e3e6f0;
-            padding-bottom: 0.5rem;
-        }
-
-        .files-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .files-table thead th {
-            text-align: left;
-            padding: 0.75rem 1rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-            border-bottom: 1px solid #e3e6f0;
-        }
-
-        .files-table tbody td {
-            padding: 0.75rem 1rem;
+        /* Course Progress */
+        .course-progress-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid #f8f9fc;
-            vertical-align: middle;
         }
 
-        .files-table tbody tr:last-child td {
+        .course-progress-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
             border-bottom: none;
         }
 
-        .file-icon {
-            width: 40px;
-            height: 40px;
+        .course-progress-header {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            background-color: #f8f9fc;
-            border-radius: 50%;
-            margin-right: 1rem;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
         }
 
-        .file-name {
+        .course-progress-title {
             font-weight: 600;
             color: var(--dark-color);
         }
 
-        .file-size {
-            color: var(--secondary-color);
-            font-size: 0.9rem;
+        .course-progress-percent {
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
-        .file-date {
-            color: var(--secondary-color);
-            font-size: 0.9rem;
+        .progress {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
         }
 
-        .file-actions {
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.6s ease;
+        }
+
+        /* Upcoming Classes */
+        .upcoming-class {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f8f9fc;
+        }
+
+        .upcoming-class:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .class-time {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.35rem;
+            text-align: center;
+            min-width: 70px;
+            margin-right: 1rem;
+        }
+
+        .class-time .day {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .class-time .time {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .class-info {
+            flex: 1;
+        }
+
+        .class-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .class-instructor {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+        }
+
+        .join-btn {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 0.35rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .join-btn:hover {
+            background-color: #17a673;
+        }
+
+        /* Recommended Courses */
+        .course-card {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+        }
+
+        .course-img {
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .course-card:hover .course-img img {
+            transform: scale(1.05);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--danger-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .course-body {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .course-instructor {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .course-rating {
+            color: var(--warning-color);
+        }
+
+        .enroll-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0.35rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .enroll-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Code Sandbox */
+        .sandbox-container {
+            background-color: #1e1e1e;
+            border-radius: 0.35rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .sandbox-header {
+            background-color: #252526;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sandbox-title {
+            color: #d4d4d4;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .sandbox-actions {
             display: flex;
             gap: 0.5rem;
         }
 
-        .file-action-btn {
-            width: 30px;
-            height: 30px;
+        .sandbox-btn {
+            background-color: #333;
+            color: #d4d4d4;
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .sandbox-btn:hover {
+            background-color: #444;
+        }
+
+        .sandbox-content {
+            padding: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            color: #d4d4d4;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .sandbox-footer {
+            background-color: #252526;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* Learning Resources */
+        .resource-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f8f9fc;
+        }
+
+        .resource-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .resource-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f8f9fc;
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+
+        .resource-info {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .resource-type {
+            font-size: 0.85rem;
             color: var(--secondary-color);
+        }
+
+        .download-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 0.35rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .file-action-btn:hover {
+        .download-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Profile Section */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1.5rem;
+            border: 3px solid var(--primary-color);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info h2 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background-color: var(--warning-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-box {
+            background-color: white;
+            border-radius: 0.35rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 0.15rem 0.5rem rgba(0,0,0,0.05);
+        }
+
+        .stat-box h4 {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Certificates */
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .certificate-card {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+        }
+
+        .certificate-img {
+            height: 200px;
+            background-color: #f8f9fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+
+        .certificate-body {
+            padding: 1.5rem;
+        }
+
+        .certificate-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .certificate-date {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .certificate-btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .certificate-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .certificate-btn.primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .certificate-btn.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .certificate-btn.secondary:hover {
             background-color: var(--primary-color);
             color: white;
         }
 
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .learning-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 992px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -613,10 +881,6 @@
             .sidebar-toggle {
                 display: flex !important;
             }
-
-            .charts-section {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 768px) {
@@ -632,17 +896,23 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .actions-grid {
-                grid-template-columns: 1fr 1fr;
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-avatar {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .profile-stats {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 576px) {
             .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .actions-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -950,111 +1220,6 @@
             margin-left: 1rem;
         }
 
-        /* Progress Bar */
-        .progress {
-            height: 10px;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background-color: var(--primary-color);
-            transition: width 0.6s ease;
-        }
-
-        /* Course Card */
-        .course-card {
-            background-color: white;
-            border-radius: 0.35rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
-        }
-
-        .course-img {
-            height: 150px;
-            overflow: hidden;
-        }
-
-        .course-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .course-card:hover .course-img img {
-            transform: scale(1.05);
-        }
-
-        .course-body {
-            padding: 1.5rem;
-        }
-
-        .course-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-
-        .course-instructor {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        .course-progress {
-            margin-bottom: 1rem;
-        }
-
-        .course-progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .course-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .course-rating {
-            color: var(--warning-color);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-
         /* IT Universe Background */
         .it-universe {
             position: fixed;
@@ -1092,6 +1257,442 @@
         .tech-icon {
             font-size: 2rem;
             color: rgba(78, 115, 223, 0.3);
+        }
+
+        /* Learning Badges */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 0.5rem rgba(0,0,0,0.05);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            width: calc(50% - 0.5rem);
+        }
+
+        .badge-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--warning-color);
+            font-size: 1.5rem;
+        }
+
+        .badge-info {
+            flex: 1;
+        }
+
+        .badge-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .badge-date {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+        }
+
+        /* Calendar */
+        .calendar {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 0.5rem rgba(0,0,0,0.05);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-title {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .calendar-nav-btn {
+            background-color: var(--light-color);
+            border: none;
+            border-radius: 0.25rem;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            padding: 0.5rem 0;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .calendar-day.empty {
+            background-color: transparent;
+            cursor: default;
+        }
+
+        .calendar-day.current {
+            background-color: var(--light-color);
+        }
+
+        .calendar-day.event {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .calendar-events {
+            margin-top: 1rem;
+        }
+
+        .calendar-event {
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            background-color: var(--light-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .calendar-event .time {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 0.5rem rgba(0,0,0,0.05);
+            padding: 1rem;
+        }
+
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .leaderboard-title {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .leaderboard-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .leaderboard-tab {
+            background-color: var(--light-color);
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .leaderboard-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .leaderboard-list {
+            list-style: none;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f8f9fc;
+        }
+
+        .leaderboard-item:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-rank {
+            width: 30px;
+            height: 30px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .leaderboard-rank.top {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .leaderboard-user {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .leaderboard-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.75rem;
+        }
+
+        .leaderboard-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .leaderboard-name {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .leaderboard-score {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.3);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .main-content {
+            background-color: rgba(26, 26, 46, 0.9);
+        }
+
+        body.dark-mode .stat-card,
+        body.dark-mode .learning-card,
+        body.dark-mode .course-card,
+        body.dark-mode .certificate-card,
+        body.dark-mode .badge,
+        body.dark-mode .calendar,
+        body.dark-mode .leaderboard {
+            background-color: #16213e;
+            color: #e6e6e6;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .stat-info h3,
+        body.dark-mode .course-instructor,
+        body.dark-mode .resource-type,
+        body.dark-mode .profile-info p,
+        body.dark-mode .certificate-date,
+        body.dark-mode .badge-date {
+            color: #b8b8b8;
+        }
+
+        body.dark-mode .stat-info p,
+        body.dark-mode .course-title,
+        body.dark-mode .resource-title,
+        body.dark-mode .profile-info h2,
+        body.dark-mode .certificate-title,
+        body.dark-mode .badge-title,
+        body.dark-mode .leaderboard-name {
+            color: #ffffff;
+        }
+
+        body.dark-mode .top-bar {
+            background-color: rgba(22, 33, 62, 0.9);
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .search-bar {
+            background-color: rgba(30, 30, 45, 0.8);
+        }
+
+        body.dark-mode .search-bar input {
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .user-greeting {
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .page-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .progress {
+            background-color: #2d3748;
+        }
+
+        body.dark-mode .sandbox-container {
+            background-color: #0f0f1a;
+        }
+
+        body.dark-mode .sandbox-header,
+        body.dark-mode .sandbox-footer {
+            background-color: #1a1a2e;
+        }
+
+        body.dark-mode .sandbox-btn {
+            background-color: #2d3748;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .sandbox-btn:hover {
+            background-color: #4a5568;
+        }
+
+        body.dark-mode .modal-content {
+            background-color: #16213e;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .modal-header {
+            border-bottom-color: #2d3748;
+        }
+
+        body.dark-mode .modal-footer {
+            border-top-color: #2d3748;
+        }
+
+        body.dark-mode .form-control {
+            background-color: #1a1a2e;
+            border-color: #2d3748;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .form-control:focus {
+            border-color: var(--primary-color);
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: #16213e;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .dropdown-item {
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .dropdown-item:hover {
+            background-color: #1a1a2e;
+        }
+
+        body.dark-mode .dropdown-divider {
+            background-color: #2d3748;
+        }
+
+        body.dark-mode .toast {
+            background-color: #16213e;
+            color: #e6e6e6;
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .toast-body h5 {
+            color: #ffffff;
+        }
+
+        body.dark-mode .toast-body p {
+            color: #b8b8b8;
+        }
+
+        body.dark-mode .toast-close {
+            color: #b8b8b8;
+        }
+
+        body.dark-mode .resource-icon,
+        body.dark-mode .badge-icon {
+            background-color: #1a1a2e;
+        }
+
+        body.dark-mode .calendar-day.current {
+            background-color: #1a1a2e;
+        }
+
+        body.dark-mode .calendar-event {
+            background-color: #1a1a2e;
+        }
+
+        body.dark-mode .leaderboard-tab {
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .leaderboard-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        body.dark-mode .leaderboard-rank {
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .leaderboard-rank.top {
+            background-color: var(--warning-color);
+            color: white;
         }
     </style>
 </head>
@@ -1147,38 +1748,53 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li class="active">
-                        <a href="dashboard.html">
+                        <a href="#dashboard">
                             <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="my-files.html">
-                            <i class="fas fa-folder"></i> <span>My Files</span>
+                        <a href="#courses">
+                            <i class="fas fa-graduation-cap"></i> <span>My Courses</span>
                         </a>
                     </li>
                     <li>
-                        <a href="courses.html">
-                            <i class="fas fa-video"></i> <span>Courses</span>
+                        <a href="#training">
+                            <i class="fas fa-laptop-code"></i> <span>Hands-on Training</span>
                         </a>
                     </li>
                     <li>
-                        <a href="progress.html">
-                            <i class="fas fa-chart-line"></i> <span>Progress</span>
+                        <a href="#projects">
+                            <i class="fas fa-project-diagram"></i> <span>Projects</span>
                         </a>
                     </li>
                     <li>
-                        <a href="messages.html">
+                        <a href="#certificates">
+                            <i class="fas fa-certificate"></i> <span>Certificates</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#resources">
+                            <i class="fas fa-book"></i> <span>Learning Resources</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#profile">
+                            <i class="fas fa-user"></i> <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#messages">
                             <i class="fas fa-envelope"></i> <span>Messages</span>
                             <span class="notification-badge">3</span>
                         </a>
                     </li>
                     <li>
-                        <a href="account.html">
-                            <i class="fas fa-user-cog"></i> <span>Account Settings</span>
+                        <a href="#community">
+                            <i class="fas fa-users"></i> <span>Community</span>
                         </a>
                     </li>
                     <li>
-                        <a href="support.html">
+                        <a href="#support">
                             <i class="fas fa-question-circle"></i> <span>Support</span>
                         </a>
                     </li>
@@ -1198,7 +1814,7 @@
             <header class="top-bar">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search courses, files, messages...">
+                    <input type="text" placeholder="Search courses, resources, messages...">
                 </div>
                 <div class="user-menu">
                     <div class="user-greeting">
@@ -1210,19 +1826,19 @@
                             <span class="notification-badge">2</span>
                         </div>
                         <div class="dropdown-menu" id="userDropdown">
-                            <a href="profile.html" class="dropdown-item">
+                            <a href="#profile" class="dropdown-item">
                                 <i class="fas fa-user mr-2"></i> My Profile
                             </a>
-                            <a href="messages.html" class="dropdown-item">
+                            <a href="#messages" class="dropdown-item">
                                 <i class="fas fa-envelope mr-2"></i> Messages
                                 <span class="notification-badge">3</span>
                             </a>
-                            <a href="notifications.html" class="dropdown-item">
+                            <a href="#notifications" class="dropdown-item">
                                 <i class="fas fa-bell mr-2"></i> Notifications
                                 <span class="notification-badge">2</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="account.html" class="dropdown-item">
+                            <a href="#settings" class="dropdown-item">
                                 <i class="fas fa-cog mr-2"></i> Settings
                             </a>
                             <div class="dropdown-divider"></div>
@@ -1236,7 +1852,7 @@
             
             <!-- Dashboard Content -->
             <div class="content-wrapper">
-                <h1 class="page-title">IT Training Dashboard</h1>
+                <h1 class="page-title">Learning Dashboard</h1>
                 
                 <!-- Stats Cards -->
                 <div class="stats-grid">
@@ -1272,242 +1888,571 @@
                     
                     <div class="stat-card stat-info">
                         <div class="stat-icon">
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-certificate"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>Certifications</h3>
+                            <h3>Certificates</h3>
                             <p id="achievementsCount">7</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Charts Section -->
-                <div class="charts-section">
-                    <div class="chart-card">
-                        <h3>IT Skill Progress</h3>
-                        <div class="chart-container">
-                            <canvas id="courseProgressChart"></canvas>
+                <!-- Learning Dashboard Sections -->
+                <div class="learning-dashboard">
+                    <!-- Left Column -->
+                    <div>
+                        <!-- Course Progress -->
+                        <div class="learning-card">
+                            <h3><i class="fas fa-chart-line"></i> My Course Progress</h3>
+                            <div class="course-progress-item">
+                                <div class="course-progress-header">
+                                    <div class="course-progress-title">Advanced JavaScript Patterns</div>
+                                    <div class="course-progress-percent">85%</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="course-progress-item">
+                                <div class="course-progress-header">
+                                    <div class="course-progress-title">Python for Data Science</div>
+                                    <div class="course-progress-percent">62%</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 62%"></div>
+                                </div>
+                            </div>
+                            <div class="course-progress-item">
+                                <div class="course-progress-header">
+                                    <div class="course-progress-title">React Native Mobile Development</div>
+                                    <div class="course-progress-percent">34%</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 34%"></div>
+                                </div>
+                            </div>
+                            <div class="course-progress-item">
+                                <div class="course-progress-header">
+                                    <div class="course-progress-title">AWS Cloud Practitioner</div>
+                                    <div class="course-progress-percent">92%</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Upcoming Classes -->
+                        <div class="learning-card">
+                            <h3><i class="fas fa-calendar-alt"></i> Upcoming Classes</h3>
+                            <div class="upcoming-class">
+                                <div class="class-time">
+                                    <div class="day">Today</div>
+                                    <div class="time">14:00</div>
+                                </div>
+                                <div class="class-info">
+                                    <div class="class-title">Live Coding: JavaScript Algorithms</div>
+                                    <div class="class-instructor">With Instructor: Sarah Johnson</div>
+                                </div>
+                                <button class="join-btn">Join</button>
+                            </div>
+                            <div class="upcoming-class">
+                                <div class="class-time">
+                                    <div class="day">Wed</div>
+                                    <div class="time">10:30</div>
+                                </div>
+                                <div class="class-info">
+                                    <div class="class-title">Python Data Visualization Workshop</div>
+                                    <div class="class-instructor">With Instructor: Michael Chen</div>
+                                </div>
+                                <button class="join-btn">Join</button>
+                            </div>
+                            <div class="upcoming-class">
+                                <div class="class-time">
+                                    <div class="day">Fri</div>
+                                    <div class="time">16:00</div>
+                                </div>
+                                <div class="class-info">
+                                    <div class="class-title">React Hooks Deep Dive</div>
+                                    <div class="class-instructor">With Instructor: David Wilson</div>
+                                </div>
+                                <button class="join-btn">Join</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Code Sandbox -->
+                        <div class="learning-card">
+                            <h3><i class="fas fa-code"></i> Practice Sandbox</h3>
+                            <div class="sandbox-container">
+                                <div class="sandbox-header">
+                                    <div class="sandbox-title">JavaScript Playground</div>
+                                    <div class="sandbox-actions">
+                                        <button class="sandbox-btn">Run</button>
+                                        <button class="sandbox-btn">Save</button>
+                                        <button class="sandbox-btn">Reset</button>
+                                    </div>
+                                </div>
+                                <div class="sandbox-content">
+                                    <pre>// Try some JavaScript code here
+function greet(name) {
+    return `Hello, ${name}!`;
+}
+
+console.log(greet("Jay"));
+// Click Run to see the output</pre>
+                                </div>
+                                <div class="sandbox-footer">
+                                    <div class="sandbox-actions">
+                                        <button class="sandbox-btn">Console</button>
+                                        <button class="sandbox-btn">Share</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="chart-card">
-                        <h3>Weekly Learning Hours</h3>
-                        <div class="chart-container">
-                            <canvas id="timeSpentChart"></canvas>
+                    
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Recommended Courses -->
+                        <div class="learning-card">
+                            <h3><i class="fas fa-star"></i> Recommended Courses</h3>
+                            <div class="course-card">
+                                <div class="course-img">
+                                    <img src="https://via.placeholder.com/400x150" alt="Course Image">
+                                    <div class="course-badge">New</div>
+                                </div>
+                                <div class="course-body">
+                                    <div class="course-title">Full Stack Web Development</div>
+                                    <div class="course-instructor">By Alex Rodriguez</div>
+                                    <div class="course-meta">
+                                        <div class="course-rating">
+                                            <i class="fas fa-star"></i> 4.8 (120)
+                                        </div>
+                                        <div>32 Hours</div>
+                                    </div>
+                                    <button class="enroll-btn">Enroll Now</button>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <div class="course-img">
+                                    <img src="https://via.placeholder.com/400x150" alt="Course Image">
+                                </div>
+                                <div class="course-body">
+                                    <div class="course-title">Machine Learning Fundamentals</div>
+                                    <div class="course-instructor">By Priya Patel</div>
+                                    <div class="course-meta">
+                                        <div class="course-rating">
+                                            <i class="fas fa-star"></i> 4.9 (85)
+                                        </div>
+                                        <div>45 Hours</div>
+                                    </div>
+                                    <button class="enroll-btn">Enroll Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Learning Resources -->
+                        <div class="learning-card">
+                            <h3><i class="fas fa-book-open"></i> Learning Resources</h3>
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div class="resource-info">
+                                    <div class="resource-title">JavaScript Best Practices</div>
+                                    <div class="resource-type">PDF Guide</div>
+                                </div>
+                                <button class="download-btn">Download</button>
+                            </div>
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <div class="resource-info">
+                                    <div class="resource-title">React Performance Optimization</div>
+                                    <div class="resource-type">Video Tutorial</div>
+                                </div>
+                                <button class="download-btn">Watch</button>
+                            </div>
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fas fa-file-code"></i>
+                                </div>
+                                <div class="resource-info">
+                                    <div class="resource-title">Python Cheat Sheet</div>
+                                    <div class="resource-type">Code Examples</div>
+                                </div>
+                                <button class="download-btn">Download</button>
+                            </div>
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <div class="resource-info">
+                                    <div class="resource-title">Web Development Roadmap 2023</div>
+                                    <div class="resource-type">External Link</div>
+                                </div>
+                                <button class="download-btn">Open</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Learning Calendar -->
+                        <div class="learning-card">
+                            <h3><i class="fas fa-calendar"></i> Learning Calendar</h3>
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <div class="calendar-title">June 2023</div>
+                                    <div class="calendar-nav">
+                                        <button class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
+                                        <button class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                <div class="calendar-grid">
+                                    <div class="calendar-day-header">Sun</div>
+                                    <div class="calendar-day-header">Mon</div>
+                                    <div class="calendar-day-header">Tue</div>
+                                    <div class="calendar-day-header">Wed</div>
+                                    <div class="calendar-day-header">Thu</div>
+                                    <div class="calendar-day-header">Fri</div>
+                                    <div class="calendar-day-header">Sat</div>
+                                    
+                                    <div class="calendar-day empty"></div>
+                                    <div class="calendar-day empty"></div>
+                                    <div class="calendar-day empty"></div>
+                                    <div class="calendar-day">1</div>
+                                    <div class="calendar-day">2</div>
+                                    <div class="calendar-day">3</div>
+                                    <div class="calendar-day">4</div>
+                                    
+                                    <div class="calendar-day">5</div>
+                                    <div class="calendar-day">6</div>
+                                    <div class="calendar-day current">7</div>
+                                    <div class="calendar-day event">8</div>
+                                    <div class="calendar-day">9</div>
+                                    <div class="calendar-day">10</div>
+                                    <div class="calendar-day">11</div>
+                                    
+                                    <div class="calendar-day">12</div>
+                                    <div class="calendar-day">13</div>
+                                    <div class="calendar-day">14</div>
+                                    <div class="calendar-day event">15</div>
+                                    <div class="calendar-day">16</div>
+                                    <div class="calendar-day">17</div>
+                                    <div class="calendar-day">18</div>
+                                    
+                                    <div class="calendar-day">19</div>
+                                    <div class="calendar-day">20</div>
+                                    <div class="calendar-day">21</div>
+                                    <div class="calendar-day event">22</div>
+                                    <div class="calendar-day">23</div>
+                                    <div class="calendar-day">24</div>
+                                    <div class="calendar-day">25</div>
+                                    
+                                    <div class="calendar-day">26</div>
+                                    <div class="calendar-day">27</div>
+                                    <div class="calendar-day">28</div>
+                                    <div class="calendar-day">29</div>
+                                    <div class="calendar-day">30</div>
+                                    <div class="calendar-day empty"></div>
+                                    <div class="calendar-day empty"></div>
+                                </div>
+                                <div class="calendar-events">
+                                    <div class="calendar-event">
+                                        <div><span class="time">10:00 AM</span> - JavaScript Workshop</div>
+                                    </div>
+                                    <div class="calendar-event">
+                                        <div><span class="time">2:00 PM</span> - Python Coding Challenge</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Recent Activity -->
-                <div class="activity-section">
-                    <h2>Recent Learning Activity</h2>
-                    <div class="activity-list" id="recentActivity">
-                        <div class="activity-item">
-                            <div class="activity-icon">
+                <!-- Profile Section -->
+                <div class="learning-card" id="profile-section">
+                    <h3><i class="fas fa-user"></i> My Profile</h3>
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                        </div>
+                        <div class="profile-info">
+                            <h2>Jay Prasad</h2>
+                            <p>Full Stack Developer | IT Trainer</p>
+                            <p>Kathmandu, Nepal</p>
+                            <span class="profile-badge">Gold Member</span>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-box">
+                            <h4>Courses Completed</h4>
+                            <p>12</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Hours Learned</h4>
+                            <p>156</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Certificates</h4>
+                            <p>7</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-share"></i> Share Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Certificates Section -->
+                <div class="learning-card">
+                    <h3><i class="fas fa-certificate"></i> My Certificates</h3>
+                    <div class="certificate-grid">
+                        <div class="certificate-card">
+                            <div class="certificate-img">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="certificate-body">
+                                <div class="certificate-title">Advanced JavaScript Developer</div>
+                                <div class="certificate-date">Completed: May 15, 2023</div>
+                                <div class="certificate-actions">
+                                    <button class="certificate-btn primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="certificate-btn secondary">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="certificate-img">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="certificate-body">
+                                <div class="certificate-title">Python Data Science Specialist</div>
+                                <div class="certificate-date">Completed: April 2, 2023</div>
+                                <div class="certificate-actions">
+                                    <button class="certificate-btn primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="certificate-btn secondary">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="certificate-img">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="certificate-body">
+                                <div class="certificate-title">AWS Cloud Practitioner</div>
+                                <div class="certificate-date">Completed: March 18, 2023</div>
+                                <div class="certificate-actions">
+                                    <button class="certificate-btn primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="certificate-btn secondary">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Learning Badges -->
+                <div class="learning-card">
+                    <h3><i class="fas fa-trophy"></i> My Learning Badges</h3>
+                    <div class="badge-container">
+                        <div class="badge">
+                            <div class="badge-icon">
                                 <i class="fas fa-code"></i>
                             </div>
-                            <div class="activity-content">
-                                <p>Completed "Advanced JavaScript Patterns" course</p>
-                                <small>Today, 10:45 AM</small>
+                            <div class="badge-info">
+                                <div class="badge-title">JavaScript Expert</div>
+                                <div class="badge-date">Earned: May 20, 2023</div>
                             </div>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-icon">
+                        <div class="badge">
+                            <div class="badge-icon">
                                 <i class="fas fa-cloud"></i>
                             </div>
-                            <div class="activity-content">
-                                <p>Submitted AWS Cloud Practitioner practice exam (Score: 92%)</p>
-                                <small>Yesterday, 3:22 PM</small>
+                            <div class="badge-info">
+                                <div class="badge-title">Cloud Champion</div>
+                                <div class="badge-date">Earned: April 5, 2023</div>
                             </div>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-shield-alt"></i>
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <i class="fas fa-database"></i>
                             </div>
-                            <div class="activity-content">
-                                <p>Completed cybersecurity challenge: Network Penetration Test</p>
-                                <small>Yesterday, 11:15 AM</small>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-certificate"></i>
-                            </div>
-                            <div class="activity-content">
-                                <p>Earned "Python Data Science Specialist" certification</p>
-                                <small>2 days ago, 5:30 PM</small>
+                            <div class="badge-info">
+                                <div class="badge-title">Database Master</div>
+                                <div class="badge-date">Earned: March 12, 2023</div>
                             </div>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-robot"></i>
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <i class="fas fa-bolt"></i>
                             </div>
-                            <div class="activity-content">
-                                <p>Started new course "Machine Learning Fundamentals"</p>
-                                <small>3 days ago, 9:10 AM</small>
+                            <div class="badge-info">
+                                <div class="badge-title">Fast Learner</div>
+                                <div class="badge-date">Earned: February 28, 2023</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Recent Files -->
-                <div class="recent-files">
-                    <h2>My Code Projects</h2>
-                    <table class="files-table">
-                        <thead>
-                            <tr>
-                                <th>Project Name</th>
-                                <th>Type</th>
-                                <th>Last Modified</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center;">
-                                        <div class="file-icon">
-                                            <i class="fab fa-js"></i>
-                                        </div>
-                                        <div>
-                                            <div class="file-name">E-commerce Dashboard</div>
-                                            <div class="file-size">React/Node.js</div>
-                                        </div>
+                <!-- Community Leaderboard -->
+                <div class="learning-card">
+                    <h3><i class="fas fa-users"></i> Community Leaderboard</h3>
+                    <div class="leaderboard">
+                        <div class="leaderboard-header">
+                            <div class="leaderboard-title">Top Learners This Month</div>
+                            <div class="leaderboard-tabs">
+                                <button class="leaderboard-tab active">All</button>
+                                <button class="leaderboard-tab">Friends</button>
+                                <button class="leaderboard-tab">Country</button>
+                            </div>
+                        </div>
+                        <ul class="leaderboard-list">
+                            <li class="leaderboard-item">
+                                <div class="leaderboard-rank top">1</div>
+                                <div class="leaderboard-user">
+                                    <div class="leaderboard-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
                                     </div>
-                                </td>
-                                <td>Web App</td>
-                                <td class="file-date">Today, 10:30 AM</td>
-                                <td>
-                                    <div class="file-actions">
-                                        <button class="file-action-btn" title="Run">
-                                            <i class="fas fa-play"></i>
-                                        </button>
-                                        <button class="file-action-btn" title="Share">
-                                            <i class="fas fa-share-alt"></i>
-                                        </button>
-                                        <button class="file-action-btn" title="Delete">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                    <div class="leaderboard-name">Alex Johnson</div>
+                                </div>
+                                <div class="leaderboard-score">1,250 XP</div>
+                            </li>
+                            <li class="leaderboard-item">
+                                <div class="leaderboard-rank top">2</div>
+                                <div class="leaderboard-user">
+                                    <div class="leaderboard-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center;">
-                                        <div class="file-icon">
-                                            <i class="fab fa-python"></i>
-                                        </div>
-                                        <div>
-                                            <div class="file-name">Sentiment Analysis</div>
-                                            <div class="file-size">Python/AI</div>
-                                        </div>
+                                    <div class="leaderboard-name">Priya Patel</div>
+                                </div>
+                                <div class="leaderboard-score">1,180 XP</div>
+                            </li>
+                            <li class="leaderboard-item">
+                                <div class="leaderboard-rank top">3</div>
+                                <div class="leaderboard-user">
+                                    <div class="leaderboard-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
                                     </div>
-                                </td>
-                                <td>Data Science</td>
-                                <td class="file-date">Yesterday, 4:45 PM</td>
-                                <td>
-                                    <div class="file-actions">
-                                        <button class="file-action-btn" title="Run">
-                                            <i class="fas fa-play"></i>
-                                        </button>
-                                        <button class="file-action-btn" title="Share">
-                                            <i class="fas fa-share-alt"></i>
-                                        </button>
-                                        <button class="file-action-btn" title="Delete">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                    <div class="leaderboard-name">David Kim</div>
+                                </div>
+                                <div class="leaderboard-score">1,050 XP</div>
+                            </li>
+                            <li class="leaderboard-item">
+                                <div class="leaderboard-rank">4</div>
+                                <div class="leaderboard-user">
+                                    <div class="leaderboard-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center;">
-                                        <div class="file-icon">
-                                            <i class="fas fa-database"></i>
-                                        </div>
-                                        <div>
-                                            <div class="file-name">Inventory System</div>
-                                            <div class="file-size">SQL/API</div>
-                                        </div>
+                                    <div class="leaderboard-name">Jay Prasad</div>
+                                </div>
+                                <div class="leaderboard-score">980 XP</div>
+                            </li>
+                            <li class="leaderboard-item">
+                                <div class="leaderboard-rank">5</div>
+                                <div class="leaderboard-user">
+                                    <div class="leaderboard-avatar">
+                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
                                     </div>
-                                </td>
-                                <td>Backend</td>
-                                <td class="file-date">2 days ago, 11:20 AM</td>
-                                <td>
-                                    <div class="file-actions">
-                                        <button class="file-action-btn" title="Run">
-                                            <i class="fas fa-play"></i>
-                                        </button>
-                                        <button class="file-action-btn" title="Share">
-                                            <i class="fas fa-share-alt"></i>
-                                        </button>
-                                        <button class="file-action-btn" title="Delete">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <!-- Quick Actions -->
-                <div class="quick-actions">
-                    <h2>IT Learning Quick Actions</h2>
-                    <div class="actions-grid">
-                        <a href="#" class="action-card" id="newProject">
-                            <i class="fas fa-file-code"></i>
-                            <span>New Code Project</span>
-                        </a>
-                        <a href="#" class="action-card" id="aiLab">
-                            <i class="fas fa-robot"></i>
-                            <span>AI Playground</span>
-                        </a>
-                        <a href="#" class="action-card" id="cloudConsole">
-                            <i class="fas fa-cloud"></i>
-                            <span>Cloud Console</span>
-                        </a>
-                        <a href="#" class="action-card" id="codeChallenge">
-                            <i class="fas fa-trophy"></i>
-                            <span>Daily Challenge</span>
-                        </a>
+                                    <div class="leaderboard-name">Sarah Williams</div>
+                                </div>
+                                <div class="leaderboard-score">920 XP</div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Upload File Modal -->
-    <div class="modal" id="uploadModal">
+    <!-- Course Enrollment Modal -->
+    <div class="modal" id="enrollModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Upload New Project</h3>
-                <button class="modal-close" id="closeUploadModal">&times;</button>
+                <h3>Enroll in Course</h3>
+                <button class="modal-close" id="closeEnrollModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="uploadForm">
+                <form id="enrollForm">
                     <div class="form-group">
-                        <label for="fileUpload">Select Project Files</label>
-                        <input type="file" id="fileUpload" class="form-control" required multiple>
+                        <label for="courseName">Course Name</label>
+                        <input type="text" id="courseName" class="form-control" value="Full Stack Web Development" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="projectType">Project Type</label>
-                        <select id="projectType" class="form-control">
-                            <option value="web">Web Application</option>
-                            <option value="mobile">Mobile App</option>
-                            <option value="ai">AI/ML Project</option>
-                            <option value="data">Data Science</option>
-                            <option value="game">Game Development</option>
+                        <label for="enrollmentType">Enrollment Type</label>
+                        <select id="enrollmentType" class="form-control">
+                            <option value="self">Self-Paced Learning</option>
+                            <option value="mentor">With Mentor Guidance</option>
+                            <option value="group">Group Cohort</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="projectDescription">Project Description</label>
-                        <textarea id="projectDescription" class="form-control" rows="3" placeholder="Briefly describe your project..."></textarea>
+                        <label for="startDate">Preferred Start Date</label>
+                        <input type="date" id="startDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Learning Goals</label>
+                        <div>
+                            <input type="checkbox" id="goal1" name="goals" value="career">
+                            <label for="goal1">Career Advancement</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="goal2" name="goals" value="skills">
+                            <label for="goal2">Skill Development</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="goal3" name="goals" value="certification">
+                            <label for="goal3">Certification</label>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelUpload">Cancel</button>
-                <button class="btn btn-primary" id="confirmUpload">Upload Project</button>
+                <button class="btn btn-secondary" id="cancelEnroll">Cancel</button>
+                <button class="btn btn-primary" id="confirmEnroll">Enroll Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Download Modal -->
+    <div class="modal" id="certificateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Download Certificate</h3>
+                <button class="modal-close" id="closeCertificateModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <i class="fas fa-award" style="font-size: 3rem; color: var(--warning-color);"></i>
+                    <h3 style="margin-top: 1rem;">Advanced JavaScript Developer</h3>
+                    <p>Issued to: Jay Prasad</p>
+                    <p>Completion Date: May 15, 2023</p>
+                </div>
+                <div class="form-group">
+                    <label for="certificateFormat">Download Format</label>
+                    <select id="certificateFormat" class="form-control">
+                        <option value="pdf">PDF (Recommended)</option>
+                        <option value="png">PNG Image</option>
+                        <option value="share">Share to LinkedIn</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDownload">Cancel</button>
+                <button class="btn btn-primary" id="confirmDownload">Download</button>
             </div>
         </div>
     </div>
@@ -1516,7 +2461,7 @@
     <div class="modal" id="supportModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>IT Support Center</h3>
+                <h3>Learning Support</h3>
                 <button class="modal-close" id="closeSupportModal">&times;</button>
             </div>
             <div class="modal-body">
@@ -1526,8 +2471,7 @@
                         <select id="supportCategory" class="form-control">
                             <option value="technical">Technical Issue</option>
                             <option value="course">Course Content</option>
-                            <option value="account">Account Problem</option>
-                            <option value="payment">Payment/Billing</option>
+                            <option value="mentor">Mentor Assistance</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
@@ -1540,23 +2484,13 @@
                         <textarea id="supportMessage" class="form-control" rows="5" required placeholder="Please provide as much detail as possible..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="supportEmail">Your Email</label>
-                        <input type="email" id="supportEmail" class="form-control" required value="jayprasad@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Support Team</label>
-                        <div>
-                            <input type="radio" id="teamTech" name="supportTeam" value="tech@jayprasad.com.np" checked>
-                            <label for="teamTech">Technical Support (tech@jayprasad.com.np)</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="teamAdmin" name="supportTeam" value="admin@jayprasad.com.np">
-                            <label for="teamAdmin">Administration (admin@jayprasad.com.np)</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="teamInternational" name="supportTeam" value="international@jayprasad.com.np">
-                            <label for="teamInternational">International (international@jayprasad.com.np)</label>
-                        </div>
+                        <label for="supportCourse">Related Course (if any)</label>
+                        <select id="supportCourse" class="form-control">
+                            <option value="">None</option>
+                            <option value="js">Advanced JavaScript Patterns</option>
+                            <option value="python">Python for Data Science</option>
+                            <option value="react">React Native Development</option>
+                        </select>
                     </div>
                 </form>
             </div>
@@ -1567,45 +2501,13 @@
         </div>
     </div>
 
-    <!-- New Project Modal -->
-    <div class="modal" id="newProjectModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Create New Code Project</h3>
-                <button class="modal-close" id="closeNewProjectModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="newProjectForm">
-                    <div class="form-group">
-                        <label for="projectName">Project Name</label>
-                        <input type="text" id="projectName" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="projectTemplate">Project Template</label>
-                        <select id="projectTemplate" class="form-control">
-                            <option value="blank">Blank Project</option>
-                            <option value="react">React App</option>
-                            <option value="vue">Vue.js App</option>
-                            <option value="node">Node.js API</option>
-                            <option value="python">Python Data Science</option>
-                            <option value="ai">AI/ML Starter</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="projectDescription">Project Description</label>
-                        <textarea id="projectDescription" class="form-control" rows="3"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelNewProject">Cancel</button>
-                <button class="btn btn-primary" id="createProject">Create Project</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Toast Notifications Container -->
     <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
@@ -1618,23 +2520,20 @@
         const userDropdown = document.getElementById('userDropdown');
         const logoutBtn = document.getElementById('logoutBtn');
         const sidebarLogout = document.getElementById('sidebarLogout');
-        const uploadModal = document.getElementById('uploadModal');
-        const closeUploadModal = document.getElementById('closeUploadModal');
-        const cancelUpload = document.getElementById('cancelUpload');
-        const confirmUpload = document.getElementById('confirmUpload');
+        const enrollModal = document.getElementById('enrollModal');
+        const closeEnrollModal = document.getElementById('closeEnrollModal');
+        const cancelEnroll = document.getElementById('cancelEnroll');
+        const confirmEnroll = document.getElementById('confirmEnroll');
+        const certificateModal = document.getElementById('certificateModal');
+        const closeCertificateModal = document.getElementById('closeCertificateModal');
+        const cancelDownload = document.getElementById('cancelDownload');
+        const confirmDownload = document.getElementById('confirmDownload');
         const supportModal = document.getElementById('supportModal');
         const closeSupportModal = document.getElementById('closeSupportModal');
         const cancelSupport = document.getElementById('cancelSupport');
         const submitSupport = document.getElementById('submitSupport');
         const toastContainer = document.getElementById('toastContainer');
-        const newProjectModal = document.getElementById('newProjectModal');
-        const closeNewProjectModal = document.getElementById('closeNewProjectModal');
-        const cancelNewProject = document.getElementById('cancelNewProject');
-        const createProject = document.getElementById('createProject');
-        const newProjectBtn = document.getElementById('newProject');
-        const aiLabBtn = document.getElementById('aiLab');
-        const cloudConsoleBtn = document.getElementById('cloudConsole');
-        const codeChallengeBtn = document.getElementById('codeChallenge');
+        const darkModeToggle = document.getElementById('darkModeToggle');
 
         // Toggle Sidebar
         sidebarToggle.addEventListener('click', () => {
@@ -1679,29 +2578,52 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Upload Modal
-        document.querySelector('.action-card[href="upload-file.html"]').addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(uploadModal);
+        // Enroll Modal
+        document.querySelectorAll('.enroll-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const courseTitle = btn.closest('.course-card').querySelector('.course-title').textContent;
+                document.getElementById('courseName').value = courseTitle;
+                openModal(enrollModal);
+            });
         });
 
-        closeUploadModal.addEventListener('click', () => closeModal(uploadModal));
-        cancelUpload.addEventListener('click', () => closeModal(uploadModal));
+        closeEnrollModal.addEventListener('click', () => closeModal(enrollModal));
+        cancelEnroll.addEventListener('click', () => closeModal(enrollModal));
 
-        confirmUpload.addEventListener('click', () => {
-            const fileInput = document.getElementById('fileUpload');
-            if (fileInput.files.length > 0) {
-                // Here you would normally handle the file upload
-                showToast('success', 'Project uploaded successfully!');
-                closeModal(uploadModal);
-                document.getElementById('uploadForm').reset();
+        confirmEnroll.addEventListener('click', () => {
+            const courseName = document.getElementById('courseName').value;
+            showToast('success', `Successfully enrolled in "${courseName}"!`);
+            closeModal(enrollModal);
+            document.getElementById('enrollForm').reset();
+        });
+
+        // Certificate Modal
+        document.querySelectorAll('.certificate-btn.primary').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const certTitle = btn.closest('.certificate-card').querySelector('.certificate-title').textContent;
+                document.querySelector('#certificateModal h3').textContent = certTitle;
+                document.querySelector('#certificateModal h3').textContent = certTitle;
+                openModal(certificateModal);
+            });
+        });
+
+        closeCertificateModal.addEventListener('click', () => closeModal(certificateModal));
+        cancelDownload.addEventListener('click', () => closeModal(certificateModal));
+
+        confirmDownload.addEventListener('click', () => {
+            const format = document.getElementById('certificateFormat').value;
+            if (format === 'share') {
+                showToast('info', 'Certificate shared to LinkedIn!');
             } else {
-                showToast('error', 'Please select project files to upload');
+                showToast('success', `Certificate downloaded as ${format.toUpperCase()}!`);
             }
+            closeModal(certificateModal);
         });
 
         // Support Modal
-        document.querySelector('.sidebar-nav a[href="support.html"]').addEventListener('click', (e) => {
+        document.querySelector('.sidebar-nav a[href="#support"]').addEventListener('click', (e) => {
             e.preventDefault();
             openModal(supportModal);
         });
@@ -1714,8 +2636,7 @@
             const message = document.getElementById('supportMessage').value;
             
             if (subject && message) {
-                const supportTeam = document.querySelector('input[name="supportTeam"]:checked').value;
-                showToast('success', `Support request submitted to ${supportTeam}`);
+                showToast('success', 'Support request submitted successfully!');
                 closeModal(supportModal);
                 document.getElementById('supportForm').reset();
             } else {
@@ -1723,44 +2644,30 @@
             }
         });
 
-        // New Project Modal
-        newProjectBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(newProjectModal);
+        // Join Class Buttons
+        document.querySelectorAll('.join-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const classTitle = this.closest('.upcoming-class').querySelector('.class-title').textContent;
+                showToast('info', `Joining class: ${classTitle}...`);
+                // In a real app, this would connect to the video conferencing system
+            });
         });
 
-        closeNewProjectModal.addEventListener('click', () => closeModal(newProjectModal));
-        cancelNewProject.addEventListener('click', () => closeModal(newProjectModal));
+        // Download Resource Buttons
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const resourceTitle = this.closest('.resource-item').querySelector('.resource-title').textContent;
+                showToast('success', `Downloading: ${resourceTitle}`);
+                // In a real app, this would initiate the download
+            });
+        });
 
-        createProject.addEventListener('click', () => {
-            const projectName = document.getElementById('projectName').value;
-            if (projectName) {
-                const template = document.getElementById('projectTemplate').value;
-                showToast('success', `Created new ${template} project: ${projectName}`);
-                closeModal(newProjectModal);
-                document.getElementById('newProjectForm').reset();
-            } else {
-                showToast('error', 'Please enter a project name');
+        // Run Sandbox Code
+        document.querySelector('.sandbox-btn').addEventListener('click', function() {
+            if (this.textContent === 'Run') {
+                showToast('success', 'Code executed successfully! Check the console.');
+                // In a real app, this would execute the code in the sandbox
             }
-        });
-
-        // Quick Actions
-        aiLabBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            showToast('info', 'Opening AI Playground...');
-            // In a real app, this would redirect to the AI lab
-        });
-
-        cloudConsoleBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            showToast('info', 'Launching Cloud Console...');
-            // In a real app, this would redirect to the cloud console
-        });
-
-        codeChallengeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            showToast('info', 'Loading today\'s coding challenge...');
-            // In a real app, this would redirect to the challenge
         });
 
         // Toast Notification Function
@@ -1804,7 +2711,10 @@
         // Initialize Charts
         function initCharts() {
             // Course Progress Chart
-            const progressCtx = document.getElementById('courseProgressChart').getContext('2d');
+            const progressCtx = document.createElement('canvas');
+            progressCtx.id = 'courseProgressChart';
+            document.querySelector('.learning-card:nth-child(1)').appendChild(progressCtx);
+            
             const progressChart = new Chart(progressCtx, {
                 type: 'doughnut',
                 data: {
@@ -1836,7 +2746,10 @@
             });
 
             // Time Spent Chart
-            const timeCtx = document.getElementById('timeSpentChart').getContext('2d');
+            const timeCtx = document.createElement('canvas');
+            timeCtx.id = 'timeSpentChart';
+            document.querySelector('.learning-card:nth-child(1)').appendChild(timeCtx);
+            
             const timeChart = new Chart(timeCtx, {
                 type: 'bar',
                 data: {
@@ -1866,28 +2779,48 @@
             });
         }
 
-        // Load Dashboard Data
-        async function loadDashboardData() {
-            try {
-                // Simulate API call
-                setTimeout(() => {
-                    // Update stats
-                    document.getElementById('coursesEnrolled').textContent = '8';
-                    document.getElementById('coursesCompleted').textContent = '3';
-                    document.getElementById('coursesInProgress').textContent = '5';
-                    document.getElementById('achievementsCount').textContent = '7';
-                    
-                    // Initialize charts
-                    initCharts();
-                    
-                    // Show welcome toast
-                    showToast('info', 'Welcome back, Jay! Ready for some coding?');
-                }, 500);
-            } catch (err) {
-                console.error('Error loading dashboard data:', err);
-                showToast('error', 'Failed to load dashboard data');
+        // Dark Mode Toggle
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
             }
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
         }
+
+        // Leaderboard Tabs
+        document.querySelectorAll('.leaderboard-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.leaderboard-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // In a real app, this would filter the leaderboard
+            });
+        });
+
+        // Calendar Day Click
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            if (!day.classList.contains('empty')) {
+                day.addEventListener('click', function() {
+                    document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+                    this.classList.add('selected');
+                    // In a real app, this would show events for that day
+                });
+            }
+        });
 
         // Initialize the dashboard when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
@@ -1900,19 +2833,26 @@
             
             document.getElementById('userName').textContent = user.name;
             document.querySelector('.user-avatar img').src = user.avatar;
+            document.querySelector('.profile-avatar img').src = 'https://via.placeholder.com/100';
             
-            // Load dashboard data
-            loadDashboardData();
+            // Initialize charts
+            initCharts();
             
-            // Add event listeners for quick actions
-            document.querySelectorAll('.action-card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    if (card.getAttribute('href') === '#') {
-                        e.preventDefault();
-                        showToast('info', 'This feature is coming soon!');
+            // Show welcome toast
+            showToast('info', 'Welcome back, Jay! Ready to learn something new today?');
+            
+            // Simulate course progress updates
+            setInterval(() => {
+                const progressBars = document.querySelectorAll('.progress-bar');
+                progressBars.forEach(bar => {
+                    const currentWidth = parseInt(bar.style.width);
+                    if (currentWidth < 100) {
+                        const newWidth = Math.min(100, currentWidth + Math.floor(Math.random() * 2));
+                        bar.style.width = `${newWidth}%`;
+                        bar.closest('.course-progress-item').querySelector('.course-progress-percent').textContent = `${newWidth}%`;
                     }
                 });
-            });
+            }, 5000);
         });
     </script>
 </body>
