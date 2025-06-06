@@ -1093,3 +1093,77 @@
                 if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
                 
                 let message = '';
+switch (strength) {
+                    case 0:
+                    case 1:
+                        message = 'Very Weak';
+                        strengthText.style.color = 'red';
+                        break;
+                    case 2:
+                    case 3:
+                        message = 'Weak';
+                        strengthText.style.color = 'orange';
+                        break;
+                    case 4:
+                        message = 'Moderate';
+                        strengthText.style.color = 'goldenrod';
+                        break;
+                    case 5:
+                        message = 'Strong';
+                        strengthText.style.color = 'green';
+                        break;
+                }
+
+                strengthText.textContent = message;
+            });
+
+            // Close Verification Modal
+            closeVerification.addEventListener('click', () => {
+                verificationModal.style.display = 'none';
+            });
+
+            // Register Form Submission
+            registerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                errorMessage.textContent = '';
+                formSpinner.style.display = 'inline-block';
+
+                // Example client-side validation
+                const email = registerForm.email.value;
+                const password = registerForm.password.value;
+
+                if (!email || !password) {
+                    errorMessage.textContent = 'Please fill all required fields.';
+                    formSpinner.style.display = 'none';
+                    return;
+                }
+
+                // Simulate API delay
+                setTimeout(() => {
+                    formSpinner.style.display = 'none';
+                    verificationModal.style.display = 'block';
+                    verificationEmail.textContent = email;
+                }, 1500);
+            });
+
+            // Simulate Code Verification
+            verifyCode.addEventListener('click', () => {
+                verificationSpinner.style.display = 'inline-block';
+                setTimeout(() => {
+                    verificationSpinner.style.display = 'none';
+                    verificationModal.style.display = 'none';
+                    successMessage.style.display = 'block';
+                }, 1500);
+            });
+
+            // Resend Code
+            resendCode.addEventListener('click', () => {
+                alert('Verification code resent!');
+            });
+        });
+</script>
+
+<!-- Footer Section -->
+<footer style="text-align:center; padding:20px; font-size:14px; color:#777;">
+    &copy; Jay Prasad Majhi. All rights reserved.
+</footer>
