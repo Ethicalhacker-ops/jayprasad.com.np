@@ -1,46 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service | jayprasad.com.np</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h1, h2 {
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Service | Jay Prasad Majhi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00f0ff;
+      --primary-dark: #00a8b5;
+      --secondary: #7928ca;
+      --accent: #ff2d75;
+      --text: #e0e0e0;
+      --text-light: #a0a0a0;
+      --text-dark: #333333;
+      --bg: #0a0a12;
+      --bg-light: #1a1a24;
+      --bg-dark: #050508;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Video Background */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .video-background video {
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(10, 10, 18, 0.9) 0%, rgba(41, 40, 202, 0.7) 100%);
+      z-index: -1;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: rgba(10, 10, 18, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--gradient-primary);
+      border-radius: 3px;
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 15px;
+    }
+
+    h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 25px;
+      background: var(--gradient-primary);
+      border-radius: 3px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    ul {
+      margin-bottom: 25px;
+      padding-left: 30px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    li::before {
+      content: '•';
+      color: var(--primary);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .effective-date {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(10, 10, 18, 0.7);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 15px;
+        margin: 20px 15px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Terms of Service</h1>
-    <p>Effective Date: June 1, 2021</p>
+  <!-- Video Background -->
+  <div class="video-background">
+    <video autoplay muted loop>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-31201-large.mp4" type="video/mp4">
+    </video>
+  </div>
+  
+  <!-- Overlay -->
+  <div class="overlay"></div>
 
-    <p>Welcome to jayprasad.com.np. By accessing or using our website, you agree to be bound by these Terms of Service. Please read them carefully before using the site.</p>
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Terms of Service</h1>
+    <p class="effective-date"><strong>Effective Date:</strong> June 1, 2021</p>
+
+    <p>Welcome to <strong>jayprasad.com.np</strong>. These Terms of Service ("Terms") govern your use of our website located at jayprasad.com.np (referred to as the "Site"). By accessing or using our services, you agree to these Terms. If you do not agree with any part of the Terms, you must not access or use the Site.</p>
 
     <h2>1. Acceptance of Terms</h2>
-    <p>By accessing this website, you agree to comply with and be bound by these terms and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p>
+    <p>By accessing this Site, you agree to be bound by these Terms and all applicable laws and regulations. You are responsible for compliance with any applicable local laws. If you disagree with any part of the Terms, you must discontinue use of the Site immediately.</p>
 
-    <h2>2. Use License</h2>
-    <p>Permission is granted to temporarily download one copy of the materials for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.</p>
+    <h2>2. Eligibility</h2>
+    <p>Our Site and services are intended for users who are at least 13 years old. If you are under 13, you are not permitted to use our services. By using our Site, you represent and warrant that you meet the eligibility criteria and have the legal capacity to enter into a binding agreement.</p>
 
-    <h2>3. Disclaimer</h2>
-    <p>The materials on jayprasad.com.np are provided "as is". The site makes no warranties, expressed or implied, and disclaims all other warranties including, without limitation, implied warranties of merchantability or fitness for a particular purpose.</p>
+    <h2>3. Use License</h2>
+    <p>Permission is granted to temporarily download one copy of the materials (information or software) on jayprasad.com.np's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title. Under this license, you may not:</p>
+    <ul>
+      <li>modify or copy the materials;</li>
+      <li>use the materials for any commercial purpose, or for any public display;</li>
+      <li>attempt to decompile or reverse engineer any software contained on our Site;</li>
+      <li>remove any copyright or other proprietary notations from the materials; or</li>
+      <li>transfer the materials to another person or "mirror" the materials on any other server.</li>
+    </ul>
 
-    <h2>4. Limitations</h2>
-    <p>In no event shall jayprasad.com.np be liable for any damages arising out of the use or inability to use the materials on its website.</p>
+    <h2>4. User Conduct</h2>
+    <p>When using the Site, you agree not to:</p>
+    <ul>
+      <li>Use the Site in any way that could disable, overburden, damage, or impair its functionality.</li>
+      <li>Upload or transmit any viruses, malware, or other harmful code.</li>
+      <li>Engage in any data mining, data harvesting, or similar data extraction activity.</li>
+      <li>Impersonate any person or entity, or misrepresent your affiliation with any person or entity.</li>
+      <li>Violate any applicable laws or regulations in your use of the Site.</li>
+    </ul>
 
-    <h2>5. Modifications</h2>
-    <p>jayprasad.com.np may revise these terms of service at any time without notice. By using this website you are agreeing to be bound by the then current version of these Terms of Service.</p>
+    <h2>5. Intellectual Property Rights</h2>
+    <p>All content on this Site, including text, graphics, logos, icons, images, and software, is the property of Jay Prasad Majhi or its content suppliers and is protected by international copyright laws. Unauthorized use of the content may violate copyright, trademark, and other laws.</p>
 
-    <h2>6. Governing Law</h2>
-    <p>These terms and conditions are governed by and construed in accordance with the laws of Nepal, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
+    <h2>6. Disclaimer of Warranties</h2>
+    <p>The Site is provided on an "as is" and "as available" basis. We make no warranties, expressed or implied, and hereby disclaim all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property.</p>
+    <p>We do not warrant that the Site will function uninterrupted, secure, or error-free, or that any defects will be corrected. Your use of the Site is solely at your own risk.</p>
 
-    <p>If you have any questions about these Terms, please contact us at contact@jayprasad.com.np.</p>
+    <h2>7. Limitation of Liability</h2>
+    <p>In no event shall Jay Prasad Majhi or its affiliates be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Site. We will not be held responsible for damages including but not limited to, loss of data, profits, or other intangibles, or any unauthorized access to or use of your information.</p>
+
+    <h2>8. Third-Party Links</h2>
+    <p>This Site may contain links to third-party websites. These links are provided for your convenience only. We do not endorse or assume any responsibility for the content or practices of any third-party websites. Accessing linked websites is at your own risk.</p>
+
+    <h2>9. Termination</h2>
+    <p>We may terminate or suspend your access to the Site immediately, without prior notice or liability, for any reason whatsoever, including but not limited to a breach of the Terms.</p>
+
+    <h2>10. Indemnification</h2>
+    <p>You agree to defend, indemnify, and hold harmless Jay Prasad Majhi and its affiliates from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees resulting from your violation of these Terms or your use of the Site.</p>
+
+    <h2>11. Privacy</h2>
+    <p>Your use of the Site is also governed by our <a href="/privacy-policy.html">Privacy Policy</a>. Please review it for details on how we collect, use, and protect your information.</p>
+
+    <h2>12. Changes to Terms</h2>
+    <p>We may update these Terms from time to time without notice. Any changes will be effective immediately upon posting the revised Terms. Your continued use of the Site after the revised Terms are posted constitutes your acceptance of the changes.</p>
+
+    <h2>13. Governing Law</h2>
+    <p>These Terms are governed by the laws of Nepal, without regard to its conflict of law provisions. Any legal action or proceeding arising under these Terms shall be brought exclusively in the courts located in Nepal.</p>
+
+    <h2>14. Contact Information</h2>
+    <p>If you have any questions about these Terms, please contact us using the following details:</p>
+    <ul>
+      <li>Email Support: <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a></li>
+      <li>General Inquiries: <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a></li>
+      <li>Technical Support: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></li>
+      <li>Admin: <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>&copy; <script>document.write(new Date().getFullYear());</script> Jay Prasad Majhi. All rights reserved.</p>
+    <p>Last updated: June 6, 2025</p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>
