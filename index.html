@@ -2315,7 +2315,7 @@
     </div>
 
     <!-- Current Date Display -->
-    <div class="current-date" id="currentDate"></div>
+    <div class="current-date" id="currentDate" onclick="this.innerHTML=new Date().toLocaleString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true})" style="font-family:Arial;cursor:pointer">Click to show time</div>
 
     <!-- Header -->
     <header id="header">
@@ -2323,16 +2323,6 @@
     <a href="/" class="logo">
         <i class="fas fa-code logo-icon"></i>
         <span>Jay Prasad Majhi</span>
-        <img src="https://jayprasad.com.np/logo.png" alt="Jay Prasad Majhi" class="profile-pic">
-        .profile-pic {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-left: 10px;
-    vertical-align: middle;
-    border: 2px solid #fff; /* optional white border */
-}
     </a>
 </div>
         
