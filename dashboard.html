@@ -1694,6 +1694,1247 @@
             background-color: var(--warning-color);
             color: white;
         }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .quiz-progress {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            border: 1px solid #d1d3e2;
+            border-radius: 0.35rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: #f8f9fc;
+        }
+
+        .quiz-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .quiz-option.correct {
+            background-color: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .quiz-option.incorrect {
+            background-color: var(--danger-color);
+            color: white;
+            border-color: var(--danger-color);
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .quiz-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.35rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .quiz-prev {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: none;
+        }
+
+        .quiz-next {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .quiz-submit {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .quiz-score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .quiz-feedback {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-review {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .quiz-review-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f8f9fc;
+        }
+
+        .quiz-review-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-review-answer {
+            font-size: 0.9rem;
+        }
+
+        .quiz-review-answer.correct {
+            color: var(--success-color);
+        }
+
+        .quiz-review-answer.incorrect {
+            color: var(--danger-color);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+        }
+
+        .project-img {
+            height: 180px;
+            background-color: #f8f9fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-status.completed {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .project-status.in-progress {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .project-status.planned {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-skill {
+            background-color: var(--light-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            color: var(--dark-color);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .project-btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .project-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .project-btn.primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .project-btn.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .project-btn.secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Messages Section */
+        .messages-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+        }
+
+        .messages-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .messages-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .messages-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .messages-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .messages-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .messages-btn.secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: none;
+        }
+
+        .messages-list {
+            list-style: none;
+        }
+
+        .message-item {
+            display: flex;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f8f9fc;
+            cursor: pointer;
+        }
+
+        .message-item.unread {
+            background-color: rgba(78, 115, 223, 0.05);
+        }
+
+        .message-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .message-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-content {
+            flex: 1;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+        }
+
+        .message-preview {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .message-unread {
+            width: 10px;
+            height: 10px;
+            background-color: var(--danger-color);
+            border-radius: 50%;
+            margin-left: 1rem;
+        }
+
+        /* Community Section */
+        .community-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+        }
+
+        .community-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .community-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .community-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .community-tab {
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .community-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .community-tab:not(.active) {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .community-posts {
+            list-style: none;
+        }
+
+        .community-post {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #f8f9fc;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .post-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-author {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .post-time {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+        }
+
+        .post-content {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-action {
+            display: flex;
+            align-items: center;
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .post-action i {
+            margin-right: 0.5rem;
+        }
+
+        .post-action.liked {
+            color: var(--danger-color);
+        }
+
+        /* Hands-on Training Section */
+        .training-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+        }
+
+        .training-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .training-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .training-filter {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .training-filter select {
+            padding: 0.5rem;
+            border-radius: 0.35rem;
+            border: 1px solid #d1d3e2;
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .training-card {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .training-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+        }
+
+        .training-img {
+            height: 180px;
+            background-color: #f8f9fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .training-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .training-difficulty {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .training-difficulty.beginner {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .training-difficulty.intermediate {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .training-difficulty.advanced {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .training-body {
+            padding: 1.5rem;
+        }
+
+        .training-name {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .training-description {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .training-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .training-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .training-btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .training-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .training-btn.primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .training-btn.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .training-btn.secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* My Courses Section */
+        .courses-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+        }
+
+        .courses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .courses-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .courses-filter {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .courses-filter select {
+            padding: 0.5rem;
+            border-radius: 0.35rem;
+            border: 1px solid #d1d3e2;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-item {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .course-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+        }
+
+        .course-item-img {
+            height: 180px;
+            background-color: #f8f9fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .course-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-item-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #e9ecef;
+        }
+
+        .course-item-progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.6s ease;
+        }
+
+        .course-item-body {
+            padding: 1.5rem;
+        }
+
+        .course-item-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .course-item-instructor {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .course-item-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .course-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .course-item-btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .course-item-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .course-item-btn.primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .course-item-btn.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .course-item-btn.secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Edit Profile Section */
+        .edit-profile-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+        }
+
+        .edit-profile-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .edit-profile-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .edit-profile-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .edit-profile-avatar {
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .edit-profile-avatar-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1.5rem;
+            border: 3px solid var(--primary-color);
+        }
+
+        .edit-profile-avatar-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .edit-profile-avatar-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .edit-profile-avatar-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .edit-profile-avatar-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .edit-profile-avatar-btn.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .form-row {
+            grid-column: span 2;
+        }
+
+        .edit-profile-footer {
+            grid-column: span 2;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .edit-profile-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.35rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .edit-profile-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .edit-profile-btn.secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: none;
+        }
+
+        /* Support Section */
+        .support-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+        }
+
+        .support-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .support-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .support-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .support-tab {
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .support-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .support-tab:not(.active) {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .support-content {
+            display: none;
+        }
+
+        .support-content.active {
+            display: block;
+        }
+
+        .support-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .support-form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .support-form-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .support-form-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.35rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .support-form-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .support-form-btn.secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: none;
+        }
+
+        .support-tickets {
+            list-style: none;
+        }
+
+        .support-ticket {
+            padding: 1.5rem;
+            border-radius: 0.35rem;
+            background-color: #f8f9fc;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-title {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .ticket-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .ticket-status.open {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .ticket-status.in-progress {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .ticket-status.resolved {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .ticket-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .ticket-description {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .ticket-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .ticket-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ticket-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        /* Quiz Selection */
+        .quiz-selection-container {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            padding: 1.5rem;
+        }
+
+        .quiz-selection-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-selection-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .quiz-selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .quiz-card {
+            background-color: white;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+        }
+
+        .quiz-card-img {
+            height: 120px;
+            background-color: #f8f9fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .quiz-card-body {
+            padding: 1.5rem;
+        }
+
+        .quiz-card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .quiz-card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .quiz-card-btn {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .quiz-card-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Dark Mode Styles for New Sections */
+        body.dark-mode .quiz-container,
+        body.dark-mode .projects-grid,
+        body.dark-mode .project-card,
+        body.dark-mode .messages-container,
+        body.dark-mode .community-container,
+        body.dark-mode .training-container,
+        body.dark-mode .training-card,
+        body.dark-mode .courses-container,
+        body.dark-mode .course-item,
+        body.dark-mode .edit-profile-container,
+        body.dark-mode .support-container,
+        body.dark-mode .support-ticket,
+        body.dark-mode .quiz-selection-container,
+        body.dark-mode .quiz-card {
+            background-color: #16213e;
+            color: #e6e6e6;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .quiz-option {
+            background-color: #1a1a2e;
+            border-color: #2d3748;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .quiz-option:hover {
+            background-color: #2d3748;
+        }
+
+        body.dark-mode .quiz-btn,
+        body.dark-mode .messages-btn.secondary,
+        body.dark-mode .community-tab:not(.active),
+        body.dark-mode .edit-profile-btn.secondary,
+        body.dark-mode .support-form-btn.secondary {
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .support-ticket {
+            background-color: #1a1a2e;
+        }
+
+        body.dark-mode .project-skill,
+        body.dark-mode .quiz-card {
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .training-filter select,
+        body.dark-mode .courses-filter select {
+            background-color: #1a1a2e;
+            border-color: #2d3748;
+            color: #e6e6e6;
+        }
+
+        /* Tab Content Styles */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -1747,53 +2988,53 @@
             
             <nav class="sidebar-nav">
                 <ul>
-                    <li class="active">
+                    <li class="active" data-tab="dashboard">
                         <a href="#dashboard">
                             <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="courses">
                         <a href="#courses">
                             <i class="fas fa-graduation-cap"></i> <span>My Courses</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="training">
                         <a href="#training">
                             <i class="fas fa-laptop-code"></i> <span>Hands-on Training</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="projects">
                         <a href="#projects">
                             <i class="fas fa-project-diagram"></i> <span>Projects</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="certificates">
                         <a href="#certificates">
                             <i class="fas fa-certificate"></i> <span>Certificates</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="resources">
                         <a href="#resources">
                             <i class="fas fa-book"></i> <span>Learning Resources</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="profile">
                         <a href="#profile">
                             <i class="fas fa-user"></i> <span>My Profile</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="messages">
                         <a href="#messages">
                             <i class="fas fa-envelope"></i> <span>Messages</span>
                             <span class="notification-badge">3</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="community">
                         <a href="#community">
                             <i class="fas fa-users"></i> <span>Community</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-tab="support">
                         <a href="#support">
                             <i class="fas fa-question-circle"></i> <span>Support</span>
                         </a>
@@ -1852,364 +3093,1150 @@
             
             <!-- Dashboard Content -->
             <div class="content-wrapper">
-                <h1 class="page-title">Learning Dashboard</h1>
-                
-                <!-- Stats Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card stat-primary">
-                        <div class="stat-icon">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>Courses Enrolled</h3>
-                            <p id="coursesEnrolled">8</p>
-                        </div>
-                    </div>
+                <!-- Dashboard Tab -->
+                <div class="tab-content active" id="dashboard-tab">
+                    <h1 class="page-title">Learning Dashboard</h1>
                     
-                    <div class="stat-card stat-success">
-                        <div class="stat-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>Completed</h3>
-                            <p id="coursesCompleted">3</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card stat-warning">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>In Progress</h3>
-                            <p id="coursesInProgress">5</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card stat-info">
-                        <div class="stat-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>Certificates</h3>
-                            <p id="achievementsCount">7</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Learning Dashboard Sections -->
-                <div class="learning-dashboard">
-                    <!-- Left Column -->
-                    <div>
-                        <!-- Course Progress -->
-                        <div class="learning-card">
-                            <h3><i class="fas fa-chart-line"></i> My Course Progress</h3>
-                            <div class="course-progress-item">
-                                <div class="course-progress-header">
-                                    <div class="course-progress-title">Advanced JavaScript Patterns</div>
-                                    <div class="course-progress-percent">85%</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 85%"></div>
-                                </div>
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card stat-primary">
+                            <div class="stat-icon">
+                                <i class="fas fa-book-open"></i>
                             </div>
-                            <div class="course-progress-item">
-                                <div class="course-progress-header">
-                                    <div class="course-progress-title">Python for Data Science</div>
-                                    <div class="course-progress-percent">62%</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 62%"></div>
-                                </div>
-                            </div>
-                            <div class="course-progress-item">
-                                <div class="course-progress-header">
-                                    <div class="course-progress-title">React Native Mobile Development</div>
-                                    <div class="course-progress-percent">34%</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 34%"></div>
-                                </div>
-                            </div>
-                            <div class="course-progress-item">
-                                <div class="course-progress-header">
-                                    <div class="course-progress-title">AWS Cloud Practitioner</div>
-                                    <div class="course-progress-percent">92%</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 92%"></div>
-                                </div>
+                            <div class="stat-info">
+                                <h3>Courses Enrolled</h3>
+                                <p id="coursesEnrolled">8</p>
                             </div>
                         </div>
                         
-                        <!-- Upcoming Classes -->
-                        <div class="learning-card">
-                            <h3><i class="fas fa-calendar-alt"></i> Upcoming Classes</h3>
-                            <div class="upcoming-class">
-                                <div class="class-time">
-                                    <div class="day">Today</div>
-                                    <div class="time">14:00</div>
-                                </div>
-                                <div class="class-info">
-                                    <div class="class-title">Live Coding: JavaScript Algorithms</div>
-                                    <div class="class-instructor">With Instructor: Sarah Johnson</div>
-                                </div>
-                                <button class="join-btn">Join</button>
+                        <div class="stat-card stat-success">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
                             </div>
-                            <div class="upcoming-class">
-                                <div class="class-time">
-                                    <div class="day">Wed</div>
-                                    <div class="time">10:30</div>
-                                </div>
-                                <div class="class-info">
-                                    <div class="class-title">Python Data Visualization Workshop</div>
-                                    <div class="class-instructor">With Instructor: Michael Chen</div>
-                                </div>
-                                <button class="join-btn">Join</button>
-                            </div>
-                            <div class="upcoming-class">
-                                <div class="class-time">
-                                    <div class="day">Fri</div>
-                                    <div class="time">16:00</div>
-                                </div>
-                                <div class="class-info">
-                                    <div class="class-title">React Hooks Deep Dive</div>
-                                    <div class="class-instructor">With Instructor: David Wilson</div>
-                                </div>
-                                <button class="join-btn">Join</button>
+                            <div class="stat-info">
+                                <h3>Completed</h3>
+                                <p id="coursesCompleted">3</p>
                             </div>
                         </div>
                         
-                        <!-- Code Sandbox -->
-                        <div class="learning-card">
-                            <h3><i class="fas fa-code"></i> Practice Sandbox</h3>
-                            <div class="sandbox-container">
-                                <div class="sandbox-header">
-                                    <div class="sandbox-title">JavaScript Playground</div>
-                                    <div class="sandbox-actions">
-                                        <button class="sandbox-btn">Run</button>
-                                        <button class="sandbox-btn">Save</button>
-                                        <button class="sandbox-btn">Reset</button>
+                        <div class="stat-card stat-warning">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>In Progress</h3>
+                                <p id="coursesInProgress">5</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card stat-info">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Certificates</h3>
+                                <p id="achievementsCount">7</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Learning Dashboard Sections -->
+                    <div class="learning-dashboard">
+                        <!-- Left Column -->
+                        <div>
+                            <!-- Course Progress -->
+                            <div class="learning-card">
+                                <h3><i class="fas fa-chart-line"></i> My Course Progress</h3>
+                                <div class="course-progress-item">
+                                    <div class="course-progress-header">
+                                        <div class="course-progress-title">Advanced JavaScript Patterns</div>
+                                        <div class="course-progress-percent">85%</div>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 85%"></div>
                                     </div>
                                 </div>
-                                <div class="sandbox-content">
-                                    <pre>// Try some JavaScript code here
+                                <div class="course-progress-item">
+                                    <div class="course-progress-header">
+                                        <div class="course-progress-title">Python for Data Science</div>
+                                        <div class="course-progress-percent">62%</div>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 62%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-progress-item">
+                                    <div class="course-progress-header">
+                                        <div class="course-progress-title">React Native Mobile Development</div>
+                                        <div class="course-progress-percent">34%</div>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 34%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-progress-item">
+                                    <div class="course-progress-header">
+                                        <div class="course-progress-title">AWS Cloud Practitioner</div>
+                                        <div class="course-progress-percent">92%</div>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Upcoming Classes -->
+                            <div class="learning-card">
+                                <h3><i class="fas fa-calendar-alt"></i> Upcoming Classes</h3>
+                                <div class="upcoming-class">
+                                    <div class="class-time">
+                                        <div class="day">Today</div>
+                                        <div class="time">14:00</div>
+                                    </div>
+                                    <div class="class-info">
+                                        <div class="class-title">Live Coding: JavaScript Algorithms</div>
+                                        <div class="class-instructor">With Instructor: Sarah Johnson</div>
+                                    </div>
+                                    <button class="join-btn">Join</button>
+                                </div>
+                                <div class="upcoming-class">
+                                    <div class="class-time">
+                                        <div class="day">Wed</div>
+                                        <div class="time">10:30</div>
+                                    </div>
+                                    <div class="class-info">
+                                        <div class="class-title">Python Data Visualization Workshop</div>
+                                        <div class="class-instructor">With Instructor: Michael Chen</div>
+                                    </div>
+                                    <button class="join-btn">Join</button>
+                                </div>
+                                <div class="upcoming-class">
+                                    <div class="class-time">
+                                        <div class="day">Fri</div>
+                                        <div class="time">16:00</div>
+                                    </div>
+                                    <div class="class-info">
+                                        <div class="class-title">React Hooks Deep Dive</div>
+                                        <div class="class-instructor">With Instructor: David Wilson</div>
+                                    </div>
+                                    <button class="join-btn">Join</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Code Sandbox -->
+                            <div class="learning-card">
+                                <h3><i class="fas fa-code"></i> Practice Sandbox</h3>
+                                <div class="sandbox-container">
+                                    <div class="sandbox-header">
+                                        <div class="sandbox-title">JavaScript Playground</div>
+                                        <div class="sandbox-actions">
+                                            <button class="sandbox-btn">Run</button>
+                                            <button class="sandbox-btn">Save</button>
+                                            <button class="sandbox-btn">Reset</button>
+                                        </div>
+                                    </div>
+                                    <div class="sandbox-content">
+                                        <pre>// Try some JavaScript code here
 function greet(name) {
     return `Hello, ${name}!`;
 }
 
 console.log(greet("Jay"));
 // Click Run to see the output</pre>
+                                    </div>
+                                    <div class="sandbox-footer">
+                                        <div class="sandbox-actions">
+                                            <button class="sandbox-btn">Console</button>
+                                            <button class="sandbox-btn">Share</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="sandbox-footer">
-                                    <div class="sandbox-actions">
-                                        <button class="sandbox-btn">Console</button>
-                                        <button class="sandbox-btn">Share</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column -->
+                        <div>
+                            <!-- Recommended Courses -->
+                            <div class="learning-card">
+                                <h3><i class="fas fa-star"></i> Recommended Courses</h3>
+                                <div class="course-card">
+                                    <div class="course-img">
+                                        <img src="https://via.placeholder.com/400x150" alt="Course Image">
+                                        <div class="course-badge">New</div>
+                                    </div>
+                                    <div class="course-body">
+                                        <div class="course-title">Full Stack Web Development</div>
+                                        <div class="course-instructor">By Alex Rodriguez</div>
+                                        <div class="course-meta">
+                                            <div class="course-rating">
+                                                <i class="fas fa-star"></i> 4.8 (120)
+                                            </div>
+                                            <div>32 Hours</div>
+                                        </div>
+                                        <button class="enroll-btn">Enroll Now</button>
+                                    </div>
+                                </div>
+                                <div class="course-card">
+                                    <div class="course-img">
+                                        <img src="https://via.placeholder.com/400x150" alt="Course Image">
+                                    </div>
+                                    <div class="course-body">
+                                        <div class="course-title">Machine Learning Fundamentals</div>
+                                        <div class="course-instructor">By Priya Patel</div>
+                                        <div class="course-meta">
+                                            <div class="course-rating">
+                                                <i class="fas fa-star"></i> 4.9 (85)
+                                            </div>
+                                            <div>45 Hours</div>
+                                        </div>
+                                        <button class="enroll-btn">Enroll Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Learning Resources -->
+                            <div class="learning-card">
+                                <h3><i class="fas fa-book-open"></i> Learning Resources</h3>
+                                <div class="resource-item">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="resource-info">
+                                        <div class="resource-title">JavaScript Best Practices</div>
+                                        <div class="resource-type">PDF Guide</div>
+                                    </div>
+                                    <button class="download-btn">Download</button>
+                                </div>
+                                <div class="resource-item">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-video"></i>
+                                    </div>
+                                    <div class="resource-info">
+                                        <div class="resource-title">React Performance Optimization</div>
+                                        <div class="resource-type">Video Tutorial</div>
+                                    </div>
+                                    <button class="download-btn">Watch</button>
+                                </div>
+                                <div class="resource-item">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-file-code"></i>
+                                    </div>
+                                    <div class="resource-info">
+                                        <div class="resource-title">Python Cheat Sheet</div>
+                                        <div class="resource-type">Code Examples</div>
+                                    </div>
+                                    <button class="download-btn">Download</button>
+                                </div>
+                                <div class="resource-item">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-link"></i>
+                                    </div>
+                                    <div class="resource-info">
+                                        <div class="resource-title">Web Development Roadmap 2023</div>
+                                        <div class="resource-type">External Link</div>
+                                    </div>
+                                    <button class="download-btn">Open</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Learning Calendar -->
+                            <div class="learning-card">
+                                <h3><i class="fas fa-calendar"></i> Learning Calendar</h3>
+                                <div class="calendar">
+                                    <div class="calendar-header">
+                                        <div class="calendar-title">June 2023</div>
+                                        <div class="calendar-nav">
+                                            <button class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
+                                            <button class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-grid">
+                                        <div class="calendar-day-header">Sun</div>
+                                        <div class="calendar-day-header">Mon</div>
+                                        <div class="calendar-day-header">Tue</div>
+                                        <div class="calendar-day-header">Wed</div>
+                                        <div class="calendar-day-header">Thu</div>
+                                        <div class="calendar-day-header">Fri</div>
+                                        <div class="calendar-day-header">Sat</div>
+                                        
+                                        <div class="calendar-day empty"></div>
+                                        <div class="calendar-day empty"></div>
+                                        <div class="calendar-day empty"></div>
+                                        <div class="calendar-day">1</div>
+                                        <div class="calendar-day">2</div>
+                                        <div class="calendar-day">3</div>
+                                        <div class="calendar-day">4</div>
+                                        
+                                        <div class="calendar-day">5</div>
+                                        <div class="calendar-day">6</div>
+                                        <div class="calendar-day current">7</div>
+                                        <div class="calendar-day event">8</div>
+                                        <div class="calendar-day">9</div>
+                                        <div class="calendar-day">10</div>
+                                        <div class="calendar-day">11</div>
+                                        
+                                        <div class="calendar-day">12</div>
+                                        <div class="calendar-day">13</div>
+                                        <div class="calendar-day">14</div>
+                                        <div class="calendar-day event">15</div>
+                                        <div class="calendar-day">16</div>
+                                        <div class="calendar-day">17</div>
+                                        <div class="calendar-day">18</div>
+                                        
+                                        <div class="calendar-day">19</div>
+                                        <div class="calendar-day">20</div>
+                                        <div class="calendar-day">21</div>
+                                        <div class="calendar-day event">22</div>
+                                        <div class="calendar-day">23</div>
+                                        <div class="calendar-day">24</div>
+                                        <div class="calendar-day">25</div>
+                                        
+                                        <div class="calendar-day">26</div>
+                                        <div class="calendar-day">27</div>
+                                        <div class="calendar-day">28</div>
+                                        <div class="calendar-day">29</div>
+                                        <div class="calendar-day">30</div>
+                                        <div class="calendar-day empty"></div>
+                                        <div class="calendar-day empty"></div>
+                                    </div>
+                                    <div class="calendar-events">
+                                        <div class="calendar-event">
+                                            <div><span class="time">10:00 AM</span> - JavaScript Workshop</div>
+                                        </div>
+                                        <div class="calendar-event">
+                                            <div><span class="time">2:00 PM</span> - Python Coding Challenge</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Right Column -->
-                    <div>
-                        <!-- Recommended Courses -->
-                        <div class="learning-card">
-                            <h3><i class="fas fa-star"></i> Recommended Courses</h3>
-                            <div class="course-card">
-                                <div class="course-img">
-                                    <img src="https://via.placeholder.com/400x150" alt="Course Image">
-                                    <div class="course-badge">New</div>
+                    <!-- Profile Section -->
+                    <div class="learning-card" id="profile-section">
+                        <h3><i class="fas fa-user"></i> My Profile</h3>
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                            </div>
+                            <div class="profile-info">
+                                <h2>Jay Prasad</h2>
+                                <p>Full Stack Developer | IT Trainer</p>
+                                <p>Kathmandu, Nepal</p>
+                                <span class="profile-badge">Gold Member</span>
+                            </div>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat-box">
+                                <h4>Courses Completed</h4>
+                                <p>12</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>Hours Learned</h4>
+                                <p>156</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>Certificates</h4>
+                                <p>7</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-edit"></i> Edit Profile
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-share"></i> Share Profile
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Certificates Section -->
+                    <div class="learning-card">
+                        <h3><i class="fas fa-certificate"></i> My Certificates</h3>
+                        <div class="certificate-grid">
+                            <div class="certificate-card">
+                                <div class="certificate-img">
+                                    <i class="fas fa-award"></i>
                                 </div>
-                                <div class="course-body">
-                                    <div class="course-title">Full Stack Web Development</div>
-                                    <div class="course-instructor">By Alex Rodriguez</div>
-                                    <div class="course-meta">
-                                        <div class="course-rating">
-                                            <i class="fas fa-star"></i> 4.8 (120)
-                                        </div>
-                                        <div>32 Hours</div>
+                                <div class="certificate-body">
+                                    <div class="certificate-title">Advanced JavaScript Developer</div>
+                                    <div class="certificate-date">Completed: May 15, 2023</div>
+                                    <div class="certificate-actions">
+                                        <button class="certificate-btn primary">
+                                            <i class="fas fa-eye"></i> View
+                                        </button>
+                                        <button class="certificate-btn secondary">
+                                            <i class="fas fa-download"></i> Download
+                                        </button>
                                     </div>
-                                    <button class="enroll-btn">Enroll Now</button>
                                 </div>
                             </div>
-                            <div class="course-card">
-                                <div class="course-img">
-                                    <img src="https://via.placeholder.com/400x150" alt="Course Image">
+                            <div class="certificate-card">
+                                <div class="certificate-img">
+                                    <i class="fas fa-award"></i>
                                 </div>
-                                <div class="course-body">
-                                    <div class="course-title">Machine Learning Fundamentals</div>
-                                    <div class="course-instructor">By Priya Patel</div>
-                                    <div class="course-meta">
-                                        <div class="course-rating">
-                                            <i class="fas fa-star"></i> 4.9 (85)
-                                        </div>
-                                        <div>45 Hours</div>
+                                <div class="certificate-body">
+                                    <div class="certificate-title">Python Data Science Specialist</div>
+                                    <div class="certificate-date">Completed: April 2, 2023</div>
+                                    <div class="certificate-actions">
+                                        <button class="certificate-btn primary">
+                                            <i class="fas fa-eye"></i> View
+                                        </button>
+                                        <button class="certificate-btn secondary">
+                                            <i class="fas fa-download"></i> Download
+                                        </button>
                                     </div>
-                                    <button class="enroll-btn">Enroll Now</button>
+                                </div>
+                            </div>
+                            <div class="certificate-card">
+                                <div class="certificate-img">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="certificate-body">
+                                    <div class="certificate-title">AWS Cloud Practitioner</div>
+                                    <div class="certificate-date">Completed: March 18, 2023</div>
+                                    <div class="certificate-actions">
+                                        <button class="certificate-btn primary">
+                                            <i class="fas fa-eye"></i> View
+                                        </button>
+                                        <button class="certificate-btn secondary">
+                                            <i class="fas fa-download"></i> Download
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Learning Resources -->
-                        <div class="learning-card">
-                            <h3><i class="fas fa-book-open"></i> Learning Resources</h3>
-                            <div class="resource-item">
-                                <div class="resource-icon">
-                                    <i class="fas fa-file-pdf"></i>
+                    </div>
+                    
+                    <!-- Learning Badges -->
+                    <div class="learning-card">
+                        <h3><i class="fas fa-trophy"></i> My Learning Badges</h3>
+                        <div class="badge-container">
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-code"></i>
                                 </div>
-                                <div class="resource-info">
-                                    <div class="resource-title">JavaScript Best Practices</div>
-                                    <div class="resource-type">PDF Guide</div>
+                                <div class="badge-info">
+                                    <div class="badge-title">JavaScript Expert</div>
+                                    <div class="badge-date">Earned: May 20, 2023</div>
                                 </div>
-                                <button class="download-btn">Download</button>
                             </div>
-                            <div class="resource-item">
-                                <div class="resource-icon">
-                                    <i class="fas fa-video"></i>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-cloud"></i>
                                 </div>
-                                <div class="resource-info">
-                                    <div class="resource-title">React Performance Optimization</div>
-                                    <div class="resource-type">Video Tutorial</div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Cloud Champion</div>
+                                    <div class="badge-date">Earned: April 5, 2023</div>
                                 </div>
-                                <button class="download-btn">Watch</button>
                             </div>
-                            <div class="resource-item">
-                                <div class="resource-icon">
-                                    <i class="fas fa-file-code"></i>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-database"></i>
                                 </div>
-                                <div class="resource-info">
-                                    <div class="resource-title">Python Cheat Sheet</div>
-                                    <div class="resource-type">Code Examples</div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Database Master</div>
+                                    <div class="badge-date">Earned: March 12, 2023</div>
                                 </div>
-                                <button class="download-btn">Download</button>
                             </div>
-                            <div class="resource-item">
-                                <div class="resource-icon">
-                                    <i class="fas fa-link"></i>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-bolt"></i>
                                 </div>
-                                <div class="resource-info">
-                                    <div class="resource-title">Web Development Roadmap 2023</div>
-                                    <div class="resource-type">External Link</div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Fast Learner</div>
+                                    <div class="badge-date">Earned: February 28, 2023</div>
                                 </div>
-                                <button class="download-btn">Open</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Community Leaderboard -->
+                    <div class="learning-card">
+                        <h3><i class="fas fa-users"></i> Community Leaderboard</h3>
+                        <div class="leaderboard">
+                            <div class="leaderboard-header">
+                                <div class="leaderboard-title">Top Learners This Month</div>
+                                <div class="leaderboard-tabs">
+                                    <button class="leaderboard-tab active">All</button>
+                                    <button class="leaderboard-tab">Friends</button>
+                                    <button class="leaderboard-tab">Country</button>
+                                </div>
+                            </div>
+                            <ul class="leaderboard-list">
+                                <li class="leaderboard-item">
+                                    <div class="leaderboard-rank top">1</div>
+                                    <div class="leaderboard-user">
+                                        <div class="leaderboard-avatar">
+                                            <img src="https://via.placeholder.com/30" alt="User Avatar">
+                                        </div>
+                                        <div class="leaderboard-name">Alex Johnson</div>
+                                    </div>
+                                    <div class="leaderboard-score">1,250 XP</div>
+                                </li>
+                                <li class="leaderboard-item">
+                                    <div class="leaderboard-rank top">2</div>
+                                    <div class="leaderboard-user">
+                                        <div class="leaderboard-avatar">
+                                            <img src="https://via.placeholder.com/30" alt="User Avatar">
+                                        </div>
+                                        <div class="leaderboard-name">Priya Patel</div>
+                                    </div>
+                                    <div class="leaderboard-score">1,180 XP</div>
+                                </li>
+                                <li class="leaderboard-item">
+                                    <div class="leaderboard-rank top">3</div>
+                                    <div class="leaderboard-user">
+                                        <div class="leaderboard-avatar">
+                                            <img src="https://via.placeholder.com/30" alt="User Avatar">
+                                        </div>
+                                        <div class="leaderboard-name">David Kim</div>
+                                    </div>
+                                    <div class="leaderboard-score">1,050 XP</div>
+                                </li>
+                                <li class="leaderboard-item">
+                                    <div class="leaderboard-rank">4</div>
+                                    <div class="leaderboard-user">
+                                        <div class="leaderboard-avatar">
+                                            <img src="https://via.placeholder.com/30" alt="User Avatar">
+                                        </div>
+                                        <div class="leaderboard-name">Jay Prasad</div>
+                                    </div>
+                                    <div class="leaderboard-score">980 XP</div>
+                                </li>
+                                <li class="leaderboard-item">
+                                    <div class="leaderboard-rank">5</div>
+                                    <div class="leaderboard-user">
+                                        <div class="leaderboard-avatar">
+                                            <img src="https://via.placeholder.com/30" alt="User Avatar">
+                                        </div>
+                                        <div class="leaderboard-name">Sarah Williams</div>
+                                    </div>
+                                    <div class="leaderboard-score">920 XP</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Courses Tab -->
+                <div class="tab-content" id="courses-tab">
+                    <h1 class="page-title">My Courses</h1>
+                    
+                    <div class="courses-container">
+                        <div class="courses-header">
+                            <div class="courses-title">Your Learning Journey</div>
+                            <div class="courses-filter">
+                                <select id="courseFilter">
+                                    <option value="all">All Courses</option>
+                                    <option value="in-progress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="new">New</option>
+                                </select>
                             </div>
                         </div>
                         
-                        <!-- Learning Calendar -->
-                        <div class="learning-card">
-                            <h3><i class="fas fa-calendar"></i> Learning Calendar</h3>
-                            <div class="calendar">
-                                <div class="calendar-header">
-                                    <div class="calendar-title">June 2023</div>
-                                    <div class="calendar-nav">
-                                        <button class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
-                                        <button class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
+                        <div class="courses-grid">
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fab fa-js"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 85%"></div>
                                     </div>
                                 </div>
-                                <div class="calendar-grid">
-                                    <div class="calendar-day-header">Sun</div>
-                                    <div class="calendar-day-header">Mon</div>
-                                    <div class="calendar-day-header">Tue</div>
-                                    <div class="calendar-day-header">Wed</div>
-                                    <div class="calendar-day-header">Thu</div>
-                                    <div class="calendar-day-header">Fri</div>
-                                    <div class="calendar-day-header">Sat</div>
-                                    
-                                    <div class="calendar-day empty"></div>
-                                    <div class="calendar-day empty"></div>
-                                    <div class="calendar-day empty"></div>
-                                    <div class="calendar-day">1</div>
-                                    <div class="calendar-day">2</div>
-                                    <div class="calendar-day">3</div>
-                                    <div class="calendar-day">4</div>
-                                    
-                                    <div class="calendar-day">5</div>
-                                    <div class="calendar-day">6</div>
-                                    <div class="calendar-day current">7</div>
-                                    <div class="calendar-day event">8</div>
-                                    <div class="calendar-day">9</div>
-                                    <div class="calendar-day">10</div>
-                                    <div class="calendar-day">11</div>
-                                    
-                                    <div class="calendar-day">12</div>
-                                    <div class="calendar-day">13</div>
-                                    <div class="calendar-day">14</div>
-                                    <div class="calendar-day event">15</div>
-                                    <div class="calendar-day">16</div>
-                                    <div class="calendar-day">17</div>
-                                    <div class="calendar-day">18</div>
-                                    
-                                    <div class="calendar-day">19</div>
-                                    <div class="calendar-day">20</div>
-                                    <div class="calendar-day">21</div>
-                                    <div class="calendar-day event">22</div>
-                                    <div class="calendar-day">23</div>
-                                    <div class="calendar-day">24</div>
-                                    <div class="calendar-day">25</div>
-                                    
-                                    <div class="calendar-day">26</div>
-                                    <div class="calendar-day">27</div>
-                                    <div class="calendar-day">28</div>
-                                    <div class="calendar-day">29</div>
-                                    <div class="calendar-day">30</div>
-                                    <div class="calendar-day empty"></div>
-                                    <div class="calendar-day empty"></div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">Advanced JavaScript Patterns</div>
+                                    <div class="course-item-instructor">By Sarah Johnson</div>
+                                    <div class="course-item-meta">
+                                        <div>12/15 Lessons</div>
+                                        <div>85% Complete</div>
+                                    </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">Continue</button>
+                                        <button class="course-item-btn secondary">Details</button>
+                                    </div>
                                 </div>
-                                <div class="calendar-events">
-                                    <div class="calendar-event">
-                                        <div><span class="time">10:00 AM</span> - JavaScript Workshop</div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fab fa-python"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 62%"></div>
                                     </div>
-                                    <div class="calendar-event">
-                                        <div><span class="time">2:00 PM</span> - Python Coding Challenge</div>
+                                </div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">Python for Data Science</div>
+                                    <div class="course-item-instructor">By Michael Chen</div>
+                                    <div class="course-item-meta">
+                                        <div>8/13 Lessons</div>
+                                        <div>62% Complete</div>
                                     </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">Continue</button>
+                                        <button class="course-item-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fab fa-react"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 34%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">React Native Mobile Development</div>
+                                    <div class="course-item-instructor">By David Wilson</div>
+                                    <div class="course-item-meta">
+                                        <div>3/9 Lessons</div>
+                                        <div>34% Complete</div>
+                                    </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">Continue</button>
+                                        <button class="course-item-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fab fa-aws"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">AWS Cloud Practitioner</div>
+                                    <div class="course-item-instructor">By Priya Patel</div>
+                                    <div class="course-item-meta">
+                                        <div>11/12 Lessons</div>
+                                        <div>92% Complete</div>
+                                    </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">Continue</button>
+                                        <button class="course-item-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fas fa-database"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">SQL Mastery</div>
+                                    <div class="course-item-instructor">By Alex Rodriguez</div>
+                                    <div class="course-item-meta">
+                                        <div>10/10 Lessons</div>
+                                        <div>100% Complete</div>
+                                    </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">View Certificate</button>
+                                        <button class="course-item-btn secondary">Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fab fa-node-js"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">Node.js Backend Development</div>
+                                    <div class="course-item-instructor">By Sarah Williams</div>
+                                    <div class="course-item-meta">
+                                        <div>8/8 Lessons</div>
+                                        <div>100% Complete</div>
+                                    </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">View Certificate</button>
+                                        <button class="course-item-btn secondary">Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fas fa-code"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">Full Stack Web Development</div>
+                                    <div class="course-item-instructor">By Alex Rodriguez</div>
+                                    <div class="course-item-meta">
+                                        <div>0/32 Lessons</div>
+                                        <div>0% Complete</div>
+                                    </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">Start</button>
+                                        <button class="course-item-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-item-img">
+                                    <i class="fas fa-robot"></i>
+                                    <div class="course-item-progress">
+                                        <div class="course-item-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-item-body">
+                                    <div class="course-item-title">Machine Learning Fundamentals</div>
+                                    <div class="course-item-instructor">By Priya Patel</div>
+                                    <div class="course-item-meta">
+                                        <div>0/45 Lessons</div>
+                                        <div>0% Complete</div>
+                                    </div>
+                                    <div class="course-item-actions">
+                                        <button class="course-item-btn primary">Start</button>
+                                        <button class="course-item-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quiz Selection -->
+                    <div class="quiz-selection-container">
+                        <div class="quiz-selection-header">
+                            <div class="quiz-selection-title">Practice Quizzes</div>
+                        </div>
+                        
+                        <div class="quiz-selection-grid">
+                            <div class="quiz-card">
+                                <div class="quiz-card-img">
+                                    <i class="fab fa-js"></i>
+                                </div>
+                                <div class="quiz-card-body">
+                                    <div class="quiz-card-title">JavaScript Fundamentals</div>
+                                    <div class="quiz-card-meta">
+                                        <div>20 Questions</div>
+                                        <div>Beginner</div>
+                                    </div>
+                                    <button class="quiz-card-btn">Start Quiz</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-card">
+                                <div class="quiz-card-img">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <div class="quiz-card-body">
+                                    <div class="quiz-card-title">Python Basics</div>
+                                    <div class="quiz-card-meta">
+                                        <div>25 Questions</div>
+                                        <div>Beginner</div>
+                                    </div>
+                                    <button class="quiz-card-btn">Start Quiz</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-card">
+                                <div class="quiz-card-img">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <div class="quiz-card-body">
+                                    <div class="quiz-card-title">React Concepts</div>
+                                    <div class="quiz-card-meta">
+                                        <div>30 Questions</div>
+                                        <div>Intermediate</div>
+                                    </div>
+                                    <button class="quiz-card-btn">Start Quiz</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-card">
+                                <div class="quiz-card-img">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="quiz-card-body">
+                                    <div class="quiz-card-title">SQL Queries</div>
+                                    <div class="quiz-card-meta">
+                                        <div>20 Questions</div>
+                                        <div>Intermediate</div>
+                                    </div>
+                                    <button class="quiz-card-btn">Start Quiz</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-card">
+                                <div class="quiz-card-img">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
+                                <div class="quiz-card-body">
+                                    <div class="quiz-card-title">Node.js Core</div>
+                                    <div class="quiz-card-meta">
+                                        <div>25 Questions</div>
+                                        <div>Advanced</div>
+                                    </div>
+                                    <button class="quiz-card-btn">Start Quiz</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-card">
+                                <div class="quiz-card-img">
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                                <div class="quiz-card-body">
+                                    <div class="quiz-card-title">Algorithms</div>
+                                    <div class="quiz-card-meta">
+                                        <div>30 Questions</div>
+                                        <div>Advanced</div>
+                                    </div>
+                                    <button class="quiz-card-btn">Start Quiz</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Profile Section -->
-                <div class="learning-card" id="profile-section">
-                    <h3><i class="fas fa-user"></i> My Profile</h3>
-                    <div class="profile-header">
-                        <div class="profile-avatar">
-                            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+
+                <!-- Hands-on Training Tab -->
+                <div class="tab-content" id="training-tab">
+                    <h1 class="page-title">Hands-on Training</h1>
+                    
+                    <div class="training-container">
+                        <div class="training-header">
+                            <div class="training-title">Practice Labs</div>
+                            <div class="training-filter">
+                                <select id="trainingFilter">
+                                    <option value="all">All Labs</option>
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="profile-info">
-                            <h2>Jay Prasad</h2>
-                            <p>Full Stack Developer | IT Trainer</p>
-                            <p>Kathmandu, Nepal</p>
-                            <span class="profile-badge">Gold Member</span>
+                        
+                        <div class="training-grid">
+                            <div class="training-card">
+                                <div class="training-img">
+                                    <i class="fab fa-js"></i>
+                                    <div class="training-difficulty beginner">Beginner</div>
+                                </div>
+                                <div class="training-body">
+                                    <div class="training-name">JavaScript Variables and Functions</div>
+                                    <div class="training-description">Practice declaring variables and writing functions in JavaScript with interactive exercises.</div>
+                                    <div class="training-meta">
+                                        <div>15 Exercises</div>
+                                        <div>Estimated: 1 hour</div>
+                                    </div>
+                                    <div class="training-actions">
+                                        <button class="training-btn primary">Start Lab</button>
+                                        <button class="training-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="training-card">
+                                <div class="training-img">
+                                    <i class="fab fa-python"></i>
+                                    <div class="training-difficulty beginner">Beginner</div>
+                                </div>
+                                <div class="training-body">
+                                    <div class="training-name">Python Loops and Conditionals</div>
+                                    <div class="training-description">Master Python loops and conditional statements with hands-on coding challenges.</div>
+                                    <div class="training-meta">
+                                        <div>12 Exercises</div>
+                                        <div>Estimated: 45 mins</div>
+                                    </div>
+                                    <div class="training-actions">
+                                        <button class="training-btn primary">Start Lab</button>
+                                        <button class="training-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="training-card">
+                                <div class="training-img">
+                                    <i class="fab fa-react"></i>
+                                    <div class="training-difficulty intermediate">Intermediate</div>
+                                </div>
+                                <div class="training-body">
+                                    <div class="training-name">React Component Building</div>
+                                    <div class="training-description">Build interactive React components with state management and props.</div>
+                                    <div class="training-meta">
+                                        <div>8 Exercises</div>
+                                        <div>Estimated: 2 hours</div>
+                                    </div>
+                                    <div class="training-actions">
+                                        <button class="training-btn primary">Start Lab</button>
+                                        <button class="training-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="training-card">
+                                <div class="training-img">
+                                    <i class="fas fa-database"></i>
+                                    <div class="training-difficulty intermediate">Intermediate</div>
+                                </div>
+                                <div class="training-body">
+                                    <div class="training-name">SQL Query Practice</div>
+                                    <div class="training-description">Write complex SQL queries with joins, subqueries, and aggregations.</div>
+                                    <div class="training-meta">
+                                        <div>10 Exercises</div>
+                                        <div>Estimated: 1.5 hours</div>
+                                    </div>
+                                    <div class="training-actions">
+                                        <button class="training-btn primary">Start Lab</button>
+                                        <button class="training-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="training-card">
+                                <div class="training-img">
+                                    <i class="fab fa-node-js"></i>
+                                    <div class="training-difficulty advanced">Advanced</div>
+                                </div>
+                                <div class="training-body">
+                                    <div class="training-name">Node.js REST API</div>
+                                    <div class="training-description">Build a complete RESTful API with Express.js and MongoDB.</div>
+                                    <div class="training-meta">
+                                        <div>5 Projects</div>
+                                        <div>Estimated: 3 hours</div>
+                                    </div>
+                                    <div class="training-actions">
+                                        <button class="training-btn primary">Start Lab</button>
+                                        <button class="training-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="training-card">
+                                <div class="training-img">
+                                    <i class="fas fa-code-branch"></i>
+                                    <div class="training-difficulty advanced">Advanced</div>
+                                </div>
+                                <div class="training-body">
+                                    <div class="training-name">Algorithm Challenges</div>
+                                    <div class="training-description">Solve complex algorithm problems with optimal solutions.</div>
+                                    <div class="training-meta">
+                                        <div>15 Challenges</div>
+                                        <div>Estimated: 4 hours</div>
+                                    </div>
+                                    <div class="training-actions">
+                                        <button class="training-btn primary">Start Lab</button>
+                                        <button class="training-btn secondary">Details</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="profile-stats">
-                        <div class="stat-box">
-                            <h4>Courses Completed</h4>
-                            <p>12</p>
-                        </div>
-                        <div class="stat-box">
-                            <h4>Hours Learned</h4>
-                            <p>156</p>
-                        </div>
-                        <div class="stat-box">
-                            <h4>Certificates</h4>
-                            <p>7</p>
+                    
+                    <!-- Code Sandbox -->
+                    <div class="learning-card">
+                        <h3><i class="fas fa-code"></i> Interactive Code Playground</h3>
+                        <div class="sandbox-container">
+                            <div class="sandbox-header">
+                                <div class="sandbox-title">Full Stack Playground</div>
+                                <div class="sandbox-actions">
+                                    <select id="sandboxLanguage">
+                                        <option value="javascript">JavaScript</option>
+                                        <option value="python">Python</option>
+                                        <option value="html">HTML/CSS</option>
+                                        <option value="sql">SQL</option>
+                                    </select>
+                                    <button class="sandbox-btn">Run</button>
+                                    <button class="sandbox-btn">Save</button>
+                                    <button class="sandbox-btn">Reset</button>
+                                </div>
+                            </div>
+                            <div class="sandbox-content">
+                                <pre id="codeEditor">// Select a language from the dropdown to start coding
+// Try writing some code and click Run to see the output
+// Examples:
+// JavaScript: console.log("Hello World");
+// Python: print("Hello World")
+// HTML: &lt;h1&gt;Hello World&lt;/h1&gt;
+// SQL: SELECT * FROM users;</pre>
+                            </div>
+                            <div class="sandbox-footer">
+                                <div class="sandbox-actions">
+                                    <button class="sandbox-btn">Console</button>
+                                    <button class="sandbox-btn">Share</button>
+                                    <button class="sandbox-btn">Templates</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                        <button class="btn btn-primary">
-                            <i class="fas fa-edit"></i> Edit Profile
-                        </button>
-                        <button class="btn btn-secondary">
-                            <i class="fas fa-share"></i> Share Profile
+                </div>
+
+                <!-- Projects Tab -->
+                <div class="tab-content" id="projects-tab">
+                    <h1 class="page-title">My Projects</h1>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-img">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="project-status completed">Completed</div>
+                            </div>
+                            <div class="project-body">
+                                <div class="project-title">E-commerce Website</div>
+                                <div class="project-description">A full-featured online store with product listings, cart functionality, and payment processing.</div>
+                                <div class="project-meta">
+                                    <div>Last Updated: May 15, 2023</div>
+                                    <div>Difficulty: Intermediate</div>
+                                </div>
+                                <div class="project-skills">
+                                    <div class="project-skill">React</div>
+                                    <div class="project-skill">Node.js</div>
+                                    <div class="project-skill">MongoDB</div>
+                                    <div class="project-skill">Stripe API</div>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="project-btn primary">View Project</button>
+                                    <button class="project-btn secondary">Code</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-img">
+                                <i class="fas fa-chart-line"></i>
+                                <div class="project-status completed">Completed</div>
+                            </div>
+                            <div class="project-body">
+                                <div class="project-title">Data Visualization Dashboard</div>
+                                <div class="project-description">Interactive dashboard displaying analytics data with charts and filters.</div>
+                                <div class="project-meta">
+                                    <div>Last Updated: April 2, 2023</div>
+                                    <div>Difficulty: Intermediate</div>
+                                </div>
+                                <div class="project-skills">
+                                    <div class="project-skill">D3.js</div>
+                                    <div class="project-skill">Python</div>
+                                    <div class="project-skill">Flask</div>
+                                    <div class="project-skill">Pandas</div>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="project-btn primary">View Project</button>
+                                    <button class="project-btn secondary">Code</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-img">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div class="project-status in-progress">In Progress</div>
+                            </div>
+                            <div class="project-body">
+                                <div class="project-title">Fitness Tracker App</div>
+                                <div class="project-description">Mobile application for tracking workouts, nutrition, and progress.</div>
+                                <div class="project-meta">
+                                    <div>Last Updated: June 7, 2023</div>
+                                    <div>Difficulty: Advanced</div>
+                                </div>
+                                <div class="project-skills">
+                                    <div class="project-skill">React Native</div>
+                                    <div class="project-skill">Firebase</div>
+                                    <div class="project-skill">Redux</div>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="project-btn primary">Continue</button>
+                                    <button class="project-btn secondary">Code</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-img">
+                                <i class="fas fa-robot"></i>
+                                <div class="project-status in-progress">In Progress</div>
+                            </div>
+                            <div class="project-body">
+                                <div class="project-title">Machine Learning Model</div>
+                                <div class="project-description">Predictive model for stock market analysis using historical data.</div>
+                                <div class="project-meta">
+                                    <div>Last Updated: May 28, 2023</div>
+                                    <div>Difficulty: Advanced</div>
+                                </div>
+                                <div class="project-skills">
+                                    <div class="project-skill">Python</div>
+                                    <div class="project-skill">TensorFlow</div>
+                                    <div class="project-skill">Pandas</div>
+                                    <div class="project-skill">NumPy</div>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="project-btn primary">Continue</button>
+                                    <button class="project-btn secondary">Code</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-img">
+                                <i class="fas fa-blog"></i>
+                                <div class="project-status planned">Planned</div>
+                            </div>
+                            <div class="project-body">
+                                <div class="project-title">Tech Blog Platform</div>
+                                <div class="project-description">A blogging platform for technical articles with markdown support.</div>
+                                <div class="project-meta">
+                                    <div>Planned Start: July 2023</div>
+                                    <div>Difficulty: Intermediate</div>
+                                </div>
+                                <div class="project-skills">
+                                    <div class="project-skill">Next.js</div>
+                                    <div class="project-skill">Node.js</div>
+                                    <div class="project-skill">MongoDB</div>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="project-btn primary">Plan</button>
+                                    <button class="project-btn secondary">Research</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-img">
+                                <i class="fas fa-gamepad"></i>
+                                <div class="project-status planned">Planned</div>
+                            </div>
+                            <div class="project-body">
+                                <div class="project-title">2D Browser Game</div>
+                                <div class="project-description">A retro-style 2D game built with HTML5 Canvas and JavaScript.</div>
+                                <div class="project-meta">
+                                    <div>Planned Start: August 2023</div>
+                                    <div>Difficulty: Beginner</div>
+                                </div>
+                                <div class="project-skills">
+                                    <div class="project-skill">JavaScript</div>
+                                    <div class="project-skill">HTML5 Canvas</div>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="project-btn primary">Plan</button>
+                                    <button class="project-btn secondary">Research</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- New Project Button -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-primary" style="padding: 0.75rem 2rem;">
+                            <i class="fas fa-plus"></i> Start New Project
                         </button>
                     </div>
                 </div>
-                
-                <!-- Certificates Section -->
-                <div class="learning-card">
-                    <h3><i class="fas fa-certificate"></i> My Certificates</h3>
+
+                <!-- Certificates Tab -->
+                <div class="tab-content" id="certificates-tab">
+                    <h1 class="page-title">My Certificates</h1>
+                    
                     <div class="certificate-grid">
                         <div class="certificate-card">
                             <div class="certificate-img">
@@ -2228,6 +4255,7 @@ console.log(greet("Jay"));
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="certificate-card">
                             <div class="certificate-img">
                                 <i class="fas fa-award"></i>
@@ -2245,6 +4273,7 @@ console.log(greet("Jay"));
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="certificate-card">
                             <div class="certificate-img">
                                 <i class="fas fa-award"></i>
@@ -2262,598 +4291,232 @@ console.log(greet("Jay"));
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Learning Badges -->
-                <div class="learning-card">
-                    <h3><i class="fas fa-trophy"></i> My Learning Badges</h3>
-                    <div class="badge-container">
-                        <div class="badge">
-                            <div class="badge-icon">
-                                <i class="fas fa-code"></i>
+                        
+                        <div class="certificate-card">
+                            <div class="certificate-img">
+                                <i class="fas fa-award"></i>
                             </div>
-                            <div class="badge-info">
-                                <div class="badge-title">JavaScript Expert</div>
-                                <div class="badge-date">Earned: May 20, 2023</div>
-                            </div>
-                        </div>
-                        <div class="badge">
-                            <div class="badge-icon">
-                                <i class="fas fa-cloud"></i>
-                            </div>
-                            <div class="badge-info">
-                                <div class="badge-title">Cloud Champion</div>
-                                <div class="badge-date">Earned: April 5, 2023</div>
-                            </div>
-                        </div>
-                        <div class="badge">
-                            <div class="badge-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <div class="badge-info">
-                                <div class="badge-title">Database Master</div>
-                                <div class="badge-date">Earned: March 12, 2023</div>
-                            </div>
-                        </div>
-                        <div class="badge">
-                            <div class="badge-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="badge-info">
-                                <div class="badge-title">Fast Learner</div>
-                                <div class="badge-date">Earned: February 28, 2023</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Community Leaderboard -->
-                <div class="learning-card">
-                    <h3><i class="fas fa-users"></i> Community Leaderboard</h3>
-                    <div class="leaderboard">
-                        <div class="leaderboard-header">
-                            <div class="leaderboard-title">Top Learners This Month</div>
-                            <div class="leaderboard-tabs">
-                                <button class="leaderboard-tab active">All</button>
-                                <button class="leaderboard-tab">Friends</button>
-                                <button class="leaderboard-tab">Country</button>
-                            </div>
-                        </div>
-                        <ul class="leaderboard-list">
-                            <li class="leaderboard-item">
-                                <div class="leaderboard-rank top">1</div>
-                                <div class="leaderboard-user">
-                                    <div class="leaderboard-avatar">
-                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
-                                    </div>
-                                    <div class="leaderboard-name">Alex Johnson</div>
+                            <div class="certificate-body">
+                                <div class="certificate-title">SQL Mastery Certification</div>
+                                <div class="certificate-date">Completed: February 5, 2023</div>
+                                <div class="certificate-actions">
+                                    <button class="certificate-btn primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="certificate-btn secondary">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
                                 </div>
-                                <div class="leaderboard-score">1,250 XP</div>
-                            </li>
-                            <li class="leaderboard-item">
-                                <div class="leaderboard-rank top">2</div>
-                                <div class="leaderboard-user">
-                                    <div class="leaderboard-avatar">
-                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
-                                    </div>
-                                    <div class="leaderboard-name">Priya Patel</div>
-                                </div>
-                                <div class="leaderboard-score">1,180 XP</div>
-                            </li>
-                            <li class="leaderboard-item">
-                                <div class="leaderboard-rank top">3</div>
-                                <div class="leaderboard-user">
-                                    <div class="leaderboard-avatar">
-                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
-                                    </div>
-                                    <div class="leaderboard-name">David Kim</div>
-                                </div>
-                                <div class="leaderboard-score">1,050 XP</div>
-                            </li>
-                            <li class="leaderboard-item">
-                                <div class="leaderboard-rank">4</div>
-                                <div class="leaderboard-user">
-                                    <div class="leaderboard-avatar">
-                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
-                                    </div>
-                                    <div class="leaderboard-name">Jay Prasad</div>
-                                </div>
-                                <div class="leaderboard-score">980 XP</div>
-                            </li>
-                            <li class="leaderboard-item">
-                                <div class="leaderboard-rank">5</div>
-                                <div class="leaderboard-user">
-                                    <div class="leaderboard-avatar">
-                                        <img src="https://via.placeholder.com/30" alt="User Avatar">
-                                    </div>
-                                    <div class="leaderboard-name">Sarah Williams</div>
-                                </div>
-                                <div class="leaderboard-score">920 XP</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Course Enrollment Modal -->
-    <div class="modal" id="enrollModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Enroll in Course</h3>
-                <button class="modal-close" id="closeEnrollModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="enrollForm">
-                    <div class="form-group">
-                        <label for="courseName">Course Name</label>
-                        <input type="text" id="courseName" class="form-control" value="Full Stack Web Development" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="enrollmentType">Enrollment Type</label>
-                        <select id="enrollmentType" class="form-control">
-                            <option value="self">Self-Paced Learning</option>
-                            <option value="mentor">With Mentor Guidance</option>
-                            <option value="group">Group Cohort</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="startDate">Preferred Start Date</label>
-                        <input type="date" id="startDate" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Learning Goals</label>
-                        <div>
-                            <input type="checkbox" id="goal1" name="goals" value="career">
-                            <label for="goal1">Career Advancement</label>
+                            </div>
                         </div>
-                        <div>
-                            <input type="checkbox" id="goal2" name="goals" value="skills">
-                            <label for="goal2">Skill Development</label>
+                        
+                        <div class="certificate-card">
+                            <div class="certificate-img">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="certificate-body">
+                                <div class="certificate-title">Node.js Backend Development</div>
+                                <div class="certificate-date">Completed: January 12, 2023</div>
+                                <div class="certificate-actions">
+                                    <button class="certificate-btn primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="certificate-btn secondary">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <input type="checkbox" id="goal3" name="goals" value="certification">
-                            <label for="goal3">Certification</label>
+                        
+                        <div class="certificate-card">
+                            <div class="certificate-img">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="certificate-body">
+                                <div class="certificate-title">React Frontend Development</div>
+                                <div class="certificate-date">Completed: December 8, 2022</div>
+                                <div class="certificate-actions">
+                                    <button class="certificate-btn primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="certificate-btn secondary">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelEnroll">Cancel</button>
-                <button class="btn btn-primary" id="confirmEnroll">Enroll Now</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Certificate Download Modal -->
-    <div class="modal" id="certificateModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Download Certificate</h3>
-                <button class="modal-close" id="closeCertificateModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div style="text-align: center; margin-bottom: 1.5rem;">
-                    <i class="fas fa-award" style="font-size: 3rem; color: var(--warning-color);"></i>
-                    <h3 style="margin-top: 1rem;">Advanced JavaScript Developer</h3>
-                    <p>Issued to: Jay Prasad</p>
-                    <p>Completion Date: May 15, 2023</p>
-                </div>
-                <div class="form-group">
-                    <label for="certificateFormat">Download Format</label>
-                    <select id="certificateFormat" class="form-control">
-                        <option value="pdf">PDF (Recommended)</option>
-                        <option value="png">PNG Image</option>
-                        <option value="share">Share to LinkedIn</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelDownload">Cancel</button>
-                <button class="btn btn-primary" id="confirmDownload">Download</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Support Modal -->
-    <div class="modal" id="supportModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Learning Support</h3>
-                <button class="modal-close" id="closeSupportModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="supportForm">
-                    <div class="form-group">
-                        <label for="supportCategory">Support Category</label>
-                        <select id="supportCategory" class="form-control">
-                            <option value="technical">Technical Issue</option>
-                            <option value="course">Course Content</option>
-                            <option value="mentor">Mentor Assistance</option>
-                            <option value="other">Other</option>
-                        </select>
+                    
+                    <!-- Learning Badges -->
+                    <div class="learning-card">
+                        <h3><i class="fas fa-trophy"></i> My Learning Badges</h3>
+                        <div class="badge-container">
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <div class="badge-title">JavaScript Expert</div>
+                                    <div class="badge-date">Earned: May 20, 2023</div>
+                                </div>
+                            </div>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Cloud Champion</div>
+                                    <div class="badge-date">Earned: April 5, 2023</div>
+                                </div>
+                            </div>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Database Master</div>
+                                    <div class="badge-date">Earned: March 12, 2023</div>
+                                </div>
+                            </div>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Fast Learner</div>
+                                    <div class="badge-date">Earned: February 28, 2023</div>
+                                </div>
+                            </div>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Top Performer</div>
+                                    <div class="badge-date">Earned: January 15, 2023</div>
+                                </div>
+                            </div>
+                            <div class="badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <div class="badge-title">Community Helper</div>
+                                    <div class="badge-date">Earned: December 5, 2022</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="supportSubject">Subject</label>
-                        <input type="text" id="supportSubject" class="form-control" required placeholder="Briefly describe your issue">
-                    </div>
-                    <div class="form-group">
-                        <label for="supportMessage">Detailed Description</label>
-                        <textarea id="supportMessage" class="form-control" rows="5" required placeholder="Please provide as much detail as possible..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="supportCourse">Related Course (if any)</label>
-                        <select id="supportCourse" class="form-control">
-                            <option value="">None</option>
-                            <option value="js">Advanced JavaScript Patterns</option>
-                            <option value="python">Python for Data Science</option>
-                            <option value="react">React Native Development</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelSupport">Cancel</button>
-                <button class="btn btn-primary" id="submitSupport">Submit Request</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notifications Container -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- Dark Mode Toggle -->
-    <button class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    <script>
-        // DOM Elements
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const userAvatar = document.getElementById('userAvatar');
-        const userDropdown = document.getElementById('userDropdown');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const sidebarLogout = document.getElementById('sidebarLogout');
-        const enrollModal = document.getElementById('enrollModal');
-        const closeEnrollModal = document.getElementById('closeEnrollModal');
-        const cancelEnroll = document.getElementById('cancelEnroll');
-        const confirmEnroll = document.getElementById('confirmEnroll');
-        const certificateModal = document.getElementById('certificateModal');
-        const closeCertificateModal = document.getElementById('closeCertificateModal');
-        const cancelDownload = document.getElementById('cancelDownload');
-        const confirmDownload = document.getElementById('confirmDownload');
-        const supportModal = document.getElementById('supportModal');
-        const closeSupportModal = document.getElementById('closeSupportModal');
-        const cancelSupport = document.getElementById('cancelSupport');
-        const submitSupport = document.getElementById('submitSupport');
-        const toastContainer = document.getElementById('toastContainer');
-        const darkModeToggle = document.getElementById('darkModeToggle');
-
-        // Toggle Sidebar
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('sidebar-collapsed');
-            mainContent.classList.toggle('main-content-expanded');
-        });
-
-        // Toggle User Dropdown
-        userAvatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            userDropdown.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!userAvatar.contains(e.target) && !userDropdown.contains(e.target)) {
-                userDropdown.classList.remove('show');
-            }
-        });
-
-        // Logout Functionality
-        const logout = () => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            showToast('success', 'Logged out successfully!');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
-        };
-
-        logoutBtn.addEventListener('click', logout);
-        sidebarLogout.addEventListener('click', logout);
-
-        // Modal Functions
-        function openModal(modal) {
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Enroll Modal
-        document.querySelectorAll('.enroll-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const courseTitle = btn.closest('.course-card').querySelector('.course-title').textContent;
-                document.getElementById('courseName').value = courseTitle;
-                openModal(enrollModal);
-            });
-        });
-
-        closeEnrollModal.addEventListener('click', () => closeModal(enrollModal));
-        cancelEnroll.addEventListener('click', () => closeModal(enrollModal));
-
-        confirmEnroll.addEventListener('click', () => {
-            const courseName = document.getElementById('courseName').value;
-            showToast('success', `Successfully enrolled in "${courseName}"!`);
-            closeModal(enrollModal);
-            document.getElementById('enrollForm').reset();
-        });
-
-        // Certificate Modal
-        document.querySelectorAll('.certificate-btn.primary').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const certTitle = btn.closest('.certificate-card').querySelector('.certificate-title').textContent;
-                document.querySelector('#certificateModal h3').textContent = certTitle;
-                document.querySelector('#certificateModal h3').textContent = certTitle;
-                openModal(certificateModal);
-            });
-        });
-
-        closeCertificateModal.addEventListener('click', () => closeModal(certificateModal));
-        cancelDownload.addEventListener('click', () => closeModal(certificateModal));
-
-        confirmDownload.addEventListener('click', () => {
-            const format = document.getElementById('certificateFormat').value;
-            if (format === 'share') {
-                showToast('info', 'Certificate shared to LinkedIn!');
-            } else {
-                showToast('success', `Certificate downloaded as ${format.toUpperCase()}!`);
-            }
-            closeModal(certificateModal);
-        });
-
-        // Support Modal
-        document.querySelector('.sidebar-nav a[href="#support"]').addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(supportModal);
-        });
-
-        closeSupportModal.addEventListener('click', () => closeModal(supportModal));
-        cancelSupport.addEventListener('click', () => closeModal(supportModal));
-
-        submitSupport.addEventListener('click', () => {
-            const subject = document.getElementById('supportSubject').value;
-            const message = document.getElementById('supportMessage').value;
-            
-            if (subject && message) {
-                showToast('success', 'Support request submitted successfully!');
-                closeModal(supportModal);
-                document.getElementById('supportForm').reset();
-            } else {
-                showToast('error', 'Please fill all required fields');
-            }
-        });
-
-        // Join Class Buttons
-        document.querySelectorAll('.join-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const classTitle = this.closest('.upcoming-class').querySelector('.class-title').textContent;
-                showToast('info', `Joining class: ${classTitle}...`);
-                // In a real app, this would connect to the video conferencing system
-            });
-        });
-
-        // Download Resource Buttons
-        document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const resourceTitle = this.closest('.resource-item').querySelector('.resource-title').textContent;
-                showToast('success', `Downloading: ${resourceTitle}`);
-                // In a real app, this would initiate the download
-            });
-        });
-
-        // Run Sandbox Code
-        document.querySelector('.sandbox-btn').addEventListener('click', function() {
-            if (this.textContent === 'Run') {
-                showToast('success', 'Code executed successfully! Check the console.');
-                // In a real app, this would execute the code in the sandbox
-            }
-        });
-
-        // Toast Notification Function
-        function showToast(type, message) {
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
-            
-            const icons = {
-                success: 'check-circle',
-                error: 'exclamation-circle',
-                warning: 'exclamation-triangle',
-                info: 'info-circle'
-            };
-            
-            toast.innerHTML = `
-                <div class="toast-icon">
-                    <i class="fas fa-${icons[type]}"></i>
                 </div>
-                <div class="toast-body">
-                    <h5>${type.charAt(0).toUpperCase() + type.slice(1)}</h5>
-                    <p>${message}</p>
-                </div>
-                <button class="toast-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            
-            toastContainer.appendChild(toast);
-            
-            // Auto remove after 3 seconds
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
-            
-            // Manual close
-            toast.querySelector('.toast-close').addEventListener('click', () => {
-                toast.remove();
-            });
-        }
 
-        // Initialize Charts
-        function initCharts() {
-            // Course Progress Chart
-            const progressCtx = document.createElement('canvas');
-            progressCtx.id = 'courseProgressChart';
-            document.querySelector('.learning-card:nth-child(1)').appendChild(progressCtx);
-            
-            const progressChart = new Chart(progressCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Completed', 'In Progress', 'Not Started'],
-                    datasets: [{
-                        data: [3, 5, 2],
-                        backgroundColor: [
-                            'rgba(28, 200, 138, 0.8)',
-                            'rgba(246, 194, 62, 0.8)',
-                            'rgba(231, 74, 59, 0.8)'
-                        ],
-                        borderColor: [
-                            'rgba(28, 200, 138, 1)',
-                            'rgba(246, 194, 62, 1)',
-                            'rgba(231, 74, 59, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
-
-            // Time Spent Chart
-            const timeCtx = document.createElement('canvas');
-            timeCtx.id = 'timeSpentChart';
-            document.querySelector('.learning-card:nth-child(1)').appendChild(timeCtx);
-            
-            const timeChart = new Chart(timeCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{
-                        label: 'Hours Spent',
-                        data: [12, 19, 15, 21, 18, 24],
-                        backgroundColor: 'rgba(78, 115, 223, 0.8)',
-                        borderColor: 'rgba(78, 115, 223, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
-        }
-
-        // Dark Mode Toggle
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const icon = darkModeToggle.querySelector('i');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.body.classList.add('dark-mode');
-            const icon = darkModeToggle.querySelector('i');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-
-        // Leaderboard Tabs
-        document.querySelectorAll('.leaderboard-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.leaderboard-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                // In a real app, this would filter the leaderboard
-            });
-        });
-
-        // Calendar Day Click
-        document.querySelectorAll('.calendar-day').forEach(day => {
-            if (!day.classList.contains('empty')) {
-                day.addEventListener('click', function() {
-                    document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
-                    this.classList.add('selected');
-                    // In a real app, this would show events for that day
-                });
-            }
-        });
-
-        // Initialize the dashboard when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load user data
-            const user = {
-                name: 'Jay Prasad',
-                email: 'jayprasad@example.com',
-                avatar: 'https://via.placeholder.com/40'
-            };
-            
-            document.getElementById('userName').textContent = user.name;
-            document.querySelector('.user-avatar img').src = user.avatar;
-            document.querySelector('.profile-avatar img').src = 'https://via.placeholder.com/100';
-            
-            // Initialize charts
-            initCharts();
-            
-            // Show welcome toast
-            showToast('info', 'Welcome back, Jay! Ready to learn something new today?');
-            
-            // Simulate course progress updates
-            setInterval(() => {
-                const progressBars = document.querySelectorAll('.progress-bar');
-                progressBars.forEach(bar => {
-                    const currentWidth = parseInt(bar.style.width);
-                    if (currentWidth < 100) {
-                        const newWidth = Math.min(100, currentWidth + Math.floor(Math.random() * 2));
-                        bar.style.width = `${newWidth}%`;
-                        bar.closest('.course-progress-item').querySelector('.course-progress-percent').textContent = `${newWidth}%`;
-                    }
-                });
-            }, 5000);
-        });
-    </script>
-</body>
-</html>
+                <!-- Learning Resources Tab -->
+                <div class="tab-content" id="resources-tab">
+                    <h1 class="page-title">Learning Resources</h1>
+                    
+                    <div class="learning-card">
+                        <h3><i class="fas fa-book-open"></i> Recommended Resources</h3>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="resource-info">
+                                <div class="resource-title">JavaScript Best Practices</div>
+                                <div class="resource-type">PDF Guide</div>
+                            </div>
+                            <button class="download-btn">Download</button>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="resource-info">
+                                <div class="resource-title">React Performance Optimization</div>
+                                <div class="resource-type">Video Tutorial</div>
+                            </div>
+                            <button class="download-btn">Watch</button>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-code"></i>
+                            </div>
+                            <div class="resource-info">
+                                <div class="resource-title">Python Cheat Sheet</div>
+                                <div class="resource-type">Code Examples</div>
+                            </div>
+                            <button class="download-btn">Download</button>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <div class="resource-info">
+                                <div class="resource-title">Web Development Roadmap 2023</div>
+                                <div class="resource-type">External Link</div>
+                            </div>
+                            <button class="download-btn">Open</button>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="resource-info">
+                                <div class="resource-title">Clean Code Handbook</div>
+                                <div class="resource-type">E-book</div>
+                            </div>
+                            <button class="download-btn">Download</button>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-podcast"></i>
+                            </div>
+                            <div class="resource-info">
+                                <div class="resource-title">Tech Talk Podcast Series</div>
+                                <div class="resource-type">Audio</div>
+                            </div>
+                            <button class="download-btn">Listen</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Resource Categories -->
+                    <div class="learning-card">
+                        <h3><i class="fas fa-folder"></i> Resource Categories</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+                            <div class="resource-category">
+                                <div style="background-color: #f8f9fc; padding: 1.5rem; border-radius: 0.35rem; text-align: center;">
+                                    <i class="fab fa-js" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                                    <h4 style="font-weight: 600; margin-bottom: 0.5rem;">JavaScript</h4>
+                                    <p style="font-size: 0.9rem; color: var(--secondary-color);">12 Resources</p>
+                                </div>
+                            </div>
+                            <div class="resource-category">
+                                <div style="background-color: #f8f9fc; padding: 1.5rem; border-radius: 0.35rem; text-align: center;">
+                                    <i class="fab fa-python" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                                    <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Python</h4>
+                                    <p style="font-size: 0.9rem; color: var(--secondary-color);">8 Resources</p>
+                                </div>
+                            </div>
+                            <div class="resource-category">
+                                <div style="background-color: #f8f9fc; padding: 1.5rem; border-radius: 0.35rem; text-align: center;">
+                                    <i class="fas fa-database" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                                    <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Databases</h4>
+                                    <p style="font-size: 0.9rem; color: var(--secondary-color);">6 Resources</p>
+                                </div>
+                            </div>
+                            <div class="resource-category">
+                                <div style="background-color: #f8f9fc; padding: 1.5rem; border-radius: 0.35rem; text-align: center;">
+                                    <i class="fab fa-react" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                                    <h4 style="font-weight: 600; margin-bottom: 0.5rem;">React</h4>
+                                    <p style="font-size: 0.9rem; color: var(--secondary-color);">9 Resources</p>
+                                </div>
+                            </div>
+                            <div class="resource-category">
+                                <div style="background-color: #f8f9fc; padding: 1.5rem; border-radius: 0.35rem; text-align: center;">
+                                    <i class="fas fa-cloud" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                                    <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Cloud</h4>
+                                    <p style="font-size: 0.9rem; color: var(--secondary-color);">5 Resources</p>
+                                </div>
+                            </div>
+                            <div class="resource-category">
+                                <div style="background-color: #f8f9fc; padding: 1.5rem; border-radius: 0.35rem; text-align: center;">
+                                    <i class="fas fa-code-branch" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                                   
