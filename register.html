@@ -12,6 +12,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     
+    <!-- Password Strength Meter -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.css">
+    
+    <!-- Country Select CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    
     <style>
         /* ===== Base Styles ===== */
         :root {
@@ -213,6 +219,26 @@
         .btn-accent:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+        }
+
+        .btn-google {
+            background-color: #4285F4;
+            color: white;
+        }
+
+        .btn-facebook {
+            background-color: #4267B2;
+            color: white;
+        }
+
+        .btn-github {
+            background-color: #333;
+            color: white;
+        }
+
+        .btn-linkedin {
+            background-color: #0077B5;
+            color: white;
         }
 
         .text-gradient {
@@ -535,6 +561,154 @@
             text-decoration: underline;
         }
 
+        /* ===== Social Login Buttons ===== */
+        .social-login {
+            grid-column: span 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-login-title {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .social-login-title::before,
+        .social-login-title::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--border);
+            margin: 0 0.5rem;
+        }
+
+        .social-login-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            gap: 0.5rem;
+        }
+
+        .social-btn i {
+            font-size: 1.1rem;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== Password Strength Meter ===== */
+        .password-strength {
+            margin-top: 0.5rem;
+            height: 4px;
+            background-color: var(--bg-light);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .strength-0 { background-color: var(--error); width: 20%; }
+        .strength-1 { background-color: #ff5252; width: 40%; }
+        .strength-2 { background-color: var(--warning); width: 60%; }
+        .strength-3 { background-color: #64dd17; width: 80%; }
+        .strength-4 { background-color: var(--success); width: 100%; }
+
+        .password-hints {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .password-hint {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .password-hint i {
+            margin-right: 0.5rem;
+            font-size: 0.7rem;
+        }
+
+        .password-hint.valid {
+            color: var(--success);
+        }
+
+        .password-hint.valid i {
+            color: var(--success);
+        }
+
+        /* ===== Profile Picture Upload ===== */
+        .profile-picture-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            border: 2px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .profile-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-preview .default-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: var(--text-light);
+            font-size: 2.5rem;
+        }
+
+        .upload-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .upload-btn input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
         /* ===== Verification Modal ===== */
         .verification-modal {
             position: fixed;
@@ -704,6 +878,181 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* ===== Two-Factor Authentication ===== */
+        .two-factor-auth {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .two-factor-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .two-factor-header i {
+            margin-right: 0.75rem;
+            color: var(--primary);
+        }
+
+        .two-factor-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .two-factor-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: var(--bg);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .two-factor-option:hover {
+            border-color: var(--primary);
+        }
+
+        .two-factor-option input {
+            margin-right: 0.75rem;
+        }
+
+        .two-factor-option-label {
+            flex: 1;
+        }
+
+        .two-factor-option-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .two-factor-option-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* ===== Referral Section ===== */
+        .referral-section {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .referral-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .referral-header i {
+            margin-right: 0.75rem;
+            color: var(--accent);
+        }
+
+        .referral-code {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .referral-code-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem 0 0 0.5rem;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-mono);
+        }
+
+        .referral-code-btn {
+            padding: 0 1rem;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0 0.5rem 0.5rem 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .referral-code-btn:hover {
+            background-color: #e81c65;
+        }
+
+        /* ===== Additional Security ===== */
+        .security-questions {
+            margin-top: 1.5rem;
+        }
+
+        .security-question {
+            margin-bottom: 1rem;
+        }
+
+        /* ===== Progress Steps ===== */
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .progress-step.active .step-number {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .progress-step.completed .step-number {
+            background-color: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
         /* ===== Responsive Styles ===== */
         @media (max-width: 992px) {
             .register-form {
@@ -716,6 +1065,10 @@
             
             .form-footer {
                 grid-column: span 1;
+            }
+
+            .social-login-buttons {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -733,7 +1086,6 @@
                 height: 100vh;
                 background-color: var(--bg-dark);
                 flex-direction: column;
-          flex-direction: column;
                 padding: 6rem 2rem;
                 transition: var(--transition);
                 z-index: 1000;
@@ -756,6 +1108,10 @@
                 background-color: transparent;
                 padding: 0.5rem 0 0 1rem;
             }
+
+            .social-login-buttons {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -776,6 +1132,19 @@
                 width: 40px;
                 height: 50px;
                 font-size: 1.25rem;
+            }
+
+            .progress-steps {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .progress-steps::before {
+                display: none;
+            }
+
+            .progress-step {
+                flex: 1 0 calc(50% - 1rem);
             }
         }
 
@@ -884,18 +1253,80 @@
             </button>
         </div>
     </header>
-      <!-- Register Section -->
+
+    <!-- Register Section -->
     <section class="register-container">
         <div class="container">
             <div class="register-card">
+                <!-- Progress Steps -->
+                <div class="progress-steps">
+                    <div class="progress-step active">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Account Info</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Personal Details</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Verification</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Complete</div>
+                    </div>
+                </div>
+
                 <div class="register-header">
                     <h1>Create Your Account</h1>
                     <p>Join our IT community and access exclusive resources, tools, and services</p>
+                    <div class="mt-3">
+                        <a href="https://jayprasad.com.np/login" class="btn btn-secondary">
+                            <i class="fas fa-sign-in-alt"></i> Sign In Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Social Login Options -->
+                <div class="social-login">
+                    <div class="social-login-title">Or sign up with</div>
+                    <div class="social-login-buttons">
+                        <button type="button" class="social-btn btn-google">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button type="button" class="social-btn btn-facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button type="button" class="social-btn btn-github">
+                            <i class="fab fa-github"></i> GitHub
+                        </button>
+                        <button type="button" class="social-btn btn-linkedin">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </button>
+                    </div>
                 </div>
 
                 <form id="registerForm" class="register-form">
                     <div id="errorMessage" class="error-message"></div>
 
+                    <!-- Profile Picture Upload -->
+                    <div class="form-group full-width">
+                        <label class="form-label">Profile Picture</label>
+                        <div class="profile-picture-upload">
+                            <div class="profile-preview">
+                                <div class="default-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary upload-btn">
+                                <i class="fas fa-upload"></i> Upload Photo
+                                <input type="file" id="profilePhoto" accept="image/*">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Basic Information -->
                     <div class="form-group">
                         <label for="firstName" class="form-label">First Name</label>
                         <input type="text" id="firstName" class="form-control" placeholder="Enter your first name" required>
@@ -915,12 +1346,34 @@
                     <div class="form-group">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" id="password" class="form-control" placeholder="Create a password" required>
-                        <small class="form-text">Minimum 8 characters with numbers and symbols</small>
+                        <div class="password-strength">
+                            <div class="password-strength-bar" id="passwordStrength"></div>
+                        </div>
+                        <div class="password-hints">
+                            <div class="password-hint" id="lengthHint">
+                                <i class="fas fa-circle"></i> At least 8 characters
+                            </div>
+                            <div class="password-hint" id="numberHint">
+                                <i class="fas fa-circle"></i> Contains a number
+                            </div>
+                            <div class="password-hint" id="specialHint">
+                                <i class="fas fa-circle"></i> Contains a special character
+                            </div>
+                            <div class="password-hint" id="caseHint">
+                                <i class="fas fa-circle"></i> Upper and lower case
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
                         <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    </div>
+
+                    <!-- Personal Details -->
+                    <div class="form-group full-width">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
                     </div>
 
                     <div class="form-group full-width">
@@ -940,6 +1393,22 @@
                     </div>
 
                     <div class="form-group full-width">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="Enter your street address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" id="city" class="form-control" placeholder="Enter your city">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zip" class="form-label">ZIP/Postal Code</label>
+                        <input type="text" id="zip" class="form-control" placeholder="Enter your ZIP code">
+                    </div>
+
+                    <!-- Professional Information -->
+                    <div class="form-group full-width">
                         <label for="profession" class="form-label">Profession</label>
                         <select id="profession" class="form-control form-select" required>
                             <option value="" disabled selected>Select your profession</option>
@@ -954,6 +1423,99 @@
                     </div>
 
                     <div class="form-group full-width">
+                        <label for="company" class="form-label">Company/Organization</label>
+                        <input type="text" id="company" class="form-control" placeholder="Enter your company name (optional)">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="skills" class="form-label">Skills (Select multiple)</label>
+                        <select id="skills" class="form-control form-select" multiple>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Mobile Development">Mobile Development</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="Cloud Computing">Cloud Computing</option>
+                        </select>
+                    </div>
+
+                    <!-- Two-Factor Authentication -->
+                    <div class="two-factor-auth">
+                        <div class="two-factor-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Two-Factor Authentication</h4>
+                        </div>
+                        <p>Add an extra layer of security to your account</p>
+                        <div class="two-factor-options">
+                            <label class="two-factor-option">
+                                <input type="radio" name="twoFactor" value="sms" checked>
+                                <div class="two-factor-option-label">
+                                    <div class="two-factor-option-title">SMS Authentication</div>
+                                    <div class="two-factor-option-desc">Receive a code via text message</div>
+                                </div>
+                            </label>
+                            <label class="two-factor-option">
+                                <input type="radio" name="twoFactor" value="authenticator">
+                                <div class="two-factor-option-label">
+                                    <div class="two-factor-option-title">Authenticator App</div>
+                                    <div class="two-factor-option-desc">Use an app like Google Authenticator</div>
+                                </div>
+                            </label>
+                            <label class="two-factor-option">
+                                <input type="radio" name="twoFactor" value="email">
+                                <div class="two-factor-option-label">
+                                    <div class="two-factor-option-title">Email Authentication</div>
+                                    <div class="two-factor-option-desc">Receive a code via email</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Referral Program -->
+                    <div class="referral-section">
+                        <div class="referral-header">
+                            <i class="fas fa-gift"></i>
+                            <h4>Referral Program</h4>
+                        </div>
+                        <p>Have a referral code? Enter it below to get special benefits</p>
+                        <div class="referral-code">
+                            <input type="text" id="referralCode" class="referral-code-input" placeholder="Enter referral code (optional)">
+                            <button type="button" class="referral-code-btn">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Security Questions -->
+                    <div class="security-questions">
+                        <div class="form-group full-width">
+                            <label for="securityQuestion1" class="form-label">Security Question 1</label>
+                            <select id="securityQuestion1" class="form-control form-select">
+                                <option value="" disabled selected>Select a security question</option>
+                                <option value="What was your first pet's name?">What was your first pet's name?</option>
+                                <option value="What was the name of your first school?">What was the name of your first school?</option>
+                                <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                                <option value="What city were you born in?">What city were you born in?</option>
+                            </select>
+                            <input type="text" id="securityAnswer1" class="form-control mt-2" placeholder="Your answer">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="securityQuestion2" class="form-label">Security Question 2</label>
+                            <select id="securityQuestion2" class="form-control form-select">
+                                <option value="" disabled selected>Select a security question</option>
+                                <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+                                <option value="What is your favorite movie?">What is your favorite movie?</option>
+                                <option value="What street did you grow up on?">What street did you grow up on?</option>
+                                <option value="What was your first car?">What was your first car?</option>
+                            </select>
+                            <input type="text" id="securityAnswer2" class="form-control mt-2" placeholder="Your answer">
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form-group full-width">
                         <div class="form-check">
                             <input type="checkbox" id="terms" class="form-check-input" required>
                             <label for="terms" class="form-check-label">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
@@ -962,7 +1524,7 @@
 
                     <div class="form-group full-width">
                         <div class="form-check">
-                            <input type="checkbox" id="newsletter" class="form-check-input">
+                            <input type="checkbox" id="newsletter" class="form-check-input" checked>
                             <label for="newsletter" class="form-check-label">Subscribe to our newsletter for updates and offers</label>
                         </div>
                     </div>
@@ -971,7 +1533,7 @@
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-user-plus"></i> Create Account
                         </button>
-                        <p class="mt-3">Already have an account? <a href="login.html">Sign in here</a></p>
+                        <p class="mt-3">Already have an account? <a href="https://jayprasad.com.np/login">Sign in here</a></p>
                     </div>
 
                     <div class="loading-spinner" id="formSpinner">
@@ -989,7 +1551,8 @@
                 </div>
             </div>
         </div>
-  </section>
+    </section>
+
     <!-- Verification Modal -->
     <div class="verification-modal" id="verificationModal">
         <div class="verification-content">
@@ -1024,6 +1587,15 @@
         </div>
     </div>
 
+    <!-- Footer Section -->
+    <footer style="text-align:center; padding:20px; font-size:14px; color:#777;">
+        &copy; Jay Prasad Majhi. All rights reserved. <a href="https://jayprasad.com.np" style="color:var(--primary);">jayprasad.com.np</a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    
     <script>
         // Theme Toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -1054,6 +1626,70 @@
                 });
             });
 
+            // Initialize phone input
+            const phoneInput = document.getElementById('phone');
+            const iti = window.intlTelInput(phoneInput, {
+                initialCountry: 'np',
+                preferredCountries: ['np', 'in', 'us', 'gb'],
+                separateDialCode: true,
+                utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js'
+            });
+
+            // Profile Picture Upload
+            const profilePhoto = document.getElementById('profilePhoto');
+            const profilePreview = document.querySelector('.profile-preview');
+            
+            profilePhoto.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        profilePreview.innerHTML = `<img src="${event.target.result}" alt="Profile Preview">`;
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Password Strength Check
+            const passwordInput = document.getElementById('password');
+            const passwordStrength = document.getElementById('passwordStrength');
+            const lengthHint = document.getElementById('lengthHint');
+            const numberHint = document.getElementById('numberHint');
+            const specialHint = document.getElementById('specialHint');
+            const caseHint = document.getElementById('caseHint');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const result = zxcvbn(password);
+                
+                // Update strength meter
+                passwordStrength.className = 'password-strength-bar';
+                passwordStrength.classList.add(`strength-${result.score}`);
+                
+                // Update hints
+                const hasLength = password.length >= 8;
+                const hasNumber = /\d/.test(password);
+                const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+                const hasCase = /[a-z]/.test(password) && /[A-Z]/.test(password);
+                
+                updateHint(lengthHint, hasLength);
+                updateHint(numberHint, hasNumber);
+                updateHint(specialHint, hasSpecial);
+                updateHint(caseHint, hasCase);
+            });
+            
+            function updateHint(element, isValid) {
+                if (isValid) {
+                    element.classList.add('valid');
+                    element.innerHTML = `<i class="fas fa-check-circle"></i> ${element.textContent.replace('•', '')}`;
+                } else {
+                    element.classList.remove('valid');
+                    element.innerHTML = `<i class="fas fa-circle"></i> ${element.textContent.replace('•', '')}`;
+                }
+            }
+
             // Form Validation
             const registerForm = document.getElementById('registerForm');
             const errorMessage = document.getElementById('errorMessage');
@@ -1066,67 +1702,46 @@
             const verificationSpinner = document.getElementById('verificationSpinner');
             const successMessage = document.getElementById('successMessage');
 
-            // Password strength check
-            const passwordInput = document.getElementById('password');
-            passwordInput.addEventListener('input', function() {
-                const password = this.value;
-                const strengthText = this.nextElementSibling;
-                
-                if (password.length === 0) {
-                    strengthText.textContent = 'Minimum 8 characters with numbers and symbols';
-                    return;
+            // Password match validation
+            const confirmPassword = document.getElementById('confirmPassword');
+            confirmPassword.addEventListener('input', function() {
+                if (this.value !== passwordInput.value) {
+                    this.setCustomValidity("Passwords don't match");
+                } else {
+                    this.setCustomValidity('');
                 }
-                
-                let strength = 0;
-                
-                // Length check
-                if (password.length >= 8) strength++;
-                if (password.length >= 12) strength++;
-                
-                // Contains numbers
-                if (/\d/.test(password)) strength++;
-                
-                // Contains special characters
-                if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
-                
-                // Contains both uppercase and lowercase
-                if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-                
-                let message = '';
-switch (strength) {
-                    case 0:
-                    case 1:
-                        message = 'Very Weak';
-                        strengthText.style.color = 'red';
-                        break;
-                    case 2:
-                    case 3:
-                        message = 'Weak';
-                        strengthText.style.color = 'orange';
-                        break;
-                    case 4:
-                        message = 'Moderate';
-                        strengthText.style.color = 'goldenrod';
-                        break;
-                    case 5:
-                        message = 'Strong';
-                        strengthText.style.color = 'green';
-                        break;
-                }
+            });
 
-                strengthText.textContent = message;
+            // Verification Code Inputs
+            const codeInputs = document.querySelectorAll('.verification-code input');
+            codeInputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1) {
+                        if (index < codeInputs.length - 1) {
+                            codeInputs[index + 1].focus();
+                        } else {
+                            this.blur();
+                        }
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                        codeInputs[index - 1].focus();
+                    }
+                });
             });
 
             // Close Verification Modal
             closeVerification.addEventListener('click', () => {
-                verificationModal.style.display = 'none';
+                verificationModal.classList.remove('active');
             });
 
             // Register Form Submission
             registerForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 errorMessage.textContent = '';
-                formSpinner.style.display = 'inline-block';
+                formSpinner.style.display = 'flex';
 
                 // Example client-side validation
                 const email = registerForm.email.value;
@@ -1141,29 +1756,78 @@ switch (strength) {
                 // Simulate API delay
                 setTimeout(() => {
                     formSpinner.style.display = 'none';
-                    verificationModal.style.display = 'block';
+                    verificationModal.classList.add('active');
                     verificationEmail.textContent = email;
                 }, 1500);
             });
 
             // Simulate Code Verification
             verifyCode.addEventListener('click', () => {
-                verificationSpinner.style.display = 'inline-block';
+                verificationSpinner.style.display = 'flex';
                 setTimeout(() => {
                     verificationSpinner.style.display = 'none';
-                    verificationModal.style.display = 'none';
+                    verificationModal.classList.remove('active');
+                    registerForm.style.display = 'none';
                     successMessage.style.display = 'block';
+                    
+                    // Update progress steps
+                    document.querySelectorAll('.progress-step').forEach(step => {
+                        step.classList.remove('active');
+                        step.classList.add('completed');
+                    });
                 }, 1500);
             });
 
             // Resend Code
-            resendCode.addEventListener('click', () => {
-                alert('Verification code resent!');
+            resendCode.addEventListener('click', (e) => {
+                e.preventDefault();
+                verificationSpinner.style.display = 'flex';
+                setTimeout(() => {
+                    verificationSpinner.style.display = 'none';
+                    alert('Verification code has been resent to your email!');
+                }, 800);
             });
-        });
-</script>
 
-<!-- Footer Section -->
-<footer style="text-align:center; padding:20px; font-size:14px; color:#777;">
-    &copy; Jay Prasad Majhi. All rights reserved.
-</footer>
+            // Referral Code Apply
+            const referralBtn = document.querySelector('.referral-code-btn');
+            referralBtn.addEventListener('click', () => {
+                const referralCode = document.getElementById('referralCode').value;
+                if (referralCode) {
+                    referralBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        alert('Referral code applied successfully!');
+                    }, 500);
+                }
+            });
+
+            // Multi-select skills
+            const skillsSelect = document.getElementById('skills');
+            skillsSelect.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                
+                const option = e.target;
+                if (option.tagName === 'OPTION') {
+                    option.selected = !option.selected;
+                    
+                    // Trigger change event
+                    const event = new Event('change');
+                    skillsSelect.dispatchEvent(event);
+                }
+            });
+
+            // Scroll to top on load
+            window.scrollTo(0, 0);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
