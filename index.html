@@ -3,113 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Introduction</title>
+    <title>Cosmic Universe | Coming Soon</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            color: white;
+            background-color: #000;
             font-family: 'Arial', sans-serif;
         }
         
-        #video-background {
+        #universe-video {
             position: fixed;
-            right: 0;
-            bottom: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             min-width: 100%;
             min-height: 100%;
             width: auto;
             height: auto;
             z-index: -1;
-            filter: brightness(0.7);
+            object-fit: cover;
         }
         
-        .content {
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+        }
+        
+        .coming-soon {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
+            color: white;
             width: 80%;
             max-width: 800px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
         
         h1 {
-            font-size: 2.5em;
+            font-size: 3.5em;
             margin-bottom: 20px;
-            color: #4fc3f7;
-            text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: pulse 2s infinite;
         }
         
         p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .highlight {
-            color: #4fc3f7;
-            font-weight: bold;
-        }
-        
-        .social-links {
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            color: white;
-            margin: 0 10px;
             font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+        
+        .contact {
+            font-size: 1.2em;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        a {
+            color: #4fc3f7;
+            text-decoration: none;
             transition: color 0.3s;
         }
         
-        .social-links a:hover {
-            color: #4fc3f7;
+        a:hover {
+            color: #ffffff;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); }
         }
         
         @media (max-width: 768px) {
-            .content {
-                width: 90%;
-                padding: 20px;
-            }
-            
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
             
             p {
-                font-size: 1em;
+                font-size: 1.2em;
             }
         }
     </style>
 </head>
 <body>
-    <video id="video-background" autoplay loop muted>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-galaxy-background-1615-large.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+    <div class="overlay"></div>
+    <video id="universe-video" autoplay loop muted playsinline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-space-1610-large.mp4" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Space background">
     </video>
-    
-    <div class="content">
-        <h1>Hello, Universe!</h1>
-        <p>My name is <span class="highlight">[Your Name]</span>, a passionate <span class="highlight">[Your Profession]</span> exploring the cosmos of technology and creativity.</p>
-        <p>I specialize in <span class="highlight">[Your Skills/Expertise]</span>, constantly pushing boundaries to turn ideas into reality.</p>
-        <p>When I'm not coding or designing, you can find me <span class="highlight">[Your Hobbies/Interests]</span> or contemplating the mysteries of the universe.</p>
-        
-        <div class="social-links">
-            <a href="[Your LinkedIn]" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="[Your GitHub]" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="[Your Twitter]" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="mailto:[Your Email]"><i class="fas fa-envelope"></i></a>
+
+    <div class="coming-soon">
+        <h1>WE ARE COMING SOON</h1>
+        <p>Our cosmic adventure is just beginning. Stay tuned for something amazing!</p>
+        <div class="contact">
+            Contact us at: <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a>
         </div>
     </div>
-    
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('universe-video');
+            video.play().catch(error => {
+                video.controls = true;
+                const playButton = document.createElement('div');
+                playButton.innerHTML = 'Click to Play Background';
+                playButton.style.position = 'fixed';
+                playButton.style.bottom = '20px';
+                playButton.style.left = '50%';
+                playButton.style.transform = 'translateX(-50%)';
+                playButton.style.color = 'white';
+                playButton.style.cursor = 'pointer';
+                playButton.style.zIndex = '100';
+                playButton.addEventListener('click', function() {
+                    video.play();
+                    playButton.remove();
+                    video.controls = false;
+                });
+                document.body.appendChild(playButton);
+            });
+        });
+    </script>
 </body>
 </html>
