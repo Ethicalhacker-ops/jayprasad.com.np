@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat Assistant</title>
+    <title>AI Conversation Assistant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -176,7 +176,7 @@
 </head>
 <body>
     <header>
-        <h1><i class="fas fa-robot"></i> AI Assistant</h1>
+        <h1><i class="fas fa-robot"></i> AI Conversation Assistant</h1>
     </header>
 
     <div class="chat-container" id="chat-container">
@@ -184,37 +184,42 @@
             <div class="message-header">
                 <i class="fas fa-robot"></i> AI Assistant
             </div>
-            <p>Hello! I'm your AI assistant. How can I help you today?</p>
+            <p>Hello! I'm your AI conversation partner. I can discuss any topic with you, answer questions, and have meaningful conversations. What would you like to talk about?</p>
         </div>
     </div>
 
     <div class="input-area">
-        <input type="text" id="user-input" placeholder="Type your message..." autofocus>
+        <input type="text" id="user-input" placeholder="Type your message here..." autofocus>
         <button id="send-button"><i class="fas fa-paper-plane"></i></button>
     </div>
 
     <script>
-        curl https://api.openai.com/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer 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" \
-  -d '{
-    "model": "gpt-4o-mini",
-    "store": true,
-    "messages": [
-      {"role": "user", "content": "write a haiku about ai"}
-    ]
-  }'  
+        // ================ IMPORTANT ================
+        // Replace this with your actual OpenAI API key
+        // Get one at: https://platform.openai.com/api-keys
+        const OPENAI_API_KEY = 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
+//
+
         const chatContainer = document.getElementById('chat-container');
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
         
-        // Conversation history
+        // Conversation history to maintain context
         let conversationHistory = [
-            { role: "system", content: "You are a helpful assistant." },
-            { role: "assistant", content: "Hello! I'm your AI assistant. How can I help you today?" }
+            { 
+                role: "system", 
+                content: "You are a helpful, knowledgeable, and engaging AI assistant. " +
+                        "You provide detailed, thoughtful responses and maintain natural conversations. " +
+                        "You can discuss any topic from science to philosophy to everyday life."
+            },
+            { 
+                role: "assistant", 
+                content: "Hello! I'm your AI conversation partner. I can discuss any topic with you, " +
+                        "answer questions, and have meaningful conversations. What would you like to talk about?"
+            }
         ];
         
-        // Add message to chat
+        // Add a message to the chat UI
         function addMessage(role, content) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${role}-message`;
@@ -232,11 +237,11 @@
             messageDiv.appendChild(contentP);
             chatContainer.appendChild(messageDiv);
             
-            // Scroll to bottom
+            // Scroll to the bottom of the chat
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
         
-        // Show typing indicator
+        // Show "AI is typing" indicator
         function showTypingIndicator() {
             const typingDiv = document.createElement('div');
             typingDiv.className = 'message ai-message typing-indicator';
@@ -248,7 +253,7 @@
             
             const typingContent = document.createElement('div');
             typingContent.className = 'typing-indicator';
-            typingContent.innerHTML = 'Typing <div class="typing-dots"><span></span><span></span><span></span></div>';
+            typingContent.innerHTML = 'Thinking <div class="typing-dots"><span></span><span></span><span></span></div>';
             
             typingDiv.appendChild(headerDiv);
             typingDiv.appendChild(typingContent);
@@ -257,7 +262,7 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
         
-        // Remove typing indicator
+        // Remove the typing indicator
         function removeTypingIndicator() {
             const typingIndicator = document.getElementById('typing-indicator');
             if (typingIndicator) {
@@ -267,9 +272,10 @@
         
         // Get AI response from OpenAI API
         async function getAIResponse(prompt) {
-            // Add user message to history
+            // Add user message to conversation history
             conversationHistory.push({ role: "user", content: prompt });
             
+            // Show typing indicator while waiting for response
             showTypingIndicator();
             
             try {
@@ -280,9 +286,10 @@
                         'Authorization': `Bearer ${OPENAI_API_KEY}`
                     },
                     body: JSON.stringify({
-                        model: "gpt-3.5-turbo",
+                        model: "gpt-3.5-turbo",  // or "gpt-4" if you have access
                         messages: conversationHistory,
-                        temperature: 0.7
+                        temperature: 0.7,  // Controls randomness (0.0 to 1.0)
+                        max_tokens: 500    // Limit response length
                     })
                 });
                 
@@ -291,9 +298,10 @@
                 if (data.choices && data.choices[0].message) {
                     const aiMessage = data.choices[0].message.content;
                     
-                    // Add AI response to history
+                    // Add AI response to conversation history
                     conversationHistory.push({ role: "assistant", content: aiMessage });
                     
+                    // Remove typing indicator and show response
                     removeTypingIndicator();
                     addMessage('ai', aiMessage);
                 } else {
@@ -302,22 +310,24 @@
             } catch (error) {
                 console.error("Error:", error);
                 removeTypingIndicator();
-                addMessage('ai', "Sorry, I encountered an error. Please try again.");
+                addMessage('ai', "I'm having trouble responding right now. Could you try again?");
             }
         }
         
-        // Handle send message
+        // Handle sending a message
         function sendMessage() {
             const message = userInput.value.trim();
             if (message === '') return;
             
+            // Add user message to UI
             addMessage('user', message);
             userInput.value = '';
             
+            // Get AI response
             getAIResponse(message);
         }
         
-        // Event listeners
+        // Event listeners for sending messages
         sendButton.addEventListener('click', sendMessage);
         userInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
