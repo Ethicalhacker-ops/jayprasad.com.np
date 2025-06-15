@@ -3,337 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Conversation Assistant</title>
+    <title>Website Under Maintenance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #10a37f;
-            --primary-dark: #0d8a6a;
-            --text: #333;
-            --text-light: #666;
-            --bg: #f7f7f8;
-            --card-bg: #ffffff;
-            --user-bubble: #e7f8f3;
-            --ai-bubble: #f2f2f2;
+            --primary: #6C63FF;
+            --secondary: #4D44DB;
+            --accent: #FF6584;
+            --light: #F8F9FF;
+            --dark: #2A2D3B;
+            --success: #4CC9F0;
         }
-
+        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
         }
-
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .chat-container {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 800px;
+        
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            margin: 0 auto;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 0.8rem 1rem;
-            border-radius: 1rem;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .user-message {
-            background-color: var(--user-bubble);
-            align-self: flex-end;
-            border-bottom-right-radius: 0.2rem;
-        }
-
-        .ai-message {
-            background-color: var(--card-bg);
-            border: 1px solid var(--ai-bubble);
-            align-self: flex-start;
-            border-bottom-left-radius: 0.2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .message-header {
-            font-weight: 600;
-            margin-bottom: 0.3rem;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 0.5rem;
+            z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
         }
-
-        .typing-indicator {
-            display: inline-flex;
-            gap: 0.3rem;
-            align-items: center;
-            color: var(--text-light);
-            font-style: italic;
+        
+        .loading-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            position: relative;
         }
-
-        .typing-dots {
-            display: flex;
-            gap: 0.2rem;
+        
+        .logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
         }
-
-        .typing-dots span {
-            width: 6px;
-            height: 6px;
-            background-color: var(--text-light);
+        
+        .logo-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .logo-circle:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            animation-direction: reverse;
+            animation-duration: 8s;
+        }
+        
+        .logo-circle:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            animation-duration: 6s;
+        }
+        
+        .logo-main {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            position: relative;
             display: inline-block;
         }
-
-        .typing-dots span:nth-child(1) {
-            animation: bounce 1s infinite;
+        
+        .loading-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: textUnderline 2s infinite;
         }
-        .typing-dots span:nth-child(2) {
-            animation: bounce 1s infinite 0.2s;
+        
+        @keyframes textUnderline {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
         }
-        .typing-dots span:nth-child(3) {
-            animation: bounce 1s infinite 0.4s;
+        
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .input-area {
-            padding: 1rem;
-            background-color: var(--card-bg);
-            border-top: 1px solid #e5e5e5;
-            display: flex;
-            gap: 0.5rem;
-            position: sticky;
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), #FF9A8B);
+            border-radius: 10px;
+            transition: width 0.4s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
             bottom: 0;
+            background: linear-gradient(90deg, 
+                          transparent, 
+                          rgba(255, 255, 255, 0.6), 
+                          transparent);
+            animation: shimmer 1.5s infinite;
         }
-
-        #user-input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 1.5rem;
-            font-size: 1rem;
-            outline: none;
-            transition: border 0.2s;
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
-
-        #user-input:focus {
-            border-color: var(--primary);
-        }
-
-        #send-button {
-            background-color: var(--primary);
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
             color: white;
-            border: none;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.2s;
+            font-size: 1rem;
+            margin-bottom: 2rem;
         }
-
-        #send-button:hover {
-            background-color: var(--primary-dark);
+        
+        .loading-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            opacity: 0.8;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); opacity: 0.5; }
-            50% { transform: translateY(-3px); opacity: 1; }
+        
+        .feature i {
+            margin-right: 5px;
+            color: var(--accent);
         }
-
-        @media (max-width: 600px) {
-            .message {
-                max-width: 90%;
+        
+        .feature:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Maintenance Page Styles */
+        #maintenance-page {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem;
+            background: radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.1) 0%, rgba(255, 255, 255, 1) 90%);
+        }
+        
+        .maintenance-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s;
+        }
+        
+        @media (min-width: 992px) {
+            .maintenance-container {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
             }
+        }
+        
+        .maintenance-illustration {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .maintenance-image {
+            width: 100%;
+            max-width: 400px;
+            filter: drop-shadow(0 10px 20px rgba(108, 99, 255, 0.2));
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .maintenance-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .maintenance-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+        }
+        
+        .maintenance-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .maintenance-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .contact-card {
+            background: rgba(108, 99, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.1);
+            border-color: rgba(108, 99, 255, 0.2);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-info {
+            flex-grow: 1;
+        }
+        
+        .contact-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-email {
+            color: var(--accent);
+            word-break: break-all;
+            font-weight: 500;
+        }
+        
+        .countdown {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .countdown-title {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            background: var(--dark);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            min-width: 60px;
+            box-shadow: 0 5px 15px rgba(42, 45, 59, 0.2);
+        }
+        
+        .countdown-item span {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-top: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Animation when visible */
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1><i class="fas fa-robot"></i> AI Conversation Assistant</h1>
-    </header>
-
-    <div class="chat-container" id="chat-container">
-        <div class="message ai-message">
-            <div class="message-header">
-                <i class="fas fa-robot"></i> AI Assistant
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="logo-container">
+                <div class="logo-circle"></div>
+                <div class="logo-circle"></div>
+                <div class="logo-circle"></div>
+                <div class="logo-main">T</div>
             </div>
-            <p>Hello! I'm your AI conversation partner. I can discuss any topic with you, answer questions, and have meaningful conversations. What would you like to talk about?</p>
+            
+            <h2 class="loading-text">Launching Soon</h2>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="progress-info">
+                <span>Loading...</span>
+                <span id="percentage">0%</span>
+            </div>
+            
+            <div class="loading-features">
+                <div class="feature"><i class="fas fa-bolt"></i> Fast Performance</div>
+                <div class="feature"><i class="fas fa-lock"></i> Secure Platform</div>
+                <div class="feature"><i class="fas fa-mobile-alt"></i> Responsive Design</div>
+                <div class="feature"><i class="fas fa-rocket"></i> Modern Technology</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Maintenance Page -->
+    <div id="maintenance-page">
+        <div class="maintenance-container" id="maintenance-container">
+            <div class="maintenance-illustration">
+                <img src="https://assets-v2.lottiefiles.com/a/45b6c3c0-1167-11ee-9b0d-3f27d1a982d9/HJ5qXQmX6Z.json" alt="Maintenance" class="maintenance-image">
+            </div>
+            
+            <div class="maintenance-content">
+                <h1 class="maintenance-title">We're Under Maintenance</h1>
+                <p class="maintenance-subtitle">Our website is getting a major upgrade with exciting new features. We're working around the clock to deliver an amazing experience.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">General Inquiries</div>
+                            <div class="contact-email">email@technologist.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">ICT Department</div>
+                            <div class="contact-email">ict@technologist.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">Administration</div>
+                            <div class="contact-email">admin@jayprasad.com.np</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">Technical Support</div>
+                            <div class="contact-email">bijay@technologist.com</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="countdown">
+                    <div class="countdown-title">Estimated Time Remaining</div>
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            02 <span>Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            12 <span>Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            45 <span>Minutes</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="input-area">
-        <input type="text" id="user-input" placeholder="Type your message here..." autofocus>
-        <button id="send-button"><i class="fas fa-paper-plane"></i></button>
-    </div>
-
     <script>
-        // ================ IMPORTANT ================
-        // Replace this with your actual OpenAI API key
-        // Get one at: https://platform.openai.com/api-keys
-        const OPENAI_API_KEY = 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
-//
-
-        const chatContainer = document.getElementById('chat-container');
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
+        // Progress bar animation
+        const progressBar = document.getElementById('progress-bar');
+        const percentage = document.getElementById('percentage');
+        const loadingScreen = document.getElementById('loading-screen');
+        const maintenancePage = document.getElementById('maintenance-page');
+        const maintenanceContainer = document.getElementById('maintenance-container');
         
-        // Conversation history to maintain context
-        let conversationHistory = [
-            { 
-                role: "system", 
-                content: "You are a helpful, knowledgeable, and engaging AI assistant. " +
-                        "You provide detailed, thoughtful responses and maintain natural conversations. " +
-                        "You can discuss any topic from science to philosophy to everyday life."
-            },
-            { 
-                role: "assistant", 
-                content: "Hello! I'm your AI conversation partner. I can discuss any topic with you, " +
-                        "answer questions, and have meaningful conversations. What would you like to talk about?"
-            }
-        ];
+        let progress = 0;
+        const features = document.querySelectorAll('.feature');
         
-        // Add a message to the chat UI
-        function addMessage(role, content) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${role}-message`;
-            
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'message-header';
-            headerDiv.innerHTML = role === 'user' 
-                ? '<i class="fas fa-user"></i> You' 
-                : '<i class="fas fa-robot"></i> AI Assistant';
-            
-            const contentP = document.createElement('p');
-            contentP.textContent = content;
-            
-            messageDiv.appendChild(headerDiv);
-            messageDiv.appendChild(contentP);
-            chatContainer.appendChild(messageDiv);
-            
-            // Scroll to the bottom of the chat
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-        
-        // Show "AI is typing" indicator
-        function showTypingIndicator() {
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message ai-message typing-indicator';
-            typingDiv.id = 'typing-indicator';
-            
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'message-header';
-            headerDiv.innerHTML = '<i class="fas fa-robot"></i> AI Assistant';
-            
-            const typingContent = document.createElement('div');
-            typingContent.className = 'typing-indicator';
-            typingContent.innerHTML = 'Thinking <div class="typing-dots"><span></span><span></span><span></span></div>';
-            
-            typingDiv.appendChild(headerDiv);
-            typingDiv.appendChild(typingContent);
-            chatContainer.appendChild(typingDiv);
-            
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-        
-        // Remove the typing indicator
-        function removeTypingIndicator() {
-            const typingIndicator = document.getElementById('typing-indicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-        
-        // Get AI response from OpenAI API
-        async function getAIResponse(prompt) {
-            // Add user message to conversation history
-            conversationHistory.push({ role: "user", content: prompt });
-            
-            // Show typing indicator while waiting for response
-            showTypingIndicator();
-            
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${OPENAI_API_KEY}`
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-3.5-turbo",  // or "gpt-4" if you have access
-                        messages: conversationHistory,
-                        temperature: 0.7,  // Controls randomness (0.0 to 1.0)
-                        max_tokens: 500    // Limit response length
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (data.choices && data.choices[0].message) {
-                    const aiMessage = data.choices[0].message.content;
-                    
-                    // Add AI response to conversation history
-                    conversationHistory.push({ role: "assistant", content: aiMessage });
-                    
-                    // Remove typing indicator and show response
-                    removeTypingIndicator();
-                    addMessage('ai', aiMessage);
-                } else {
-                    throw new Error("Unexpected API response");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                removeTypingIndicator();
-                addMessage('ai', "I'm having trouble responding right now. Could you try again?");
-            }
-        }
-        
-        // Handle sending a message
-        function sendMessage() {
-            const message = userInput.value.trim();
-            if (message === '') return;
-            
-            // Add user message to UI
-            addMessage('user', message);
-            userInput.value = '';
-            
-            // Get AI response
-            getAIResponse(message);
-        }
-        
-        // Event listeners for sending messages
-        sendButton.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+        // Animate features sequentially
+        features.forEach((feature, index) => {
+            setTimeout(() => {
+                feature.style.opacity = '1';
+                feature.style.transform = 'translateY(0)';
+            }, index * 300);
         });
-    </script>
-</body>
-</html>
+        
+        const interval = setInterval(() => {
+            // Random but smooth progress increase
+            let increment = 0;
+            if (progress < 20) increment = Math.random() * 5;
+            else if (progress < 60) increment = Math.random() * 3;
+            else if (progress < 90) increment = Math.random() * 2;
+            else increment = Math.random() * 0.5;
+            
+            progress += increment;
+            if (progress > 100) progress = 100;
+            
+            progressBar.style.width = `${progress}%`;
+            percentage.textContent = `${Math.floor(progress)}%`;
+            
+            // Change color when complete
+            if (progress === 100) {
+                progressBar.style.background = 'linear-gradient(90deg, var(--success), #72EFDD)';
+                percentage.style.color = 'var(--success)';
+                
+                clearInterval(interval);
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        maintenancePage.style.display = 'block';
+                        setTimeout(() => {
+                            maintenanceContainer.classList.add('visible');
+                        }, 50);
+                    }, 800);
+                }, 800);
+            }
+        }, 100);
+        
+        // Simple countdown timer (for demo purposes)
+        function updateCountdown() {
+            const daysElement = document.querySelector('.countdown-item:nth-child(1)');
+            const hoursElement = document.querySelector('.countdown-item:nth-child(2)');
+            const minsElement = document.querySelector('.countdown-item:nth-child(3)');
+            
+            let days = parseInt(daysElement.textContent);
+            let hours = parseInt(hoursElement.textContent);
+            let mins = parseInt(minsElement.textContent);
+            
+            if (mins > 0) {
+                mins--;
+            } else {
+                mins = 59;
+                if (hours > 0) {
+                    hours--;
+                } else {
+                    hours = 23;
+                    if (days > 0) {
+                        days--;
+                    }
+                }
+            }
+            
+            daysElement.innerHTML = `${days.toString().padStart(2, '0')} <span>Days</span>`;
+            hoursElement.innerHTML = `${hours.toString().padStart(2, '0')} <span>Hours</span>`;
+            minsElement.innerHTML = `${mins.toString().padStart(2, 
