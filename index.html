@@ -3,303 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon | </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>Designer & Developer</title>
     <style>
-        * {
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             text-align: center;
         }
-        
-        #video-bg {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
-            object-fit: cover;
-            filter: brightness(0.6);
+
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            width: 90%;
         }
-        
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 0;
-        }
-        
-        .content {
+
+        .dynamic-text {
+            font-size: 3rem;
+            font-weight: bold;
+            height: 4rem;
+            margin: 1rem 0;
             position: relative;
-            z-index: 1;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
         }
-        
-        .logo {
-            margin-bottom: 30px;
-            text-transform: uppercase;
+
+        .dynamic-text span {
+            border-right: 3px solid #fff;
+            animation: blink 0.7s infinite;
+            display: inline-block;
         }
-        
-        .logo-main {
-            font-size: 5vw;
-            font-weight: 900;
-            background: linear-gradient(45deg, #ff8a00, #e52e71);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 5px;
+
+        .dynamic-text span.word {
+            border-right: none;
+            animation: none;
         }
-        
-        .logo-sub {
-            font-size: 2.5vw;
-            font-weight: 700;
-            color: #00ffff;
-            letter-spacing: 10px;
-            margin-top: 10px;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-        }
-        
-        .coming-soon {
-            font-size: 4vw;
-            font-weight: 700;
-            margin: 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            animation: pulse 2s infinite;
-        }
-        
-        .digital-clock {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 20px 30px;
-            border-radius: 15px;
-            margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .time {
-            font-size: 3.5rem;
-            font-weight: 700;
+
+        .clock {
             font-family: 'Courier New', monospace;
-            margin-bottom: 5px;
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            color: #0ff;
         }
-        
-        .date {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            padding: 15px 20px;
-            border-radius: 10px;
-            min-width: 90px;
-        }
-        
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        .countdown-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
             opacity: 0.8;
         }
-        
-        .description {
-            max-width: 700px;
-            margin: 20px auto;
-            line-height: 1.6;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .contact-info {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            padding: 15px 30px;
-            border-radius: 30px;
-        }
-        
-        .email-link {
-            color: #00ffff;
+
+        .footer a {
+            color: #0ff;
             text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
         }
-        
-        .email-link:hover {
+
+        .footer a:hover {
             text-decoration: underline;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
-        
-        .social-links {
-            margin-top: 30px;
-            display: flex;
-            gap: 20px;
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-        
-        .social-link {
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
+
+        @keyframes colorChange {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffff00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #4b0082; }
+            85% { color: #9400d3; }
+            100% { color: #ff0000; }
         }
-        
-        .social-link:hover {
-            color: #00ffff;
-            transform: translateY(-5px);
-            background: rgba(0, 255, 255, 0.2);
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-top: 2rem;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        @media (max-width: 768px) {
-            .logo-main {
-                font-size: 3rem;
-            }
-            
-            .logo-sub {
-                font-size: 1.5rem;
-                letter-spacing: 5px;
-            }
-            
-            .coming-soon {
+
+        @media (max-width: 600px) {
+            .dynamic-text {
                 font-size: 2rem;
+                height: 3rem;
             }
-            
-            .time {
-                font-size: 2.5rem;
-            }
-            
-            .date {
-                font-size: 1rem;
-            }
-            
-            .countdown-item {
-                min-width: 70px;
-                padding: 10px 15px;
-            }
-            
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-            
-            .description {
-                font-size: 1rem;
-                padding: 0 15px;
+            .clock {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <video id="video-bg" autoplay loop muted playsinline>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-city-with-flying-rocket-1587-large.mp4" type="video/mp4">
-        <!-- Fallback image -->
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" alt="Futuristic background">
-    </video>
-    
-    <div class="overlay"></div>
-    
-    <div class="content">
-     
-        <h1 class="coming-soon">Coming Soon</h1>
+    <div class="container">
+        <div class="dynamic-text" id="changingText"></div>
+        <div class="subtitle">Creating digital experiences that matter</div>
         
-        <div class="digital-clock">
-            <div class="time" id="time">00:00:00</div>
-            <div class="date" id="date">Monday, January 1, 2023</div>
-        </div>
-        
-        <p class="description">
-            We're working hard to bring you an amazing experience. Our website is under construction 
-            and will be launching soon. Stay tuned for something extraordinary!
-        </p>
-        
-        <div class="contact-info">
-            <p>For inquiries, contact us at: <br>
-            <a href="mailto:admin@jayprasad.com.np" class="email-link">admin@jayprasad.com.np</a></p>
-        </div>
-        
-        <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-        </div>
+        <div class="clock" id="liveClock"></div>
+    </div>
+
+    <div class="footer">
+        <div>©️ The Bi Jay</div>
+        <div><a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a></div>
     </div>
 
     <script>
-        // Digital Clock
+        // Text animation
+        const phrases = [
+            "I am a Web Designer",
+            "I am a Developer",
+            "I build Websites",
+            "I create Experiences"
+        ];
+        const element = document.getElementById('changingText');
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isEnd = false;
+        let typingSpeed = 100;
+
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                element.innerHTML = colorizeText(currentPhrase.substring(0, charIndex - 1)) + '<span></span>';
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                element.innerHTML = colorizeText(currentPhrase.substring(0, charIndex + 1)) + '<span></span>';
+                charIndex++;
+                typingSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isEnd = true;
+                typingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                isEnd = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typingSpeed);
+        }
+
+        // Colorize each word differently
+        function colorizeText(text) {
+            const words = text.split(' ');
+            const colors = ['#ff5555', '#55ff55', '#5555ff', '#ffff55', '#ff55ff', '#55ffff'];
+            return words.map((word, i) => 
+                `<span class="word" style="color: ${colors[i % colors.length]}; 
+                  animation: colorChange ${3 + i%3}s infinite linear ${i*0.2}s">${word}</span>`
+            ).join(' ');
+        }
+
+        // Clock function
         function updateClock() {
             const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const dateStr = now.toLocaleDateString(undefined, options);
             
-            // Time
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
             
-            // Date
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+            document.getElementById('liveClock').innerHTML = `
+                <div>${dateStr}</div>
+                <div>${hours}:${minutes}:${seconds}<span style="font-size:0.8em">.${milliseconds}</span></div>
+            `;
         }
-        
-        setInterval(updateClock, 1000);
-        updateClock();
-        
-        
-        // Force video playback on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('video-bg');
-            video.play().catch(error => {
-                video.controls = true;
-            });
-        });
+
+        // Start animations
+        window.onload = function() {
+            setTimeout(typeWriter, 1000);
+            updateClock();
+            setInterval(updateClock, 50); // Update clock every 50ms for smooth milliseconds
+        };
     </script>
 </body>
 </html>
