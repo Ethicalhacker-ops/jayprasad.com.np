@@ -2,196 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Designer & Developer</title>
+    <title>Secure AI Assistant</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 800px;
-            padding: 2rem;
-            width: 90%;
-        }
-
-        .dynamic-text {
-            font-size: 3rem;
-            font-weight: bold;
-            height: 4rem;
-            margin: 1rem 0;
-            position: relative;
-        }
-
-        .dynamic-text span {
-            border-right: 3px solid #fff;
-            animation: blink 0.7s infinite;
-            display: inline-block;
-        }
-
-        .dynamic-text span.word {
-            border-right: none;
-            animation: none;
-        }
-
-        .clock {
-            font-family: 'Courier New', monospace;
-            font-size: 1.5rem;
-            margin: 2rem 0;
-            color: #0ff;
-        }
-
-        .footer {
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .footer a {
-            color: #0ff;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        @keyframes colorChange {
-            0% { color: #ff0000; }
-            14% { color: #ff7f00; }
-            28% { color: #ffff00; }
-            42% { color: #00ff00; }
-            57% { color: #0000ff; }
-            71% { color: #4b0082; }
-            85% { color: #9400d3; }
-            100% { color: #ff0000; }
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.7;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 600px) {
-            .dynamic-text {
-                font-size: 2rem;
-                height: 3rem;
-            }
-            .clock {
-                font-size: 1.2rem;
-            }
-        }
+        /* Your existing styles */
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="dynamic-text" id="changingText"></div>
-        <div class="subtitle">Creating digital experiences that matter</div>
-        
-        <div class="clock" id="liveClock"></div>
-    </div>
-
-    <div class="footer">
-        <div>©️ The Bi Jay</div>
-        <div><a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a></div>
-    </div>
+    <!-- Your existing HTML structure -->
 
     <script>
-        // Text animation
-        const phrases = [
-            "I am a Web Designer",
-            "I am a Developer",
-            "I build Websites",
-            "I create Experiences"
-        ];
-        const element = document.getElementById('changingText');
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let isEnd = false;
-        let typingSpeed = 100;
-
-        function typeWriter() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                element.innerHTML = colorizeText(currentPhrase.substring(0, charIndex - 1)) + '<span></span>';
-                charIndex--;
-                typingSpeed = 50;
-            } else {
-                element.innerHTML = colorizeText(currentPhrase.substring(0, charIndex + 1)) + '<span></span>';
-                charIndex++;
-                typingSpeed = 100;
+        // SECURE METHOD: Use a backend proxy
+        async function getAIResponse(message) {
+            try {
+                const response = await fetch('/api/ai-proxy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                return await response.json();
+            } catch (error) {
+                console.error("API Error:", error);
+                return {
+                    answer: "Sorry, I'm having trouble connecting to the AI service.",
+                    sources: []
+                };
             }
+        }
 
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isEnd = true;
-                typingSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                isEnd = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingSpeed = 500;
+        // Modified sendMessage function
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+            
+            if (!message) return;
+            
+            displayMessage('user', message);
+            userInput.value = '';
+            showSearchingIndicator();
+            
+            try {
+                const response = await getAIResponse(message);
+                removeSearchingIndicator();
+                displayTypingResponse('ai', response.answer, response.sources);
+            } catch (error) {
+                removeSearchingIndicator();
+                displayMessage('ai', "Error processing your request. Please try again.");
             }
-
-            setTimeout(typeWriter, typingSpeed);
         }
-
-        // Colorize each word differently
-        function colorizeText(text) {
-            const words = text.split(' ');
-            const colors = ['#ff5555', '#55ff55', '#5555ff', '#ffff55', '#ff55ff', '#55ffff'];
-            return words.map((word, i) => 
-                `<span class="word" style="color: ${colors[i % colors.length]}; 
-                  animation: colorChange ${3 + i%3}s infinite linear ${i*0.2}s">${word}</span>`
-            ).join(' ');
-        }
-
-        // Clock function
-        function updateClock() {
-            const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            };
-            const dateStr = now.toLocaleDateString(undefined, options);
-            
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
-            
-            document.getElementById('liveClock').innerHTML = `
-                <div>${dateStr}</div>
-                <div>${hours}:${minutes}:${seconds}<span style="font-size:0.8em">.${milliseconds}</span></div>
-            `;
-        }
-
-        // Start animations
-        window.onload = function() {
-            setTimeout(typeWriter, 1000);
-            updateClock();
-            setInterval(updateClock, 50); // Update clock every 50ms for smooth milliseconds
-        };
     </script>
 </body>
 </html>
