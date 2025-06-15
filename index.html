@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Under Maintenance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.6/css/flag-icons.min.css">
     <style>
         :root {
             --primary: #6C63FF;
@@ -14,6 +15,7 @@
             --light: #F8F9FF;
             --dark: #2A2D3B;
             --success: #4CC9F0;
+            --clock: #FF9A8B;
         }
         
         * {
@@ -23,7 +25,7 @@
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--light);
             color: var(--dark);
             overflow-x: hidden;
@@ -221,7 +223,7 @@
         }
         
         .maintenance-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
@@ -242,8 +244,120 @@
             position: relative;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 2rem;
+        }
+        
+        .it-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 5px 15px rgba(108, 99, 255, 0.2));
+        }
+        
+        .clock-container {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            box-shadow: 20px 20px 60px #d9d9d9, 
+                       -20px -20px 60px #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .clock-face {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .clock-number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .clock-number span {
+            display: inline-block;
+            position: absolute;
+        }
+        
+        .clock-center {
+            width: 12px;
+            height: 12px;
+            background: var(--clock);
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .hand {
+            position: absolute;
+            transform-origin: bottom center;
+            bottom: 50%;
+            left: 50%;
+            border-radius: 10px;
+        }
+        
+        .hour-hand {
+            width: 6px;
+            height: 60px;
+            background: var(--dark);
+            margin-left: -3px;
+        }
+        
+        .minute-hand {
+            width: 4px;
+            height: 80px;
+            background: var(--primary);
+            margin-left: -2px;
+        }
+        
+        .second-hand {
+            width: 2px;
+            height: 90px;
+            background: var(--accent);
+            margin-left: -1px;
+        }
+        
+        .digital-clock {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .date-display {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .time-text {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .maintenance-image {
@@ -294,94 +408,90 @@
             line-height: 1.6;
         }
         
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+        /* Contact Form Styles */
+        .contact-form {
             margin: 2.5rem 0;
         }
         
-        .contact-card {
-            background: rgba(108, 99, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
-            border: 1px solid rgba(108, 99, 255, 0.1);
         }
         
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.1);
-            border-color: rgba(108, 99, 255, 0.2);
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
         }
         
-        .contact-icon {
-            width: 50px;
-            height: 50px;
+        .country-select {
+            position: relative;
+        }
+        
+        .country-select .form-control {
+            padding-left: 40px;
+        }
+        
+        .flag-container {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            margin-right: 1.5rem;
-            flex-shrink: 0;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.2);
         }
         
-        .contact-info {
-            flex-grow: 1;
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
         }
         
-        .contact-title {
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 0.3rem;
-        }
-        
-        .contact-email {
-            color: var(--accent);
-            word-break: break-all;
-            font-weight: 500;
-        }
-        
-        .countdown {
-            margin-top: 2rem;
-            text-align: center;
-        }
-        
-        .countdown-title {
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        
-        .countdown-item {
-            background: var(--dark);
-            color: white;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            font-weight: 700;
-            min-width: 60px;
-            box-shadow: 0 5px 15px rgba(42, 45, 59, 0.2);
-        }
-        
-        .countdown-item span {
-            display: block;
-            font-size: 0.7rem;
-            font-weight: 300;
-            opacity: 0.8;
-            margin-top: 3px;
+        .submit-btn:active {
+            transform: translateY(0);
         }
         
         .social-links {
@@ -400,6 +510,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
         
@@ -407,6 +518,19 @@
             background: var(--primary);
             color: white;
             transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .copyright a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
         }
         
         /* Animation when visible */
@@ -451,75 +575,115 @@
     <div id="maintenance-page">
         <div class="maintenance-container" id="maintenance-container">
             <div class="maintenance-illustration">
-                <img src="https://assets-v2.lottiefiles.com/a/45b6c3c0-1167-11ee-9b0d-3f27d1a982d9/HJ5qXQmX6Z.json" alt="Maintenance" class="maintenance-image">
+                <img src="https://cdn-icons-png.flaticon.com/512/2821/2821637.png" alt="IT Logo" class="it-logo">
+                
+                <div class="clock-container">
+                    <div class="clock-face">
+                        <!-- Clock numbers -->
+                        <div class="clock-number"><span style="transform: rotate(0deg) translate(85px) rotate(0deg)">12</span></div>
+                        <div class="clock-number"><span style="transform: rotate(30deg) translate(85px) rotate(-30deg)">1</span></div>
+                        <div class="clock-number"><span style="transform: rotate(60deg) translate(85px) rotate(-60deg)">2</span></div>
+                        <div class="clock-number"><span style="transform: rotate(90deg) translate(85px) rotate(-90deg)">3</span></div>
+                        <div class="clock-number"><span style="transform: rotate(120deg) translate(85px) rotate(-120deg)">4</span></div>
+                        <div class="clock-number"><span style="transform: rotate(150deg) translate(85px) rotate(-150deg)">5</span></div>
+                        <div class="clock-number"><span style="transform: rotate(180deg) translate(85px) rotate(-180deg)">6</span></div>
+                        <div class="clock-number"><span style="transform: rotate(210deg) translate(85px) rotate(-210deg)">7</span></div>
+                        <div class="clock-number"><span style="transform: rotate(240deg) translate(85px) rotate(-240deg)">8</span></div>
+                        <div class="clock-number"><span style="transform: rotate(270deg) translate(85px) rotate(-270deg)">9</span></div>
+                        <div class="clock-number"><span style="transform: rotate(300deg) translate(85px) rotate(-300deg)">10</span></div>
+                        <div class="clock-number"><span style="transform: rotate(330deg) translate(85px) rotate(-330deg)">11</span></div>
+                        
+                        <div class="hand hour-hand" id="hour-hand"></div>
+                        <div class="hand minute-hand" id="minute-hand"></div>
+                        <div class="hand second-hand" id="second-hand"></div>
+                        <div class="clock-center"></div>
+                    </div>
+                </div>
+                
+                <div class="digital-clock" id="digital-clock"></div>
+                <div class="date-display" id="date-display"></div>
+                <div class="time-text" id="time-text"></div>
             </div>
             
             <div class="maintenance-content">
                 <h1 class="maintenance-title">We're Under Maintenance</h1>
                 <p class="maintenance-subtitle">Our website is getting a major upgrade with exciting new features. We're working around the clock to deliver an amazing experience.</p>
                 
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                <form action="https://formspree.io/f/xanooyvg" method="POST" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">First Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
                         </div>
-                        <div class="contact-info">
-                            <div class="contact-title">General Inquiries</div>
-                            <div class="contact-email">email@technologist.com</div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">ICT Department</div>
-                            <div class="contact-email">ict@technologist.com</div>
+                        <div class="form-group">
+                            <label for="surname" class="form-label">Last Name</label>
+                            <input type="text" id="surname" name="surname" class="form-control" required>
                         </div>
                     </div>
                     
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">Administration</div>
-                            <div class="contact-email">admin@jayprasad.com.np</div>
-                        </div>
+                    <div class="form-group">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" id="address" name="address" class="form-control" required>
                     </div>
                     
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-headset"></i>
+                    <div class="form-group country-select">
+                        <label for="country" class="form-label">Country</label>
+                        <div class="flag-container">
+                            <span class="fi fi-np" id="country-flag"></span>
                         </div>
-                        <div class="contact-info">
-                            <div class="contact-title">Technical Support</div>
-                            <div class="contact-email">bijay@technologist.com</div>
-                        </div>
+                        <select id="country" name="country" class="form-control" required>
+                            <option value="NP">Nepal</option>
+                            <option value="US">United States</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="IN">India</option>
+                            <option value="CA">Canada</option>
+                            <option value="AU">Australia</option>
+                            <option value="JP">Japan</option>
+                            <option value="KR">South Korea</option>
+                            <option value="CN">China</option>
+                            <option value="DE">Germany</option>
+                            <option value="FR">France</option>
+                            <option value="IT">Italy</option>
+                            <option value="BR">Brazil</option>
+                            <option value="RU">Russia</option>
+                            <option value="ZA">South Africa</option>
+                        </select>
                     </div>
-                </div>
-                
-                <div class="countdown">
-                    <div class="countdown-title">Estimated Time Remaining</div>
-                    <div class="countdown-timer">
-                        <div class="countdown-item">
-                            02 <span>Days</span>
-                        </div>
-                        <div class="countdown-item">
-                            12 <span>Hours</span>
-                        </div>
-                        <div class="countdown-item">
-                            45 <span>Minutes</span>
-                        </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Contact Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
                     </div>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="query" class="form-label">Your Query</label>
+                        <textarea id="query" name="query" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
                 
                 <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/thebijaay" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/thebijay" target="_blank" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://linkedin.com/thebijay" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                
+                <div class="copyright">
+                    &copy; <span id="current-year"></span> Jay Prasad Majhi. All Rights Reserved.
                 </div>
             </div>
         </div>
@@ -576,31 +740,69 @@
                 }, 800);
             }
         }, 100);
+        // Analog Clock Functionality
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            const hourDeg = (hours * 30) + (minutes * 0.5);
+            const minuteDeg = minutes * 6;
+            const secondDeg = seconds * 6;
+            
+            document.getElementById('hour-hand').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minute-hand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('second-hand').style.transform = `rotate(${secondDeg}deg)`;
+            
+            // Digital clock
+            const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+            const formattedHours = now.getHours() % 12 || 12;
+            const formattedTime = `${formattedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ${ampm}`;
+            document.getElementById('digital-clock').textContent = formattedTime;
+            
+            // Date display
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            document.getElementById('date-display').textContent = formattedDate;
+            
+            // Time text
+            const timeText = getTimeText(hours, minutes);
+            document.getElementById('time-text').textContent = timeText;
+        }
         
-        // Simple countdown timer (for demo purposes)
-        function updateCountdown() {
-            const daysElement = document.querySelector('.countdown-item:nth-child(1)');
-            const hoursElement = document.querySelector('.countdown-item:nth-child(2)');
-            const minsElement = document.querySelector('.countdown-item:nth-child(3)');
+        function getTimeText(hours, minutes) {
+            const hourText = [
+                "twelve", "one", "two", "three", "four", "five", 
+                "six", "seven", "eight", "nine", "ten", "eleven"
+            ][hours % 12];
             
-            let days = parseInt(daysElement.textContent);
-            let hours = parseInt(hoursElement.textContent);
-            let mins = parseInt(minsElement.textContent);
+            const minuteText = minutes === 0 ? "" : 
+                              minutes < 10 ? `oh ${["", "one", "two", "three", "four", "five", 
+                                                   "six", "seven", "eight", "nine"][minutes]}` :
+                              minutes < 20 ? [
+                                  "ten", "eleven", "twelve", "thirteen", "fourteen", 
+                                  "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+                              ][minutes - 10] :
+                              `${["twenty", "thirty", "forty", "fifty"][Math.floor(minutes/10) - 2]}${minutes % 10 !== 0 ? `-${["", "one", "two", "three", "four", "five", 
+                                                                                                                             "six", "seven", "eight", "nine"][minutes % 10]}` : ''}`;
             
-            if (mins > 0) {
-                mins--;
-            } else {
-                mins = 59;
-                if (hours > 0) {
-                    hours--;
-                } else {
-                    hours = 23;
-                    if (days > 0) {
-                        days--;
-                    }
-                }
-            }
+            const ampm = new Date().getHours() >= 12 ? "PM" : "AM";
             
-            daysElement.innerHTML = `${days.toString().padStart(2, '0')} <span>Days</span>`;
-            hoursElement.innerHTML = `${hours.toString().padStart(2, '0')} <span>Hours</span>`;
-            minsElement.innerHTML = `${mins.toString().padStart(2, 
+            return `The time is ${hourText} ${minuteText} ${ampm}`;
+        }
+        
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call
+        
+        // Country flag change
+        document.getElementById('country').addEventListener('change', function() {
+            const countryCode = this.value.toLowerCase();
+            document.getElementById('country-flag').className = `fi fi-${countryCode}`;
+        });
+        
+        // Set current year in copyright
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
