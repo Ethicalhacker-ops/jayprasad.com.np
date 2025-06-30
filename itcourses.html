@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Future-Ready IT Courses | Learn High-Demand Skills</title>
+  <title>Future-Ready IT Academy | High-Demand Tech Courses</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary: #2563eb;
@@ -12,11 +13,15 @@
       --text: #1f2937;
       --light: #f9fafb;
       --gray: #e5e7eb;
+      --dark: #111827;
     }
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,24 +32,99 @@
     header {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      padding: 2rem 0;
-      text-align: center;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      height: 40px;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    nav a:hover {
+      opacity: 0.8;
+    }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background-color: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    section {
+      padding: 4rem 0;
     }
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      max-width: 800px;
-      margin: 0 auto;
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--secondary);
     }
     .intro {
       text-align: center;
@@ -87,6 +167,8 @@
       overflow: hidden;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
     .course-card:hover {
       transform: translateY(-5px);
@@ -98,6 +180,9 @@
     }
     .course-content {
       padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
     .course-title {
       font-size: 1.25rem;
@@ -120,11 +205,13 @@
     .course-desc {
       margin-bottom: 1.5rem;
       color: #4b5563;
+      flex-grow: 1;
     }
     .course-meta {
       display: flex;
       justify-content: space-between;
       font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
     .course-level {
       background-color: var(--gray);
@@ -132,9 +219,12 @@
       border-radius: 50px;
       font-weight: 600;
     }
+    .course-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
     .course-link {
       display: inline-block;
-      margin-top: 1.5rem;
       padding: 0.75rem 1.5rem;
       background-color: var(--primary);
       color: white;
@@ -142,9 +232,24 @@
       border-radius: 6px;
       font-weight: 600;
       transition: background-color 0.3s ease;
+      text-align: center;
+      flex-grow: 1;
     }
     .course-link:hover {
       background-color: var(--secondary);
+    }
+    .download-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      background-color: var(--gray);
+      color: var(--text);
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .download-link:hover {
+      background-color: #d1d5db;
     }
     .contact-section {
       background-color: white;
@@ -164,71 +269,205 @@
     .contact-section a:hover {
       text-decoration: underline;
     }
-    footer {
-      background-color: var(--text);
-      color: white;
-      padding: 3rem 0;
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .feature-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       text-align: center;
-      margin-top: 3rem;
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .testimonials {
+      background-color: var(--gray);
+      padding: 4rem 0;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
     }
     .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.8rem;
     }
     .footer-links a {
-      color: var(--gray);
+      color: #d1d5db;
       text-decoration: none;
       transition: color 0.3s ease;
     }
     .footer-links a:hover {
       color: white;
     }
-    .copyright {
-      opacity: 0.7;
-      font-size: 0.9rem;
+    .social-links {
+      display: flex;
+      gap: 1rem;
       margin-top: 1rem;
     }
-    .policy-content {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 8px;
-      margin: 2rem 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    .social-links a {
+      color: white;
+      font-size: 1.2rem;
     }
-    .policy-content h2 {
-      color: var(--secondary);
-      margin-bottom: 1rem;
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid #374151;
+      color: #9ca3af;
+      font-size: 0.9rem;
     }
-    .policy-content h3 {
-      margin: 1.5rem 0 0.5rem;
-      color: var(--primary);
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 99;
+    }
+    .back-to-top.visible {
+      opacity: 1;
     }
     @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        display: none;
+        margin-top: 1rem;
+      }
+      nav.active {
+        display: block;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      nav li {
+        padding: 0.5rem 0;
+      }
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
       .course-grid {
         grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 2rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Future-Ready IT Courses</h1>
-      <p class="subtitle">Master high-demand skills from top platforms to future-proof your career in technology</p>
+    <div class="nav-container">
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Flag_of_Nepal.svg/1200px-Flag_of_Nepal.svg.png" alt="Nepal Flag" style="height: 30px;">
+        <span>Future-Ready IT Academy</span>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="mainNav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="intro">
-      <h2>🚀 Launch Your Tech Career</h2>
-      <p>Choose from these verified, industry-relevant courses to gain skills that employers are looking for right now.</p>
-    </section>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Empowering Nepal's Tech Future</h1>
+      <p>Gain industry-relevant skills with our curated selection of high-demand IT courses from top global providers</p>
+      <a href="#courses" class="btn">Explore Courses</a>
+    </div>
+  </section>
+
+  <section class="container" id="courses">
+    <h2 class="section-title">Featured Courses</h2>
+    
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3>Industry-Aligned</h3>
+        <p>Courses selected based on current job market demands and future tech trends</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <h3>Verified Certificates</h3>
+        <p>Earn recognized certifications from top universities and tech companies</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-rupee-sign"></i>
+        </div>
+        <h3>Affordable Learning</h3>
+        <p>Access world-class education at a fraction of traditional costs</p>
+      </div>
+    </div>
 
     <div class="course-categories">
       <button class="category-btn active">All Courses</button>
@@ -250,12 +489,17 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" alt="React" class="provider-logo">
             <span>Udemy</span>
           </div>
-          <p class="course-desc">Master HTML, CSS, JavaScript, React, Node.js, MongoDB and more to build modern web applications.</p>
+          <p class="course-desc">Master HTML, CSS, JavaScript, React, Node.js, MongoDB and more to build modern web applications. Includes 50+ projects and exercises.</p>
           <div class="course-meta">
             <span>⭐ 4.7 (45,000+)</span>
             <span class="course-level">Beginner</span>
           </div>
-          <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" class="course-link">View Course</a>
+          <div class="course-actions">
+            <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" class="course-link">View Course</a>
+            <a href="pdfs/web-dev-syllabus.pdf" download class="download-link" title="Download Syllabus">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -268,12 +512,17 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Johns_Hopkins_University_logo.svg/1200px-Johns_Hopkins_University_logo.svg.png" alt="JHU" class="provider-logo">
             <span>Coursera</span>
           </div>
-          <p class="course-desc">Learn data science through this 10-course specialization from Johns Hopkins University.</p>
+          <p class="course-desc">10-course specialization covering data visualization, machine learning, and statistical analysis using R programming.</p>
           <div class="course-meta">
             <span>⭐ 4.6 (120,000+)</span>
             <span class="course-level">Intermediate</span>
           </div>
-          <a href="https://www.coursera.org/specializations/jhu-data-science" target="_blank" class="course-link">View Course</a>
+          <div class="course-actions">
+            <a href="https://www.coursera.org/specializations/jhu-data-science" target="_blank" class="course-link">View Course</a>
+            <a href="pdfs/data-science-syllabus.pdf" download class="download-link" title="Download Syllabus">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -286,12 +535,17 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png" alt="AWS" class="provider-logo">
             <span>AWS Training</span>
           </div>
-          <p class="course-desc">Prepare for the AWS Certified Solutions Architect - Associate exam with this comprehensive course.</p>
+          <p class="course-desc">Prepare for the AWS Certified Solutions Architect - Associate exam with hands-on labs and real-world scenarios.</p>
           <div class="course-meta">
             <span>⭐ 4.8 (35,000+)</span>
             <span class="course-level">Advanced</span>
           </div>
-          <a href="https://aws.amazon.com/training/" target="_blank" class="course-link">View Course</a>
+          <div class="course-actions">
+            <a href="https://aws.amazon.com/training/" target="_blank" class="course-link">View Course</a>
+            <a href="pdfs/aws-syllabus.pdf" download class="download-link" title="Download Syllabus">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -304,12 +558,17 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Logo_of_IBM.svg/1200px-Logo_of_IBM.svg.png" alt="IBM" class="provider-logo">
             <span>edX</span>
           </div>
-          <p class="course-desc">Learn cybersecurity fundamentals from IBM experts and how to protect digital assets.</p>
+          <p class="course-desc">Learn cybersecurity fundamentals including threat analysis, encryption, and network security from IBM experts.</p>
           <div class="course-meta">
             <span>⭐ 4.5 (18,000+)</span>
             <span class="course-level">Beginner</span>
           </div>
-          <a href="https://www.edx.org/course/introduction-to-cybersecurity" target="_blank" class="course-link">View Course</a>
+          <div class="course-actions">
+            <a href="https://www.edx.org/course/introduction-to-cybersecurity" target="_blank" class="course-link">View Course</a>
+            <a href="pdfs/cyber-security-syllabus.pdf" download class="download-link" title="Download Syllabus">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -322,12 +581,17 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Stanford_University_seal_2003.svg/1200px-Stanford_University_seal_2003.svg.png" alt="Stanford" class="provider-logo">
             <span>Coursera</span>
           </div>
-          <p class="course-desc">The most popular machine learning course by Stanford professor Andrew Ng.</p>
+          <p class="course-desc">The most popular machine learning course covering algorithms, neural networks, and best practices from Stanford.</p>
           <div class="course-meta">
             <span>⭐ 4.9 (250,000+)</span>
             <span class="course-level">Intermediate</span>
           </div>
-          <a href="https://www.coursera.org/learn/machine-learning" target="_blank" class="course-link">View Course</a>
+          <div class="course-actions">
+            <a href="https://www.coursera.org/learn/machine-learning" target="_blank" class="course-link">View Course</a>
+            <a href="pdfs/ml-syllabus.pdf" download class="download-link" title="Download Syllabus">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -340,86 +604,139 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Google_Cloud_Platform_logo.svg/1200px-Google_Cloud_Platform_logo.svg.png" alt="Google Cloud" class="provider-logo">
             <span>Google Cloud</span>
           </div>
-          <p class="course-desc">Learn to implement DevOps practices with Google Cloud Platform tools and services.</p>
+          <p class="course-desc">Learn CI/CD pipelines, infrastructure as code, monitoring, and logging using Google Cloud Platform tools.</p>
           <div class="course-meta">
             <span>⭐ 4.7 (12,000+)</span>
             <span class="course-level">Advanced</span>
           </div>
-          <a href="https://www.cloudskillsboost.google/paths" target="_blank" class="course-link">View Course</a>
+          <div class="course-actions">
+            <a href="https://www.cloudskillsboost.google/paths" target="_blank" class="course-link">View Course</a>
+            <a href="pdfs/devops-syllabus.pdf" download class="download-link" title="Download Syllabus">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
+  <section class="testimonials" id="resources">
+    <div class="container">
+      <h2 class="section-title">Student Success Stories</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"The web development course helped me land my first job as a frontend developer at a Kathmandu-based startup. The practical projects were exactly what employers were looking for."</p>
+          <p class="testimonial-author">- Ramesh Shrestha, Frontend Developer</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"After completing the AWS course, I passed my certification exam and got a 40% salary increase at my current company. The hands-on labs made all the difference."</p>
+          <p class="testimonial-author">- Sunita Gurung, Cloud Engineer</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"As a recent CS graduate, the data science specialization gave me the practical skills I needed to transition into analytics. I now work remotely for an international company."</p>
+          <p class="testimonial-author">- Amit Chaudhary, Data Analyst</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="about">
+    <h2 class="section-title">About Future-Ready IT Academy</h2>
+    <div class="intro">
+      <p>Future-Ready IT Academy is a Nepali initiative dedicated to bridging the digital skills gap by connecting students with world-class technology education. We curate the best courses from global providers and supplement them with local context and career guidance.</p>
+      <p>Our mission is to empower Nepali students and professionals with future-proof skills that open doors to local and global opportunities in the rapidly evolving tech industry.</p>
+    </div>
+  </section>
+
+  <section class="container" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-section">
       <h2>📧 Email Contacts</h2>
       <p>
         <strong>General Inquiries:</strong> <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a><br>
-        <strong>Technical Support:</strong> <a href="mailto:support@the.jayprasad.com.np">support@the.jayprasad.com.np</a><br>
+        <strong>Technical Support:</strong> <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a><br>
         <strong>IT Services:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a><br>
         <strong>Administration:</strong> <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a><br>
-        <strong>ICT Department:</strong> <a href="mailto:ict@the.jayprasad.com.np">ict@the.jayprasad.com.np</a>
+        <strong>ICT Department:</strong> <a href="mailto:it@bijay.us">it@bijay.us</a>
       </p>
-    </section>
-
-    <!-- Privacy Policy Section -->
-    <section class="policy-content">
-      <h2>Privacy Policy</h2>
-      <p>Last updated: <span id="currentDate"></span></p>
-      
-      <h3>1. Information We Collect</h3>
-      <p>We may collect personal information such as name, email address, and course preferences when you use our website or contact us.</p>
-      
-      <h3>2. How We Use Your Information</h3>
-      <p>We use the information to provide and improve our services, respond to inquiries, and send relevant course recommendations.</p>
-      
-      <h3>3. Data Security</h3>
-      <p>We implement appropriate security measures to protect your personal information from unauthorized access or disclosure.</p>
-      
-      <h3>4. Third-Party Links</h3>
-      <p>Our website may contain links to external sites. We are not responsible for the privacy practices of these sites.</p>
-    </section>
-
-    <!-- Terms and Conditions Section -->
-    <section class="policy-content">
-      <h2>Terms and Conditions</h2>
-      
-      <h3>1. Use of Website</h3>
-      <p>This website provides information about IT courses for educational purposes only. We do not offer these courses directly.</p>
-      
-      <h3>2. Intellectual Property</h3>
-      <p>All content on this website is the property of Jay Prasad Majhi unless otherwise stated. Unauthorized use is prohibited.</p>
-      
-      <h3>3. Limitation of Liability</h3>
-      <p>We are not responsible for any inaccuracies in course information or outcomes from taking recommended courses.</p>
-      
-      <h3>4. Changes to Terms</h3>
-      <p>We reserve the right to modify these terms at any time. Continued use of the site constitutes acceptance of the modified terms.</p>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
     <div class="container">
-      <h3>Future-Ready IT Courses</h3>
-      <p>Your gateway to high-demand technology skills</p>
-      <div class="footer-links">
-        <a href="#privacy">Privacy Policy</a>
-        <a href="#terms">Terms & Conditions</a>
-        <a href="https://jayprasad.com.np" target="_blank">Developer Website</a>
-        <a href="#contact">Contact Us</a>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Future-Ready IT Academy</h3>
+          <p>Empowering Nepal's tech workforce with world-class skills and certifications.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Career Guidance</a></li>
+            <li><a href="#">Scholarships</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+          </ul>
+        </div>
       </div>
-      <p class="copyright">© <span id="currentYear"></span> Jay Prasad Majhi. All rights reserved. <br> 
-        <a href="https://jayprasad.com.np" target="_blank" style="color: #a5b4fc;">jayprasad.com.np</a></p>
+      <div class="copyright">
+        © <span id="currentYear"></span> Future-Ready IT Academy. All rights reserved. <br>
+        Developed by <a href="https://jayprasad.com.np" style="color: #a5b4fc;">Jay Prasad Majhi</a>
+      </div>
     </div>
   </footer>
 
+  <a href="#home" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
   <script>
-    // Set current year and date
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mainNav.classList.toggle('active');
+    });
+
+    // Set current year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
-    const now = new Date();
-    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', dateOptions);
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
 
     // Category filtering
     const categoryBtns = document.querySelectorAll('.category-btn');
@@ -440,6 +757,29 @@
             card.style.display = 'none';
           }
         });
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          if (mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+          }
+        }
       });
     });
   </script>
