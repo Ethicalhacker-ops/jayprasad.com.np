@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future-Ready IT Courses | Learn High-Demand Skills</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e40af;
+      --accent: #3b82f6;
+      --text: #1f2937;
+      --light: #f9fafb;
+      --gray: #e5e7eb;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--light);
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .intro {
+      text-align: center;
+      padding: 3rem 0;
+      background-color: white;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .course-categories {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+    .category-btn {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      background-color: var(--gray);
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+    .category-btn.active, .category-btn:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .course-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-5px);
+    }
+    .course-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .course-content {
+      padding: 1.5rem;
+    }
+    .course-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+    .course-provider {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    .provider-logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+    .course-desc {
+      margin-bottom: 1.5rem;
+      color: #4b5563;
+    }
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+    .course-level {
+      background-color: var(--gray);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    .course-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .course-link:hover {
+      background-color: var(--secondary);
+    }
+    .contact-section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 3rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .contact-section h2 {
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+    }
+    .contact-section a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .contact-section a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background-color: var(--text);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    .copyright {
+      opacity: 0.7;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    .policy-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .policy-content h2 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+    .policy-content h3 {
+      margin: 1.5rem 0 0.5rem;
+      color: var(--primary);
+    }
+    @media (max-width: 768px) {
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Future-Ready IT Courses</h1>
+      <p class="subtitle">Master high-demand skills from top platforms to future-proof your career in technology</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h2>🚀 Launch Your Tech Career</h2>
+      <p>Choose from these verified, industry-relevant courses to gain skills that employers are looking for right now.</p>
+    </section>
+
+    <div class="course-categories">
+      <button class="category-btn active">All Courses</button>
+      <button class="category-btn">Web Development</button>
+      <button class="category-btn">Data Science</button>
+      <button class="category-btn">Cloud Computing</button>
+      <button class="category-btn">Cybersecurity</button>
+      <button class="category-btn">AI/ML</button>
+      <button class="category-btn">DevOps</button>
+    </div>
+
+    <div class="course-grid">
+      <!-- Web Development Courses -->
+      <div class="course-card" data-category="Web Development">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Full Stack Development" class="course-img">
+        <div class="course-content">
+          <h3 class="course-title">The Complete Web Developer Bootcamp</h3>
+          <div class="course-provider">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" alt="React" class="provider-logo">
+            <span>Udemy</span>
+          </div>
+          <p class="course-desc">Master HTML, CSS, JavaScript, React, Node.js, MongoDB and more to build modern web applications.</p>
+          <div class="course-meta">
+            <span>⭐ 4.7 (45,000+)</span>
+            <span class="course-level">Beginner</span>
+          </div>
+          <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" class="course-link">View Course</a>
+        </div>
+      </div>
+
+      <!-- Data Science -->
+      <div class="course-card" data-category="Data Science">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Data Science" class="course-img">
+        <div class="course-content">
+          <h3 class="course-title">Data Science Specialization</h3>
+          <div class="course-provider">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Johns_Hopkins_University_logo.svg/1200px-Johns_Hopkins_University_logo.svg.png" alt="JHU" class="provider-logo">
+            <span>Coursera</span>
+          </div>
+          <p class="course-desc">Learn data science through this 10-course specialization from Johns Hopkins University.</p>
+          <div class="course-meta">
+            <span>⭐ 4.6 (120,000+)</span>
+            <span class="course-level">Intermediate</span>
+          </div>
+          <a href="https://www.coursera.org/specializations/jhu-data-science" target="_blank" class="course-link">View Course</a>
+        </div>
+      </div>
+
+      <!-- Cloud Computing -->
+      <div class="course-card" data-category="Cloud Computing">
+        <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cloud Computing" class="course-img">
+        <div class="course-content">
+          <h3 class="course-title">AWS Certified Solutions Architect</h3>
+          <div class="course-provider">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png" alt="AWS" class="provider-logo">
+            <span>AWS Training</span>
+          </div>
+          <p class="course-desc">Prepare for the AWS Certified Solutions Architect - Associate exam with this comprehensive course.</p>
+          <div class="course-meta">
+            <span>⭐ 4.8 (35,000+)</span>
+            <span class="course-level">Advanced</span>
+          </div>
+          <a href="https://aws.amazon.com/training/" target="_blank" class="course-link">View Course</a>
+        </div>
+      </div>
+
+      <!-- Cybersecurity -->
+      <div class="course-card" data-category="Cybersecurity">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cybersecurity" class="course-img">
+        <div class="course-content">
+          <h3 class="course-title">Introduction to Cybersecurity</h3>
+          <div class="course-provider">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Logo_of_IBM.svg/1200px-Logo_of_IBM.svg.png" alt="IBM" class="provider-logo">
+            <span>edX</span>
+          </div>
+          <p class="course-desc">Learn cybersecurity fundamentals from IBM experts and how to protect digital assets.</p>
+          <div class="course-meta">
+            <span>⭐ 4.5 (18,000+)</span>
+            <span class="course-level">Beginner</span>
+          </div>
+          <a href="https://www.edx.org/course/introduction-to-cybersecurity" target="_blank" class="course-link">View Course</a>
+        </div>
+      </div>
+
+      <!-- AI/ML -->
+      <div class="course-card" data-category="AI/ML">
+        <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="AI/ML" class="course-img">
+        <div class="course-content">
+          <h3 class="course-title">Machine Learning by Andrew Ng</h3>
+          <div class="course-provider">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Stanford_University_seal_2003.svg/1200px-Stanford_University_seal_2003.svg.png" alt="Stanford" class="provider-logo">
+            <span>Coursera</span>
+          </div>
+          <p class="course-desc">The most popular machine learning course by Stanford professor Andrew Ng.</p>
+          <div class="course-meta">
+            <span>⭐ 4.9 (250,000+)</span>
+            <span class="course-level">Intermediate</span>
+          </div>
+          <a href="https://www.coursera.org/learn/machine-learning" target="_blank" class="course-link">View Course</a>
+        </div>
+      </div>
+
+      <!-- DevOps -->
+      <div class="course-card" data-category="DevOps">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="DevOps" class="course-img">
+        <div class="course-content">
+          <h3 class="course-title">DevOps Engineering</h3>
+          <div class="course-provider">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Google_Cloud_Platform_logo.svg/1200px-Google_Cloud_Platform_logo.svg.png" alt="Google Cloud" class="provider-logo">
+            <span>Google Cloud</span>
+          </div>
+          <p class="course-desc">Learn to implement DevOps practices with Google Cloud Platform tools and services.</p>
+          <div class="course-meta">
+            <span>⭐ 4.7 (12,000+)</span>
+            <span class="course-level">Advanced</span>
+          </div>
+          <a href="https://www.cloudskillsboost.google/paths" target="_blank" class="course-link">View Course</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2>📧 Email Contacts</h2>
+      <p>
+        <strong>General Inquiries:</strong> <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a><br>
+        <strong>Technical Support:</strong> <a href="mailto:support@the.jayprasad.com.np">support@the.jayprasad.com.np</a><br>
+        <strong>IT Services:</strong> <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a><br>
+        <strong>Administration:</strong> <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a><br>
+        <strong>ICT Department:</strong> <a href="mailto:ict@the.jayprasad.com.np">ict@the.jayprasad.com.np</a>
+      </p>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section class="policy-content">
+      <h2>Privacy Policy</h2>
+      <p>Last updated: <span id="currentDate"></span></p>
+      
+      <h3>1. Information We Collect</h3>
+      <p>We may collect personal information such as name, email address, and course preferences when you use our website or contact us.</p>
+      
+      <h3>2. How We Use Your Information</h3>
+      <p>We use the information to provide and improve our services, respond to inquiries, and send relevant course recommendations.</p>
+      
+      <h3>3. Data Security</h3>
+      <p>We implement appropriate security measures to protect your personal information from unauthorized access or disclosure.</p>
+      
+      <h3>4. Third-Party Links</h3>
+      <p>Our website may contain links to external sites. We are not responsible for the privacy practices of these sites.</p>
+    </section>
+
+    <!-- Terms and Conditions Section -->
+    <section class="policy-content">
+      <h2>Terms and Conditions</h2>
+      
+      <h3>1. Use of Website</h3>
+      <p>This website provides information about IT courses for educational purposes only. We do not offer these courses directly.</p>
+      
+      <h3>2. Intellectual Property</h3>
+      <p>All content on this website is the property of Jay Prasad Majhi unless otherwise stated. Unauthorized use is prohibited.</p>
+      
+      <h3>3. Limitation of Liability</h3>
+      <p>We are not responsible for any inaccuracies in course information or outcomes from taking recommended courses.</p>
+      
+      <h3>4. Changes to Terms</h3>
+      <p>We reserve the right to modify these terms at any time. Continued use of the site constitutes acceptance of the modified terms.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <h3>Future-Ready IT Courses</h3>
+      <p>Your gateway to high-demand technology skills</p>
+      <div class="footer-links">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms & Conditions</a>
+        <a href="https://jayprasad.com.np" target="_blank">Developer Website</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+      <p class="copyright">© <span id="currentYear"></span> Jay Prasad Majhi. All rights reserved. <br> 
+        <a href="https://jayprasad.com.np" target="_blank" style="color: #a5b4fc;">jayprasad.com.np</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year and date
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    const now = new Date();
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', dateOptions);
+
+    // Category filtering
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const courseCards = document.querySelectorAll('.course-card');
+
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter courses
+        const category = btn.textContent;
+        courseCards.forEach(card => {
+          if (category === 'All Courses' || card.dataset.category === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
