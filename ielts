@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Mastery | JayPrasad.com.np</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff7043;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --success: #48bb78;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #6b46c1);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .auth-buttons .btn {
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-login {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-signup {
+            background: var(--secondary);
+            border: 2px solid var(--secondary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-hero {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-hero:hover {
+            background: #3a56e0;
+        }
+        
+        /* Materials Section */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: 2.2rem;
+            color: var(--dark);
+        }
+        
+        .section-title span {
+            color: var(--primary);
+        }
+        
+        .materials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .material-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .material-img {
+            height: 150px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 3rem;
+        }
+        
+        .material-info {
+            padding: 1.5rem;
+        }
+        
+        .material-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .material-info p {
+            color: #718096;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .material-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #718096;
+        }
+        
+        .download-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .download-btn:hover {
+            background: #3a56e0;
+        }
+        
+        .premium-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #718096;
+        }
+        
+        .modal-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background: #3a56e0;
+        }
+        
+        .social-login {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .social-login p {
+            color: #718096;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .social-login p::before,
+        .social-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        
+        .social-login p::before {
+            left: 0;
+        }
+        
+        .social-login p::after {
+            right: 0;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon.google {
+            background: #db4437;
+        }
+        
+        .social-icon.facebook {
+            background: #4267b2;
+        }
+        
+        .social-icon.apple {
+            background: #000;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #718096;
+        }
+        
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            color: #a0aec0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #4a5568;
+            color: #a0aec0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                margin: 0.2rem;
+            }
+            
+            .material-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>IELTS Mastery</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#materials">Materials</a>
+                <a href="#practice">Practice</a>
+                <a href="#tips">Tips</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-login" id="loginBtn">Login</button>
+                <button class="btn btn-signup" id="signupBtn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Your Complete IELTS Preparation Solution</h1>
+            <p>Access free Cambridge books, practice tests, and expert strategies to achieve your dream band score</p>
+            <button class="btn-hero">Start Learning Now</button>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section class="materials-section" id="materials">
+        <h2 class="section-title">Our <span>Premium</span> Materials</h2>
+        
+        <div class="materials-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="cambridge">Cambridge Books</button>
+                <button class="tab-btn" data-tab="listening">Listening</button>
+                <button class="tab-btn" data-tab="reading">Reading</button>
+                <button class="tab-btn" data-tab="writing">Writing</button>
+                <button class="tab-btn" data-tab="speaking">Speaking</button>
+                <button class="tab-btn" data-tab="vocabulary">Vocabulary</button>
+            </div>
+            
+            <!-- Cambridge Books Tab -->
+            <div class="tab-content active" id="cambridge">
+                <div class="material-grid">
+                    <!-- Book 1 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 17</h3>
+                            <p>Latest official practice tests with answers</p>
+                            <div class="material-meta">
+                                <span>PDF • 45MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Book 2 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 16</h3>
+                            <p>Authentic examination papers</p>
+                            <div class="material-meta">
+                                <span>PDF • 42MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Book 3 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 15</h3>
+                            <p>With answers and audio</p>
+                            <div class="material-meta">
+                                <span>PDF • 40MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Book 4 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 14</h3>
+                            <p>Academic & General Training</p>
+                            <div class="material-meta">
+                                <span>PDF • 38MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Book 5 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 13</h3>
+                            <p>With answers and audio</p>
+                            <div class="material-meta">
+                                <span>PDF • 36MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Book 6 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 12</h3>
+                            <p>Academic & General Training</p>
+                            <div class="material-meta">
+                                <span>PDF • 35MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Book 7 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 11</h3>
+                            <p>With answers and audio</p>
+                            <div class="material-meta">
+                                <span>PDF • 34MB</span>
+                                <span class="premium-badge">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Book 8 -->
+                    <div class="material-card">
+                        <div class="material-img">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Cambridge IELTS 10</h3>
+                            <p>Academic & General Training</p>
+                            <div class="material-meta">
+                                <span>PDF • 33MB</span>
+                                <span class="premium-badge">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Listening Tab -->
+            <div class="tab-content" id="listening">
+                <div class="material-grid">
+                    <!-- Listening 1 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #ffebee;">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Listening Test 1</h3>
+                            <p>Full practice test with audio and answers</p>
+                            <div class="material-meta">
+                                <span>MP3+PDF • 25MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Listening 2 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #ffebee;">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Listening Test 2</h3>
+                            <p>Full practice test with audio and answers</p>
+                            <div class="material-meta">
+                                <span>MP3+PDF • 28MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Listening 3 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #ffebee;">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Accent Training</h3>
+                            <p>British vs Australian accent comparison</p>
+                            <div class="material-meta">
+                                <span>MP3+PDF • 15MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Listening 4 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #ffebee;">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Listening Strategies</h3>
+                            <p>Top 10 techniques for Band 8+</p>
+                            <div class="material-meta">
+                                <span>PDF • 5MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reading Tab -->
+            <div class="tab-content" id="reading">
+                <div class="material-grid">
+                    <!-- Reading 1 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e8f5e9;">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Academic Reading Test 1</h3>
+                            <p>Full practice test with answers</p>
+                            <div class="material-meta">
+                                <span>PDF • 8MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reading 2 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e8f5e9;">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>General Reading Test 1</h3>
+                            <p>Full practice test with answers</p>
+                            <div class="material-meta">
+                                <span>PDF • 7MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reading 3 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e8f5e9;">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Reading Strategies</h3>
+                            <p>Skimming and scanning techniques</p>
+                            <div class="material-meta">
+                                <span>PDF • 3MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reading 4 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e8f5e9;">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Time Management Guide</h3>
+                            <p>How to finish all 3 passages in time</p>
+                            <div class="material-meta">
+                                <span>PDF • 2MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Writing Tab -->
+            <div class="tab-content" id="writing">
+                <div class="material-grid">
+                    <!-- Writing 1 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e3f2fd;">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Task 2 Essay Samples</h3>
+                            <p>50 Band 9 essay examples</p>
+                            <div class="material-meta">
+                                <span>PDF • 12MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Writing 2 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e3f2fd;">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Obesity Essay Analysis</h3>
+                            <p>Band 6 vs Band 9 comparison</p>
+                            <div class="material-meta">
+                                <span>PDF • 5MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Writing 3 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e3f2fd;">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Task 1 Academic</h3>
+                            <p>Graphs, charts and diagrams</p>
+                            <div class="material-meta">
+                                <span>PDF • 9MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Writing 4 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #e3f2fd;">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Writing Band Descriptors</h3>
+                            <p>Official scoring criteria explained</p>
+                            <div class="material-meta">
+                                <span>PDF • 2MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Speaking Tab -->
+            <div class="tab-content" id="speaking">
+                <div class="material-grid">
+                    <!-- Speaking 1 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #f3e5f5;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Speaking Cue Cards</h3>
+                            <p>100+ recent topics with samples</p>
+                            <div class="material-meta">
+                                <span>PDF • 6MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Speaking 2 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #f3e5f5;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Pronunciation Guide</h3>
+                            <p>Common mistakes and fixes</p>
+                            <div class="material-meta">
+                                <span>PDF+MP3 • 18MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Speaking 3 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #f3e5f5;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Fluency Techniques</h3>
+                            <p>How to avoid hesitation</p>
+                            <div class="material-meta">
+                                <span>PDF • 3MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Speaking 4 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #f3e5f5;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Speaking Band 9 Videos</h3>
+                            <p>Real exam recordings analyzed</p>
+                            <div class="material-meta">
+                                <span>MP4 • 250MB</span>
+                                <span class="premium-badge">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vocabulary Tab -->
+            <div class="tab-content" id="vocabulary">
+                <div class="material-grid">
+                    <!-- Vocabulary 1 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #fff8e1;">
+                            <i class="fas fa-spell-check"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Band 9 Vocabulary</h3>
+                            <p>500+ academic words</p>
+                            <div class="material-meta">
+                                <span>PDF • 4MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vocabulary 2 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #fff8e1;">
+                            <i class="fas fa-spell-check"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Topic-Specific Words</h3>
+                            <p>Environment, Technology, Education etc.</p>
+                            <div class="material-meta">
+                                <span>PDF • 5MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vocabulary 3 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #fff8e1;">
+                            <i class="fas fa-spell-check"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Collocations List</h3>
+                            <p>Natural word combinations</p>
+                            <div class="material-meta">
+                                <span>PDF • 3MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vocabulary 4 -->
+                    <div class="material-card">
+                        <div class="material-img" style="background-color: #fff8e1;">
+                            <i class="fas fa-spell-check"></i>
+                        </div>
+                        <div class="material-info">
+                            <h3>Idioms for Speaking</h3>
+                            <p>100+ natural phrases</p>
+                            <div class="material-meta">
+                                <span>PDF • 2MB</span>
+                                <button class="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="practice-section" id="practice">
+        <h2 class="section-title">Practice <span>Tools</span></h2>
+        <div class="materials-container">
+            <div class="material-grid">
+                <!-- Study Planner -->
+                <div class="material-card">
+                    <div class="material-img" style="background-color: #fce4ec;">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="material-info">
+                        <h3>IELTS Study Planner</h3>
+                        <p>Custom 4-week preparation schedule</p>
+                        <div class="material-meta">
+                            <span>PDF • 2MB</span>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Examiner Tips -->
+                <div class="material-card">
+                    <div class="material-img" style="background-color: #fce4ec;">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="material-info">
+                        <h3>Examiner's Secret Tips</h3>
+                        <p>What markers really look for</p>
+                        <div class="material-meta">
+                            <span>PDF • 3MB</span>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grammar Guide -->
+                <div class="material-card">
+                    <div class="material-img" style="background-color: #fce4ec;">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="material-info">
+                        <h3>Grammar for IELTS</h3>
+                        <p>Essential structures for Band 7+</p>
+                        <div class="material-meta">
+                            <span>PDF • 5MB</span>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word Lists -->
+                <div class="material-card">
+                    <div class="material-img" style="background-color: #fce4ec;">
+                        <i class="fas fa-list-ol"></i>
+                    </div>
+                    <div class="material-info">
+                        <h3>Academic Word List</h3>
+                        <p>570 most frequent academic words</p>
+                        <div class="material-meta">
+                            <span>PDF • 1MB</span>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+                <div class="social-login">
+                    <p>Or login with</p>
+                    <div class="social-icons">
+                        <div class="social-icon google">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="social-icon facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="social-icon apple">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" class="form-control" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" class="form-control" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" class="form-control" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <input type="password" class="form-control" id="signupConfirm" required>
+                </div>
+                <button type="submit" class="btn-submit">Create Account</button>
+                <div class="social-login">
+                    <p>Or sign up with</p>
+                    <div class="social-icons">
+                        <div class="social-icon google">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="social-icon facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="social-icon apple">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>IELTS Mastery</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#materials">Materials</a></li>
+                    <li><a href="#practice">Practice</a></li>
+                    <li><a href="#tips">Tips</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Cambridge Books</a></li>
+                    <li><a href="#">Practice Tests</a></li>
+                    <li><a href="#">Vocabulary</a></li>
+                    <li><a href="#">Writing Samples</a></li>
+                    <li><a href="#">Speaking Tips</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> admin@jayprasad.com.np</p>
+                    <p><i class="fas fa-envelope"></i> connect@technologist.com</p>
+                    <p><i class="fas fa-globe"></i> jayprasad.com.np/ielts</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 IELTS Mastery. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Modal functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const switchToSignup = document.getElementById('switchToSignup');
+        
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+            signupModal.style.display = 'none';
+        });
+        
+        signupBtn.addEventListener('click', () => {
+            signupModal.style.display = 'flex';
+            loginModal.style.display = 'none';
+        });
+        
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                signupModal.style.display = 'none';
+            });
+        });
+        
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+        
+        switchToSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'flex';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Login functionality will be implemented soon!');
+            loginModal.style.display = 'none';
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Account creation will be implemented soon!');
+            signupModal.style.display = 'none';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
