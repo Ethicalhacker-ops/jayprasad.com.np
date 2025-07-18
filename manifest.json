@@ -1,0 +1,25 @@
+{
+  "name": "Jay Prasad Majhi - IT Security Consultant",
+  "short_name": "JayPrasad",
+  "description": "Professional portfolio of Jay Prasad showcasing 600+ technology implementations across web development, cloud architecture, and cybersecurity solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#00f0ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/favicon/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity", "education"],
+  "lang": "en",
+  "dir": "ltr"
+}
