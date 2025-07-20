@@ -228,6 +228,61 @@
             margin: 5px 0;
         }
         
+        /* Universe running elements */
+        .universe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: shoot linear;
+            opacity: 0;
+        }
+        
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(1000px) translateY(300px);
+                opacity: 0;
+            }
+        }
+        
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+        
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
@@ -245,12 +300,13 @@
     </style>
 </head>
 <body>
+    <div class="universe-bg" id="universe"></div>
     <div class="particles" id="particles-js"></div>
     
     <div class="maintenance-container">
         <div class="logo">
             <i class="fas fa-code"></i>
-            The Bi Jay
+            Jay Prasad Majhi
         </div>
         
         <h1>We're Coming Soon!</h1>
@@ -276,13 +332,11 @@
                 <div class="countdown-label">Seconds</div>
             </div>
         </div>
-        
         <h2>Contact Us</h2>
-        
         <div class="email-categories">
             <div class="email-category">
                 <h3>IT Support</h3>
-                <div class="email-address">it@bijay.us</div>
+                <div class="email-address">admin@jayprasad.com.np</div>
             </div>
             <div class="email-category">
                 <h3>Technical Support</h3>
@@ -293,7 +347,7 @@
                 <div class="email-address">connect@technologist.com</div>
             </div>
         </div>
-        
+
         <form class="contact-form" id="contactForm">
             <div class="form-group">
                 <label for="name">Your Name</label>
@@ -312,6 +366,7 @@
                     <option value="IT Support">IT Support</option>
                     <option value="Technical Support">Technical Support</option>
                     <option value="Business Inquiry">Business Inquiry</option>
+                    <option value="General Inquiry">General Inquiry</option>
                     <option value="Other">Other</option>
                 </select>
             </div>
@@ -323,7 +378,6 @@
             
             <button type="submit" class="submit-btn">Send Message</button>
         </form>
-        
         <div class="contact-info">
             <div class="contact-item">
                 <i class="fas fa-phone"></i>
@@ -347,9 +401,60 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
-        // Set the date we're counting down to (15 days from now)
+        // Create universe elements
+        function createUniverse() {
+            const universe = document.getElementById('universe');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            // Create stars
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * width}px`;
+                star.style.top = `${Math.random() * height}px`;
+                star.style.opacity = Math.random();
+                universe.appendChild(star);
+            }
+            
+            // Create shooting stars occasionally
+            setInterval(() => {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = `${Math.random() * 100}px`;
+                shootingStar.style.top = `${Math.random() * 100}px`;
+                shootingStar.style.width = `${2 + Math.random() * 3}px`;
+                shootingStar.style.height = shootingStar.style.width;
+                shootingStar.style.animationDuration = `${1 + Math.random() * 2}s`;
+                universe.appendChild(shootingStar);
+                
+                // Remove after animation completes
+                setTimeout(() => {
+                    shootingStar.remove();
+                }, 2000);
+            }, 3000);
+            
+            // Create planets
+            const planetColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#A5FFD6'];
+            for (let i = 0; i < 3; i++) {
+                const planet = document.createElement('div');
+                planet.className = 'planet';
+                const size = 100 + Math.random() * 200;
+                planet.style.width = `${size}px`;
+                planet.style.height = `${size}px`;
+                planet.style.background = `radial-gradient(circle, ${planetColors[i % planetColors.length]}, ${planetColors[(i + 1) % planetColors.length]})`;
+                planet.style.left = `${-size/2 + Math.random() * width}px`;
+                planet.style.top = `${-size/2 + Math.random() * height}px`;
+                planet.style.filter = `blur(${Math.random() * 3}px)`;
+                universe.appendChild(planet);
+            }
+        }
+        
+        // Set the date we're counting down to (8 days from now)
         const countDownDate = new Date();
-        countDownDate.setDate(countDownDate.getDate() + 3);
+        countDownDate.setDate(countDownDate.getDate() + 8);
         
         // Update the countdown every 1 second
         const x = setInterval(function() {
@@ -428,7 +533,7 @@
             let recipientEmail;
             switch(subject) {
                 case 'IT Support':
-                    recipientEmail = 'admin@jayprasad.com.np';
+                    recipientEmail = 'it@bijay.us';
                     break;
                 case 'Technical Support':
                     recipientEmail = 'ict@technologist.com';
@@ -454,6 +559,9 @@
             // Reset form
             this.reset();
         });
+        
+        // Initialize universe when DOM is loaded
+        document.addEventListener('DOMContentLoaded', createUniverse);
     </script>
 </body>
 </html>
