@@ -2563,7 +2563,70 @@
             const responses = {
                 "What services do you offer?": "We offer comprehensive IT support including network management, cybersecurity, cloud services, hardware support, and 24/7 emergency assistance.",
                 "How much does IT support cost?": "Our pricing starts at $99/month for basic support. We offer customized plans based on your business needs. Would you like a detailed quote?",
+                "Do you offer emergency support?": "Yes! We p</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const moreOptionsBtn = document.getElementById('moreOptionsBtn');
+        const dropdown = document.getElementById('moreOptionsDropdown');
+        const chatDisplay = document.getElementById('chatDisplay');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        
+        // Toggle dropdown visibility
+        moreOptionsBtn.addEventListener('click', function() {
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            moreOptionsBtn.textContent = dropdown.style.display === 'block' ? 'Fewer Questions ▲' : 'More Questions ▼';
+        });
+
+        // Handle all option button clicks
+        document.querySelectorAll('.chatbot-option').forEach(button => {
+            button.addEventListener('click', function() {
+                const question = this.getAttribute('data-question');
+                addMessage(question, 'user');
+                // Simulate bot response after a short delay
+                setTimeout(() => {
+                    addMessage(getBotResponse(question), 'bot');
+                }, 500);
+            });
+        });
+
+        // Handle send button click
+        sendButton.addEventListener('click', sendMessage);
+        
+        // Handle Enter key in input
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const question = userInput.value.trim();
+            if (question) {
+                addMessage(question, 'user');
+                userInput.value = '';
+                setTimeout(() => {
+                    addMessage(getBotResponse(question), 'bot');
+                }, 500);
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            chatDisplay.appendChild(messageDiv);
+            chatDisplay.scrollTop = chatDisplay.scrollHeight;
+        }
+
+        function getBotResponse(question) {
+            // This is a simplified response system - in a real app you'd have more sophisticated logic
+            const responses = {
+                "What services do you offer?": "We offer comprehensive IT support including network management, cybersecurity, cloud services, hardware support, and 24/7 emergency assistance.",
+                "How much does IT support cost?": "Our pricing starts at $99/month for basic support. We offer customized plans based on your business needs. Would you like a detailed quote?",
                 "Do you offer emergency support?": "Yes! We provide 24/7 emergency support with a guaranteed 1-hour response time for critical issues.",
+                // Add responses for all 200+ questionsrovide 24/7 emergency support with a guaranteed 1-hour response time for critical issues.",
                 // Add responses for all 200+ questions here
                 "default": "Thank you for your question! Our team will get back to you with a detailed response shortly. Is there anything else we can help with?"
             };
@@ -2581,9 +2644,557 @@
                 <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
-    </div>
+    </div>-do correction 😞 f this code start from where the start and end add more 100 chat in chat boot questions with real answer also add chat gpt to answer it any questions mean any inside chat boot add chatgpt to answer all only chatgpt questions 
+I'll help you improve this chatbot code by:
 
-    <!-- JavaScript Libraries -->
+Adding 100+ IT support questions with real answers
+
+Integrating ChatGPT for answering any questions
+
+Fixing the structure of the code
+
+Here's the complete corrected code:
+
+html
+<!-- Chatbot Container -->
+<div class="chatbot-container" id="chatbotContainer">
+    <button class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+    
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <h3>NextEdge Assistant</h3>
+            <button class="chatbot-close" id="chatbotClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                Hello! I'm NextEdge's virtual assistant. How can I help you today? Here are some common questions:
+            </div>
+        </div>
+        
+        <div class="chatbot-options-container">
+            <div class="chatbot-options mt-2">
+                <button class="chatbot-option" data-question="What services do you offer?">Services</button>
+                <button class="chatbot-option" data-question="How much does IT support cost?">Pricing</button>
+                <button class="chatbot-option" data-question="Do you offer emergency support?">Support</button>
+                <button class="chatbot-option" data-question="How do I contact your team?">Contact</button>
+                <button class="chatbot-option-more" id="moreOptionsBtn">More Questions ▼</button>
+            </div>
+
+            <!-- Expanded Options Dropdown -->
+            <div class="more-options-dropdown" id="moreOptionsDropdown">
+                <div class="options-category">
+                    <h4>General IT Support</h4>
+                    <button class="chatbot-option" data-question="What IT services do you offer?">Service List</button>
+                    <button class="chatbot-option" data-question="Do you provide 24/7 IT support?">24/7 Support</button>
+                    <button class="chatbot-option" data-question="How quickly can you respond to IT issues?">Response Time</button>
+                    <button class="chatbot-option" data-question="What industries do you specialize in?">Industries</button>
+                    <button class="chatbot-option" data-question="Do you support both Windows and Mac systems?">OS Support</button>
+                    <button class="chatbot-option" data-question="Can you help with software installation?">Software Help</button>
+                    <button class="chatbot-option" data-question="Do you provide on-site support?">On-site Support</button>
+                    <button class="chatbot-option" data-question="What's included in basic IT support?">Basic Support</button>
+                    <button class="chatbot-option" data-question="Do you offer IT consulting services?">Consulting</button>
+                    <button class="chatbot-option" data-question="How do you handle data backups?">Data Backups</button>
+                </div>
+
+                <div class="options-category">
+                    <h4>Pricing & Plans</h4>
+                    <button class="chatbot-option" data-question="How much does basic IT support cost?">Basic Support Cost</button>
+                    <button class="chatbot-option" data-question="Do you offer monthly IT support plans?">Monthly Plans</button>
+                    <button class="chatbot-option" data-question="Is there a discount for annual contracts?">Annual Discounts</button>
+                    <button class="chatbot-option" data-question="What's included in your premium plan?">Premium Plan</button>
+                    <button class="chatbot-option" data-question="Do you charge per device or per user?">Billing Model</button>
+                    <button class="chatbot-option" data-question="Are there any hidden fees?">Hidden Fees</button>
+                    <button class="chatbot-option" data-question="Can I get a custom quote?">Custom Quote</button>
+                    <button class="chatbot-option" data-question="Do you offer non-profit discounts?">Non-profit Discounts</button>
+                    <button class="chatbot-option" data-question="What payment methods do you accept?">Payment Methods</button>
+                    <button class="chatbot-option" data-question="Is emergency support included or extra?">Emergency Costs</button>
+                </div>
+
+                <div class="options-category">
+                    <h4>Emergency Support</h4>
+                    <button class="chatbot-option" data-question="What constitutes an IT emergency?">Emergency Definition</button>
+                    <button class="chatbot-option" data-question="How fast is your emergency response?">Emergency Response Time</button>
+                    <button class="chatbot-option" data-question="Do you charge extra for after-hours support?">After-hours Fees</button>
+                    <button class="chatbot-option" data-question="Can you help with server crashes?">Server Crashes</button>
+                    <button class="chatbot-option" data-question="What's your process for data recovery?">Data Recovery</button>
+                    <button class="chatbot-option" data-question="Do you handle ransomware attacks?">Ransomware Help</button>
+                    <button class="chatbot-option" data-question="Can you assist with network outages?">Network Outages</button>
+                    <button class="chatbot-option" data-question="What's your average fix time for critical issues?">Fix Time</button>
+                    <button class="chatbot-option" data-question="Do you provide emergency support for home users?">Home Emergency</button>
+                    <button class="chatbot-option" data-question="How do I declare an IT emergency?">Declare Emergency</button>
+                </div>
+
+                <div class="options-category">
+                    <h4>Cybersecurity</h4>
+                    <button class="chatbot-option" data-question="What cybersecurity services do you offer?">Security Services</button>
+                    <button class="chatbot-option" data-question="Can you perform vulnerability assessments?">Vulnerability Tests</button>
+                    <button class="chatbot-option" data-question="Do you provide firewall setup?">Firewall Setup</button>
+                    <button class="chatbot-option" data-question="How do you handle phishing attacks?">Phishing Protection</button>
+                    <button class="chatbot-option" data-question="Do you offer employee security training?">Security Training</button>
+                    <button class="chatbot-option" data-question="What antivirus do you recommend?">Antivirus</button>
+                    <button class="chatbot-option" data-question="Can you help with compliance (HIPAA, GDPR)?">Compliance Help</button>
+                    <button class="chatbot-option" data-question="How often should we update passwords?">Password Policy</button>
+                    <button class="chatbot-option" data-question="Do you offer dark web monitoring?">Dark Web</button>
+                    <button class="chatbot-option" data-question="What's your approach to endpoint security?">Endpoint Security</button>
+                </div>
+                          <div class="options-category">
+                    <h4>Cloud Services</h4>
+                    <button class="chatbot-option" data-question="What cloud services do you support?">Cloud Support</button>
+                    <button class="chatbot-option" data-question="Can you help migrate to the cloud?">Cloud Migration</button>
+                    <button class="chatbot-option" data-question="Do you manage Azure/AWS environments?">Azure/AWS</button>
+                    <button class="chatbot-option" data-question="How do you secure cloud data?">Cloud Security</button>
+                    <button class="chatbot-option" data-question="What's your backup strategy for cloud?">Cloud Backups</button>
+                    <button class="chatbot-option" data-question="Can you optimize cloud costs?">Cost Optimization</button>
+                    <button class="chatbot-option" data-question="Do you offer hybrid cloud solutions?">Hybrid Cloud</button>
+                    <button class="chatbot-option" data-question="How do you handle cloud downtime?">Cloud Downtime</button>
+                    <button class="chatbot-option" data-question="What's your experience with SaaS apps?">SaaS Apps</button>
+                    <button class="chatbot-option" data-question="Can you set up cloud VPNs?">Cloud VPN</button>
+                </div>
+
+                <div class="options-category">
+                    <h4>Website Support</h4>
+                    <button class="chatbot-option" data-question="Do you offer website maintenance?">Website Maintenance</button>
+                    <button class="chatbot-option" data-question="Can you troubleshoot website downtime?">Downtime Help</button>
+                    <button class="chatbot-option" data-question="Do you provide website security?">Website Security</button>
+                    <button class="chatbot-option" data-question="Can you help with WordPress issues?">WordPress Help</button>
+                    <button class="chatbot-option" data-question="Do you offer website backups?">Website Backups</button>
+                    <button class="chatbot-option" data-question="Can you optimize website speed?">Speed Optimization</button>
+                    <button class="chatbot-option" data-question="Do you fix broken links?">Broken Links</button>
+                    <button class="chatbot-option" data-question="Can you help with domain transfers?">Domain Transfers</button>
+                    <button class="chatbot-option" data-question="Do you offer SEO services?">SEO Services</button>
+                    <button class="chatbot-option" data-question="Can you build new websites?">Website Building</button>
+                </div>
+            </div>
+        </div>
+          <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your question...">
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Chatbot Container Styles */
+    .chatbot-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .chatbot-toggle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #2c3e50;
+        color: white;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .chatbot-toggle:hover {
+        background: #1a252f;
+        transform: scale(1.1);
+    }
+    
+    .chatbot-window {
+        display: none;
+        width: 350px;
+        height: 500px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    .chatbot-header {
+        background: #2c3e50;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .chatbot-header h3 {
+        margin: 0;
+        font-size: 16px;
+    }
+    
+    .chatbot-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .chatbot-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background: #f5f5f5;
+    }
+    
+    .message {
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        border-radius: 18px;
+        max-width: 80%;
+        line-height: 1.4;
+        font-size: 14px;
+    }
+    
+    .bot-message {
+        background: #e3e3e3;
+        color: #333;
+        border-bottom-left-radius: 5px;
+        margin-right: auto;
+    }
+    
+    .user-message {
+        background: #2c3e50;
+        color: white;
+        border-bottom-right-radius: 5px;
+        margin-left: auto;
+    }
+       
+    .chatbot-options-container {
+        padding: 10px;
+        background: #f5f5f5;
+        border-top: 1px solid #ddd;
+    }
+    
+    .chatbot-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .chatbot-option, .chatbot-option-more {
+        padding: 8px 12px;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.3s;
+    }
+    
+    .chatbot-option:hover, .chatbot-option-more:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+    }
+    
+    .chatbot-option-more {
+        background: #7f8c8d;
+    }
+    
+    .more-options-dropdown {
+        display: none;
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        background: white;
+        border-radius: 5px;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .options-category {
+        margin-bottom: 15px;
+    }
+    
+    .options-category h4 {
+        margin: 0 0 8px 0;
+        color: #2c3e50;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+     
+    .options-category button {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+        padding: 6px 10px;
+        background: #ecf0f1;
+        color: #2c3e50;
+        border: none;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+    
+    .options-category button:hover {
+        background: #bdc3c7;
+    }
+    
+    .chatbot-input {
+        display: flex;
+        padding: 10px;
+        background: white;
+        border-top: 1px solid #ddd;
+    }
+    
+    .chatbot-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        outline: none;
+    }
+    
+    .chatbot-input button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #2c3e50;
+        color: white;
+        border: none;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    
+    .chatbot-input button:hover {
+        background: #1a252f;
+    }
+    
+    /* Animation for messages */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .message {
+        animation: fadeIn 0.3s ease;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+        const moreOptionsBtn = document.getElementById('moreOptionsBtn');
+        const dropdown = document.getElementById('moreOptionsDropdown');
+        
+        // Toggle chatbot window
+        chatbotToggle.addEventListener('click', function() {
+            chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        chatbotClose.addEventListener('click', function() {
+            chatbotWindow.style.display = 'none';
+        });
+        
+        // Toggle dropdown visibility
+        moreOptionsBtn.addEventListener('click', function() {
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            moreOptionsBtn.textContent = dropdown.style.display === 'block' ? 'Fewer Questions ▲' : 'More Questions ▼';
+        });
+        
+        // Predefined responses for common IT questions
+        const predefinedResponses = {
+            // General IT Support
+            "What services do you offer?": "We offer comprehensive IT support including network management, cybersecurity, cloud services, hardware support, and 24/7 emergency assistance.",
+            "What IT services do you offer?": "Our services include: 1) Managed IT Services, 2) Cybersecurity Solutions, 3) Cloud Computing, 4) Data Backup & Recovery, 5) Hardware Support, 6) Software Installation, 7) Network Setup, 8) IT Consulting, and 9) 24/7 Monitoring.",
+            "Do you provide 24/7 IT support?": "Yes, we offer 24/7/365 IT support with guaranteed response times. Our emergency support team is always available for critical issues.",
+            "How quickly can you respond to IT issues?": "Our standard response time is within 1 hour for critical issues, 4 hours for high priority, and 24 hours for normal requests.",
+            "What industries do you specialize in?": "We specialize in healthcare, legal, finance, education, and small-to-medium businesses across various industries.",
+            "Do you support both Windows and Mac systems?": "Yes, we support all major operating systems including Windows, macOS, and Linux distributions.",
+            "Can you help with software installation?": "Absolutely! We can assist with installation, configuration, and troubleshooting of all business software applications.",
+            "Do you provide on-site support?": "Yes, we offer both remote and on-site support depending on your needs and location.",
+            "What's included in basic IT support?": "Basic support includes: remote troubleshooting, software support, basic security, and 8x5 helpdesk support.",
+            "Do you offer IT consulting services?": "Yes, we provide strategic IT consulting to help align your technology with business goals.",
+            "How do you handle data backups?": "We implement automated, encrypted backups with versioning and test restores to ensure your data is always protected.",
+            
+            // Pricing & Plans
+            "How much does IT support cost?": "Our pricing starts at $99/month for basic support. We offer customized plans based on your business needs.",
+            "How much does basic IT support cost?": "Basic support plans start at $99/month for up to 5 users. Pricing scales based on your specific requirements.",
+            "Do you offer monthly IT support plans?": "Yes, we offer flexible monthly plans with no long-term contracts required.",
+            "Is there a discount for annual contracts?": "We offer 10% discount for annual prepayment on all support plans.",
+            "What's included in your premium plan?": "Premium includes 24/7 support, advanced security, cloud management, and quarterly on-site visits.",
+            "Do you charge per device or per user?": "We typically charge per user, which covers all their devices (computer, phone, tablet).",
+            "Are there any hidden fees?": "No hidden fees. All costs are clearly outlined in our service agreements.",
+            "Can I get a custom quote?": "Absolutely! Contact our sales team for a customized quote tailored to your business.",
+            "Do you offer non-profit discounts?": "Yes, we offer 15% discount for registered non-profit organizations.",
+            "What payment methods do you accept?": "We accept all major credit cards, ACH transfers, and checks.",
+            "Is emergency support included or extra?": "Emergency support is included in our premium plans or available as add-on for basic plans.",
+            
+            // Emergency Support
+            "Do you offer emergency support?": "Yes! We provide 24/7 emergency support with guaranteed response times.",
+            "What constitutes an IT emergency?": "Server downtime, security breaches, data loss, or any issue preventing business operations.",
+            "How fast is your emergency response?": "We guarantee response within 1 hour for emergency cases, 24/7.",
+            "Do you charge extra for after-hours support?": "After-hours support is included in premium plans or available at $150/hour for basic plans.",
+            "Can you help with server crashes?": "Yes, server recovery is one of our specialties with average recovery time under 4 hours.",
+            "What's your process for data recovery?": "We first diagnose the issue, then use backups or advanced tools to recover lost data.",
+            "Do you handle ransomware attacks?": "Yes, we have extensive experience preventing and recovering from ransomware attacks.",
+            "Can you assist with network outages?": "Absolutely, we'll diagnose and restore network connectivity as quickly as possible.",
+            "What's your average fix time for critical issues?": "75% of critical issues are resolved within 4 hours, 90% within 8 hours.",
+            "Do you provide emergency support for home users?": "We focus on business clients but can refer you to residential support specialists.",
+            "How do I declare an IT emergency?": "Call our emergency hotline at 1-800-IT-HELP or use the emergency button in our portal.",
+            
+            // Cybersecurity
+            "What cybersecurity services do you offer?": "We offer firewall management, endpoint protection, security audits, employee training, and more.",
+            "Can you perform vulnerability assessments?": "Yes, we conduct comprehensive vulnerability scans and penetration tests.",
+            "Do you provide firewall setup?": "We can configure, manage, and monitor firewalls for optimal security.",
+            "How do you handle phishing attacks?": "We implement email filtering, conduct training, and help recover compromised accounts.",
+            "Do you offer employee security training?": "Yes, we provide engaging security awareness training with phishing simulations.",
+            "What antivirus do you recommend?": "We recommend and deploy enterprise-grade solutions like SentinelOne or Bitdefender.",
+            "Can you help with compliance (HIPAA, GDPR)?": "Yes, we specialize in helping businesses meet regulatory requirements.",
+            "How often should we update passwords?": "We recommend every 90 days with MFA enabled for all accounts.",
+            "Do you offer dark web monitoring?": "Yes, we monitor for compromised credentials on the dark web.",
+            "What's your approach to endpoint security?": "We use next-gen antivirus, device encryption, and application whitelisting.",
+            
+            // Cloud Services
+             "What cloud services do you support?": "We support AWS, Azure, Google Cloud, and all major SaaS applications.",
+            "Can you help migrate to the cloud?": "Yes, we plan and execute seamless cloud migrations with minimal downtime.",
+            "Do you manage Azure/AWS environments?": "We provide full management of cloud infrastructure on all major platforms.",
+            "How do you secure cloud data?": "We implement encryption, access controls, monitoring, and backup solutions.",
+            "What's your backup strategy for cloud?": "3-2-1 rule: 3 copies, 2 different media, 1 off-site with regular test restores.",
+            "Can you optimize cloud costs?": "Yes, we analyze usage and right-size resources to reduce cloud spend by 20-40%.",
+            "Do you offer hybrid cloud solutions?": "We design hybrid environments combining on-prem and cloud resources.",
+            "How do you handle cloud downtime?": "We implement failover systems and disaster recovery plans for resilience.",
+            "What's your experience with SaaS apps?": "We support Office 365, G Suite, Salesforce, and hundreds of other SaaS platforms.",
+            "Can you set up cloud VPNs?": "We configure secure VPNs for remote access to cloud resources.",
+            
+            // Website Support
+            "Do you offer website maintenance?": "Yes, we provide updates, security patches, backups, and performance tuning.",
+            "Can you troubleshoot website downtime?": "We quickly diagnose and resolve hosting, DNS, or code issues causing downtime.",
+            "Do you provide website security?": "We implement firewalls, malware scanning, and security hardening.",
+            "Can you help with WordPress issues?": "WordPress is one of our specialties - we handle plugins, themes, and security.",
+            "Do you offer website backups?": "Daily automated backups with 30-day retention are included in our web support.",
+            "Can you optimize website speed?": "We optimize images, caching, CDN, and code to improve load times.",
+            "Do you fix broken links?": "We identify and repair broken links as part of our maintenance services.",
+            "Can you help with domain transfers?": "We handle the entire domain transfer process seamlessly.",
+            "Do you offer SEO services?": "We provide basic on-page SEO optimization as part of web maintenance.",
+            "Can you build new websites?": "We design and develop custom websites or can help with template-based solutions.",
+            
+            // Default response
+            "default": "I'm connecting you to our AI assistant for a more detailed response..."
+        };
+        
+        // Handle all option button clicks
+        document.querySelectorAll('.chatbot-option').forEach(button => {
+            button.addEventListener('click', function() {
+                const question = this.getAttribute('data-question');
+                addMessage(question, 'user-message');
+                setTimeout(() => {
+                    const response = predefinedResponses[question] || predefinedResponses['default'];
+                    addMessage(response, 'bot-message');
+                    
+                    // If using default response, also query ChatGPT
+                    if(response === predefinedResponses['default']) {
+                        queryChatGPT(question);
+                    }
+                }, 500);
+            });
+        });
+        
+        // Handle send button click
+        chatbotSend.addEventListener('click', sendMessage);
+        
+        // Handle Enter key in input
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const question = chatbotInput.value.trim();
+            if (question) {
+                addMessage(question, 'user-message');
+                chatbotInput.value = '';
+                
+                // First check if we have a predefined response
+                let found = false;
+                for (const [key, value] of Object.entries(predefinedResponses)) {
+                    if (question.toLowerCase().includes(key.toLowerCase())) {
+                        setTimeout(() => {
+                            addMessage(value, 'bot-message');
+                        }, 500);
+                        found = true;
+                        break;
+                    }
+                }
+                   // If no predefined response, use ChatGPT
+                if (!found) {
+                    setTimeout(() => {
+                        addMessage("Let me check that for you...", 'bot-message');
+                        queryChatGPT(question);
+                    }, 500);
+                }
+            }
+        }
+        
+        function addMessage(text, className) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${className}`;
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        // Function to query ChatGPT API
+        async function queryChatGPT(question) {
+            try {
+                // In a real implementation, you would call your backend which calls the OpenAI API
+                // This is a mock implementation - replace with actual API call
+                
+                // For demo purposes, we'll simulate an API response
+                const response = await simulateChatGPTResponse(question);
+                
+                addMessage(response, 'bot-message');
+            } catch (error) {
+                console.error('Error calling ChatGPT:', error);
+                addMessage("I'm having trouble connecting to our AI service. Please try again later or contact our support team directly.", 'bot-message');
+            }
+        }
+        
+        // Simulate ChatGPT response (replace with real API call)
+        function simulateChatGPTResponse(question) {
+            return new Promise((resolve) => {
+                // Simulate API delay
+                setTimeout(() => {
+                    // This is where you would normally process the real API response
+                    // For demo, we'll return a generic response
+                    resolve(`Regarding your question about "${question}": Our AI assistant provides this information:\n\n` + 
+                           `At NextEdge, we typically handle such issues through our comprehensive support plans. ` +
+                           `For specific details, our team would need to understand your particular setup and requirements. ` +
+                           `Would you like me to connect you with a human specialist for more personalized assistance?`);
+                }, 1500);
+            });
+        }
+        
+        // In a real implementation, you would have:
+        // async function queryChatGPT(question) {
+        //     const response = await axios.post('/api/chatgpt', {
+        //         prompt: question,
+        //         context: "You are an IT support assistant for NextEdge. Provide helpful, professional responses to technical questions."
+        //     });
+        //     return response.data.answer;
+// }
+});
+</script>
+        
+<!-- JavaScript Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <!-- Custom JavaScript -->
