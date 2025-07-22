@@ -1,1 +1,567 @@
-Bijay Dada
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        .maintenance-container {
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            margin: 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #00f0ff;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #00f0ff;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00f0ff;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-item i {
+            margin-right: 10px;
+            color: #00f0ff;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #00f0ff;
+            transform: translateY(-5px);
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00f0ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .current-time {
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .contact-form {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: #00f0ff;
+            color: #0f2027;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #00c4d1;
+            transform: translateY(-3px);
+        }
+        
+        .email-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .email-category {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 250px;
+        }
+        
+        .email-category h3 {
+            color: #00f0ff;
+            margin-bottom: 15px;
+        }
+        
+        .email-address {
+            font-family: monospace;
+            background: rgba(0, 240, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        /* Universe running elements */
+        .universe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: shoot linear;
+            opacity: 0;
+        }
+        
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(1000px) translateY(300px);
+                opacity: 0;
+            }
+        }
+        
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .countdown-item {
+                padding: 15px;
+                min-width: 60px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="universe-bg" id="universe"></div>
+    <div class="particles" id="particles-js"></div>
+    
+    <div class="maintenance-container">
+        <div class="logo">
+            <i class="fas fa-code"></i>
+            Jay Prasad Majhi
+        </div>
+        
+        <h1>We're Coming Soon!</h1>
+        <p>Our website is currently undergoing scheduled maintenance and improvements. We're working hard to bring you an enhanced experience. Please check back soon!</p>
+        
+        <div class="current-time" id="currentDateTime"></div>
+        
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        <h2>Contact Us</h2>
+        <div class="email-categories">
+            <div class="email-category">
+                <h3>IT Support</h3>
+                <div class="email-address">admin@jayprasad.com.np</div>
+            </div>
+            <div class="email-category">
+                <h3>Technical Support</h3>
+                <div class="email-address">ict@technologist.com</div>
+            </div>
+            <div class="email-category">
+                <h3>Business Inquiries</h3>
+                <div class="email-address">connect@technologist.com</div>
+            </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                    <option value="">Select a category</option>
+                    <option value="IT Support">IT Support</option>
+                    <option value="Technical Support">Technical Support</option>
+                    <option value="Business Inquiry">Business Inquiry</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                +977 9841234567
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                Kathmandu, Nepal
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Create universe elements
+        function createUniverse() {
+            const universe = document.getElementById('universe');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            // Create stars
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * width}px`;
+                star.style.top = `${Math.random() * height}px`;
+                star.style.opacity = Math.random();
+                universe.appendChild(star);
+            }
+            
+            // Create shooting stars occasionally
+            setInterval(() => {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = `${Math.random() * 100}px`;
+                shootingStar.style.top = `${Math.random() * 100}px`;
+                shootingStar.style.width = `${2 + Math.random() * 3}px`;
+                shootingStar.style.height = shootingStar.style.width;
+                shootingStar.style.animationDuration = `${1 + Math.random() * 2}s`;
+                universe.appendChild(shootingStar);
+                
+                // Remove after animation completes
+                setTimeout(() => {
+                    shootingStar.remove();
+                }, 2000);
+            }, 3000);
+            
+            // Create planets
+            const planetColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#A5FFD6'];
+            for (let i = 0; i < 3; i++) {
+                const planet = document.createElement('div');
+                planet.className = 'planet';
+                const size = 100 + Math.random() * 200;
+                planet.style.width = `${size}px`;
+                planet.style.height = `${size}px`;
+                planet.style.background = `radial-gradient(circle, ${planetColors[i % planetColors.length]}, ${planetColors[(i + 1) % planetColors.length]})`;
+                planet.style.left = `${-size/2 + Math.random() * width}px`;
+                planet.style.top = `${-size/2 + Math.random() * height}px`;
+                planet.style.filter = `blur(${Math.random() * 3}px)`;
+                universe.appendChild(planet);
+            }
+        }
+        
+        // Set the date we're counting down to (8 days from now)
+        const countDownDate = new Date();
+        countDownDate.setDate(countDownDate.getDate() + 8);
+        
+        // Update the countdown every 1 second
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<h2>We're Live Now!</h2>";
+            }
+        }, 1000);
+        
+        // Update current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            document.getElementById('currentDateTime').textContent = now.toLocaleDateString('en-US', options);
+        }
+        
+        // Update immediately and then every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+        
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00f0ff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#00f0ff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+        
+        // Add floating animation to maintenance container
+        document.querySelector('.maintenance-container').classList.add('floating');
+        
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Determine recipient email based on subject
+            let recipientEmail;
+            switch(subject) {
+                case 'IT Support':
+                    recipientEmail = 'it@bijay.us';
+                    break;
+                case 'Technical Support':
+                    recipientEmail = 'ict@technologist.com';
+                    break;
+                case 'Business Inquiry':
+                    recipientEmail = 'connect@technologist.com';
+                    break;
+                default:
+                    recipientEmail = 'contact@jayprasad.com.np';
+            }
+            
+            // In a real implementation, you would send this data to your server
+            // For this example, we'll just show a confirmation and log the data
+            console.log('Email would be sent to:', recipientEmail);
+            console.log('Name:', name);
+            console.log('From:', email);
+            console.log('Subject:', subject);
+            console.log('Message:', message);
+            
+            // Show success message
+            alert(`Thank you, ${name}! Your message has been sent to ${recipientEmail}. We'll respond as soon as possible.`);
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Initialize universe when DOM is loaded
+        document.addEventListener('DOMContentLoaded', createUniverse);
+    </script>
+</body>
+</html>
