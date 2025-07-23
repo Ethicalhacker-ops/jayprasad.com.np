@@ -3,17 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to OLI.com.au</title>
-    <script>
-        // Immediate redirect
-        window.location.href = "https://oli.com.au";
-    </script>
+    <title>Redirecting to Cybrary | Cybersecurity Learning Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --dark: #2f2e41;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        .logo {
+            width: 120px;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #6c63ff, #ff6584);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            margin: 2rem 0;
+            height: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6c63ff, #ff6584);
+            border-radius: 50px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .percentage {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(108, 99, 255, 0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            margin: 2rem auto;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .redirect-message {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .cybrary-brand {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        
+        .contact-footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+        
+        .contact-email {
+            color: #6c63ff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <noscript>
-        <h1>Redirecting to OLI.com.au</h1>
-        <p>If you are not redirected automatically, please click <a href="https://oli.com.au">here</a>.</p>
-        <meta http-equiv="refresh" content="0; url=https://oli.com.au">
-    </noscript>
+    <div class="container">
+        <!-- Replace with your logo if needed -->
+        <img src="https://www.cybrary.it/wp-content/themes/cybrary/assets/img/logo-white.svg" alt="Cybrary Logo" class="logo">
+        
+        <h1>Preparing Your Learning Environment</h1>
+        <p>We're redirecting you to Cybrary's cybersecurity learning platform...</p>
+        
+        <div class="percentage">0%</div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="spinner"></div>
+        
+        <div class="redirect-message">
+            Please wait while we securely connect you. Do not refresh this page.
+        </div>
+        
+        <div class="cybrary-brand">
+            Powered by Cybrary - The World's Leading Cybersecurity Learning Platform
+        </div>
+        
+        <div class="contact-footer">
+            Contact our team:<br>
+            <a href="mailto:developers@technologist.com" class="contact-email">developers@technologist.com</a> |
+            <a href="mailto:ict@technologist.com" class="contact-email">ict@technologist.com</a> |
+            <a href="mailto:bijay@technologist.com" class="contact-email">bijay@technologist.com</a>
+        </div>
+    </div>
+
+    <script>
+        // Progress animation
+        let percentage = 0;
+        const percentageElement = document.querySelector('.percentage');
+        const progressBar = document.getElementById('progressBar');
+        const duration = 5000; // 5 seconds total
+        const intervalTime = 50; // Update every 50ms
+        const increments = 100 / (duration / intervalTime);
+        
+        const progressInterval = setInterval(() => {
+            percentage += increments;
+            if (percentage >= 100) {
+                percentage = 100;
+                clearInterval(progressInterval);
+            }
+            
+            percentageElement.textContent = Math.floor(percentage) + '%';
+            progressBar.style.width = percentage + '%';
+        }, intervalTime);
+        
+        // Redirect after duration
+        setTimeout(() => {
+            window.location.href = "https://www.cybrary.it/";
+        }, duration);
+        
+        // Fallback for non-JS browsers
+        document.write('<noscript><meta http-equiv="refresh" content="' + (duration/1000) + '; url=https://www.cybrary.it/"></noscript>');
+    </script>
 </body>
 </html>
