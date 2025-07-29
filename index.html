@@ -12,7 +12,7 @@
             --accent-orange: #FF6B35;
             --star-color: rgba(255, 255, 255, 0.8);
             --text-light: rgba(255, 255, 255, 0.9);
-            --card-bg: rgba(10, 36, 99, 0.2);
+            --card-bg: rgba(10, 36, 99, 0.3);
         }
         
         * {
@@ -25,14 +25,14 @@
             font-family: 'Orbitron', 'Arial', sans-serif;
             background-color: var(--space-dark);
             color: var(--text-light);
-            overflow: hidden;
-            height: 100vh;
+            overflow-x: hidden;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            perspective: 1000px;
             line-height: 1.6;
+            padding: 20px;
         }
         
         /* Universe Animation */
@@ -93,14 +93,16 @@
         /* Main Content */
         .maintenance-container {
             text-align: center;
-            max-width: 900px;
+            width: 100%;
+            max-width: 1000px;
             padding: 2.5rem;
-            background-color: rgba(10, 14, 23, 0.85);
+            background-color: rgba(10, 14, 23, 0.9);
             border-radius: 15px;
             box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 1rem;
+            margin: 1rem auto;
+            overflow: visible;
         }
         
         h1 {
@@ -115,9 +117,11 @@
         .status-description {
             margin-bottom: 2rem;
             font-size: 1.2rem;
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 1rem;
+            line-height: 1.7;
         }
         
         /* Digital Clock */
@@ -126,65 +130,73 @@
             flex-direction: column;
             align-items: center;
             margin: 2.5rem 0;
+            width: 100%;
         }
         
         .digital-clock {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             color: var(--accent-orange);
             text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
             display: flex;
             justify-content: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
         
         .date-display {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
             color: var(--text-light);
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         .clock-segment {
-            background-color: rgba(10, 36, 99, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            background-color: rgba(10, 36, 99, 0.4);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
             min-width: 80px;
             text-align: center;
+            margin: 0.2rem;
         }
         
         .date-segment {
-            background-color: rgba(10, 36, 99, 0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 6px;
+            background-color: rgba(10, 36, 99, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 0.2rem;
         }
         
         .clock-separator {
             display: flex;
             align-items: center;
             color: var(--star-color);
+            padding: 0 0.3rem;
         }
         
         /* Contact Section */
         .contact-section {
-            margin-top: 2rem;
+            margin-top: 3rem;
             width: 100%;
         }
         
         .section-title {
             color: var(--accent-orange);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-size: 1.8rem;
             position: relative;
             display: inline-block;
+            padding-bottom: 0.5rem;
         }
         
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 2px;
@@ -193,30 +205,33 @@
         
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
             margin-top: 2rem;
         }
         
         .contact-card {
             background: var(--card-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.3s ease;
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .contact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             border-color: var(--accent-orange);
-            background: rgba(10, 36, 99, 0.4);
+            background: rgba(10, 36, 99, 0.5);
         }
         
         .contact-card h3 {
             color: var(--accent-orange);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             font-size: 1.3rem;
             display: flex;
             align-items: center;
@@ -226,51 +241,95 @@
             content: '▹';
             margin-right: 10px;
             color: var(--accent-orange);
+            font-size: 1.1em;
         }
         
         .contact-email {
             color: var(--text-light);
-            word-break: break-all;
-            font-size: 1rem;
-            display: inline-block;
-            padding: 0.5rem 0;
+            word-break: break-word;
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 0;
             transition: color 0.2s;
+            text-decoration: none;
+            flex-grow: 1;
         }
         
         .contact-email:hover {
             color: var(--accent-orange);
+            text-decoration: underline;
+        }
+        
+        .contact-email i {
+            margin-right: 10px;
+            font-size: 1.1em;
         }
         
         /* Footer */
         .copyright {
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1.5rem;
+            margin-top: 4rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 2rem;
             width: 100%;
+            text-align: center;
         }
         
         /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .digital-clock {
-                font-size: 2.5rem;
-            }
-            
-            .date-display {
-                font-size: 1.4rem;
-            }
-            
             .maintenance-container {
-                padding: 1.5rem;
+                padding: 1.8rem;
             }
             
             h1 {
                 font-size: 2rem;
             }
             
+            .status-description {
+                font-size: 1.1rem;
+            }
+            
             .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+            
+            .clock-segment {
+                padding: 0.6rem 1rem;
+                min-width: 70px;
+            }
+            
+            .date-segment {
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .maintenance-container {
+                padding: 1.5rem;
+            }
+            
+            .digital-clock {
+                gap: 0.3rem;
+            }
+            
+            .date-display {
+                gap: 0.3rem;
+            }
+            
+            .clock-segment {
+                min-width: 60px;
+                padding: 0.5rem 0.8rem;
+            }
+            
+            .contact-card {
+                padding: 1.3rem;
             }
         }
     </style>
@@ -294,8 +353,10 @@
         <h1>System Maintenance in Progress</h1>
         
         <p class="status-description">
-            We're currently upgrading our systems to serve you better. Our website will be back online shortly 
-            with improved performance and new features. Thank you for your patience during this maintenance period.
+            We're currently performing critical system upgrades to enhance your experience. 
+            Our team is working diligently to complete this maintenance as quickly as possible.
+            During this time, all services are temporarily unavailable. We apologize for any inconvenience
+            and appreciate your patience. Expected completion time is 2 hours.
         </p>
         
         <!-- Time and Date Display -->
@@ -381,7 +442,8 @@
         </div>
         
         <div class="copyright">
-            &copy; <span id="current-year"></span> The Bijay. All systems will resume shortly.
+            &copy; <span id="current-year"></span> The Bijay Technologies. All rights reserved. 
+            Maintenance expected to complete by <span id="completion-time"></span>
         </div>
     </div>
 
@@ -426,6 +488,11 @@
             document.getElementById('day').textContent = now.getDate().toString().padStart(2, '0');
             document.getElementById('month').textContent = (now.getMonth() + 1).toString().padStart(2, '0');
             document.getElementById('year').textContent = now.getFullYear();
+            
+            // Calculate completion time (current time + 2 hours)
+            const completionTime = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+            document.getElementById('completion-time').textContent = 
+                completionTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
         
         // Set current year in copyright
