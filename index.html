@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading... | Jayprasad.com.np</title>
+    <style>
+        :root {
+            --space-dark: #0A0E17;
+            --space-blue: #0A2463;
+            --accent-orange: #FF6B35;
+            --text-light: #FFFFFF;
+            --card-bg: #16213E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--space-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            background-image: radial-gradient(circle at 50% 50%, #1A2E55 0%, #0A0E17 100%);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 700px;
+            padding: 3rem;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-orange), #FF8C00);
+        }
+        
+        h1 {
+            color: var(--accent-orange);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Loading Animation */
+        .loading-container {
+            width: 100%;
+            margin: 2.5rem 0;
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .loading-bar-container {
+            width: 100%;
+            height: 25px;
+            background-color: #0A2463;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .loading-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-orange), #FF8C00);
+            border-radius: 15px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+        
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .percentage {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+            margin: 1.5rem 0;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+        }
+        
+        /* Email Button */
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.5rem;
+            padding: 0.9rem 2.5rem;
+            background-color: var(--accent-orange);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .email-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.6);
+            background-color: #FF8C00;
+        }
+        
+        .email-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                width: 95%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Loading NEB Portal</h1>
+        <p>Please wait while we establish a secure connection to the National Examination Board portal...</p>
+        
+        <div class="loading-container">
+            <div class="loading-text">
+                <span>Connection Status</span>
+                <span id="status-text">Initializing...</span>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loading-bar"></div>
+            </div>
+            <div class="percentage" id="percentage">0%</div>
+        </div>
+        
+        <a href="mailto:technologia@technologist.com" class="email-btn">
+            <i class="fas fa-envelope"></i> technologia@technologist.com
+        </a>
+    </div>
+
+    <script>
+        // Loading animation - completes in 15 seconds
+        const totalTime = 15000; // 15 seconds in milliseconds
+        const startTime = Date.now();
+        const loadingBar = document.getElementById('loading-bar');
+        const percentageElement = document.getElementById('percentage');
+        const statusText = document.getElementById('status-text');
+        
+        const statusMessages = [
+            "Initializing...",
+            "Establishing connection...",
+            "Securing pathway...",
+            "Finalizing...",
+            "Ready!"
+        ];
+        
+        const updateProgress = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min((elapsed / totalTime) * 100, 100);
+            
+            loadingBar.style.width = `${progress}%`;
+            percentageElement.textContent = `${Math.floor(progress)}%`;
+            
+            // Update status text
+            if (progress < 25) {
+                statusText.textContent = statusMessages[0];
+            } else if (progress < 50) {
+                statusText.textContent = statusMessages[1];
+            } else if (progress < 75) {
+                statusText.textContent = statusMessages[2];
+            } else if (progress < 100) {
+                statusText.textContent = statusMessages[3];
+            } else {
+                statusText.textContent = statusMessages[4];
+            }
+            
+            if (progress >= 100) {
+                window.location.href = "https://neb.ntc.net.np";
+            } else {
+                requestAnimationFrame(updateProgress);
+            }
+        };
+        
+        // Start the progress update
+        updateProgress();
+    </script>
+</body>
+</html>
