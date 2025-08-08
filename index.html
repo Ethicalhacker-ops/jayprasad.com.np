@@ -1,10 +1,13 @@
+Here's the corrected version of your portfolio website with the requested changes:
+
+```html
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jay Prasad Majhi | Full Stack Developer & IT Security Consultant</title>
-    <meta name="description" content="Professional portfolio of Jay Prasad showcasing 600+ technology implementations across web development, cloud architecture, and cybersecurity solutions.">
+    <meta name="description" content="Professional portfolio of Jay Prasad Majhi showcasing 600+ technology implementations across web development, cloud architecture, and cybersecurity solutions.">
 
     <!-- OpenGraph Meta Tags -->
     <meta property="og:title" content="Jay Prasad Majhi | IT Security Consultant">
@@ -38,11 +41,6 @@
 
     <!-- Three.js for 3D effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <!-- Prism.js for code highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -477,6 +475,29 @@
         }
 
         .calendly-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== Live Chat Button ===== */
+        .live-chat-btn {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            z-index: 100;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .live-chat-btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
@@ -1211,296 +1232,141 @@
             color: white;
         }
 
-        /* ===== Tools Section ===== */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .tool-card {
+        /* ===== Live Chat Section ===== */
+        .chat-container {
             background-color: var(--card-bg);
             border-radius: 1rem;
             padding: 2rem;
             border: 1px solid var(--border);
-            transition: var(--transition);
+            margin-bottom: 2rem;
         }
 
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-        }
-
-        .tool-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .tool-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tool-description {
-            color: var(--text-light);
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
         }
 
-        .tool-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            background-color: var(--bg-light);
-            color: var(--text);
-            margin-bottom: 1rem;
-            font-family: var(--font-mono);
+        .chat-title {
+            font-size: 1.5rem;
+            color: var(--primary);
         }
 
-        .tool-output {
-            width: 100%;
-            min-height: 100px;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            background-color: var(--code-bg);
-            color: var(--text);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        /* ===== Code Editor ===== */
-        .code-editor {
-            background-color: var(--card-bg);
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            margin-bottom: 2rem;
-        }
-
-        .editor-header {
-            background-color: var(--bg-dark);
-            padding: 1rem;
+        .chat-stats {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .editor-tabs {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .editor-tab {
-            padding: 0.5rem 1rem;
-            background-color: var(--bg-light);
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .editor-tab.active {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .editor-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .editor-content {
-            display: flex;
-            height: 400px;
-        }
-
-        .editor-pane {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .editor-pane textarea {
-            flex: 1;
-            padding: 1rem;
-            border: none;
-            background-color: var(--code-bg);
-            color: var(--text);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            resize: none;
-            outline: none;
-        }
-
-        .editor-output {
-            flex: 1;
-            background-color: white;
-            border-left: 1px solid var(--border);
-        }
-
-        .editor-output iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* ===== Learning Section ===== */
-        .learning-roadmap {
-            background-color: var(--card-bg);
-            border-radius: 1rem;
-            padding: 2rem;
-            border: 1px solid var(--border);
-            margin-bottom: 2rem;
-        }
-
-        .roadmap-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .roadmap-progress {
-            width: 100%;
-            height: 8px;
-            background-color: var(--bg-light);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .roadmap-progress-bar {
-            height: 100%;
-            background: var(--gradient-primary);
-            border-radius: 4px;
-            transition: width 1s ease;
-        }
-
-        .roadmap-steps {
-            display: grid;
             gap: 1rem;
         }
 
-        .roadmap-step {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+        .stat-box {
             background-color: var(--bg-light);
+            padding: 0.75rem 1rem;
             border-radius: 0.5rem;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .roadmap-step:hover {
-            background-color: var(--bg);
-        }
-
-        .roadmap-step.completed {
-            background-color: rgba(0, 240, 255, 0.1);
-            border: 1px solid var(--primary);
-        }
-
-        .step-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .step-checkbox.checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-
-        .step-content {
-            flex: 1;
-        }
-
-        .step-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .step-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* ===== Quiz Section ===== */
-        .quiz-container {
-            background-color: var(--card-bg);
-            border-radius: 1rem;
-            padding: 2rem;
-            border: 1px solid var(--border);
-            margin-bottom: 2rem;
-        }
-
-        .quiz-question {
-            margin-bottom: 2rem;
-        }
-
-        .quiz-options {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .quiz-option {
-            padding: 1rem;
-            background-color: var(--bg-light);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .quiz-option:hover {
-            background-color: var(--bg);
-            border-color: var(--primary);
-        }
-
-        .quiz-option.selected {
-            background-color: rgba(0, 240, 255, 0.1);
-            border-color: var(--primary);
-        }
-
-        .quiz-option.correct {
-            background-color: rgba(0, 230, 118, 0.1);
-            border-color: var(--success);
-        }
-
-        .quiz-option.incorrect {
-            background-color: rgba(255, 23, 68, 0.1);
-            border-color: var(--error);
-        }
-
-        .quiz-result {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
             text-align: center;
         }
 
-        .quiz-result.correct {
-            background-color: rgba(0, 230, 118, 0.1);
-            color: var(--success);
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        .quiz-result.incorrect {
-            background-color: rgba(255, 23, 68, 0.1);
-            color: var(--error);
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .chat-search {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .chat-search input {
+            width: 100%;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+            background-color: var(--bg-light);
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .chat-search i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .chat-categories {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        .chat-questions {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .question-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: var(--bg-light);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .question-item:hover {
+            background-color: var(--bg);
+            border-color: var(--primary);
+        }
+
+        .question-item.active {
+            background-color: rgba(0, 240, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-category {
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        .chat-answer {
+            padding: 1rem;
+            background-color: var(--code-bg);
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .chat-answer.active {
+            display: block;
         }
 
         /* ===== Testimonials Section ===== */
@@ -2164,7 +2030,7 @@
                 display: none;
             }
 
-            .current-date, .calendly-btn {
+            .current-date, .calendly-btn, .live-chat-btn {
                 position: relative;
                 top: auto;
                 left: auto;
@@ -2201,21 +2067,6 @@
             .hero-buttons,
             .hero-stats {
                 justify-content: center;
-            }
-
-            .editor-content {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .editor-pane {
-                min-height: 200px;
-            }
-
-            .editor-output {
-                border-left: none;
-                border-top: 1px solid var(--border);
-                min-height: 200px;
             }
         }
 
@@ -2277,6 +2128,10 @@
             .toast {
                 min-width: auto;
             }
+
+            .chat-stats {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 576px) {
@@ -2308,18 +2163,6 @@
 
             .testimonial-nav {
                 display: none;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .learning-roadmap {
-                padding: 1rem;
-            }
-
-            .quiz-container {
-                padding: 1rem;
             }
         }
 
@@ -2413,6 +2256,7 @@
             .back-to-top,
             .current-date,
             .calendly-btn,
+            .live-chat-btn,
             .visitor-counter,
             .accessibility-panel,
             .accessibility-toggle,
@@ -2475,12 +2319,6 @@
                 <i class="fas fa-volume-up"></i> Read Page
             </button>
         </div>
-
-        <div class="mb-3">
-            <button class="btn btn-primary" id="accessibilityChatBtn">
-                <i class="fas fa-comment-dots"></i> Live Chat
-            </button>
-        </div>
     </div>
 
     <!-- Video Background -->
@@ -2503,6 +2341,11 @@
     <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ictconsultant'});return false;" class="calendly-btn">
         <i class="fas fa-calendar-alt"></i> Schedule Meeting
     </a>
+
+    <!-- Live Chat Button -->
+    <button class="live-chat-btn" id="liveChatBtn">
+        <i class="fas fa-comments"></i> Live Chat
+    </button>
 
     <!-- Header -->
     <header id="header">
@@ -2531,7 +2374,7 @@
                     </div>
                 </div>
 
-                <a href="#features">Features</a>
+                <a href="#chat">Live Chat</a>
                 <a href="#blog">Blog</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -2555,53 +2398,18 @@
         <a href="https://wa.me/9779841234567" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- Quick Links -->
-    <div class="quick-links">
-        <div class="quick-link-btn" id="quickLinkBtn" aria-label="Quick Links">
-            <i class="fas fa-bolt"></i>
-        </div>
-        <div class="quick-links-menu" id="quickLinksMenu">
-            <div class="quick-link-item" onclick="window.location.href='#services'">
-                <i class="fas fa-cogs"></i> My Services
-            </div>
-            <div class="quick-link-item" onclick="window.open('https://jayprasad.com.np/itcourses.html', '_blank')">
-                <i class="fas fa-graduation-cap"></i> IT Courses
-            </div>
-            <div class="quick-link-item" onclick="window.open('https://jayprasad.com.np/ielts.html', '_blank')">
-                <i class="fas fa-language"></i> IELTS Preparation
-            </div>
-            <div class="quick-link-item" onclick="window.open('https://jayprasad.com.np/see-result.html', '_blank')">
-                <i class="fas fa-chart-line"></i> SEE Results
-            </div>
-            <div class="quick-link-item" onclick="window.open('https://jayprasad.com.np/task2.html', '_blank')">
-                <i class="fas fa-tasks"></i> Task Management
-            </div>
-            <div class="quick-link-item" onclick="window.location.href='#portfolio'">
-                <i class="fas fa-project-diagram"></i> Recent Projects
-            </div>
-            <div class="quick-link-item" onclick="window.location.href='#blog'">
-                <i class="fas fa-newspaper"></i> Blog Articles
-            </div>
-            <div class="quick-link-item" onclick="window.open('https://drive.google.com/file/d/1example/view?usp=sharing', '_blank')">
-                <i class="fas fa-download"></i> Download Resume
-            </div>
-            <div class="quick-link-item" onclick="window.open('https://www.linkedin.com/in/jayprasad/details/certifications/', '_blank')">
-                <i class="fas fa-certificate"></i> View Certifications
-            </div>
-            <div class="quick-link-item" onclick="window.location.href='mailto:support@the.jayprasad.com.np'">
-                <i class="fas fa-headset"></i> Contact Support
-            </div>
-        </div>
-    </div>
-
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="container">
                 <div class="hero-content">
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="text-gradient">Jay Prasad Majhi</span>
+                    </h1>
+
                     <div class="typing-container">
-                        <h1 id="typed-roles" class="hero-title typed-text"></h1>
+                        <span id="typed-roles" class="typed-text">I am Jay....</span>
                     </div>
 
                     <p class="hero-subtitle">
@@ -2693,7 +2501,7 @@
                     </div>
 
                     <div class="about-image floating">
-                        <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Jay Prasad - IT Security Consultant">
+                        <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Jay Prasad Majhi - IT Security Consultant">
                     </div>
                 </div>
             </div>
@@ -3268,7 +3076,51 @@
             </div>
         </section>
 
+        <!-- Live Chat Section -->
+        <section class="section" id="chat">
+            <div class="container">
+                <h2 class="section-title">
+                    Live <span class="text-gradient">Chat</span>
+                </h2>
 
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3 class="chat-title">Ask Me Anything</h3>
+                        <div class="chat-stats">
+                            <div class="stat-box">
+                                <div class="stat-number">500+</div>
+                                <div class="stat-label">Questions</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Availability</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search questions..." id="chatSearch">
+                    </div>
+
+                    <div class="chat-categories">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="web">Web Development</button>
+                        <button class="category-btn" data-category="security">Security</button>
+                        <button class="category-btn" data-category="cloud">Cloud</button>
+                        <button class="category-btn" data-category="career">Career</button>
+                    </div>
+
+                    <div class="chat-questions" id="chatQuestions">
+                        <!-- Questions will be loaded here by JavaScript -->
+                    </div>
+
+                    <div class="chat-answer" id="chatAnswer">
+                        <!-- Answer will be displayed here when a question is clicked -->
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Testimonials Section -->
         <section class="section" id="testimonials">
@@ -3677,12 +3529,11 @@
         function initializeTypedJS() {
             new Typed('#typed-roles', {
                 strings: [
-                    'I am Jay Prasad Majhi',
-                    'I am an IT Security Consultant',
-                    'I am a Cloud Architect',
-                    'I am a Full Stack Developer',
-                    'I am a Cybersecurity Expert',
-                    'I am an AI Solutions Specialist'
+                    'IT Security Consultant',
+                    'Cloud Architect',
+                    'Full Stack Developer',
+                    'Cybersecurity Expert',
+                    'AI Solutions Specialist'
                 ],
                 typeSpeed: 60,
                 backSpeed: 30,
