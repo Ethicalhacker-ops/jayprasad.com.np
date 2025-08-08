@@ -9,7 +9,6 @@ const chatSendBtn = document.getElementById('chatSendBtn');
 // Toggle chat visibility
 chatToggleBtn.addEventListener('click', () => {
     liveChatWidget.classList.toggle('active');
-    generateUniverseBackground();
 });
 
 chatCloseBtn.addEventListener('click', () => {
@@ -17,23 +16,27 @@ chatCloseBtn.addEventListener('click', () => {
 });
 
 // Send message function
-function sendMessage() {
+async function sendMessage() {
     const message = chatMessageInput.value.trim();
     if (message) {
         addMessage(message, 'user');
         chatMessageInput.value = '';
         
-        // Simulate bot response (in real implementation, this would call your API)
-        setTimeout(() => {
-            const responses = [
-                "Thanks for your message! How can I help you today?",
-                "I'm currently offline, but I'll get back to you soon.",
-                "That's an interesting question. Let me check...",
-                "Hello! I'm Jay's virtual assistant. What can I do for you?"
-            ];
-            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-            addMessage(randomResponse, 'bot');
-        }, 1000);
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+            addMessage(data.reply, 'bot');
+        } catch (error) {
+            console.error('Error sending message:', error);
+            addMessage('Sorry, something went wrong. Please try again later.', 'bot');
+        }
     }
 }
 
@@ -59,33 +62,3 @@ setTimeout(() => {
     addMessage("Hello! I'm Jay's virtual assistant. How can I help you today?", 'bot');
 }, 1500);
 
-// Universe Background Generator
-function generateUniverseBackground() {
-    const universe = document.createElement('div');
-    universe.id = 'universe-bg';
-    document.body.appendChild(universe);
-    
-    const starCount = 100;
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.width = `${Math.random() * 3}px`;
-        star.style.height = star.style.width;
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.animationDelay = `${Math.random() * 5}s`;
-        universe.appendChild(star);
-    }
-
-    const shootingStar = document.createElement('div');
-    shootingStar.className = 'shooting-star';
-    universe.appendChild(shootingStar);
-    
-    // Remove universe when chat is closed
-    liveChatWidget.addEventListener('transitionend', function handler() {
-        if (!liveChatWidget.classList.contains('active')) {
-            universe.remove();
-            liveChatWidget.removeEventListener('transitionend', handler);
-        }
-    });
-}
