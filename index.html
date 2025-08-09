@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oli & Associates Global Education Expo 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            max-width: 300px;
+            height: auto;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        /* New Search Section - Matches the Image */
+        .search-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+        
+        .event-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .event-checkbox {
+            margin-right: 15px;
+            width: 18px;
+            height: 18px;
+            accent-color: #2a5298;
+        }
+        
+        .event-date {
+            font-weight: 500;
+            color: #333;
+            min-width: 120px;
+        }
+        
+        .event-location {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        /* Rest of your existing styles remain unchanged */
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        /* ... (all other existing styles remain the same) ... */
+        
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="images.png" alt="Oli & Associates Logo" class="logo">
+            </div>
+            <h1>Global Education Expo 2025</h1>
+            <p class="subtitle">Happening across various cities in Nepal</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- New Search Section -->
+        <div class="search-section">
+            <div class="search-header">Upcoming Events</div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox">
+                <span class="event-date">August 10, 2025</span>
+                <span class="event-location">Birtamode - Giri Keshav Complex</span>
+            </div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox" checked>
+                <span class="event-date">August 11, 2025</span>
+                <span class="event-location">Itahari</span>
+            </div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox" checked>
+                <span class="event-date">August 12, 2025</span>
+                <span class="event-location">Biratnagar</span>
+            </div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox">
+                <span class="event-date">August 14, 2025</span>
+                <span class="event-location">Hetauda</span>
+            </div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox">
+                <span class="event-date">August 15, 2025</span>
+                <span class="event-location">Chitwan</span>
+            </div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox">
+                <span class="event-date">August 17, 2025</span>
+                <span class="event-location">Pokhara</span>
+            </div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox">
+                <span class="event-date">August 19, 2025</span>
+                <span class="event-location">Butwal</span>
+            </div>
+            <div class="event-item">
+                <input type="checkbox" class="event-checkbox">
+                <span class="event-date">August 22, 2025</span>
+                <span class="event-location">Kathmandu</span>
+            </div>
+            <div class="no-results">
+                There are no results...
+            </div>
+        </div>
+        
+        <!-- Rest of your existing content -->
+        <div class="event-card">
+            <!-- All your existing event card content remains unchanged -->
+            <p>We warmly invite you to attend and take advantage of this valuable opportunity to meet with international university representatives.</p>
+            
+            <div class="schedule">
+                <h2>Expo Schedule</h2>
+                <div class="schedule-dates">
+                    August 10 – August 22, 2025 | 11 AM – 4 PM
+                </div>
+                
+                <!-- Calendar and city cards sections remain unchanged -->
+                
+                <div class="department-contact">
+                    <h3>Admission Department Contact</h3>
+                    <p>For admission-related queries, please contact:</p>
+                    <p><strong>Admission Officer</strong> - <a href="mailto:jay@oli.com.au" class="email-link">jay@oli.com.au</a></p>
+                </div>
+            </div>
+            
+            <div class="event-details">
+                <div class="detail-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Current Venue</h3>
+                        <p>Giri Keshav Complex, 2nd Floor, Sanischare Road, Birtamode</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <h2>Event Highlights</h2>
+                <ul>
+                    <li>Meet university representatives from Australia, the UK, Canada, New Zealand, the USA, and Europe</li>
+                    <li>Career guidance</li>
+                    <li>Scholarships up to 100%</li>
+                </ul>
+            </div>
+            
+            <p>We look forward to your presence at the expo in your city.</p>
+        </div>
+        
+        <div class="cta">
+            <p>For more information, please contact us:</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>023-532283 / 9801970406</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <a href="http://www.oli.com.au" class="website-link">www.oli.com.au</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Oli & Associates. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
