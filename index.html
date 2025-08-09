@@ -103,6 +103,15 @@
             color: #666;
             font-size: 0.95rem;
         }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
         
         .no-results {
             text-align: center;
@@ -141,47 +150,50 @@
         <!-- New Search Section -->
         <div class="search-section">
             <div class="search-header">Upcoming Events</div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox">
-                <span class="event-date">August 10, 2025</span>
-                <span class="event-location">Birtamode - Giri Keshav Complex</span>
+            <input type="text" id="event-search" placeholder="Search by city or date..." class="search-input">
+            <div id="event-list">
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox">
+                    <span class="event-date">August 10, 2025</span>
+                    <span class="event-location">Birtamode - Giri Keshav Complex</span>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox" checked>
+                    <span class="event-date">August 11, 2025</span>
+                    <span class="event-location">Itahari</span>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox" checked>
+                    <span class="event-date">August 12, 2025</span>
+                    <span class="event-location">Biratnagar</span>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox">
+                    <span class="event-date">August 14, 2025</span>
+                    <span class="event-location">Hetauda</span>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox">
+                    <span class="event-date">August 15, 2025</span>
+                    <span class="event-location">Chitwan</span>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox">
+                    <span class="event-date">August 17, 2025</span>
+                    <span class="event-location">Pokhara</span>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox">
+                    <span class="event-date">August 19, 2025</span>
+                    <span class="event-location">Butwal</span>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" class="event-checkbox">
+                    <span class="event-date">August 22, 2025</span>
+                    <span class="event-location">Kathmandu</span>
+                </div>
             </div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox" checked>
-                <span class="event-date">August 11, 2025</span>
-                <span class="event-location">Itahari</span>
-            </div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox" checked>
-                <span class="event-date">August 12, 2025</span>
-                <span class="event-location">Biratnagar</span>
-            </div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox">
-                <span class="event-date">August 14, 2025</span>
-                <span class="event-location">Hetauda</span>
-            </div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox">
-                <span class="event-date">August 15, 2025</span>
-                <span class="event-location">Chitwan</span>
-            </div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox">
-                <span class="event-date">August 17, 2025</span>
-                <span class="event-location">Pokhara</span>
-            </div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox">
-                <span class="event-date">August 19, 2025</span>
-                <span class="event-location">Butwal</span>
-            </div>
-            <div class="event-item">
-                <input type="checkbox" class="event-checkbox">
-                <span class="event-date">August 22, 2025</span>
-                <span class="event-location">Kathmandu</span>
-            </div>
-            <div class="no-results">
+            <div id="no-results" class="no-results" style="display: none;">
                 There are no results...
             </div>
         </div>
@@ -248,5 +260,36 @@
             <p>&copy; 2025 Oli & Associates. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const searchInput = document.getElementById('event-search');
+        const eventList = document.getElementById('event-list');
+        const eventItems = eventList.getElementsByClassName('event-item');
+        const noResults = document.getElementById('no-results');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            let visibleItems = 0;
+
+            for (let i = 0; i < eventItems.length; i++) {
+                const item = eventItems[i];
+                const date = item.querySelector('.event-date').textContent.toLowerCase();
+                const location = item.querySelector('.event-location').textContent.toLowerCase();
+                
+                if (date.includes(searchTerm) || location.includes(searchTerm)) {
+                    item.style.display = '';
+                    visibleItems++;
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+
+            if (visibleItems === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
