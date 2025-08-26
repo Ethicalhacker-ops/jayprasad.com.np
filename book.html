@@ -205,9 +205,9 @@
     border: 1px solid rgba(26, 111, 196, 0.3);
   }
   
-  .whatsapp-btn {
+  .email-btn {
     display: inline-block;
-    background: #25D366;
+    background: #1a6fc4;
     color: white;
     text-decoration: none;
     padding: 14px 25px;
@@ -218,8 +218,8 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
   
-  .whatsapp-btn:hover {
-    background: #128C7E;
+  .email-btn:hover {
+    background: #155a9d;
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.25);
   }
@@ -411,10 +411,10 @@
 <header class="main-header">
   <div class="logo">Cambridge Book 20</div>
   <ul class="nav-links">
-    <li><a href="#">HOME</a></li>
-    <li><a href="#">ABOUT</a></li>
+    <li><a href="https://jayprasad.com.np">HOME</a></li>
+    <li><a href="https://jayprasad.com.np/about-us">ABOUT</a></li>
     <li><a href="#">PREVIEW</a></li>
-    <li><a href="#">CONTACT</a></li>
+    <li><a href="https://jayprasad.com.np/contact">CONTACT</a></li>
     <li><a href="#" class="live-talk">LIVE SUPPORT</a></li>
   </ul>
 </header>
@@ -435,11 +435,11 @@
     <div class="close-btn" onclick="closePopup()">✕</div>
     <h2>📚 Get Your Full PDF Copy</h2>
     <p>To access the complete Cambridge Book 20, please follow these steps:</p>
-    <p>1. Pay <span class="highlight">NRs 200</span> via eSewa to ID: <span class="highlight">9804941297</span></p>
-    <p>2. Send the payment voucher via WhatsApp to the same number or email below</p>
-    <p>3. You'll receive the full PDF shortly after verification</p>
-    <a href="https://wa.me/9779804941297?text=Hello!%20I've%20made%20payment%20for%20Cambridge%20Book%2020.%20Here's%20my%20voucher:" class="whatsapp-btn">Send Voucher via WhatsApp</a>
-    <p>Or email to: <span class="highlight">admin@jayprasad.com.np</span></p>
+    <p>1. Email us at <span class="highlight">admin@jayprasad.com.np</span> to request payment details</p>
+    <p>2. Make payment through available methods</p>
+    <p>3. Send the payment confirmation to us</p>
+    <p>4. You'll receive the full PDF shortly after verification</p>
+    <a href="mailto:admin@jayprasad.com.np?subject=Cambridge Book 20 Purchase Request&body=Hello, I would like to purchase the Cambridge Book 20 PDF. Please send me payment details." class="email-btn">Email Us to Purchase</a>
   </div>
 </div>
 
@@ -474,23 +474,15 @@
   
   <div class="protection-notice">
     <strong>Content Protection:</strong> This preview is protected against downloading and copying. 
-    To access the full book with printing capabilities, please purchase using the button below.
+    To access the full book with printing capabilities, please contact us using the button below.
   </div>
 
   <div class="payment-section">
-    <p>To download the full book, pay <strong>NRs 200</strong> via eSewa:</p>
-    <p><strong>eSewa ID: 9804941297</strong></p>
+    <p>To download the full book, please email us for payment details:</p>
+    <p><strong>Email: admin@jayprasad.com.np</strong></p>
 
-    <!-- Payment Button -->
-    <form action="https://esewa.com.np/epay/main" method="POST">
-      <input type="hidden" name="tAmt" value="200">
-      <input type="hidden" name="amt" value="200">
-      <input type="hidden" name="scd" value="9804941297">
-      <input type="hidden" name="pid" value="CAMBRIDGE20">
-      <input type="hidden" name="su" value="https://jayprasad.com.np/download.html">
-      <input type="hidden" name="fu" value="https://jayprasad.com.np/payment-fail.html">
-      <button type="submit">Pay NRs 200 & Download Full Book</button>
-    </form>
+    <!-- Email Button -->
+    <a href="mailto:admin@jayprasad.com.np?subject=Cambridge Book 20 Purchase Request&body=Hello, I would like to purchase the Cambridge Book 20 PDF. Please send me payment details." class="email-btn">Email Us to Purchase</a>
   </div>
 </div>
 
