@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Book 20 Preview</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f8fc;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  header {
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 25px 10px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    color: #4CAF50;
+  }
+  iframe {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  .payment-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .payment-section p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .payment-section button {
+    background: #ff6b00;
+    color: white;
+    font-size: 18px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .payment-section button:hover {
+    background: #e65c00;
+  }
+  footer {
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+
+<header>Cambridge Book 20 Preview</header>
+
+<div class="container">
+  <h2>Preview the Book</h2>
+  <!-- PDF Preview -->
+  <iframe src="https://jayprasad.com.np/CAMBRIDGE%2020_compressed.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
+
+  <div class="payment-section">
+    <p>To download the full book, pay <strong>NRs 200</strong> via eSewa:</p>
+    <p><strong>eSewa ID: 9804941297</strong></p>
+
+    <!-- Payment Button -->
+    <form action="https://esewa.com.np/epay/main" method="POST">
+      <input type="hidden" name="tAmt" value="200">
+      <input type="hidden" name="amt" value="200">
+      <input type="hidden" name="scd" value="9804941297">
+      <input type="hidden" name="pid" value="CAMBRIDGE20">
+      <input type="hidden" name="su" value="https://jayprasad.com.np/download.html">
+      <input type="hidden" name="fu" value="https://jayprasad.com.np/payment-fail.html">
+      <button type="submit">Pay NRs 200 & Download</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  © 2025 Jay Prasad. All rights reserved. Contact: <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a>
+</footer>
+
+</body>
+</html>
