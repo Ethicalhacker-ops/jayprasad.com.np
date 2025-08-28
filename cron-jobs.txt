@@ -1,0 +1,28 @@
+# cron-jobs.txt
+# Automated tasks for JayPrasad Mail Server
+# Add to crontab with: crontab -e
+
+# Renew SSL certificates (every day at 2:30 AM)
+30 2 * * * /usr/bin/certbot renew --quiet --deploy-hook "docker restart nginx-proxy"
+
+# Run backups (every day at 3:00 AM)
+0 3 * * * /opt/mailserver/scripts/backup_mailserver.sh
+
+# Monitor services (every 5 minutes)
+*/5 * * * * /opt/mailserver/scripts/check_mail_services.sh
+
+# Update ClamAV virus definitions (daily at 4:00 AM)
+0 4 * * * docker exec mailserver freshclam
+
+# Clean up old logs (weekly on Sunday at 5:00 AM)
+0 5 * * 0 find /var/log -name "*.log" -mtime +30 -delete
+
+# Additional recommended tasks:
+# Check server disk space (daily at 6:00 AM)
+0 6 * * * /opt/mailserver/scripts/check_disk_space.sh
+
+# Update system packages (Sundays at 1:00 AM)
+0 1 * * 0 apt-get update && apt-get upgrade -y
+
+# Rotate mail server logs (daily at midnight)
+0 0 * * * docker exec mailserver logrotate -f /etc/logrotate.d/mailserver
