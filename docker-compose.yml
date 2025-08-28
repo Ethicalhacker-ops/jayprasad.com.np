@@ -1,0 +1,70 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  mailserver:
+    image: docker.io/mailserver/docker-mailserver:latest
+    container_name: mailserver
+    hostname: mail
+    domainname: jayprasad.com.np
+    ports:
+      - "25:25"
+      - "587:587"
+      - "465:465"
+      - "993:993"
+      - "143:143"
+    volumes:
+      - ./data/maildata:/var/mail
+      - ./data/mailstate:/var/mail-state
+      - ./data/maillogs:/var/log/mail
+      - ./config/:/tmp/docker-mailserver/
+      - /etc/letsencrypt/live/mail.jayprasad.com.np/fullchain.pem:/etc/letsencrypt/live/mail.jayprasad.com.np/fullchain.pem:ro
+      - /etc/letsencrypt/live/mail.jayprasad.com.np/privkey.pem:/etc/letsencrypt/live/mail.jayprasad.com.np/privkey.pem:ro
+    environment:
+      - ENABLE_SPAMASSASSIN=1
+      - ENABLE_CLAMAV=1
+      - ENABLE_FAIL2BAN=1
+      - ENABLE_POSTGREY=1
+      - ENABLE_SASLAUTHD=0
+      - ONE_DIR=1
+      - DMS_DEBUG=0
+      - PERMIT_DOCKER=host
+      - SSL_TYPE=letsencrypt
+      - SSL_CERT_PATH=/etc/letsencrypt/live/mail.jayprasad.com.np/fullchain.pem
+      - SSL_KEY_PATH=/etc/letsencrypt/live/mail.jayprasad.com.np/privkey.pem
+      - OVERRIDE_HOSTNAME=mail.jayprasad.com.np
+    cap_add:
+      - NET_ADMIN
+      - SYS_PTRACE
+    restart: always
+
+  webmail:
+    image: roundcube/roundcubemail:latest
+    container_name: webmail
+    ports:
+      - "8080:80"
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://mail.jayprasad.com.np
+      - ROUNDCUBEMAIL_SMTP_SERVER=ssl://mail.jayprasad.com.np
+      - ROUNDCUBEMAIL_DB_TYPE=sqlite
+      - ROUNDCUBEMAIL_DB_DIR=/var/roundcube/database
+      - ROUNDCUBEMAIL_DB_NAME=roundcube.sqlite
+    volumes:
+      - ./data/roundcube:/var/roundcube
+    depends_on:
+      - mailserver
+    restart: always
+
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./nginx/html:/usr/share/nginx/html
+    depends_on:
+      - webmail
+    restart: always
