@@ -1,25 +1,241 @@
-<?php
-// web-account/index.php
-require_once 'config.php';
-
-if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php');
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JayPrasad Mail - Account Management</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #4a6fc3;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            font-size: 40px;
+            color: #4a6fc3;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .auth-container {
+            padding: 25px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eaeaea;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: #4a6fc3;
+            border-bottom: 3px solid #4a6fc3;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus {
+            border-color: #4a6fc3;
+            outline: none;
+        }
+        
+        .input-group {
+            display: flex;
+        }
+        
+        .input-group input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+        .input-group-text {
+            padding: 14px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            color: #666;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-primary {
+            background: #4a6fc3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3b5aa6;
+        }
+        
+        .btn-success {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #27ae60;
+        }
+        
+        .help-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .help-link a {
+            color: #4a6fc3;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .help-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .g-recaptcha {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .password-requirements {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .auth-container {
+                padding: 20px;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            .input-group-text {
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 6px 6px;
+            }
+            
+            .input-group input {
+                border-radius: 6px 6px 0 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="/path/to/logo.png" alt="JayPrasad Mail" class="logo">
+            <div class="logo">
+                <i class="fas fa-envelope"></i>
+            </div>
             <h1>JayPrasad Mail Service</h1>
         </div>
         
@@ -71,6 +287,7 @@ if (isset($_SESSION['user_id'])) {
                         <label for="register-password">Password</label>
                         <input type="password" id="register-password" name="password" required 
                                pattern=".{8,}" title="8 characters minimum">
+                        <p class="password-requirements">Minimum 8 characters</p>
                     </div>
                     
                     <div class="form-group">
@@ -79,7 +296,7 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                     
                     <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY; ?>"></div>
+                        <div class="g-recaptcha" data-sitekey="6LcKj8QUAAAAAOou5tJaJ9o_L-dkE2LvQ0LvQ0Lv"></div>
                     </div>
                     
                     <button type="submit" class="btn btn-success">Create Account</button>
@@ -102,6 +319,23 @@ if (isset($_SESSION['user_id'])) {
         document.getElementById(tabName + '-tab').classList.add('active');
         event.currentTarget.classList.add('active');
     }
+    
+    // Simple password confirmation validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const password = document.getElementById('register-password');
+        const confirmPassword = document.getElementById('register-confirm');
+        
+        function validatePassword() {
+            if (password.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity("Passwords don't match");
+            } else {
+                confirmPassword.setCustomValidity('');
+            }
+        }
+        
+        password.onchange = validatePassword;
+        confirmPassword.onkeyup = validatePassword;
+    });
     </script>
 </body>
 </html>
