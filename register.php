@@ -1,3 +1,134 @@
+<?php
+// web-account/index.php
+session_start();
+require_once 'config.php';
+
+// Check if user is already logged in
+if (isset($_SESSION['user_id'])) {
+    header('Location: dashboard.php');
+    exit;
+}
+
+// Process registration form if submitted via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
+    $fullName = trim($_POST['full_name']);
+    $emailPrefix = trim($_POST['email_prefix']);
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm_password'];
+    $recaptchaResponse = $_POST['g-recaptcha-response'];
+    $ipAddress = $_SERVER['REMOTE_ADDR'];
+    
+    // Validate inputs
+    $errors = [];
+    
+    // Check rate limiting
+    $db = getDB();
+    $stmt = $db->prepare("SELECT COUNT(*) FROM registration_attempts 
+                         WHERE ip_address = ? AND attempt_time > DATE_SUB(NOW(), INTERVAL 1 HOUR)");
+    $stmt->execute([$ipAddress]);
+    if ($stmt->fetchColumn() >= MAX_REGISTRATIONS_PER_IP) {
+        $errors[] = "Too many registration attempts from your IP address. Please try again later.";
+    }
+    
+    // Validate reCAPTCHA
+    if (empty($recaptchaResponse)) {
+        $errors[] = "Please complete the reCAPTCHA verification.";
+    } else {
+        $recaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".
+            RECAPTCHA_SECRET_KEY."&response=".$recaptchaResponse."&remoteip=".$ipAddress);
+        $recaptcha = json_decode($recaptcha);
+        if (!$recaptcha->success) {
+            $errors[] = "reCAPTCHA verification failed.";
+        }
+    }
+    
+    // Validate email prefix
+    if (!preg_match('/^[a-zA-Z0-9._-]+$/', $emailPrefix)) {
+        $errors[] = "Email prefix can only contain letters, numbers, dots, hyphens, and underscores.";
+    }
+    
+    // Check password strength
+    if (strlen($password) < 8) {
+        $errors[] = "Password must be at least 8 characters long.";
+    }
+    
+    if ($password !== $confirmPassword) {
+        $errors[] = "Passwords do not match.";
+    }
+    
+    // Check if email already exists
+    $email = $emailPrefix . '@' . DOMAIN;
+    $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    if ($stmt->fetch()) {
+        $errors[] = "This email address is already registered.";
+    }
+    
+    if (empty($errors)) {
+        try {
+            $db->beginTransaction();
+            
+            // Create user in database
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $verificationToken = bin2hex(random_bytes(32));
+            
+            $stmt = $db->prepare("INSERT INTO users (email, password_hash, full_name, 
+                                verification_token, ip_address) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$email, $passwordHash, $fullName, $verificationToken, $ipAddress]);
+            
+            // Create email account in mailserver
+            $command = MAILSERVER_CMD . " $email $password";
+            $output = shell_exec($command);
+            
+            // Record registration attempt
+            $stmt = $db->prepare("INSERT INTO registration_attempts (ip_address) VALUES (?)");
+            $stmt->execute([$ipAddress]);
+            
+            $db->commit();
+            
+            // Send welcome email (optional)
+            // mail($email, "Welcome to JayPrasad Mail", "Your account has been created successfully!");
+            
+            $_SESSION['success'] = "Account created successfully! You can now login.";
+            header('Location: index.php');
+            exit;
+            
+        } catch (Exception $e) {
+            $db->rollBack();
+            $errors[] = "Registration failed: " . $e->getMessage();
+        }
+    }
+    
+    // Store errors in session
+    $_SESSION['errors'] = $errors;
+    $_SESSION['form_data'] = $_POST;
+    header('Location: index.php#register');
+    exit;
+}
+
+// Process login form if submitted via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
+    // Add your login processing code here
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    
+    // Validate login credentials
+    $db = getDB();
+    $stmt = $db->prepare("SELECT id, password_hash FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
+    
+    if ($user && password_verify($password, $user['password_hash'])) {
+        $_SESSION['user_id'] = $user['id'];
+        header('Location: dashboard.php');
+        exit;
+    } else {
+        $_SESSION['errors'] = ["Invalid email or password."];
+        header('Location: index.php#login');
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -266,7 +397,25 @@
         
         <div class="auth-container">
             <!-- Error/Success Messages -->
-            <div id="message-container"></div>
+            <div id="message-container">
+                <?php
+                if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+                    foreach ($_SESSION['errors'] as $error) {
+                        echo '<div class="alert alert-error">';
+                        echo '<span class="alert-icon"><i class="fas fa-exclamation-circle"></i></span> ' . htmlspecialchars($error);
+                        echo '</div>';
+                    }
+                    unset($_SESSION['errors']);
+                }
+                
+                if (isset($_SESSION['success'])) {
+                    echo '<div class="alert alert-success">';
+                    echo '<span class="alert-icon"><i class="fas fa-check-circle"></i></span> ' . htmlspecialchars($_SESSION['success']);
+                    echo '</div>';
+                    unset($_SESSION['success']);
+                }
+                ?>
+            </div>
             
             <div class="tabs">
                 <button class="tab-btn active" onclick="showTab('login')">Login</button>
@@ -274,11 +423,12 @@
             </div>
             
             <div id="login-tab" class="tab-content active">
-                <form id="login-form" onsubmit="return validateLoginForm()">
+                <form method="POST" action="">
+                    <input type="hidden" name="action" value="login">
                     <div class="form-group">
                         <label for="login-email">Email Address</label>
                         <input type="email" id="login-email" name="email" required 
-                               placeholder="yourname@jayprasad.com.np">
+                               placeholder="yourname@jayprasad.com.np" value="<?php echo isset($_SESSION['form_data']['email']) ? htmlspecialchars($_SESSION['form_data']['email']) : ''; ?>">
                     </div>
                     
                     <div class="form-group">
@@ -296,17 +446,20 @@
             </div>
             
             <div id="register-tab" class="tab-content">
-                <form id="register-form" onsubmit="return validateRegisterForm()">
+                <form method="POST" action="">
+                    <input type="hidden" name="action" value="register">
                     <div class="form-group">
                         <label for="register-fullname">Full Name</label>
-                        <input type="text" id="register-fullname" name="full_name" required>
+                        <input type="text" id="register-fullname" name="full_name" required 
+                               value="<?php echo isset($_SESSION['form_data']['full_name']) ? htmlspecialchars($_SESSION['form_data']['full_name']) : ''; ?>">
                     </div>
                     
                     <div class="form-group">
                         <label for="register-email">Desired Email Address</label>
                         <div class="input-group">
                             <input type="text" id="register-email-prefix" name="email_prefix" 
-                                   placeholder="yourname" required>
+                                   placeholder="yourname" required
+                                   value="<?php echo isset($_SESSION['form_data']['email_prefix']) ? htmlspecialchars($_SESSION['form_data']['email_prefix']) : ''; ?>">
                             <span class="input-group-text">@jayprasad.com.np</span>
                         </div>
                     </div>
@@ -324,7 +477,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LcKj8QUAAAAAOou5tJaJ9o_L-dkE2LvQ0LvQ0Lv"></div>
+                        <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY; ?>"></div>
                     </div>
                     
                     <button type="submit" class="btn btn-success">Create Account</button>
@@ -334,38 +487,19 @@
     </div>
 
     <script>
-    // Show error/success messages from URL parameters
+    // Show appropriate tab based on URL hash or errors
     document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const errors = urlParams.get('errors');
-        const success = urlParams.get('success');
+        const urlHash = window.location.hash;
+        const hasErrors = document.querySelector('.alert-error') !== null;
         
-        const messageContainer = document.getElementById('message-container');
-        
-        if (errors) {
-            const errorMessages = errors.split('|');
-            errorMessages.forEach(msg => {
-                if (msg.trim()) {
-                    const alertDiv = document.createElement('div');
-                    alertDiv.className = 'alert alert-error';
-                    alertDiv.innerHTML = `<span class="alert-icon"><i class="fas fa-exclamation-circle"></i></span> ${msg}`;
-                    messageContainer.appendChild(alertDiv);
-                }
-            });
-            
-            // Show register tab if there are errors
+        if (urlHash === '#register' || hasErrors) {
             showTab('register');
-        }
-        
-        if (success) {
-            const alertDiv = document.createElement('div');
-            alertDiv.className = 'alert alert-success';
-            alertDiv.innerHTML = `<span class="alert-icon"><i class="fas fa-check-circle"></i></span> ${success}`;
-            messageContainer.appendChild(alertDiv);
-            
-            // Show login tab if there's success message
+        } else {
             showTab('login');
         }
+        
+        // Clear form data from session after displaying it
+        <?php unset($_SESSION['form_data']); ?>
     });
     
     function showTab(tabName) {
@@ -383,66 +517,37 @@
     }
     
     // Simple password confirmation validation
-    function validateRegisterForm() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const registerForm = document.querySelector('form[action=""][method="POST"]');
         const password = document.getElementById('register-password');
         const confirmPassword = document.getElementById('register-confirm');
         const emailPrefix = document.getElementById('register-email-prefix');
         
-        // Validate email prefix format
-        const emailRegex = /^[a-zA-Z0-9._-]+$/;
-        if (!emailRegex.test(emailPrefix.value)) {
-            showError("Email prefix can only contain letters, numbers, dots, hyphens, and underscores.");
-            return false;
+        if (registerForm && password && confirmPassword) {
+            registerForm.onsubmit = function() {
+                // Validate email prefix format
+                const emailRegex = /^[a-zA-Z0-9._-]+$/;
+                if (!emailRegex.test(emailPrefix.value)) {
+                    alert("Email prefix can only contain letters, numbers, dots, hyphens, and underscores.");
+                    return false;
+                }
+                
+                // Validate password length
+                if (password.value.length < 8) {
+                    alert("Password must be at least 8 characters long.");
+                    return false;
+                }
+                
+                // Validate password match
+                if (password.value !== confirmPassword.value) {
+                    alert("Passwords don't match");
+                    return false;
+                }
+                
+                return true;
+            };
         }
-        
-        // Validate password length
-        if (password.value.length < 8) {
-            showError("Password must be at least 8 characters long.");
-            return false;
-        }
-        
-        // Validate password match
-        if (password.value !== confirmPassword.value) {
-            showError("Passwords don't match");
-            return false;
-        }
-        
-        // Validate reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-            showError("Please complete the reCAPTCHA verification.");
-            return false;
-        }
-        
-        // If all validations pass, the form will submit to register.php
-        return true;
-    }
-    
-    function validateLoginForm() {
-        // Basic login validation
-        const email = document.getElementById('login-email');
-        const password = document.getElementById('login-password');
-        
-        if (!email.value || !password.value) {
-            showError("Please fill in all fields.");
-            return false;
-        }
-        
-        return true;
-    }
-    
-    function showError(message) {
-        const messageContainer = document.getElementById('message-container');
-        messageContainer.innerHTML = '';
-        
-        const alertDiv = document.createElement('div');
-        alertDiv.className = 'alert alert-error';
-        alertDiv.innerHTML = `<span class="alert-icon"><i class="fas fa-exclamation-circle"></i></span> ${message}`;
-        messageContainer.appendChild(alertDiv);
-        
-        // Scroll to the message
-        alertDiv.scrollIntoView({ behavior: 'smooth' });
-    }
+    });
     </script>
 </body>
 </html>
