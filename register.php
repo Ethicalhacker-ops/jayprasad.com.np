@@ -1,7 +1,31 @@
 <?php
-// web-account/index.php
+// config.php - Database configuration
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'test_db');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('MAX_ATTEMPTS_PER_HOUR', 5);
+define('MAX_REGISTRATIONS_PER_IP', 3);
+define('DOMAIN', 'jayprasad.com.np');
+define('RECAPTCHA_SITE_KEY', 'your_recaptcha_site_key');
+define('RECAPTCHA_SECRET_KEY', 'your_recaptcha_secret_key');
+define('MAILSERVER_CMD', '/usr/sbin/add_email_account');
+
 session_start();
-require_once 'config.php';
+
+// Database connection function
+function getDB() {
+    static $db = null;
+    if ($db === null) {
+        try {
+            $db = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e) {
+            die("Database connection failed: " . $e->getMessage());
+        }
+    }
+    return $db;
+}
 
 // Check if user is already logged in
 if (isset($_SESSION['user_id'])) {
@@ -9,123 +33,157 @@ if (isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Process registration form if submitted via POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
-    $fullName = trim($_POST['full_name']);
-    $emailPrefix = trim($_POST['email_prefix']);
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
-    $recaptchaResponse = $_POST['g-recaptcha-response'];
-    $ipAddress = $_SERVER['REMOTE_ADDR'];
-    
-    // Validate inputs
-    $errors = [];
-    
-    // Check rate limiting
-    $db = getDB();
-    $stmt = $db->prepare("SELECT COUNT(*) FROM registration_attempts 
-                         WHERE ip_address = ? AND attempt_time > DATE_SUB(NOW(), INTERVAL 1 HOUR)");
-    $stmt->execute([$ipAddress]);
-    if ($stmt->fetchColumn() >= MAX_REGISTRATIONS_PER_IP) {
-        $errors[] = "Too many registration attempts from your IP address. Please try again later.";
-    }
-    
-    // Validate reCAPTCHA
-    if (empty($recaptchaResponse)) {
-        $errors[] = "Please complete the reCAPTCHA verification.";
-    } else {
-        $recaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".
-            RECAPTCHA_SECRET_KEY."&response=".$recaptchaResponse."&remoteip=".$ipAddress);
-        $recaptcha = json_decode($recaptcha);
-        if (!$recaptcha->success) {
-            $errors[] = "reCAPTCHA verification failed.";
-        }
-    }
-    
-    // Validate email prefix
-    if (!preg_match('/^[a-zA-Z0-9._-]+$/', $emailPrefix)) {
-        $errors[] = "Email prefix can only contain letters, numbers, dots, hyphens, and underscores.";
-    }
-    
-    // Check password strength
-    if (strlen($password) < 8) {
-        $errors[] = "Password must be at least 8 characters long.";
-    }
-    
-    if ($password !== $confirmPassword) {
-        $errors[] = "Passwords do not match.";
-    }
-    
-    // Check if email already exists
-    $email = $emailPrefix . '@' . DOMAIN;
-    $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    if ($stmt->fetch()) {
-        $errors[] = "This email address is already registered.";
-    }
-    
-    if (empty($errors)) {
-        try {
-            $db->beginTransaction();
-            
-            // Create user in database
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $verificationToken = bin2hex(random_bytes(32));
-            
-            $stmt = $db->prepare("INSERT INTO users (email, password_hash, full_name, 
-                                verification_token, ip_address) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$email, $passwordHash, $fullName, $verificationToken, $ipAddress]);
-            
-            // Create email account in mailserver
-            $command = MAILSERVER_CMD . " $email $password";
-            $output = shell_exec($command);
-            
-            // Record registration attempt
-            $stmt = $db->prepare("INSERT INTO registration_attempts (ip_address) VALUES (?)");
-            $stmt->execute([$ipAddress]);
-            
-            $db->commit();
-            
-            // Send welcome email (optional)
-            // mail($email, "Welcome to JayPrasad Mail", "Your account has been created successfully!");
-            
-            $_SESSION['success'] = "Account created successfully! You can now login.";
-            header('Location: index.php');
-            exit;
-            
-        } catch (Exception $e) {
-            $db->rollBack();
-            $errors[] = "Registration failed: " . $e->getMessage();
-        }
-    }
-    
-    // Store errors in session
-    $_SESSION['errors'] = $errors;
-    $_SESSION['form_data'] = $_POST;
-    header('Location: index.php#register');
-    exit;
-}
+// Initialize variables
+$error = '';
+$success = '';
+$form_data = [];
 
-// Process login form if submitted via POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
-    // Add your login processing code here
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-    
-    // Validate login credentials
-    $db = getDB();
-    $stmt = $db->prepare("SELECT id, password_hash FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
-    
-    if ($user && password_verify($password, $user['password_hash'])) {
-        $_SESSION['user_id'] = $user['id'];
-        header('Location: dashboard.php');
-        exit;
-    } else {
-        $_SESSION['errors'] = ["Invalid email or password."];
-        header('Location: index.php#login');
-        exit;
+// Process login form if submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['action'])) {
+        if ($_POST['action'] === 'login') {
+            $email = trim($_POST['email']);
+            $password = $_POST['password'];
+            $ipAddress = $_SERVER['REMOTE_ADDR'];
+            
+            // Validate input
+            if (empty($email) || empty($password)) {
+                $error = "Please fill in all fields.";
+            } else {
+                try {
+                    // Check rate limiting
+                    $db = getDB();
+                    $stmt = $db->prepare("SELECT COUNT(*) FROM login_attempts 
+                                         WHERE ip_address = ? AND attempt_time > DATE_SUB(NOW(), INTERVAL 1 HOUR) 
+                                         AND success = 0");
+                    $stmt->execute([$ipAddress]);
+                    
+                    if ($stmt->fetchColumn() >= MAX_ATTEMPTS_PER_HOUR) {
+                        $error = "Too many failed login attempts. Please try again later.";
+                    } else {
+                        // Verify user credentials
+                        $stmt = $db->prepare("SELECT id, email, password_hash, full_name, status FROM users WHERE email = ?");
+                        $stmt->execute([$email]);
+                        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                        
+                        if ($user && password_verify($password, $user['password_hash'])) {
+                            if ($user['status'] === 'active') {
+                                // Successful login
+                                $_SESSION['user_id'] = $user['id'];
+                                $_SESSION['user_email'] = $user['email'];
+                                $_SESSION['user_name'] = $user['full_name'];
+                                
+                                // Update last login
+                                $stmt = $db->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
+                                $stmt->execute([$user['id']]);
+                                
+                                // Record successful attempt
+                                $stmt = $db->prepare("INSERT INTO login_attempts (email, ip_address, success) VALUES (?, ?, 1)");
+                                $stmt->execute([$email, $ipAddress]);
+                                
+                                $success = "Login successful! Redirecting to dashboard...";
+                                header("refresh:2;url=dashboard.php");
+                            } else {
+                                $error = "Your account is not active. Please contact administrator.";
+                            }
+                        } else {
+                            $error = "Invalid email or password.";
+                            
+                            // Record failed attempt
+                            $stmt = $db->prepare("INSERT INTO login_attempts (email, ip_address, success) VALUES (?, ?, 0)");
+                            $stmt->execute([$email, $ipAddress]);
+                        }
+                    }
+                } catch(PDOException $e) {
+                    $error = "A system error occurred. Please try again later.";
+                }
+            }
+        } elseif ($_POST['action'] === 'register') {
+            $fullName = trim($_POST['full_name']);
+            $emailPrefix = trim($_POST['email_prefix']);
+            $password = $_POST['password'];
+            $confirmPassword = $_POST['confirm_password'];
+            $ipAddress = $_SERVER['REMOTE_ADDR'];
+            
+            // Store form data for repopulation
+            $form_data = [
+                'full_name' => $fullName,
+                'email_prefix' => $emailPrefix
+            ];
+            
+            // Validate inputs
+            $errors = [];
+            
+            // Check rate limiting
+            try {
+                $db = getDB();
+                $stmt = $db->prepare("SELECT COUNT(*) FROM registration_attempts 
+                                     WHERE ip_address = ? AND attempt_time > DATE_SUB(NOW(), INTERVAL 1 HOUR)");
+                $stmt->execute([$ipAddress]);
+                if ($stmt->fetchColumn() >= MAX_REGISTRATIONS_PER_IP) {
+                    $errors[] = "Too many registration attempts from your IP address. Please try again later.";
+                }
+            } catch(PDOException $e) {
+                $errors[] = "A system error occurred. Please try again later.";
+            }
+            
+            // Validate email prefix
+            if (!preg_match('/^[a-zA-Z0-9._-]+$/', $emailPrefix)) {
+                $errors[] = "Email prefix can only contain letters, numbers, dots, hyphens, and underscores.";
+            }
+            
+            // Check password strength
+            if (strlen($password) < 8) {
+                $errors[] = "Password must be at least 8 characters long.";
+            }
+            
+            if ($password !== $confirmPassword) {
+                $errors[] = "Passwords do not match.";
+            }
+            
+            // Check if email already exists
+            $email = $emailPrefix . '@' . DOMAIN;
+            try {
+                $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
+                $stmt->execute([$email]);
+                if ($stmt->fetch()) {
+                    $errors[] = "This email address is already registered.";
+                }
+            } catch(PDOException $e) {
+                $errors[] = "A system error occurred. Please try again later.";
+            }
+            
+            if (empty($errors)) {
+                try {
+                    $db->beginTransaction();
+                    
+                    // Create user in database
+                    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                    $verificationToken = bin2hex(random_bytes(32));
+                    
+                    $stmt = $db->prepare("INSERT INTO users (email, password_hash, full_name, 
+                                        verification_token, ip_address) VALUES (?, ?, ?, ?, ?)");
+                    $stmt->execute([$email, $passwordHash, $fullName, $verificationToken, $ipAddress]);
+                    
+                    // Record registration attempt
+                    $stmt = $db->prepare("INSERT INTO registration_attempts (ip_address) VALUES (?)");
+                    $stmt->execute([$ipAddress]);
+                    
+                    $db->commit();
+                    
+                    $success = "Account created successfully! You can now login.";
+                    $form_data = []; // Clear form data
+                    
+                } catch (Exception $e) {
+                    $db->rollBack();
+                    $errors[] = "Registration failed: " . $e->getMessage();
+                }
+            }
+            
+            if (!empty($errors)) {
+                $error = implode("<br>", $errors);
+            }
+        }
     }
 }
 ?>
@@ -136,7 +194,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JayPrasad Mail - Account Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         * {
             margin: 0;
@@ -320,12 +377,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             text-decoration: underline;
         }
         
-        .g-recaptcha {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        
         .password-requirements {
             font-size: 12px;
             color: #666;
@@ -398,23 +449,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <div class="auth-container">
             <!-- Error/Success Messages -->
             <div id="message-container">
-                <?php
-                if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
-                    foreach ($_SESSION['errors'] as $error) {
-                        echo '<div class="alert alert-error">';
-                        echo '<span class="alert-icon"><i class="fas fa-exclamation-circle"></i></span> ' . htmlspecialchars($error);
-                        echo '</div>';
-                    }
-                    unset($_SESSION['errors']);
-                }
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-error">
+                        <span class="alert-icon"><i class="fas fa-exclamation-circle"></i></span> 
+                        <?php echo $error; ?>
+                    </div>
+                <?php endif; ?>
                 
-                if (isset($_SESSION['success'])) {
-                    echo '<div class="alert alert-success">';
-                    echo '<span class="alert-icon"><i class="fas fa-check-circle"></i></span> ' . htmlspecialchars($_SESSION['success']);
-                    echo '</div>';
-                    unset($_SESSION['success']);
-                }
-                ?>
+                <?php if (!empty($success)): ?>
+                    <div class="alert alert-success">
+                        <span class="alert-icon"><i class="fas fa-check-circle"></i></span> 
+                        <?php echo $success; ?>
+                    </div>
+                <?php endif; ?>
             </div>
             
             <div class="tabs">
@@ -428,7 +475,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                     <div class="form-group">
                         <label for="login-email">Email Address</label>
                         <input type="email" id="login-email" name="email" required 
-                               placeholder="yourname@jayprasad.com.np" value="<?php echo isset($_SESSION['form_data']['email']) ? htmlspecialchars($_SESSION['form_data']['email']) : ''; ?>">
+                               placeholder="yourname@jayprasad.com.np">
                     </div>
                     
                     <div class="form-group">
@@ -440,8 +487,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 </form>
                 
                 <p class="help-link">
-                    <a href="/webmail/">Access Webmail directly</a> | 
-                    <a href="/email-help">Setup Help</a>
+                    <a href="#">Access Webmail directly</a> | 
+                    <a href="#">Setup Help</a>
                 </p>
             </div>
             
@@ -451,7 +498,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                     <div class="form-group">
                         <label for="register-fullname">Full Name</label>
                         <input type="text" id="register-fullname" name="full_name" required 
-                               value="<?php echo isset($_SESSION['form_data']['full_name']) ? htmlspecialchars($_SESSION['form_data']['full_name']) : ''; ?>">
+                               value="<?php echo isset($form_data['full_name']) ? htmlspecialchars($form_data['full_name']) : ''; ?>">
                     </div>
                     
                     <div class="form-group">
@@ -459,7 +506,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                         <div class="input-group">
                             <input type="text" id="register-email-prefix" name="email_prefix" 
                                    placeholder="yourname" required
-                                   value="<?php echo isset($_SESSION['form_data']['email_prefix']) ? htmlspecialchars($_SESSION['form_data']['email_prefix']) : ''; ?>">
+                                   value="<?php echo isset($form_data['email_prefix']) ? htmlspecialchars($form_data['email_prefix']) : ''; ?>">
                             <span class="input-group-text">@jayprasad.com.np</span>
                         </div>
                     </div>
@@ -476,10 +523,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                         <input type="password" id="register-confirm" name="confirm_password" required>
                     </div>
                     
-                    <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY; ?>"></div>
-                    </div>
-                    
                     <button type="submit" class="btn btn-success">Create Account</button>
                 </form>
             </div>
@@ -487,21 +530,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     </div>
 
     <script>
-    // Show appropriate tab based on URL hash or errors
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlHash = window.location.hash;
-        const hasErrors = document.querySelector('.alert-error') !== null;
-        
-        if (urlHash === '#register' || hasErrors) {
-            showTab('register');
-        } else {
-            showTab('login');
-        }
-        
-        // Clear form data from session after displaying it
-        <?php unset($_SESSION['form_data']); ?>
-    });
-    
     function showTab(tabName) {
         // Hide all tabs
         document.querySelectorAll('.tab-content').forEach(tab => {
@@ -518,7 +546,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     
     // Simple password confirmation validation
     document.addEventListener('DOMContentLoaded', function() {
-        const registerForm = document.querySelector('form[action=""][method="POST"]');
+        const registerForm = document.querySelector('#register-tab form');
         const password = document.getElementById('register-password');
         const confirmPassword = document.getElementById('register-confirm');
         const emailPrefix = document.getElementById('register-email-prefix');
@@ -530,24 +558,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 if (!emailRegex.test(emailPrefix.value)) {
                     alert("Email prefix can only contain letters, numbers, dots, hyphens, and underscores.");
                     return false;
-                }
-                
-                // Validate password length
-                if (password.value.length < 8) {
-                    alert("Password must be at least 8 characters long.");
-                    return false;
-                }
-                
-                // Validate password match
-                if (password.value !== confirmPassword.value) {
-                    alert("Passwords don't match");
-                    return false;
-                }
-                
-                return true;
-            };
-        }
-    });
-    </script>
-</body>
-</html>
+                } // Validate password length if (password.value.length
+                < 8) { 
+                alert("Password must be at least 8 characters long.”); return false; 
+                             }
+            // Validate password match if
+            (password.value !== confirmPassword.value) {
+                alert("Passwords don't match"); return false;
+            } return true;
+        }; 
+    } 
+ // Show register tab if there was an error with registration 
+<?php if (!empty(Serror) && isset($_POST['‘action']) && $_POST[‘action'] s== 'register'): 
+>
+showTab('register');
+<
+?php endif; ?
+>5 </script>
+</body> 
+</html> 
+
+                                                                                                                                                                                                                                                                                                                                                                          
