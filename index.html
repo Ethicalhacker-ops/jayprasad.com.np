@@ -14,253 +14,284 @@
         }
         
         body {
-            background-color: #000;
+            background: linear-gradient(135deg, #0d6efd 0%, #1877F2 100%);
             color: #fff;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Video container */
-        .video-container {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        
-        /* Overlay content */
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            min-height: 100vh;
             padding: 20px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        /* Header styling */
+        .header {
+            background: #1877F2;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .email, .datetime {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        /* Main content */
+        .main-content {
+            display: flex;
+            min-height: 70vh;
+        }
+        
+        /* Social media sidebar */
+        .social-sidebar {
+            width: 250px;
+            background: #f0f2f5;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-        }
-        
-        .social-links {
-            display: flex;
             gap: 20px;
-            margin-bottom: 15px;
         }
         
-        .social-link {
-            width: 50px;
-            height: 50px;
+        .social-title {
+            font-size: 20px;
+            color: #1877F2;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: #1c1e21;
+        }
+        
+        .social-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
-            text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         
-        .social-link.facebook {
+        .facebook {
             background-color: #1877F2;
         }
         
-        .social-link.instagram {
+        .instagram {
             background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
         }
         
-        .social-link:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        .social-text {
+            font-weight: 500;
         }
         
-        .info-bar {
+        /* Video section */
+        .video-section {
+            flex: 1;
+            padding: 30px;
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 10px;
-        }
-        
-        .info-item {
-            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
+            background: white;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+        
+        .video-title {
+            font-size: 24px;
+            color: #1877F2;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1877F2;
+            padding: 20px;
+            text-align: center;
         }
         
         .copyright {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-top: 10px;
-        }
-        
-        /* Contact button */
-        .contact-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.3s;
-            z-index: 100;
-        }
-        
-        .contact-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        /* Contact modal */
-        .contact-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-        
-        .contact-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal-content {
-            background: #222;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        
-        .modal-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        
-        .contact-email {
-            font-size: 18px;
-            color: #4fc3f7;
-            margin-bottom: 25px;
-            word-break: break-all;
-        }
-        
-        .close-btn {
-            background: #1877F2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
+            font-size: 16px;
             font-weight: 500;
         }
         
         /* Responsive design */
         @media (max-width: 768px) {
-            .info-bar {
+            .main-content {
                 flex-direction: column;
-                align-items: center;
-                gap: 10px;
             }
             
-            .social-links {
-                margin-bottom: 25px;
+            .social-sidebar {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            .contact-btn {
-                top: 10px;
-                right: 10px;
-                padding: 8px 16px;
-                font-size: 14px;
+            .social-item {
+                flex: 1;
+                min-width: 150px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Video Container -->
-    <div class="video-container">
-        <video controls autoplay muted loop poster="https://jayprasad.com.np/poster.jpg">
-            <source src="https://jayprasad.com.np/video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        
-        <!-- Overlay Content -->
-        <div class="overlay">
-            <div class="social-links">
-                <a href="https://facebook.com/thebjay" target="_blank" class="social-link facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://instagram.com/thebijaay" target="_blank" class="social-link instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fab fa-facebook"></i>
+                <span>Jay Prasad Majhi</span>
             </div>
-            
-            <div class="info-bar">
-                <div class="info-item">
-                    <i class="far fa-envelope"></i>
+            <div class="contact-info">
+                <div class="email">
+                    <i class="fas fa-envelope"></i>
                     <span>admin@jayprasad.com.np</span>
                 </div>
-                <div class="info-item">
-                    <i class="far fa-clock"></i>
-                    <span id="datetime"></span>
+                <div class="datetime" id="datetime">
+                    <i class="fas fa-clock"></i>
+                    <span id="time"></span>
                 </div>
             </div>
+        </header>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Social Media Sidebar -->
+            <div class="social-sidebar">
+                <h2 class="social-title">Connect With Me</h2>
+                <a href="https://facebook.com/thebjay" target="_blank" class="social-item">
+                    <div class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-text">Facebook</div>
+                </a>
+                
+                <a href="https://instagram.com/thebijaay" target="_blank" class="social-item">
+                    <div class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-text">Instagram</div>
+                </a>
+                
+                <a href="mailto:admin@jayprasad.com.np" class="social-item">
+                    <div class="social-icon" style="background: #0d6efd;">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="social-text">Email Me</div>
+                </a>
+            </div>
             
+            <!-- Video Section -->
+            <div class="video-section">
+                <div class="video-container">
+                    <video controls poster="https://jayprasad.com.np/poster.jpg">
+                        <source src="https://jayprasad.com.np/video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <h2 class="video-title">Jay Prasad Majhi - Official Video</h2>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
             <div class="copyright">
                 &copy; <span id="current-year"></span> Jay Prasad Majhi. All Rights Reserved.
             </div>
-        </div>
-    </div>
-    
-    <!-- Contact Button -->
-    <button class="contact-btn">Contact Me</button>
-    
-    <!-- Contact Modal -->
-    <div class="contact-modal" id="contactModal">
-        <div class="modal-content">
-            <h2 class="modal-title">Contact Me</h2>
-            <p class="contact-email">admin@jayprasad.com.np</p>
-            <button class="close-btn">Close</button>
-        </div>
+        </footer>
     </div>
 
     <script>
         // Update date and time
         function updateDateTime() {
             const now = new Date();
-            const options = { 
+            const dateOptions = { 
+                weekday: 'long', 
                 year: 'numeric', 
-                month: 'short', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
+                month: 'long', 
+                day: 'numeric'
             };
-            document.getElementById('datetime').textContent = now.toLocaleDateString('en-US', options);
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            
+            const dateString = now.toLocaleDateString('en-US', dateOptions);
+            const timeString = now.toLocaleTimeString('en-US', timeOptions);
+            
+            document.getElementById('datetime').innerHTML = `<i class="fas fa-clock"></i> ${dateString} | ${timeString}`;
         }
         
         // Update copyright year
@@ -268,30 +299,11 @@
             document.getElementById('current-year').textContent = new Date().getFullYear();
         }
         
-        // Contact modal functionality
-        const contactBtn = document.querySelector('.contact-btn');
-        const contactModal = document.getElementById('contactModal');
-        const closeBtn = document.querySelector('.close-btn');
-        
-        contactBtn.addEventListener('click', () => {
-            contactModal.classList.add('active');
-        });
-        
-        closeBtn.addEventListener('click', () => {
-            contactModal.classList.remove('active');
-        });
-        
-        contactModal.addEventListener('click', (e) => {
-            if (e.target === contactModal) {
-                contactModal.classList.remove('active');
-            }
-        });
-        
         // Initialize
         window.onload = function() {
             updateDateTime();
             updateCopyright();
-            setInterval(updateDateTime, 60000);
+            setInterval(updateDateTime, 1000);
         };
     </script>
 </body>
