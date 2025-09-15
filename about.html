@@ -1,0 +1,114 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Jay Prasad Majhi</title>
+  <meta name="description" content="About Jay Prasad Majhi — Accountant, IT support, and business professional." />
+  <style>
+    :root{--accent:#2563eb;--muted:#6b7280;--card:#ffffff}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0;background:#f3f4f6;color:#111}
+    .container{max-width:1000px;margin:36px auto;padding:20px}
+    header{display:flex;gap:22px;align-items:center}
+    .avatar{flex:0 0 160px;height:160px;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(16,24,40,0.06)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    h1{font-size:28px;margin:0}
+    p.lead{color:var(--muted);margin-top:6px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:26px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 4px 18px rgba(15,23,42,0.04)}
+    .section-title{font-weight:600;margin-bottom:8px}
+    ul{margin:0;padding-left:18px}
+    .social a{display:inline-block;margin-right:8px;text-decoration:none;padding:8px 10px;border-radius:8px;border:1px solid #e6e9ee;color:inherit;font-size:14px}
+    .contact{margin-top:14px}
+    footer{margin-top:26px;color:var(--muted);font-size:13px}@media (max-width:880px){
+  .grid{grid-template-columns:1fr;}
+  .avatar{width:120px;height:120px}
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar card">
+        <!-- Replace the src with your real photo file path e.g. /assets/jay-prasad.jpg -->
+        <img src="/images/jay-prasad.jpg" alt="Jay Prasad Majhi">
+      </div>
+      <div>
+        <h1>Jay Prasad Majhi</h1>
+        <p class="lead">Accountant • IT Support • Business professional</p>
+        <p style="margin-top:10px;color:var(--muted)">Based in Nepal — building small business systems, providing accounting &amp; IT support, and helping students with IELTS/PTE services.</p>
+      </div>
+    </header><main class="grid">
+  <section class="card">
+    <div>
+      <h2 class="section-title">Education</h2>
+      <p>Bachelor’s in Business Studies</p>
+    </div>
+
+    <div style="margin-top:16px">
+      <h2 class="section-title">Career</h2>
+      <ul>
+        <li>Accountant — experience in bookkeeping, payroll, and financial documentation</li>
+        <li>IT Support — website, domain &amp; email hosting, basic web maintenance</li>
+        <li>Operations &amp; Documentation — small business operations and documentation work</li>
+        <li>Education Services — involved in IELTS &amp; PTE preparation and test booking services</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:16px">
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <ul>
+        <li>Accounting software &amp; bookkeeping</li>
+        <li>Website hosting, DNS (Cloudflare), domain management</li>
+        <li>Microsoft Office / Google Workspace</li>
+        <li>Basic HTML/CSS and website builders</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:16px">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact">Email: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
+    </div>
+  </section>
+
+  <aside class="card">
+    <div>
+      <h3 class="section-title">Connect with me</h3>
+      <div class="social" style="margin-top:10px">
+        <!-- Replace # with your real profile URLs -->
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Twitter/X</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div style="margin-top:18px">
+        <h3 class="section-title">Quick facts</h3>
+        <ul>
+          <li>Website: <a href="https://jayprasad.com.np">jayprasad.com.np</a></li>
+          <li>Services: IELTS/PTE classes, test booking, domain &amp; hosting</li>
+          <li>Working hours: 7 AM — 5 PM (classes &amp; support)</li>
+        </ul>
+      </div>
+
+      <div style="margin-top:18px">
+        <h3 class="section-title">Download CV</h3>
+        <p><a href="/files/Jay-Prasad-Majhi-CV.pdf" target="_blank">Download my CV (PDF)</a></p>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  © <span id="year"></span> Jay Prasad Majhi — Built with ♥
+</footer>
+
+  </div>  <script>
+    // small niceties
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script></body>
+</html>
