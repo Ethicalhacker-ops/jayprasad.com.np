@@ -6,81 +6,308 @@
   <title>Privacy Policy | Jay Prasad Majhi</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 30px;
       line-height: 1.6;
-      background-color: #f9f9f9;
       color: #333;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     }
+    
+    /* AI Background Design */
+    .ai-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -3;
+      overflow: hidden;
+    }
+    
+    /* AI Circuit Pattern */
+    .circuit-lines {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(120, 170, 255, 0.2) 0%, transparent 10%),
+        radial-gradient(circle at 80% 70%, rgba(170, 120, 255, 0.2) 0%, transparent 10%),
+        radial-gradient(circle at 40% 80%, rgba(255, 120, 170, 0.2) 0%, transparent 10%);
+      background-size: 800px 800px, 600px 600px, 1000px 1000px;
+      opacity: 0.5;
+    }
+    
+    /* AI Nodes with Animation */
+    .ai-node {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(100, 150, 255, 0.15);
+      filter: blur(8px);
+      z-index: -1;
+      animation: float 15s infinite ease-in-out;
+    }
+    
+    .ai-node:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+      animation-duration: 25s;
+      background: rgba(80, 180, 250, 0.2);
+    }
+    
+    .ai-node:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 65%;
+      left: 75%;
+      animation-delay: -5s;
+      animation-duration: 20s;
+      background: rgba(180, 80, 250, 0.2);
+    }
+    
+    .ai-node:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      top: 35%;
+      left: 80%;
+      animation-delay: -10s;
+      animation-duration: 30s;
+      background: rgba(250, 80, 180, 0.2);
+    }
+    
+    .ai-node:nth-child(4) {
+      width: 180px;
+      height: 180px;
+      top: 75%;
+      left: 15%;
+      animation-delay: -7s;
+      animation-duration: 22s;
+      background: rgba(80, 250, 180, 0.2);
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+      25% {
+        transform: translate(30px, 20px) rotate(5deg) scale(1.05);
+      }
+      50% {
+        transform: translate(-20px, 30px) rotate(-5deg) scale(0.95);
+      }
+      75% {
+        transform: translate(-15px, -20px) rotate(3deg) scale(1.02);
+      }
+    }
+    
+    /* Binary Rain Effect */
+    .binary-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    
+    .binary-digit {
+      position: absolute;
+      color: rgba(60, 90, 150, 0.7);
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      animation: fall 10s linear infinite;
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+    
+    /* Content Styling */
+    .content-container {
+      background-color: rgba(255, 255, 255, 0.92);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
     h1, h2 {
       color: #2c3e50;
+      font-weight: 600;
     }
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 14px;
-      color: #777;
+    
+    h1 {
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 15px;
+      margin-top: 0;
+      font-size: 2.2em;
     }
+    
+    h2 {
+      margin-top: 30px;
+      font-size: 1.6em;
+      border-left: 4px solid #3498db;
+      padding-left: 15px;
+    }
+    
     a {
       color: #2980b9;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    a:hover {
+      color: #1c5985;
+      text-decoration: underline;
+    }
+    
+    ul {
+      padding-left: 20px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #666;
+      padding: 25px;
+      background-color: rgba(240, 240, 240, 0.8);
+      border-radius: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
+      .content-container {
+        padding: 25px;
+      }
+      
+      h1 {
+        font-size: 1.8em;
+      }
+      
+      h2 {
+        font-size: 1.4em;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- AI Background Elements -->
+  <div class="ai-background">
+    <div class="circuit-lines"></div>
+    <div class="ai-node"></div>
+    <div class="ai-node"></div>
+    <div class="ai-node"></div>
+    <div class="ai-node"></div>
+  </div>
+  
+  <!-- Binary Rain Effect -->
+  <div class="binary-rain" id="binaryRain"></div>
+  
+  <div class="content-container">
+    <h1>Privacy Policy</h1>
+    <p>Effective Date: June 6, 2021</p>
 
-  <h1>Privacy Policy</h1>
-  <p>Effective Date: January 1, 2025</p>
+    <p>At Jay Prasad Majhi's website, accessible from <strong>jayprasad.com.np</strong>, we are committed to protecting your personal information and your right to privacy. This Privacy Policy document describes how we collect, use, and safeguard your information when you visit our website or use our services.</p>
 
-  <p>At Jay Prasad Majhi’s website, accessible from <strong>jayprasad.com.np</strong>, we are committed to protecting your personal information and your right to privacy. This Privacy Policy document describes how we collect, use, and safeguard your information when you visit our website or use our services.</p>
-
-  <h2>Information We Collect</h2>
-  <p>We may collect personal information that you voluntarily provide to us when you register on the website, express an interest in obtaining information about us or our products and services, participate in activities on the website,
+    <h2>Information We Collect</h2>
+    <p>We may collect personal information that you voluntarily provide to us when you register on the website, express an interest in obtaining information about us or our products and services, participate in activities on the website, or otherwise contact us.</p>
+    
     <h2>Data Retention</h2>
-  <p>We retain your personal data only for as long as necessary to fulfill the purposes outlined in this policy unless a longer retention period is required or permitted by law. This includes retaining your data to comply with legal, tax, accounting, or reporting requirements, or to resolve disputes.</p>
+    <p>We retain your personal data only for as long as necessary to fulfill the purposes outlined in this policy unless a longer retention period is required or permitted by law. This includes retaining your data to comply with legal, tax, accounting, or reporting requirements, or to resolve disputes.</p>
 
-  <h2>International Users</h2>
-  <p>If you are accessing this website from outside Nepal, please be aware that your information may be transferred to, stored, and processed in Nepal or other countries where our servers are located and our services are operated. By using our services, you understand and consent to the transfer of your data to Nepal and potentially to other jurisdictions, where privacy laws may not be as comprehensive as those in your country of residence.</p>
+    <h2>International Users</h2>
+    <p>If you are accessing this website from outside Nepal, please be aware that your information may be transferred to, stored, and processed in Nepal or other countries where our servers are located and our services are operated. By using our services, you understand and consent to the transfer of your data to Nepal and potentially to other jurisdictions, where privacy laws may not be as comprehensive as those in your country of residence.</p>
 
-  <h2>User Consent</h2>
-  <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms. You are encouraged to periodically review this policy to remain informed on how we are protecting your information.</p>
+    <h2>User Consent</h2>
+    <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms. You are encouraged to periodically review this policy to remain informed on how we are protecting your information.</p>
 
-  <h2>Governing Law</h2>
-  <p>This Privacy Policy and any disputes related to it shall be governed by and construed in accordance with the laws of Nepal. Any legal actions arising out of or related to this policy must be brought exclusively in the courts located in Nepal.</p>
+    <h2>Governing Law</h2>
+    <p>This Privacy Policy and any disputes related to it shall be governed by and construed in accordance with the laws of Nepal. Any legal actions arising out of or related to this policy must be brought exclusively in the courts located in Nepal.</p>
 
-  <h2>Your Responsibilities</h2>
-  <p>As a user, it is your responsibility to ensure that the personal data you provide to us is accurate, complete, and up to date. You should also keep your account credentials secure and avoid sharing them with others.</p>
+    <h2>Your Responsibilities</h2>
+    <p>As a user, it is your responsibility to ensure that the personal data you provide to us is accurate, complete, and up to date. You should also keep your account credentials secure and avoid sharing them with others.</p>
 
-  <h2>Acceptance of Policy</h2>
-  <p>By continuing to use this site and our services, you signify your acceptance of this Privacy Policy. If you do not agree to this policy, please discontinue use of our website and services. Your continued use of the website following the posting of changes to this policy will be deemed your acceptance of those changes.</p>
+    <h2>Acceptance of Policy</h2>
+    <p>By continuing to use this site and our services, you signify your acceptance of this Privacy Policy. If you do not agree to this policy, please discontinue use of our website and services. Your continued use of the website following the posting of changes to this policy will be deemed your acceptance of those changes.</p>
 
-  <h2>Accessibility</h2>
-  <p>We are committed to ensuring that our Privacy Policy is accessible to everyone, including individuals with disabilities. If you experience difficulty accessing any part of this policy, please contact us at <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a> and we will work with you to provide the information you need.</p>
+    <h2>Accessibility</h2>
+    <p>We are committed to ensuring that our Privacy Policy is accessible to everyone, including individuals with disabilities. If you experience difficulty accessing any part of this policy, please contact us at <a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a> and we will work with you to provide the information you need.</p>
 
-  <footer>
-    &copy; 2025 Jay Prasad Majhi. All rights reserved. | For support, contact us at 
-    <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a>, 
-    <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a>, 
-    <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a>, or 
-    <<h2>Changes to This Privacy Policy</h2>
-  <p>Jay Prasad Majhi reserves the right to update or change this Privacy Policy at any time. We encourage users to frequently check this page for any changes to stay informed about how we are protecting the personal information we collect. You acknowledge and agree that it is your responsibility to review this Privacy Policy periodically and become aware of any modifications.</p>
+    <h2>Changes to This Privacy Policy</h2>
+    <p>Jay Prasad Majhi reserves the right to update or change this Privacy Policy at any time. We encourage users to frequently check this page for any changes to stay informed about how we are protecting the personal information we collect. You acknowledge and agree that it is your responsibility to review this Privacy Policy periodically and become aware of any modifications.</p>
 
-  <h2>Children's Privacy</h2>
-  <p>Our services are not directed to individuals under the age of 13, and we do not knowingly collect personal information from children. If we become aware that we have collected personal data from a child without parental consent, we will take steps to remove that information promptly.</p>
+    <h2>Children's Privacy</h2>
+    <p>Our services are not directed to individuals under the age of 13, and we do not knowingly collect personal information from children. If we become aware that we have collected personal data from a child without parental consent, we will take steps to remove that information promptly.</p>
 
-  <h2>Contacting Us</h2>
-  <p>If you have any questions about this Privacy Policy, the practices of this site, or your dealings with us, please contact us via email:</p>
-  <ul>
-    <li>Email IT Support: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></li>
-    <li>Administrator: <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a></li>
-    <li>General Inquiries: <a href="mailto:contact@jayprasad.com.np">contact@jayprasad.com.np</a></li>
-    <li>Customer Support: <a href="mailto:support@jayprasad.com.np">support@jayprasad.com.np</a></li>
-  </ul>
+    <h2>Contacting Us</h2>
+    <p>If you have any questions about this Privacy Policy, the practices of this site, or your dealings with us, please contact us via email:</p>
+    <ul>
+      <li>Administrator: <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a></li>
+      <li>Customer Support: <a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a></li>
+    </ul>
 
-  <footer style="margin-top: 40px; text-align: center; padding: 20px; background-color: #f0f0f0;">
-    <p style="font-size: 14px;">&copy; <script>document.write(new Date().getFullYear());</script> Jay Prasad Majhi. All rights reserved.</p>
-    <p style="font-size: 12px;">Last updated: June 6, 2021</p>
-  </footer>
-</div> <!-- End of .container -->
+    <footer>
+      <p>&copy; 2025 Jay Prasad Majhi. All rights reserved.</p>
+      <p>For support, contact us at 
+        <a href="mailto:ict@technologist.com">ict@technologist.com</a>, 
+        <a href="mailto:admin@jayprasad.com.np">admin@jayprasad.com.np</a>, 
+        <a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a>
+      </p>
+      <p>Last updated: June 6, 2021</p>
+    </footer>
+  </div>
 
+  <script>
+    // Create binary rain effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const binaryRain = document.getElementById('binaryRain');
+      const digits = '01';
+      const digitCount = 50;
+      
+      for (let i = 0; i < digitCount; i++) {
+        const digit = document.createElement('div');
+        digit.className = 'binary-digit';
+        digit.textContent = digits.charAt(Math.floor(Math.random() * digits.length));
+        digit.style.left = Math.random() * 100 + '%';
+        digit.style.animationDelay = Math.random() * 10 + 's';
+        digit.style.animationDuration = (5 + Math.random() * 15) + 's';
+        binaryRain.appendChild(digit);
+      }
+    });
+  </script>
 </body>
-    </html>
+</html>
