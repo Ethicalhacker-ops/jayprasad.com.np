@@ -1,114 +1,545 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About — Jay Prasad Majhi</title>
-  <meta name="description" content="About Jay Prasad Majhi — Accountant, IT support, and business professional." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jay Prasad Majhi — AI & Business Professional</title>
+  <meta name="description" content="Jay Prasad Majhi — Accountant, IT support, and business professional with AI expertise." />
   <style>
-    :root{--accent:#2563eb;--muted:#6b7280;--card:#ffffff}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0;background:#f3f4f6;color:#111}
-    .container{max-width:1000px;margin:36px auto;padding:20px}
-    header{display:flex;gap:22px;align-items:center}
-    .avatar{flex:0 0 160px;height:160px;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(16,24,40,0.06)}
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-    h1{font-size:28px;margin:0}
-    p.lead{color:var(--muted);margin-top:6px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:26px}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 4px 18px rgba(15,23,42,0.04)}
-    .section-title{font-weight:600;margin-bottom:8px}
-    ul{margin:0;padding-left:18px}
-    .social a{display:inline-block;margin-right:8px;text-decoration:none;padding:8px 10px;border-radius:8px;border:1px solid #e6e9ee;color:inherit;font-size:14px}
-    .contact{margin-top:14px}
-    footer{margin-top:26px;color:var(--muted);font-size:13px}@media (max-width:880px){
-  .grid{grid-template-columns:1fr;}
-  .avatar{width:120px;height:120px}
-}
-
+    :root {
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --muted: #6b7280;
+      --card: rgba(255, 255, 255, 0.92);
+      --text: #111827;
+      --gradient-start: #4f46e5;
+      --gradient-end: #7c3aed;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* AI Background Elements */
+    .ai-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -3;
+      overflow: hidden;
+      opacity: 0.7;
+    }
+    
+    .circuit-lines {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 15%),
+        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 15%),
+        radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 15%);
+      background-size: 800px 800px, 600px 600px, 1000px 1000px;
+    }
+    
+    .ai-node {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      z-index: -1;
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    .ai-node:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+      animation-duration: 25s;
+      background: rgba(79, 70, 229, 0.25);
+    }
+    
+    .ai-node:nth-child(2) {
+      width: 250px;
+      height: 250px;
+      top: 65%;
+      left: 75%;
+      animation-delay: -5s;
+      animation-duration: 20s;
+      background: rgba(124, 58, 237, 0.25);
+    }
+    
+    .ai-node:nth-child(3) {
+      width: 350px;
+      height: 350px;
+      top: 35%;
+      left: 80%;
+      animation-delay: -10s;
+      animation-duration: 30s;
+      background: rgba(139, 92, 246, 0.25);
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+      25% {
+        transform: translate(40px, 30px) rotate(5deg) scale(1.05);
+      }
+      50% {
+        transform: translate(-30px, 40px) rotate(-5deg) scale(0.95);
+      }
+      75% {
+        transform: translate(-25px, -30px) rotate(3deg) scale(1.02);
+      }
+    }
+    
+    /* Binary Rain Effect */
+    .binary-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    
+    .binary-digit {
+      position: absolute;
+      color: rgba(165, 180, 252, 0.7);
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      animation: fall 12s linear infinite;
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+    
+    /* Content Styling */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    header {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 40px;
+      background: rgba(30, 41, 59, 0.7);
+      padding: 24px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .avatar {
+      flex: 0 0 180px;
+      height: 180px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin: 0;
+      background: linear-gradient(to right, #818cf8, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    
+    .lead {
+      color: #cbd5e1;
+      margin-top: 8px;
+      font-size: 18px;
+    }
+    
+    .tagline {
+      margin-top: 16px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 30px;
+    }
+    
+    .card {
+      background: var(--card);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      color: var(--text);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 20px;
+      color: var(--accent);
+      position: relative;
+      padding-bottom: 8px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+      border-radius: 3px;
+    }
+    
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+    
+    li {
+      margin-bottom: 8px;
+      color: #374151;
+    }
+    
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .social a:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact {
+      margin-top: 16px;
+      color: #4b5563;
+    }
+    
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .contact a:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+      padding: 20px;
+      background: rgba(30, 41, 59, 0.7);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .ai-highlight {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      padding: 30px;
+      border-radius: 16px;
+      margin: 40px 0;
+      color: white;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .ai-highlight h2 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    
+    .ai-highlight p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .growth-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 42px;
+      font-weight: 800;
+      background: linear-gradient(to right, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .stat-label {
+      font-size: 16px;
+      color: #cbd5e1;
+      margin-top: 8px;
+    }
+    
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .growth-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 28px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .social a {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- AI Background Elements -->
+  <div class="ai-background">
+    <div class="circuit-lines"></div>
+    <div class="ai-node"></div>
+    <div class="ai-node"></div>
+    <div class="ai-node"></div>
+  </div>
+  
+  <!-- Binary Rain Effect -->
+  <div class="binary-rain" id="binaryRain"></div>
+  
   <div class="container">
     <header>
       <div class="avatar card">
-        <!-- Replace the src with your real photo file path e.g. /assets/jay-prasad.jpg -->
+        <!-- Replace the src with your real photo file path -->
         <img src="/images/jay-prasad.jpg" alt="Jay Prasad Majhi">
       </div>
       <div>
         <h1>Jay Prasad Majhi</h1>
-        <p class="lead">Accountant • IT Support • Business professional</p>
-        <p style="margin-top:10px;color:var(--muted)">Based in Nepal — building small business systems, providing accounting &amp; IT support, and helping students with IELTS/PTE services.</p>
+        <p class="lead">Accountant • AI Business Specialist • IT Consultant</p>
+        <p class="tagline">Based in Nepal — Leveraging AI to drive business growth, providing accounting & IT solutions, and helping students with IELTS/PTE services.</p>
       </div>
-    </header><main class="grid">
-  <section class="card">
-    <div>
-      <h2 class="section-title">Education</h2>
-      <p>Bachelor’s in Business Studies</p>
-    </div>
-
-    <div style="margin-top:16px">
-      <h2 class="section-title">Career</h2>
-      <ul>
-        <li>Accountant — experience in bookkeeping, payroll, and financial documentation</li>
-        <li>IT Support — website, domain &amp; email hosting, basic web maintenance</li>
-        <li>Operations &amp; Documentation — small business operations and documentation work</li>
-        <li>Education Services — involved in IELTS &amp; PTE preparation and test booking services</li>
-      </ul>
-    </div>
-
-    <div style="margin-top:16px">
-      <h2 class="section-title">Skills &amp; Tools</h2>
-      <ul>
-        <li>Accounting software &amp; bookkeeping</li>
-        <li>Website hosting, DNS (Cloudflare), domain management</li>
-        <li>Microsoft Office / Google Workspace</li>
-        <li>Basic HTML/CSS and website builders</li>
-      </ul>
-    </div>
-
-    <div style="margin-top:16px">
-      <h2 class="section-title">Contact</h2>
-      <p class="contact">Email: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
-    </div>
-  </section>
-
-  <aside class="card">
-    <div>
-      <h3 class="section-title">Connect with me</h3>
-      <div class="social" style="margin-top:10px">
-        <!-- Replace # with your real profile URLs -->
-        <a href="#" target="_blank" rel="noopener">Facebook</a>
-        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#" target="_blank" rel="noopener">Twitter/X</a>
-        <a href="#" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" target="_blank" rel="noopener">GitHub</a>
-      </div>
-
-      <div style="margin-top:18px">
-        <h3 class="section-title">Quick facts</h3>
-        <ul>
-          <li>Website: <a href="https://jayprasad.com.np">jayprasad.com.np</a></li>
-          <li>Services: IELTS/PTE classes, test booking, domain &amp; hosting</li>
-          <li>Working hours: 7 AM — 5 PM (classes &amp; support)</li>
-        </ul>
-      </div>
-
-      <div style="margin-top:18px">
-        <h3 class="section-title">Download CV</h3>
-        <p><a href="/files/Jay-Prasad-Majhi-CV.pdf" target="_blank">Download my CV (PDF)</a></p>
+    </header>
+    
+    <!-- AI Business Highlight Section -->
+    <div class="ai-highlight">
+      <h2>UNLOCK THE FUTURE WITH ARTIFICIAL INTELLIGENCE</h2>
+      <p>Intelligent solutions to your business, driving growth, efficiency, and innovation.</p>
+      
+      <div class="growth-stats">
+        <div class="stat">
+          <div class="stat-number">10x</div>
+          <div class="stat-label">GROWTH IN CLIENT BUCKS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">AI SOLUTIONS DEPLOYED</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">50%</div>
+          <div class="stat-label">OPERATIONAL EFFICIENCY</div>
+        </div>
       </div>
     </div>
-  </aside>
-</main>
+    
+    <main class="grid">
+      <section class="card">
+        <div>
+          <h2 class="section-title">Education</h2>
+          <p>Bachelor's in Business Studies with AI Integration</p>
+        </div>
 
-<footer>
-  © <span id="year"></span> Jay Prasad Majhi — Built with ♥
-</footer>
+        <div style="margin-top:24px">
+          <h2 class="section-title">Career</h2>
+          <ul>
+            <li>AI-Driven Accountant — experience in bookkeeping, payroll, and financial documentation with AI tools</li>
+            <li>IT & AI Support — website development, AI integration, domain & email hosting</li>
+            <li>Business Process Automation — implementing AI solutions for small business operations</li>
+            <li>Education Services — involved in IELTS & PTE preparation with AI-powered learning tools</li>
+          </ul>
+        </div>
 
-  </div>  <script>
-    // small niceties
+        <div style="margin-top:24px">
+          <h2 class="section-title">AI Skills & Expertise</h2>
+          <ul>
+            <li>AI-powered accounting software & bookkeeping systems</li>
+            <li>Predictive analytics for business growth</li>
+            <li>Customer experience enhancement through AI</li>
+            <li>Data automation and processing solutions</li>
+            <li>AI-driven operational efficiency tools</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:24px">
+          <h2 class="section-title">Contact</h2>
+          <p class="contact">Email: <a href="mailto:it@jayprasad.com.np">it@jayprasad.com.np</a></p>
+          <p class="contact">AI Solutions: <a href="mailto:ai@jayprasad.com.np">ai@jayprasad.com.np</a></p>
+        </div>
+      </section>
+
+      <aside class="card">
+        <div>
+          <h3 class="section-title">Connect with me</h3>
+          <div class="social">
+            <a href="#" target="_blank" rel="noopener">Facebook</a>
+            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="#" target="_blank" rel="noopener">Twitter/X</a>
+            <a href="#" target="_blank" rel="noopener">Instagram</a>
+            <a href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+
+          <div style="margin-top:24px">
+            <h3 class="section-title">AI Services</h3>
+            <ul>
+              <li>Custom AI business solutions</li>
+              <li>Data analytics implementation</li>
+              <li>Process automation systems</li>
+              <li>Customer experience enhancement</li>
+              <li>AI-powered financial analysis</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:24px">
+            <h3 class="section-title">Website & Resources</h3>
+            <ul>
+              <li>Website: <a href="https://jayprasad.com.np">jayprasad.com.np</a></li>
+              <li>AI Blog: <a href="https://jayprasad.com.np/ai">AI Insights & Trends</a></li>
+              <li>Services: IELTS/PTE classes, test booking, AI consulting</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:24px">
+            <h3 class="section-title">Download AI Portfolio</h3>
+            <p><a href="/files/Jay-Prasad-Majhi-AI-Portfolio.pdf" target="_blank">Download my AI Portfolio (PDF)</a></p>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Jay Prasad Majhi — AI Business Solutions • Built with ♥ and Artificial Intelligence
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script></body>
+    
+    // Create binary rain effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const binaryRain = document.getElementById('binaryRain');
+      const digits = '01';
+      const digitCount = 70;
+      
+      for (let i = 0; i < digitCount; i++) {
+        const digit = document.createElement('div');
+        digit.className = 'binary-digit';
+        digit.textContent = digits.charAt(Math.floor(Math.random() * digits.length));
+        digit.style.left = Math.random() * 100 + '%';
+        digit.style.animationDelay = Math.random() * 15 + 's';
+        digit.style.animationDuration = (8 + Math.random() * 20) + 's';
+        binaryRain.appendChild(digit);
+      }
+    });
+  </script>
+</body>
 </html>
